@@ -1,10 +1,11 @@
-import type { Img, LeadSection, PostsSection } from "@/sanity/typegen";
+import type { Img, LeadSection, PostsSection, HeroSection } from "@/sanity/typegen";
 import { Link } from "@/i18n/navigation";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import { ComponentType } from "react";
 import { q } from "../groqd";
 import { sanityFetch } from "../live";
 import { getLocale } from "next-intl/server";
+import HeroSlider from "@/components/hero/HeroSlider";
 
 /**
  * Example: A `section` registry mapping Sanity `_type` values to React components.
@@ -51,4 +52,5 @@ export const components: { [key: string]: ComponentType<any> } = {
     );
   },
   sectionImage: ({ item }: { item: Img }) => <SanityImage image={item} height={300} width={300} />,
+  heroSection: ({ item }: { item: HeroSection }) => <HeroSlider slides={item.slides ?? []} />,
 };

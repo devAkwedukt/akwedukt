@@ -8,6 +8,8 @@ import img from "./img";
 import richText from "./richText";
 import leadSection from "./sections/leadSection";
 import postsSection from "./sections/postsSection";
+import heroSection from "./sections/heroSection";
+import heroSlide from "./objects/heroSlide";
 
 export const schemaTypes = [
   post,
@@ -20,4 +22,6 @@ export const schemaTypes = [
   img,
   leadSection,
   postsSection,
+  heroSection,
+  heroSlide,
 ];

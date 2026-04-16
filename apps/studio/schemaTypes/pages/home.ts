@@ -22,6 +22,10 @@ export default defineType({
       },
       of: [
         defineArrayMember({
+          name: "heroSection",
+          type: "heroSection",
+        }),
+        defineArrayMember({
           name: "sectionImage",
           type: "img",
         }),

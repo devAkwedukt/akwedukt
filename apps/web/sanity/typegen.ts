@@ -18,6 +18,42 @@ export type Robots = {
   noFollow?: boolean;
 };
 
+export type Button = {
+  label?: string;
+  url?: string;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type HeroSlide = {
+  _type: "heroSlide";
+  title?: string;
+  description?: string;
+  button?: Button;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type HeroSection = {
+  _type: "heroSection";
+  enabled?: boolean;
+  slides?: Array<
+    {
+      _key: string;
+    } & HeroSlide
+  >;
+};
+
 export type PostsSection = {
   _type: "postsSection";
   displayNumber?: number;
@@ -27,13 +63,6 @@ export type LeadSection = {
   _type: "leadSection";
   title?: string;
   subtitle?: string;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Img = {
@@ -218,6 +247,9 @@ export type Home = {
   sections?: Array<
     | ({
         _key: string;
+      } & HeroSection)
+    | ({
+        _key: string;
       } & Img)
     | ({
         _key: string;
@@ -352,9 +384,12 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Robots
+  | Button
+  | SanityImageAssetReference
+  | HeroSlide
+  | HeroSection
   | PostsSection
   | LeadSection
-  | SanityImageAssetReference
   | Img
   | RichText
   | Seo
