@@ -1,8 +1,7 @@
 "use client";
 
 import { SanityImage } from "@/sanity/image/SanityImage";
-import Container from "@/components/uikit/Container";
-import { Slider } from "@/components/uikit/Slider";
+import { Slider } from "@/components/ui";
 
 type Slide = {
   title?: string;
@@ -34,7 +33,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
           <div className="absolute inset-0 bg-black/40 z-10" />
 
           {/* CONTENT */}
-          <Container className="absolute inset-0 z-20 flex items-center">
+          <div className="container absolute inset-0 z-20 flex items-center">
             <div className="max-w-xl text-white">
               {slide.title && (
                 <h1 className="text-4xl md:text-6xl font-bold mb-4">{slide.title}</h1>
@@ -53,7 +52,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
                 </a>
               )}
             </div>
-          </Container>
+          </div>
         </div>
       ))}
     </Slider>

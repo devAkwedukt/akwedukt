@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 import { sanityFetch, SanityLive } from "@/sanity/live";
 import { Toaster } from "sonner";
@@ -41,14 +41,16 @@ export function generateStaticParams() {
 /** Setup font optimization
  * @see https://nextjs.org/docs/app/getting-started/fonts */
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jakarta",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const fraunces = Fraunces({
   subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  variable: "--font-fraunces",
 });
 
 export default async function RootLayout({
@@ -67,7 +69,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${fraunces.variable} ${jakarta.variable} antialiased`}>
         <NextIntlClientProvider>
           <div className="flex justify-center gap-3 uppercase pt-5">
             {locales.map((l) => (

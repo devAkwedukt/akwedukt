@@ -2,54 +2,274 @@
 
 @theme inline {
   --color-background: #ffffff;
-  --color-foreground: #1a1a1a;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-brand-500: #412bcc;
-  --color-brand-400: #523cdf;
-  --color-brand-300: #6852f5;
-  --color-brand-200: #7f6bfe;
-  --color-brand-100: #9584ff;
+  --color-foreground: #103770;
+  --font-fraunces: "Fraunces", serif;
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-serif: var(--font-fraunces);
+  --font-sans: var(--font-jakarta);
+  --color-deep-navy-blue-50: #f0f5fc;
+  --color-deep-navy-blue-100: #e1ebf9;
+  --color-deep-navy-blue-200: #c8daf3;
+  --color-deep-navy-blue-300: #a0c2ea;
+  --color-deep-navy-blue-400: #72a3df;
+  --color-deep-navy-blue-500: #4b82d0;
+  --color-deep-navy-blue-600: #3666b6;
+  --color-deep-navy-blue-700: #2b5195;
+  --color-deep-navy-blue-800: #26467c;
+  --color-deep-navy-blue-900: #103770;
+  --color-deep-navy-blue-950: #0a224a;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #11224d;
+  --color-purple-50: #eef0fa;
+  --color-purple-100: #dce0f5;
+  --color-purple-200: #b9c0eb;
+  --color-purple-300: #96a0df;
+  --color-purple-400: #7281d2;
+  --color-purple-500: #4c51bf;
+  --color-purple-600: #3d419e;
+  --color-purple-700: #2e317d;
+  --color-purple-800: #20225d;
+  --color-purple-900: #13143e;
+  --color-purple-950: #0a0b21;
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-200: #fef08a;
+  --color-yellow-300: #fde047;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+  --color-yellow-800: #854d0e;
+  --color-yellow-900: #713f12;
+  --color-yellow-950: #40240a;
+  --color-orange-50: #fff4ee;
+  --color-orange-100: #ffe4d5;
+  --color-orange-200: #fec0a1;
+  --color-orange-300: #fda172;
+  --color-orange-400: #fe8d5a;
+  --color-orange-500: #fe8047;
+  --color-orange-600: #e56930;
+  --color-orange-700: #c04e1d;
+  --color-orange-800: #9a3912;
+  --color-orange-900: #7a2b0c;
+  --color-orange-950: #481604;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-pink-50: #fdf3f9;
+  --color-pink-100: #fae2f1;
+  --color-pink-200: #f2bfdf;
+  --color-pink-300: #ea98ca;
+  --color-pink-400: #d877b6;
+  --color-pink-500: #c05fa5;
+  --color-pink-600: #a44588;
+  --color-pink-700: #85326c;
+  --color-pink-800: #6e2657;
+  --color-pink-900: #581e45;
+  --color-pink-950: #370e2a;
+  --color-happy-green-50: #fcfce6;
+  --color-happy-green-100: #f8f8c4;
+  --color-happy-green-200: #f0ef94;
+  --color-happy-green-300: #e6e360;
+  --color-happy-green-400: #d9d748;
+  --color-happy-green-500: #cece43;
+  --color-happy-green-600: #a5a72b;
+  --color-happy-green-700: #7f8220;
+  --color-happy-green-800: #60621b;
+  --color-happy-green-900: #464816;
+  --color-happy-green-950: #282a09;
+  --color-ocean-green-50: #f5fafa;
+  --color-ocean-green-100: #e1f5f3;
+  --color-ocean-green-200: #a4ded8;
+  --color-ocean-green-300: #7fd4cb;
+  --color-ocean-green-400: #2fbaac;
+  --color-ocean-green-500: #01a18e;
+  --color-ocean-green-600: #008f79;
+  --color-ocean-green-700: #006151;
+  --color-ocean-green-800: #004237;
+  --color-ocean-green-900: #002e26;
+  --color-ocean-green-950: #001a16;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #eeeff0;
+  --color-gray-200: #dbdce0;
+  --color-gray-300: #c2c4cb;
+  --color-gray-400: #a0a6b1;
+  --color-gray-500: #7c818e;
+  --color-gray-600: #595a67;
+  --color-gray-700: #3b3d48;
+  --color-gray-800: #24252f;
+  --color-gray-900: #131517;
+  --color-gray-950: #08080a;
+  --color-brand-50: #f0f5fc;
+  --color-brand-100: #e1ebf9;
+  --color-brand-200: #c8daf3;
+  --color-brand-300: #a0c2ea;
+  --color-brand-400: #72a3df;
+  --color-brand-500: #4b82d0;
+  --color-brand-600: #3666b6;
+  --color-brand-700: #2b5195;
+  --color-brand-800: #26467c;
+  --color-brand-900: #103770;
+  --color-brand-950: #0a224a;
   --color-muted: #a4a4a4;
+
+  /* Spacing tokens from design system */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-s: 12px;
+  --spacing-m: 16px;
+  --spacing-l: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-xxxl: 56px;
+  --spacing-xxxxl: 64px;
 }
 
 @layer base {
   body {
     @apply bg-background text-foreground font-sans;
   }
+  h1,
+  h2 {
+    @apply font-serif;
+  }
 }
 
 @layer components {
+  .container {
+    @apply mx-auto w-full px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Typography from design system */
   .heading-1 {
-    @apply text-4xl font-bold leading-tight mb-4;
+    @apply font-bold leading-none mb-4;
+    font-size: 3.375rem;
+    letter-spacing: -0.03em;
   }
+
+  @supports (font-size: clamp(1rem, 1vw, 2rem)) {
+    .heading-1 {
+      font-size: clamp(3.375rem, 8vw, 4.5rem);
+    }
+  }
+
   .heading-2 {
-    @apply text-3xl font-semibold leading-snug mb-3;
+    @apply font-bold leading-none mb-3;
+    font-size: 2.5rem;
+    letter-spacing: -0.025em;
   }
+
+  @supports (font-size: clamp(1rem, 1vw, 2rem)) {
+    .heading-2 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+    }
+  }
+
   .heading-3 {
-    @apply text-2xl font-medium leading-snug mb-2.5;
+    @apply font-bold leading-tight mb-2.5;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
   }
+
+  @supports (font-size: clamp(1rem, 1vw, 2rem)) {
+    .heading-3 {
+      font-size: clamp(1.25rem, 4vw, 1.5rem);
+    }
+  }
+
   .heading-4 {
-    @apply text-xl font-medium leading-snug mb-2;
+    @apply font-medium leading-tight mb-2;
+    font-size: 1rem; /* mobile fallback */
+    letter-spacing: normal;
   }
 
+  @supports (font-size: clamp(1rem, 1vw, 2rem)) {
+    .heading-4 {
+      font-size: clamp(1rem, 3vw, 1.25rem); /* mobile 16px, desktop 20px */
+    }
+  }
+
+  /* Body text with design system values */
   .body-base {
-    @apply text-base leading-relaxed mb-4;
-  }
-  .body-lg {
-    @apply text-lg leading-relaxed mb-5;
-  }
-  .body-sm {
-    @apply text-sm leading-relaxed mb-3;
+    @apply leading-relaxed mb-4;
+    font-size: 1rem;
+    letter-spacing: normal;
   }
 
+  .body-lg {
+    @apply leading-relaxed mb-5;
+    font-size: 1.125rem;
+    letter-spacing: normal;
+  }
+
+  .body-sm {
+    @apply leading-relaxed mb-3;
+    font-size: 0.875rem;
+    letter-spacing: normal;
+  }
+
+  .body-base-bold {
+    @apply font-bold leading-relaxed mb-4;
+    font-size: 1rem;
+    letter-spacing: normal;
+  }
+
+  .body-lg-bold {
+    @apply font-bold leading-relaxed mb-5;
+    font-size: 1.125rem;
+    letter-spacing: normal;
+  }
+
+  .body-sm-bold {
+    @apply font-bold leading-relaxed mb-3;
+    font-size: 0.875rem;
+    letter-spacing: normal;
+  }
+
+  /* Other components */
   .lead {
-    @apply text-lg text-brand-100 leading-relaxed mb-5;
+    @apply leading-relaxed mb-5;
+    font-size: 1.125rem;
+    letter-spacing: normal;
+    color: var(--color-deep-navy-blue-100);
   }
+
   .link {
-    @apply text-brand-300 hover:text-brand-500 underline cursor-pointer;
+    @apply underline cursor-pointer transition-colors;
+    color: var(--color-deep-navy-blue-300);
   }
+
+  .link:hover {
+    color: var(--color-deep-navy-blue-500);
+  }
+
   .caption {
-    @apply text-sm text-muted leading-snug;
+    @apply leading-snug;
+    font-size: 0.75rem;
+    letter-spacing: normal;
+    color: var(--color-gray-600);
+  }
+
+  /* Spacing utilities */
+  .section-gap-mobile {
+    margin-bottom: 64px;
+  }
+
+  .section-gap-desktop {
+    margin-bottom: 80px;
+  }
+
+  @media (min-width: 768px) {
+    .section-gap-mobile {
+      margin-bottom: 80px;
+    }
   }
 }
