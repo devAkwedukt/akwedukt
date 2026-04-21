@@ -2,6 +2,7 @@ import ColorExamples from "@/components/uikit/ColorExamples";
 import ButtonExamples from "@/components/uikit/ButtonExamples";
 import IconExamples from "@/components/uikit/IconExamples";
 import { MenuItemExamples } from "@/components/uikit/MenuItemExamples";
+import { IconButtonExamples } from "@/components/uikit/IconButtonExamples";
 
 export default function UIKitPage() {
   return (
@@ -26,6 +27,12 @@ export default function UIKitPage() {
               className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
             >
               Menu Item
+            </a>
+            <a
+              href="#iconbutton"
+              className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition-colors"
+            >
+              IconButton
             </a>
             <a
               href="#icons"
@@ -66,6 +73,13 @@ export default function UIKitPage() {
               >
                 <h3 className="text-xl font-semibold text-deep-navy-blue-700 mb-4">Menu Item</h3>
                 <MenuItemExamples />
+              </div>
+              <div
+                id="iconbutton"
+                className="bg-white rounded-lg shadow-sm border border-gray-200 p-6"
+              >
+                <h3 className="text-xl font-semibold text-deep-navy-blue-700 mb-4">IconButton</h3>
+                <IconButtonExamples />
               </div>
 
               {/* Full Component Library */}
