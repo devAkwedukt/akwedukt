@@ -10,6 +10,7 @@ import leadSection from "./sections/leadSection";
 import postsSection from "./sections/postsSection";
 import heroSection from "./sections/heroSection";
 import heroSlide from "./objects/heroSlide";
+import { footerType } from "./footerType";
 
 export const schemaTypes = [
   post,
@@ -24,4 +25,5 @@ export const schemaTypes = [
   postsSection,
   heroSection,
   heroSlide,
+  footerType,
 ];

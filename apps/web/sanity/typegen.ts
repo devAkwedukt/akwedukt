@@ -23,6 +23,37 @@ export type Button = {
   url?: string;
 };
 
+export type Footer = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  companyInfo?: {
+    name?: string;
+    street?: string;
+    city?: string;
+  };
+  legalInfo?: {
+    nip?: string;
+    krs?: string;
+    regon?: string;
+  };
+  bankAccount?: {
+    bankName?: string;
+    accountNumber?: string;
+  };
+  contact?: {
+    email?: string;
+    phones?: Array<string>;
+  };
+  socialMedia?: Array<{
+    platform?: "facebook" | "instagram" | "linkedin" | "tiktok";
+    url?: string;
+    _key: string;
+  }>;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -385,6 +416,7 @@ export type Geopoint = {
 export type AllSanitySchemaTypes =
   | Robots
   | Button
+  | Footer
   | SanityImageAssetReference
   | HeroSlide
   | HeroSection
@@ -436,10 +468,40 @@ export type PostsQueryResult = Array<{
   body: RichText | null;
 }>;
 
+// Source: ../web/sanity/queries/groq.example.ts
+// Variable: FOOTER_QUERY
+// Query: *[_type == "footer"][0]{  companyInfo,  legalInfo,  bankAccount,  contact,  socialMedia}
+export type FOOTER_QUERY_RESULT = {
+  companyInfo: {
+    name?: string;
+    street?: string;
+    city?: string;
+  } | null;
+  legalInfo: {
+    nip?: string;
+    krs?: string;
+    regon?: string;
+  } | null;
+  bankAccount: {
+    bankName?: string;
+    accountNumber?: string;
+  } | null;
+  contact: {
+    email?: string;
+    phones?: Array<string>;
+  } | null;
+  socialMedia: Array<{
+    platform?: "facebook" | "instagram" | "linkedin" | "tiktok";
+    url?: string;
+    _key: string;
+  }> | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "post"] | order(_createdAt desc) {\n    _id,\n    _createdAt,\n    title,\n    "slug": slug.current,\n    "author": author->name,\n    "image": mainImage.asset->url,\n    description,\n    "categories": categories[]->title,\n    body\n  }\n': PostsQueryResult;
+    '*[_type == "footer"][0]{\n  companyInfo,\n  legalInfo,\n  bankAccount,\n  contact,\n  socialMedia\n}': FOOTER_QUERY_RESULT;
   }
 }

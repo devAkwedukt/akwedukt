@@ -10,8 +10,10 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import { locales } from "@/i18n/locales";
+//import { Link } from "@/i18n/navigation";
+//import { locales } from "@/i18n/locales";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
@@ -71,6 +73,9 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${fraunces.variable} ${jakarta.variable} antialiased`}>
         <NextIntlClientProvider>
+          <Navbar />
+
+          {/*
           <div className="flex justify-center gap-3 uppercase pt-5">
             {locales.map((l) => (
               <Link key={l} href="/" locale={l}>
@@ -78,7 +83,13 @@ export default async function RootLayout({
               </Link>
             ))}
           </div>
+          */}
+
+          <div className="h-[200vh] bg-blue-100"></div>
+
           {children}
+
+          <Footer />
           <Toaster />
           <SanityPreview />
         </NextIntlClientProvider>
