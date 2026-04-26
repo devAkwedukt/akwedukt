@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "../../styles/animations.css";
 
 @theme inline {
   --color-background: #ffffff;
@@ -145,14 +146,13 @@
 
 @layer components {
   .container {
-    @apply mx-auto w-full px-4 sm:px-6 lg:px-8;
+    @apply mx-auto w-full px-6 lg:px-8 xl:px-20;
   }
 
   /* Typography from design system */
   .heading-1 {
-    @apply font-bold leading-none mb-4;
+    @apply font-bold leading-[57.24px] md:leading-none tracking-tighter md:tracking-[-0.075em];
     font-size: 3.375rem;
-    letter-spacing: -0.03em;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
@@ -162,7 +162,7 @@
   }
 
   .heading-2 {
-    @apply font-bold leading-none mb-3;
+    @apply font-bold leading-11 md:leading-[59.36px];
     font-size: 2.5rem;
     letter-spacing: -0.025em;
   }
@@ -174,7 +174,7 @@
   }
 
   .heading-3 {
-    @apply font-bold leading-tight mb-2.5;
+    @apply font-bold leading-6 md:leading-7;
     font-size: 1.25rem;
     letter-spacing: -0.01em;
   }
@@ -186,7 +186,7 @@
   }
 
   .heading-4 {
-    @apply font-medium leading-tight mb-2;
+    @apply font-medium leading-tight;
     font-size: 1rem; /* mobile fallback */
     letter-spacing: normal;
   }
@@ -199,44 +199,44 @@
 
   /* Body text with design system values */
   .body-base {
-    @apply leading-relaxed mb-4;
+    @apply leading-relaxed;
     font-size: 1rem;
     letter-spacing: normal;
   }
 
   .body-lg {
-    @apply leading-relaxed mb-5;
+    @apply leading-relaxed;
     font-size: 1.125rem;
     letter-spacing: normal;
   }
 
   .body-sm {
-    @apply leading-relaxed mb-3;
+    @apply leading-relaxed;
     font-size: 0.875rem;
     letter-spacing: normal;
   }
 
   .body-base-bold {
-    @apply font-bold leading-relaxed mb-4;
+    @apply font-bold leading-relaxed;
     font-size: 1rem;
     letter-spacing: normal;
   }
 
   .body-lg-bold {
-    @apply font-bold leading-relaxed mb-5;
+    @apply font-bold leading-relaxed;
     font-size: 1.125rem;
     letter-spacing: normal;
   }
 
   .body-sm-bold {
-    @apply font-bold leading-relaxed mb-3;
+    @apply font-bold leading-relaxed;
     font-size: 0.875rem;
     letter-spacing: normal;
   }
 
   /* Other components */
   .lead {
-    @apply leading-relaxed mb-5;
+    @apply leading-relaxed;
     font-size: 1.125rem;
     letter-spacing: normal;
     color: var(--color-deep-navy-blue-100);

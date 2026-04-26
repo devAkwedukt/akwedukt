@@ -20,7 +20,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <div className="flex min-h-screen items-center justify-center">
       <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
-        <div className="w-full flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+        <div className="w-full flex flex-col gap-6">
           <SanitySections value={h?.sections} />
         </div>
       </main>

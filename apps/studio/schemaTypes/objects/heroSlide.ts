@@ -27,10 +27,37 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: { hotspot: true },
+      name: "animatedImages",
+      title: "Animated Images",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              title: "Image",
+              type: "image",
+              options: { hotspot: true },
+            }),
+            defineField({
+              name: "position",
+              title: "Position",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Center", value: "center" },
+                  { title: "Top Right", value: "top-right" },
+                  { title: "Bottom Left", value: "bottom-left" },
+                  { title: "Bottom Right", value: "bottom-right" },
+                ],
+              },
+              initialValue: "center",
+            }),
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.max(4),
     }),
   ],
 });

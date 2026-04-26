@@ -61,18 +61,24 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
+export type ObjectImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
 export type HeroSlide = {
   _type: "heroSlide";
   title?: string;
   description?: string;
   button?: Button;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
+  animatedImages?: Array<{
+    image?: ObjectImage;
+    position?: "center" | "top-right" | "bottom-left" | "bottom-right";
+    _key: string;
+  }>;
 };
 
 export type HeroSection = {
@@ -418,6 +424,7 @@ export type AllSanitySchemaTypes =
   | Button
   | Footer
   | SanityImageAssetReference
+  | ObjectImage
   | HeroSlide
   | HeroSection
   | PostsSection

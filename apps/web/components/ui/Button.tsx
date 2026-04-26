@@ -45,8 +45,8 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 const sizeStyles: Record<ButtonSize, string> = {
   xs: "p-xs text-sm gap-xxs rounded-sm sm:text-base",
   small: "p-s text-sm gap-xxs rounded-lg",
-  medium: "p-m text-sm gap-s rounded-xl sm:text-base",
-  large: "p-m text-base gap-m rounded-xl sm:text-lg",
+  medium: "p-m text-base gap-s rounded-xl",
+  large: "p-m text-lg gap-m rounded-xl",
 };
 
 const variantStyles: Record<ButtonVariant, string> = {
@@ -79,7 +79,7 @@ export function Button({
 
   const commonProps = {
     className: clsx(
-      "inline-flex items-center justify-center font-semibold transition",
+      "inline-flex items-center justify-center font-semibold transition leading-none w-fit tracking-[0.015em]",
       sizeStyles[size],
       variantStyles[variant],
       loading && "cursor-wait opacity-75",

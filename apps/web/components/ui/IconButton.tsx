@@ -41,10 +41,10 @@ type IconButtonAsLink = CommonIconButtonProps & {
 type IconButtonProps = IconButtonAsButton | IconButtonAsLink;
 
 const sizeStyles: Record<IconButtonSize, string> = {
-  small: "rounded-full",
-  medium: "rounded-full",
-  large: "rounded-full",
-  xlarge: "rounded-full",
+  small: "",
+  medium: "",
+  large: "",
+  xlarge: "",
 };
 
 const squareSizeStyles: Record<IconButtonSize, string> = {
@@ -56,7 +56,7 @@ const squareSizeStyles: Record<IconButtonSize, string> = {
 
 const shapeStyles: Record<IconButtonShape, string> = {
   circle:
-    "bg-transparent text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-2 hover:outline-offset-[-1px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 active:outline-none focus:outline focus:outline-2 focus:outline-offset-[-1px] focus:outline-[#c20a9a] disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed",
+    "bg-transparent text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-2 hover:outline-offset-[-1px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 active:outline-none focus:outline focus:outline-2 focus:outline-offset-[-1px] focus:outline-[#c20a9a] disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed rounded-full",
   square:
     "bg-transparent text-[#103770] hover:bg-blue-200 hover:text-[#103770] hover:cursor-pointer active:bg-blue-700 active:text-[#FAFAFA] focus:outline focus:outline-4 focus:outline-offset-[-2px] focus:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed",
 };
@@ -221,17 +221,25 @@ export function IconButton({
   } = rest as ButtonHTMLAttributes<HTMLButtonElement>;
 
   return (
-    <button
-      type={type}
-      form={form}
-      formAction={formAction}
-      formMethod={formMethod}
-      formTarget={formTarget}
-      formNoValidate={formNoValidate}
-      {...commonProps}
-      {...buttonRest}
+    <div
+      className={
+        shape === "circle"
+          ? "flex items-center justify-center p-1"
+          : "flex items-center justify-center"
+      }
     >
-      {content}
-    </button>
+      <button
+        type={type}
+        form={form}
+        formAction={formAction}
+        formMethod={formMethod}
+        formTarget={formTarget}
+        formNoValidate={formNoValidate}
+        {...commonProps}
+        {...buttonRest}
+      >
+        {content}
+      </button>
+    </div>
   );
 }

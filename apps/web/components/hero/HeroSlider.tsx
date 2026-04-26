@@ -1,60 +1,67 @@
 "use client";
 
-import { SanityImage } from "@/sanity/image/SanityImage";
-import { Slider } from "@/components/ui";
+import { Button } from "@/components/ui/Button";
+import { SliderArrows } from "@/components/ui/SliderArrows";
+import { SliderDots } from "@/components/ui/SliderDots";
+import { useSlider } from "@/hooks/useSlider";
+import { AnimatedImage } from "./AnimatedImage";
+import type { HeroSlide } from "@/sanity/typegen";
 
-type Slide = {
-  title?: string;
-  description?: string;
-  button?: {
-    label?: string;
-    url?: string;
-  };
-  image?: any;
-};
+type Slide = HeroSlide;
 
 export default function HeroSlider({ slides }: { slides: Slide[] }) {
+  const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
+
   if (!slides?.length) return null;
 
   return (
-    <Slider className="h-[80vh]">
-      {slides.map((slide, index) => (
-        <div key={index} className="flex-[0_0_100%] relative h-[80vh]">
-          {/* IMAGE */}
-          {slide.image && (
-            <SanityImage
-              image={slide.image}
-              alt={slide.title ?? "hero image"}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          )}
+    <section className="w-full py-8 lg:py-14 bg-neutral-50 relative overflow-clip overflow-y-visible">
+      {/* SLIDER VIEWPORT */}
+      <div ref={emblaRef} className="w-full overflow-y-visible">
+        {/* SLIDER TRACK */}
+        <div className="flex h-full">
+          {slides.map((slide, index) => (
+            <div key={index} className="flex-[0_0_100%] overflow-y-visible">
+              {/* ANIMATED IMAGES - positioned within each slide */}
+              {slide.animatedImages?.map((imageData, animIndex) => (
+                <AnimatedImage key={animIndex} imageData={imageData} index={animIndex} />
+              ))}
 
-          {/* OVERLAY */}
-          <div className="absolute inset-0 bg-black/40 z-10" />
+              {/* CONTENT */}
+              <div className="container flex justify-start lg:justify-center md:items-center relative z-10">
+                <div className="w-full flex flex-col md:items-center gap-8 md:gap-12 lg:gap-18">
+                  <div className="w-full flex flex-col md:items-center gap-4 md:gap-6 lg:gap-8">
+                    {slide.title && (
+                      <h1 className="heading-1 max-w-[810px] md:text-center">{slide.title}</h1>
+                    )}
 
-          {/* CONTENT */}
-          <div className="container absolute inset-0 z-20 flex items-center">
-            <div className="max-w-xl text-white">
-              {slide.title && (
-                <h1 className="text-4xl md:text-6xl font-bold mb-4">{slide.title}</h1>
-              )}
+                    {slide.description && <p className="body-lg-bold">{slide.description}</p>}
+                  </div>
 
-              {slide.description && (
-                <p className="text-lg md:text-xl mb-6 opacity-90">{slide.description}</p>
-              )}
-
-              {slide.button?.label && slide.button?.url && (
-                <a
-                  href={slide.button.url}
-                  className="inline-block rounded-xl bg-white text-black px-6 py-3 font-medium hover:bg-gray-200 transition"
-                >
-                  {slide.button.label}
-                </a>
-              )}
+                  {slide.button?.label && slide.button?.url && (
+                    <Button as="link" href={slide.button.url} variant="primary" size="large">
+                      {slide.button.label}
+                    </Button>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
-    </Slider>
+      </div>
+
+      {/* NAVIGATION */}
+      {slides?.length > 1 && (
+        <div className="container flex items-center justify-between mt-16 lg:mt-20">
+          <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
+          <SliderDots
+            count={scrollSnaps.length}
+            selectedIndex={selectedIndex}
+            onSelect={scrollTo}
+          />
+          <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="right" />
+        </div>
+      )}
+    </section>
   );
 }
