@@ -14,7 +14,7 @@ const endpoints = [
 
 function Navbar() {
   return (
-    <nav className="fixed top-0 w-full flex flex-row items-center bg-gray-50 py-4 justify-between px-20">
+    <nav className="fixed top-0 w-full flex flex-row items-center bg-gray-50 py-4 justify-between px-20 z-1000">
       {/* Logo */}
       <svg
         width="150"

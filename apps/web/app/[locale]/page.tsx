@@ -1,6 +1,7 @@
+import ContactForm from "@/components/contactForm/ContactForm";
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
-import { SanitySections } from "@/sanity/sections/SanitySections";
+//import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 
@@ -18,12 +19,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const h = home.parse(data)[0];
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
-        <div className="w-full flex flex-col gap-6">
+    <>
+      <div className="h-[150vh] bg-blue-100"></div>
+      <ContactForm />
+      <div className="h-[25vh] bg-blue-100"></div>
+      {/*  <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
+        <div className="w-full flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <SanitySections value={h?.sections} />
         </div>
-      </main>
-    </div>
+      </main> */}
+    </>
   );
 }

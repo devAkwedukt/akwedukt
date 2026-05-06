@@ -85,8 +85,6 @@ export default async function RootLayout({
           </div>
           */}
 
-          <div className="h-[200vh] bg-blue-100"></div>
-
           {children}
 
           <Footer />
