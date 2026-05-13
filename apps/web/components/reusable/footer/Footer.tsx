@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RenderIcon } from "../ui";
+import { RenderIcon } from "../../ui";
 import { getFooterData } from "@/sanity/queries/groq.example";
 
 const endpoints = [

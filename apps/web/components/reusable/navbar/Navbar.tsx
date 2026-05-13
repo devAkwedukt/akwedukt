@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { RenderIcon } from "../ui";
+import { RenderIcon } from "../../ui";
 
 const endpoints = [
   { link: "/o-nas", label: "O nas" },

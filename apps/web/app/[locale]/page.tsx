@@ -1,4 +1,4 @@
-import ContactForm from "@/components/contactForm/ContactForm";
+import ContactForm from "@/components/reusable/contactForm/ContactForm";
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";

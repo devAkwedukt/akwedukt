@@ -12,8 +12,8 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 //import { Link } from "@/i18n/navigation";
 //import { locales } from "@/i18n/locales";
-import Navbar from "@/components/navbar/Navbar";
-import Footer from "@/components/footer/Footer";
+import Navbar from "@/components/reusable/navbar/Navbar";
+import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 
 /** This is the base metadata for the entire project, it will cascade down to subpages

@@ -3,7 +3,7 @@ import { sanityFetch } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import ContactForm from "@/components/contactForm/ContactForm";
+import ContactForm from "@/components/reusable/contactForm/ContactForm";
 
 export default async function DlaRodzicow({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
