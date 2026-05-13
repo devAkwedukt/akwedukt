@@ -14,6 +14,7 @@ import { setRequestLocale } from "next-intl/server";
 //import { locales } from "@/i18n/locales";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
+import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
@@ -87,6 +88,7 @@ export default async function RootLayout({
 
           <div className="pt-16">{children}</div>
           <Footer />
+          <LenisScrollProvider />
           <Toaster />
           <SanityPreview />
         </NextIntlClientProvider>
