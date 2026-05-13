@@ -26,16 +26,28 @@ export default defineType({
           type: "heroSection",
         }),
         defineArrayMember({
-          name: "sectionImage",
-          type: "img",
+          name: "heroBackgroundSection",
+          type: "heroBackgroundSection",
         }),
         defineArrayMember({
-          name: "sectionLead",
-          type: "leadSection",
+          name: "projectsGallerySection",
+          type: "projectsGallerySection",
         }),
         defineArrayMember({
-          name: "sectionPost",
-          type: "postsSection",
+          name: "aboutSection",
+          type: "aboutSection",
+        }),
+        defineArrayMember({
+          name: "partnersSection",
+          type: "partnersSection",
+        }),
+        defineArrayMember({
+          name: "testimonialsSection",
+          type: "testimonialsSection",
+        }),
+        defineArrayMember({
+          name: "valuesSection",
+          type: "valuesSection",
         }),
       ],
     }),

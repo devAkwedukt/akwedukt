@@ -17,7 +17,8 @@ export default defineType({
     },
     prepare(selection) {
       return {
-        media: () => `Posty (${selection.displayNumber})`,
+        title: "Posty",
+        subtitle: `${selection.displayNumber || 0} post${selection.displayNumber !== 1 ? "ów" : ""}`,
       };
     },
   },

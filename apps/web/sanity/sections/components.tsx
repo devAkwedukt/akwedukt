@@ -1,11 +1,52 @@
-import type { Img, LeadSection, PostsSection, HeroSection } from "@/sanity/typegen";
-import { Link } from "@/i18n/navigation";
-import { SanityImage } from "@/sanity/image/SanityImage";
+import type {
+  PostsSection,
+  HeroSection,
+  HeroBackgroundSection,
+  AboutSection,
+  PartnersSection,
+  TestimonialsSection,
+  ValuesSection,
+  WhoWeAreSection,
+  WhatWeDoSection,
+  OurHistorySection,
+  OurTeamSection,
+  DocumentsSection,
+  ProjectTitleSection,
+  ProjectsGallerySection,
+  ProjectFaqSection,
+  ProjectSignupSection,
+  ProjectPhotoInfoSection,
+  ProjectQuestionsSection,
+  ProjectVideoSection,
+  PhotoInfoSection,
+  FaqAccordionSection,
+} from "@/sanity/typegen";
+import ProjectsGalleryWrapper from "@/components/project-list/ProjectsGalleryWrapper";
 import { ComponentType } from "react";
 import { q } from "../groqd";
 import { sanityFetch } from "../live";
 import { getLocale } from "next-intl/server";
-import HeroSlider from "@/components/hero/HeroSlider";
+import { Link } from "@/i18n/navigation";
+import { SanityImage } from "@/sanity/image/SanityImage";
+import HeroSlider from "@/components/home/hero/HeroSlider";
+import HeroBackgroundSectionComponent from "@/components/about/HeroBackgroundSection";
+import AboutSectionComponent from "@/components/home/AboutSection";
+import PartnersSectionComponent from "@/components/home/PartnersSection";
+import TestimonialsSectionComponent from "@/components/home/TestimonialsSection";
+import ValuesSectionComponent from "@/components/home/ValuesSection";
+import WhoWeAreSectionComponent from "@/components/about/WhoWeAreSection";
+import WhatWeDoSectionComponent from "@/components/about/WhatWeDoSection";
+import OurHistorySectionComponent from "@/components/about/OurHistorySection";
+import OurTeamSectionComponent from "@/components/about/OurTeamSection";
+import DocumentsSectionComponent from "@/components/about/DocumentsSection";
+import ProjectTitleSectionComponent from "@/components/project-view/ProjectTitleSection";
+import ProjectFaqSectionComponent from "@/components/project-view/ProjectFaqSection";
+import ProjectSignupSectionComponent from "@/components/project-view/ProjectSignupSection";
+import ProjectPhotoInfoSectionComponent from "@/components/project-view/ProjectPhotoInfoSection";
+import ProjectQuestionsSectionComponent from "@/components/project-view/ProjectQuestionsSection";
+import ProjectVideoSectionComponent from "@/components/project-view/ProjectVideoSection";
+import PhotoInfoSectionComponent from "@/components/what-we-do/PhotoInfoSection";
+import FaqAccordionSectionComponent from "@/components/what-we-do/FaqAccordionSection";
 
 /**
  * Example: A `section` registry mapping Sanity `_type` values to React components.
@@ -17,12 +58,7 @@ import HeroSlider from "@/components/hero/HeroSlider";
  * - Missing or null fields should be handled within each component
  */
 export const components: { [key: string]: ComponentType<any> } = {
-  sectionLead: ({ item }: { item: LeadSection }) => (
-    <>
-      <h1 className="max-w-xs heading-1">{item.title}</h1>
-      <p className="max-w-md body-base">{item.subtitle}</p>
-    </>
-  ),
+  aboutSection: ({ item }: { item: AboutSection }) => <AboutSectionComponent item={item} />,
   sectionPost: async ({ item }: { item: PostsSection }) => {
     const locale = await getLocale();
     const latestPosts = q
@@ -51,6 +87,57 @@ export const components: { [key: string]: ComponentType<any> } = {
       </>
     );
   },
-  sectionImage: ({ item }: { item: Img }) => <SanityImage image={item} height={300} width={300} />,
-  heroSection: ({ item }: { item: HeroSection }) => <HeroSlider slides={item.slides ?? []} />,
+  projectsGallerySection: async ({ item }: { item: ProjectsGallerySection }) => {
+    return <ProjectsGalleryWrapper item={item} />;
+  },
+  heroSection: ({ item }: { item: HeroSection }) => (
+    <HeroSlider slides={item.slides ?? []} enabled={item.enabled} />
+  ),
+  heroBackgroundSection: ({ item }: { item: HeroBackgroundSection }) => (
+    <HeroBackgroundSectionComponent item={item} />
+  ),
+  partnersSection: ({ item }: { item: PartnersSection }) => (
+    <PartnersSectionComponent item={item} />
+  ),
+  testimonialsSection: ({ item }: { item: TestimonialsSection }) => (
+    <TestimonialsSectionComponent item={item} />
+  ),
+  valuesSection: ({ item }: { item: ValuesSection }) => <ValuesSectionComponent item={item} />,
+  whoWeAreSection: ({ item }: { item: WhoWeAreSection }) => (
+    <WhoWeAreSectionComponent item={item} />
+  ),
+  whatWeDoSection: ({ item }: { item: WhatWeDoSection }) => (
+    <WhatWeDoSectionComponent item={item} />
+  ),
+  ourHistorySection: ({ item }: { item: OurHistorySection }) => (
+    <OurHistorySectionComponent item={item} />
+  ),
+  ourTeamSection: ({ item }: { item: OurTeamSection }) => <OurTeamSectionComponent item={item} />,
+  documentsSection: ({ item }: { item: DocumentsSection }) => (
+    <DocumentsSectionComponent item={item} />
+  ),
+  projectTitleSection: ({ item }: { item: ProjectTitleSection }) => (
+    <ProjectTitleSectionComponent item={item} />
+  ),
+  projectFaqSection: ({ item }: { item: ProjectFaqSection }) => (
+    <ProjectFaqSectionComponent item={item} />
+  ),
+  projectSignupSection: ({ item }: { item: ProjectSignupSection }) => (
+    <ProjectSignupSectionComponent item={item} />
+  ),
+  projectPhotoInfoSection: ({ item }: { item: ProjectPhotoInfoSection }) => (
+    <ProjectPhotoInfoSectionComponent item={item} />
+  ),
+  projectQuestionsSection: ({ item }: { item: ProjectQuestionsSection }) => (
+    <ProjectQuestionsSectionComponent item={item} />
+  ),
+  projectVideoSection: ({ item }: { item: ProjectVideoSection }) => (
+    <ProjectVideoSectionComponent item={item} />
+  ),
+  photoInfoSection: ({ item }: { item: PhotoInfoSection }) => (
+    <PhotoInfoSectionComponent item={item} />
+  ),
+  faqAccordionSection: ({ item }: { item: FaqAccordionSection }) => (
+    <FaqAccordionSectionComponent item={item} />
+  ),
 };

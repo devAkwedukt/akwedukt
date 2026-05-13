@@ -85,8 +85,7 @@ export default async function RootLayout({
           </div>
           */}
 
-          {children}
-
+          <div className="pt-16">{children}</div>
           <Footer />
           <Toaster />
           <SanityPreview />

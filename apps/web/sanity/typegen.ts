@@ -18,8 +18,42 @@ export type Robots = {
   noFollow?: boolean;
 };
 
+export type Video = {
+  url?: string;
+  thumbnail?: Img;
+  title?: string;
+};
+
 export type Button = {
   label?: string;
+  url?: string;
+};
+
+export type HeroBackgroundSlideButton = {
+  label?: string;
+  url?: string;
+};
+
+export type AboutSectionButton = {
+  label?: string;
+  url?: string;
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
+export type ObjectFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "file.media" in schema
+  _type: "file";
+};
+
+export type PhotoInfoSectionButton = {
+  text?: string;
   url?: string;
 };
 
@@ -32,9 +66,27 @@ export type SanityImageAssetReference = {
 
 export type ObjectImage = {
   asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "media" in schema
+  media?: unknown; // Unable to locate the referenced type "image.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type SliderObjectImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "object.image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+};
+
+export type Photo = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "photo.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
   _type: "image";
 };
 
@@ -69,6 +121,40 @@ export type Footer = {
   }>;
 };
 
+export type Testimonial = {
+  _type: "testimonial";
+  text?: string;
+  authorName?: string;
+  authorRole?: string;
+};
+
+export type Partner = {
+  _type: "partner";
+  name?: string;
+  logo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  url?: string;
+};
+
+export type HeroBackgroundSlide = {
+  _type: "heroBackgroundSlide";
+  backgroundImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+  button?: HeroBackgroundSlideButton;
+};
+
 export type HeroSlide = {
   _type: "heroSlide";
   title?: string;
@@ -79,6 +165,239 @@ export type HeroSlide = {
     position?: "center" | "top-right" | "bottom-left" | "bottom-right";
     _key: string;
   }>;
+};
+
+export type FaqAccordionSection = {
+  _type: "faqAccordionSection";
+  title?: string;
+  subtitle?: string;
+  questions?: Array<{
+    question?: string;
+    answer?: RichText;
+    _key: string;
+  }>;
+};
+
+export type PhotoInfoSection = {
+  _type: "photoInfoSection";
+  title?: string;
+  photo?: Img;
+  description?: RichText;
+  button?: PhotoInfoSectionButton;
+};
+
+export type ProjectVideoSection = {
+  _type: "projectVideoSection";
+  title?: string;
+  subtitle?: string;
+  video?: Video;
+  socialLinks?: Array<{
+    platform?: "facebook" | "instagram" | "linkedin" | "twitter" | "youtube" | "tiktok" | "other";
+    url?: string;
+    label?: string;
+    _key: string;
+  }>;
+};
+
+export type ProjectQuestionsSection = {
+  _type: "projectQuestionsSection";
+  questions?: Array<{
+    question?: string;
+    answer?: string;
+    _key: string;
+  }>;
+};
+
+export type ProjectPhotoInfoSection = {
+  _type: "projectPhotoInfoSection";
+  photo?: Img;
+  title?: string;
+  description?: RichText;
+  buttonText?: string;
+  buttonUrl?: string;
+};
+
+export type ProjectSignupSection = {
+  _type: "projectSignupSection";
+  title?: string;
+  buttonText?: string;
+  buttonUrl?: string;
+};
+
+export type ProjectFaqSection = {
+  _type: "projectFaqSection";
+  items?: Array<{
+    question?: string;
+    answer?: RichText;
+    _key: string;
+  }>;
+};
+
+export type ProjectReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "project";
+};
+
+export type ProjectsGallerySection = {
+  _type: "projectsGallerySection";
+  title?: string;
+  subtitle?: string;
+  projectFilter?: "all" | "polish" | "international";
+  statusFilter?: "all" | "pending" | "active" | "completed";
+  projects?: Array<
+    {
+      _key: string;
+    } & ProjectReference
+  >;
+  limit?: number;
+  ctaText?: string;
+  ctaVariant?: "primary" | "secondary" | "link";
+  seeAllProjectsText?: string;
+  seeAllProjectsUrl?: string;
+};
+
+export type ProjectTitleSection = {
+  _type: "projectTitleSection";
+  title?: string;
+  description?: RichText;
+  enabled?: boolean;
+};
+
+export type OurTeamSection = {
+  _type: "ourTeamSection";
+  enabled?: boolean;
+  title?: string;
+  subtitle?: string;
+  employees?: Array<{
+    photo?: Photo;
+    name?: string;
+    position?: string;
+    bio?: string;
+    _key: string;
+  }>;
+};
+
+export type OurHistorySection = {
+  _type: "ourHistorySection";
+  enabled?: boolean;
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
+export type WhoWeAreSection = {
+  _type: "whoWeAreSection";
+  enabled?: boolean;
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+};
+
+export type WhatWeDoSection = {
+  _type: "whatWeDoSection";
+  enabled?: boolean;
+  title?: string;
+  subtitle?: string;
+  subsubtitle?: string;
+  descriptions?: Array<{
+    description?: RichText;
+    _key: string;
+  }>;
+  slider?: Array<{
+    image?: SliderObjectImage;
+    _key: string;
+  }>;
+};
+
+export type DocumentsSection = {
+  _type: "documentsSection";
+  enabled?: boolean;
+  title?: string;
+  subtitle?: string;
+  documents?: Array<{
+    name?: string;
+    description?: string;
+    file?: ObjectFile;
+    buttonText?: string;
+    _key: string;
+  }>;
+};
+
+export type ValuesSection = {
+  _type: "valuesSection";
+  enabled?: boolean;
+  title?: string;
+  values?: Array<{
+    title?: string;
+    subtitle?: string;
+    description?: string;
+    _key: string;
+  }>;
+};
+
+export type TestimonialsSection = {
+  _type: "testimonialsSection";
+  enabled?: boolean;
+  title?: string;
+  subtitle?: string;
+  testimonials?: Array<
+    {
+      _key: string;
+    } & Testimonial
+  >;
+};
+
+export type PartnersSection = {
+  _type: "partnersSection";
+  enabled?: boolean;
+  title?: string;
+  partners?: Array<
+    {
+      _key: string;
+    } & Partner
+  >;
+};
+
+export type AboutSection = {
+  _type: "aboutSection";
+  enabled?: boolean;
+  title?: string;
+  subtitle?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
+  button?: AboutSectionButton;
+};
+
+export type HeroBackgroundSection = {
+  _type: "heroBackgroundSection";
+  enabled?: boolean;
+  slides?: Array<
+    {
+      _key: string;
+    } & HeroBackgroundSlide
+  >;
 };
 
 export type HeroSection = {
@@ -189,6 +508,55 @@ export type HomeReference = {
   [internalGroqTypeReferenceTo]?: "home";
 };
 
+export type ONasReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "oNas";
+};
+
+export type CoNowegoReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "coNowego";
+};
+
+export type CoRobimyReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "coRobimy";
+};
+
+export type DlaRodzicowReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "dlaRodzicow";
+};
+
+export type VolunteerWithUsReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "volunteerWithUs";
+};
+
+export type WspolpracaReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "wspolpraca";
+};
+
+export type WesprzyjReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "wesprzyj";
+};
+
 export type PostReference = {
   _ref: string;
   _type: "reference";
@@ -205,7 +573,68 @@ export type AuthorReference = {
 
 export type InternationalizedArrayReferenceValue = {
   _type: "internationalizedArrayReferenceValue";
-  value?: HomeReference | PostReference | AuthorReference;
+  value?:
+    | HomeReference
+    | ONasReference
+    | CoNowegoReference
+    | CoRobimyReference
+    | DlaRodzicowReference
+    | VolunteerWithUsReference
+    | WspolpracaReference
+    | WesprzyjReference
+    | PostReference
+    | ProjectReference
+    | AuthorReference;
+};
+
+export type Project = {
+  _id: string;
+  _type: "project";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  title?: string;
+  slug?: Slug;
+  mainImage?: Img;
+  shortDescription?: string;
+  projectTypes?: "polish" | "international";
+  projectStatus?: "pending" | "active" | "completed";
+  startDate?: string;
+  endDate?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & ProjectTitleSection)
+    | ({
+        _key: string;
+      } & ProjectFaqSection)
+    | ({
+        _key: string;
+      } & ProjectSignupSection)
+    | ({
+        _key: string;
+      } & DocumentsSection)
+    | ({
+        _key: string;
+      } & ProjectPhotoInfoSection)
+    | ({
+        _key: string;
+      } & ProjectQuestionsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & ProjectVideoSection)
+  >;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
 };
 
 export type CategoryReference = {
@@ -266,15 +695,57 @@ export type Author = {
   }>;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
+export type Wesprzyj = {
+  _id: string;
+  _type: "wesprzyj";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    {
+      _key: string;
+    } & HeroSection
+  >;
 };
 
-export type Home = {
+export type Wspolpraca = {
   _id: string;
-  _type: "home";
+  _type: "wspolpraca";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    {
+      _key: string;
+    } & HeroSection
+  >;
+};
+
+export type VolunteerWithUs = {
+  _id: string;
+  _type: "volunteerWithUs";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    {
+      _key: string;
+    } & HeroSection
+  >;
+};
+
+export type DlaRodzicow = {
+  _id: string;
+  _type: "dlaRodzicow";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -284,16 +755,88 @@ export type Home = {
   sections?: Array<
     | ({
         _key: string;
-      } & HeroSection)
+      } & ProjectsGallerySection)
     | ({
         _key: string;
-      } & Img)
+      } & FaqAccordionSection)
     | ({
         _key: string;
-      } & LeadSection)
+      } & TestimonialsSection)
     | ({
         _key: string;
-      } & PostsSection)
+      } & PhotoInfoSection)
+    | ({
+        _key: string;
+      } & DocumentsSection)
+  >;
+};
+
+export type CoRobimy = {
+  _id: string;
+  _type: "coRobimy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & ProjectsGallerySection)
+    | ({
+        _key: string;
+      } & PhotoInfoSection)
+    | ({
+        _key: string;
+      } & FaqAccordionSection)
+  >;
+};
+
+export type CoNowego = {
+  _id: string;
+  _type: "coNowego";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    {
+      _key: string;
+    } & ProjectsGallerySection
+  >;
+};
+
+export type ONas = {
+  _id: string;
+  _type: "oNas";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & HeroBackgroundSection)
+    | ({
+        _key: string;
+      } & WhoWeAreSection)
+    | ({
+        _key: string;
+      } & WhatWeDoSection)
+    | ({
+        _key: string;
+      } & OurHistorySection)
+    | ({
+        _key: string;
+      } & OurTeamSection)
+    | ({
+        _key: string;
+      } & DocumentsSection)
   >;
 };
 
@@ -311,6 +854,40 @@ export type SanityImageHotspot = {
   y?: number;
   height?: number;
   width?: number;
+};
+
+export type Home = {
+  _id: string;
+  _type: "home";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & HeroSection)
+    | ({
+        _key: string;
+      } & HeroBackgroundSection)
+    | ({
+        _key: string;
+      } & ProjectsGallerySection)
+    | ({
+        _key: string;
+      } & AboutSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & TestimonialsSection)
+    | ({
+        _key: string;
+      } & ValuesSection)
+  >;
 };
 
 export type MediaTag = {
@@ -421,11 +998,42 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Robots
+  | Video
   | Button
+  | HeroBackgroundSlideButton
+  | AboutSectionButton
+  | SanityFileAssetReference
+  | ObjectFile
+  | PhotoInfoSectionButton
   | SanityImageAssetReference
   | ObjectImage
+  | SliderObjectImage
+  | Photo
   | Footer
+  | Testimonial
+  | Partner
+  | HeroBackgroundSlide
   | HeroSlide
+  | FaqAccordionSection
+  | PhotoInfoSection
+  | ProjectVideoSection
+  | ProjectQuestionsSection
+  | ProjectPhotoInfoSection
+  | ProjectSignupSection
+  | ProjectFaqSection
+  | ProjectReference
+  | ProjectsGallerySection
+  | ProjectTitleSection
+  | OurTeamSection
+  | OurHistorySection
+  | WhoWeAreSection
+  | WhatWeDoSection
+  | DocumentsSection
+  | ValuesSection
+  | TestimonialsSection
+  | PartnersSection
+  | AboutSection
+  | HeroBackgroundSection
   | HeroSection
   | PostsSection
   | LeadSection
@@ -438,16 +1046,31 @@ export type AllSanitySchemaTypes =
   | TranslationMetadata
   | InternationalizedArrayReference
   | HomeReference
+  | ONasReference
+  | CoNowegoReference
+  | CoRobimyReference
+  | DlaRodzicowReference
+  | VolunteerWithUsReference
+  | WspolpracaReference
+  | WesprzyjReference
   | PostReference
   | AuthorReference
   | InternationalizedArrayReferenceValue
+  | Project
+  | Slug
   | CategoryReference
   | Post
   | Author
-  | Slug
-  | Home
+  | Wesprzyj
+  | Wspolpraca
+  | VolunteerWithUs
+  | DlaRodzicow
+  | CoRobimy
+  | CoNowego
+  | ONas
   | SanityImageCrop
   | SanityImageHotspot
+  | Home
   | MediaTag
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -459,21 +1082,6 @@ export type AllSanitySchemaTypes =
   | Geopoint;
 
 export declare const internalGroqTypeReferenceTo: unique symbol;
-
-// Source: ../web/sanity/queries/groq.example.ts
-// Variable: postsQuery
-// Query: *[_type == "post"] | order(_createdAt desc) {    _id,    _createdAt,    title,    "slug": slug.current,    "author": author->name,    "image": mainImage.asset->url,    description,    "categories": categories[]->title,    body  }
-export type PostsQueryResult = Array<{
-  _id: string;
-  _createdAt: string;
-  title: string | null;
-  slug: string | null;
-  author: string | null;
-  image: null;
-  description: null;
-  categories: Array<string | null> | null;
-  body: RichText | null;
-}>;
 
 // Source: ../web/sanity/queries/groq.example.ts
 // Variable: FOOTER_QUERY
@@ -504,11 +1112,238 @@ export type FOOTER_QUERY_RESULT = {
   }> | null;
 } | null;
 
+// Source: ../web/sanity/queries/projects.ts
+// Variable: PROJECT_BY_ID_QUERY
+// Query: *[_id == $projectId][0]{  _id,  title,  slug,  mainImage,  shortDescription,  startDate,  projectTypes,  projectStatus,  sections}
+export type PROJECT_BY_ID_QUERY_RESULT =
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: null;
+    }
+  | {
+      _id: string;
+      title: string | null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: Slug | null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: null;
+    }
+  | {
+      _id: string;
+      title: string | null;
+      slug: Slug | null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        {
+          _key: string;
+        } & HeroSection
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        {
+          _key: string;
+        } & ProjectsGallerySection
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & AboutSection)
+        | ({
+            _key: string;
+          } & HeroBackgroundSection)
+        | ({
+            _key: string;
+          } & HeroSection)
+        | ({
+            _key: string;
+          } & PartnersSection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
+        | ({
+            _key: string;
+          } & TestimonialsSection)
+        | ({
+            _key: string;
+          } & ValuesSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & DocumentsSection)
+        | ({
+            _key: string;
+          } & FaqAccordionSection)
+        | ({
+            _key: string;
+          } & PhotoInfoSection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
+        | ({
+            _key: string;
+          } & TestimonialsSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & DocumentsSection)
+        | ({
+            _key: string;
+          } & HeroBackgroundSection)
+        | ({
+            _key: string;
+          } & OurHistorySection)
+        | ({
+            _key: string;
+          } & OurTeamSection)
+        | ({
+            _key: string;
+          } & WhatWeDoSection)
+        | ({
+            _key: string;
+          } & WhoWeAreSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & FaqAccordionSection)
+        | ({
+            _key: string;
+          } & PhotoInfoSection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: string | null;
+      slug: Slug | null;
+      mainImage: Img | null;
+      shortDescription: string | null;
+      startDate: string | null;
+      projectTypes: "international" | "polish" | null;
+      projectStatus: "active" | "completed" | "pending" | null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & DocumentsSection)
+        | ({
+            _key: string;
+          } & PartnersSection)
+        | ({
+            _key: string;
+          } & ProjectFaqSection)
+        | ({
+            _key: string;
+          } & ProjectPhotoInfoSection)
+        | ({
+            _key: string;
+          } & ProjectQuestionsSection)
+        | ({
+            _key: string;
+          } & ProjectSignupSection)
+        | ({
+            _key: string;
+          } & ProjectTitleSection)
+        | ({
+            _key: string;
+          } & ProjectVideoSection)
+      > | null;
+    }
+  | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '\n  *[_type == "post"] | order(_createdAt desc) {\n    _id,\n    _createdAt,\n    title,\n    "slug": slug.current,\n    "author": author->name,\n    "image": mainImage.asset->url,\n    description,\n    "categories": categories[]->title,\n    body\n  }\n': PostsQueryResult;
     '*[_type == "footer"][0]{\n  companyInfo,\n  legalInfo,\n  bankAccount,\n  contact,\n  socialMedia\n}': FOOTER_QUERY_RESULT;
+    "*[_id == $projectId][0]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  shortDescription,\n  startDate,\n  projectTypes,\n  projectStatus,\n  sections\n}": PROJECT_BY_ID_QUERY_RESULT;
   }
 }

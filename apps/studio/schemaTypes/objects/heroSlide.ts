@@ -23,7 +23,7 @@ export default defineType({
       type: "object",
       fields: [
         { name: "label", type: "string" },
-        { name: "url", type: "url" },
+        { name: "url", type: "string" },
       ],
     }),
     defineField({

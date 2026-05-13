@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync } from "child_process";
 import path from "node:path";
 import parseSpdxExpression from "spdx-expression-parse";
 import { fileURLToPath } from "node:url";
@@ -47,6 +47,7 @@ const rawOutput = execFileSync("pnpm", ["licenses", "list", "--json"], {
   cwd: rootDir,
   encoding: "utf8",
   maxBuffer: 20 * 1024 * 1024,
+  shell: true,
 });
 
 const licensesByType = JSON.parse(rawOutput);

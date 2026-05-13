@@ -17,9 +17,14 @@ export default defineType({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      title: "title",
+      subtitle: "subtitle",
+    },
+    prepare({ title, subtitle }) {
       return {
-        media: () => "Nagłówek",
+        title: title || "Nagłówek",
+        subtitle: subtitle ? subtitle.substring(0, 50) + "..." : "",
       };
     },
   },

@@ -31,7 +31,7 @@ const getStateStyles = (selected: boolean) => {
     return "text-blue-700";
   }
 
-  return "text-deep-navy-blue-900 cursor-pointer hover:underline hover:disabled:no-underline disabled:cursor-not-allowed active:bg-blue-700 active:text-neutral-50 focus:text-deep-navy-blue-900 focus:bg-transparent focus:outline focus:outline-2 focus:outline-offset-[-1px] focus:outline-pink-400 focus:rounded-sm sm:text-deep-navy-blue-900 sm:hover:underline sm:active:bg-transparent sm:active:text-blue-700 sm:active:underline sm:focus:text-deep-navy-blue-900 sm:focus:bg-transparent sm:focus:outline sm:focus:outline-2 sm:focus:outline-offset-[-1px] sm:focus:outline-pink-400 sm:focus:rounded-sm";
+  return "text-deep-navy-blue-900 cursor-pointer hover:underline hover:disabled:no-underline disabled:cursor-not-allowed active:bg-blue-700 active:text-neutral-50 focus-visible:text-deep-navy-blue-900 focus-visible:bg-transparent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-pink-400 focus-visible:rounded-sm sm:text-deep-navy-blue-900 sm:hover:underline sm:active:bg-transparent sm:active:text-blue-700 sm:active:underline sm:focus-visible:text-deep-navy-blue-900 sm:focus-visible:bg-transparent sm:focus-visible:outline sm:focus-visible:outline-2 sm:focus-visible:outline-offset-[-1px] sm:focus-visible:outline-pink-400 sm:focus-visible:rounded-sm";
 };
 
 export function MenuItem(props: MenuItemProps) {

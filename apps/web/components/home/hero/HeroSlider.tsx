@@ -9,9 +9,10 @@ import type { HeroSlide } from "@/sanity/typegen";
 
 type Slide = HeroSlide;
 
-export default function HeroSlider({ slides }: { slides: Slide[] }) {
+export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabled?: boolean }) {
   const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
 
+  if (enabled === false) return null;
   if (!slides?.length) return null;
 
   return (
@@ -21,7 +22,7 @@ export default function HeroSlider({ slides }: { slides: Slide[] }) {
         {/* SLIDER TRACK */}
         <div className="flex h-full">
           {slides.map((slide, index) => (
-            <div key={index} className="flex-[0_0_100%] overflow-y-visible">
+            <div key={index} className="flex-[0_0_100%] overflow-y-visible relative">
               {/* ANIMATED IMAGES - positioned within each slide */}
               {slide.animatedImages?.map((imageData, animIndex) => (
                 <AnimatedImage key={animIndex} imageData={imageData} index={animIndex} />

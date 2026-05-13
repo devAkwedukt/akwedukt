@@ -20,9 +20,16 @@ export default defineType({
     }),
   ],
   preview: {
-    prepare() {
+    select: {
+      slides: "slides",
+    },
+    prepare({ slides }) {
+      const slideCount = slides?.length || 0;
+      const firstSlide = slides?.[0];
       return {
         title: "Hero section",
+        subtitle: `${slideCount} slide${slideCount !== 1 ? "s" : ""}`,
+        media: firstSlide?.animatedImages?.[0]?.image,
       };
     },
   },
