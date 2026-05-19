@@ -3,85 +3,94 @@
 import { useState } from "react";
 import type { FaqAccordionSection } from "@/sanity/typegen";
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
+import { RenderIcon } from "../ui";
 
 interface FaqAccordionSectionProps {
   item: FaqAccordionSection;
 }
 
+const topBorderColors = [
+  "border-purple-500",
+  "border-yellow-500",
+  "border-pink-300",
+  "border-happy-green-600",
+];
+
 export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
 
   if (!item.title || !item.questions || item.questions.length === 0) {
     return null;
   }
 
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <div className="container py-12">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-[#103770] text-3xl font-bold font-['Plus_Jakarta_Sans'] mb-4">
-            {item.title}
-          </h2>
-          {item.subtitle && (
-            <p className="text-[#103770] text-lg font-normal font-['Plus_Jakarta_Sans'] leading-relaxed max-w-3xl mx-auto">
-              {item.subtitle}
-            </p>
-          )}
+    <section className="bg-gray-50 px-6 py-12 md:px-10 md:py-14 lg:px-20 lg:py-16">
+      <div className="mx-auto w-full max-w-300">
+        <div className="mb-10 flex flex-col gap-6 text-center">
+          <h2 className="heading-2">{item.title}</h2>
+          {item.subtitle && <p className="mx-auto max-w-4xl text-lg">{item.subtitle}</p>}
         </div>
 
-        {/* Accordion */}
-        <div className="space-y-4">
-          {item.questions.map((faq, index) => (
-            <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-              <button
-                onClick={() => toggleAccordion(index)}
-                className="w-full px-6 py-4 text-left bg-white hover:bg-gray-50 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#c20a9a] focus:ring-inset"
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-answer-${index}`}
+        <main className="mt-16 mx-auto w-full max-w-300">
+          {item.questions.map((faq, index) => {
+            const isOpen = Boolean(openItems[index]);
+            const contentId = `faq-answer-${faq._key ?? index}`;
+
+            return (
+              <div
+                key={faq._key}
+                className={`border-t-4 py-5 ${topBorderColors[index % topBorderColors.length]}`}
               >
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[#103770] text-lg font-semibold font-['Plus_Jakarta_Sans'] pr-4">
+                <button
+                  type="button"
+                  onClick={() =>
+                    setOpenItems((prev) => ({
+                      ...prev,
+                      [index]: !prev[index],
+                    }))
+                  }
+                  className="group flex w-full items-start justify-between gap-6 text-left focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:outline-offset-2"
+                  aria-expanded={isOpen}
+                  aria-controls={contentId}
+                >
+                  <h3 className="py-0.25 text-lg font-bold leading-relaxed cursor-pointer">
                     {faq.question}
                   </h3>
-                  <div className="flex-shrink-0">
-                    <svg
-                      className={`w-5 h-5 text-[#103770] transform transition-transform duration-200 ${
-                        openIndex === index ? "rotate-180" : ""
-                      }`}
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M19 9l-7 7-7-7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </button>
 
-              {openIndex === index && (
-                <div
-                  id={`faq-answer-${index}`}
-                  className="px-6 py-4 bg-gray-50 border-t border-gray-200"
-                >
-                  <div className="text-[#103770] text-base font-normal font-['Plus_Jakarta_Sans'] leading-relaxed">
-                    <SanityRichText value={faq.answer} />
+                  <RenderIcon
+                    icon="arrow-down"
+                    size={32}
+                    className={`cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
+                </button>
+
+                {faq.answer && (
+                  <div
+                    id={contentId}
+                    className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div
+                        className={`max-w-[75ch] text-lg leading-relaxed text-balance transition-[transform,opacity,margin] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                          isOpen
+                            ? "mt-3 translate-y-0 opacity-100"
+                            : "mt-0 -translate-y-1 opacity-0"
+                        }`}
+                      >
+                        <SanityRichText value={faq.answer} />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
+                )}
+              </div>
+            );
+          })}
+        </main>
       </div>
-    </div>
+    </section>
   );
 }

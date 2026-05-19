@@ -1,8 +1,13 @@
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
+import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Wesprzyj nas | Stowarzyszenie Akwedukt",
+};
 
 export default async function Wesprzyj({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

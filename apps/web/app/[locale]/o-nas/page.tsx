@@ -1,9 +1,14 @@
+import type { Metadata } from "next";
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
+
+export const metadata: Metadata = {
+  title: "O nas | Stowarzyszenie Akwedukt",
+};
 
 export default async function ONas({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

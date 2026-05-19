@@ -4,6 +4,11 @@ import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dla rodziców | Stowarzyszenie Akwedukt",
+};
 
 export default async function DlaRodzicow({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

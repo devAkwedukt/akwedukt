@@ -116,8 +116,8 @@ function ContactForm() {
   };
 
   return (
-    <section className="bg-gray-50 py-14 px-20 gap-[10%] flex flex-row items-center justify-between">
-      <aside className="flex max-w-[650px] flex-col gap-12">
+    <section className="py-24 px-20 gap-[10%] flex flex-row items-center justify-between">
+      <aside className="flex max-w-162.5 flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h2 className="text-6xl font-bold tracking-tight">Napisz do nas</h2>
           <p className="text-xl text-balance">
@@ -211,7 +211,7 @@ function ContactForm() {
               Wpisz wiadomość
             </label>
             <textarea
-              className={`${inputClassName(Boolean(errors.message))} min-h-[120px] resize-y`}
+              className={`${inputClassName(Boolean(errors.message))} min-h-30 resize-y`}
               id="message"
               name="message"
               onChange={handleFieldChange}

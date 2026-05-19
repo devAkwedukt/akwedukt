@@ -16,7 +16,7 @@ export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabl
   if (!slides?.length) return null;
 
   return (
-    <section className="w-full py-8 lg:py-14 bg-neutral-50 relative overflow-clip overflow-y-visible">
+    <header className="w-full mt-16 py-8 lg:py-14 bg-neutral-50 relative overflow-clip overflow-y-visible">
       {/* SLIDER VIEWPORT */}
       <div ref={emblaRef} className="w-full overflow-y-visible">
         {/* SLIDER TRACK */}
@@ -63,6 +63,6 @@ export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabl
           <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="right" />
         </div>
       )}
-    </section>
+    </header>
   );
 }

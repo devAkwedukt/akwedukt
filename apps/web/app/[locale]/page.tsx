@@ -2,8 +2,13 @@ import ContactForm from "@/components/reusable/contactForm/ContactForm";
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
+import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: "Stowarzyszenie Akwedukt",
+};
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,12 +25,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
-        <div className="w-full flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <SanitySections value={h?.sections} />
-          <ContactForm />
-        </div>
-      </main>
+      {/* <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start"> */}
+      <SanitySections value={h?.sections} />
+      <ContactForm />
+      {/* </main>*/}
     </>
   );
 }

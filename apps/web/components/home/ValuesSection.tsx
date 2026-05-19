@@ -2,12 +2,13 @@
 
 import type { ValuesSection } from "@/sanity/typegen";
 
+//NASZE WARTOŚCI
 export default function ValuesSection({ item }: { item: ValuesSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full py-16 lg:py-24 bg-neutral-50">
-      <div className="container">
+    <section className="w-full px-20 py-16 lg:py-24">
+      <div className="">
         {/* Section Title */}
         {item.title && (
           <div className="text-center mb-12">
@@ -17,18 +18,18 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
 
         {/* Values Grid */}
         {item.values && item.values.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="flex flex-row justify-between gap-16">
             {item.values.map((value, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-sm border border-neutral-100"
+                className={`bg-ocean-green-200 p-5 w-1/3 ${index === 1 && "bg-yellow-100"} ${index === 2 && "bg-pink-100"}`}
               >
-                {value.title && <h3 className="heading-3 text-neutral-900 mb-2">{value.title}</h3>}
+                {value.title && <h3 className="heading-3 mb-2.5 tracking-tight">{value.title}</h3>}
                 {value.subtitle && (
-                  <p className="body-medium text-neutral-600 mb-3">{value.subtitle}</p>
+                  <p className="body-medium font-bold leading-relaxed">{value.subtitle}</p>
                 )}
                 {value.description && (
-                  <p className="body-small text-neutral-500 leading-relaxed">{value.description}</p>
+                  <p className="body-small leading-relaxed">{value.description}</p>
                 )}
               </div>
             ))}
