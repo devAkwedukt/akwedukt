@@ -25,7 +25,6 @@ import ProjectsGalleryWrapper from "@/components/project-list/ProjectsGalleryWra
 import { ComponentType } from "react";
 import { q } from "../groqd";
 import { sanityFetch } from "../live";
-import { getLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import HeroSlider from "@/components/home/hero/HeroSlider";
@@ -60,20 +59,17 @@ import FaqAccordionSectionComponent from "@/components/what-we-do/FaqAccordionSe
 export const components: { [key: string]: ComponentType<any> } = {
   aboutSection: ({ item }: { item: AboutSection }) => <AboutSectionComponent item={item} />,
   sectionPost: async ({ item }: { item: PostsSection }) => {
-    const locale = await getLocale();
-    const latestPosts = q
-      .parameters<{ locale: string }>()
-      .star.filterByType("post")
-      .filterBy("locale == $locale")
+    const latestPosts = q.star
+      .filterByType("post")
       .slice(0, item.displayNumber ?? 3)
-      .order("publishedAt desc")
+      .order("date desc")
       .project((sub) => ({
         _id: sub.field("_id"),
         title: sub.field("title"),
-        image: sub.field("image"),
+        image: sub.field("featuredMedia"),
         slug: sub.field("slug"),
       }));
-    const { data } = await sanityFetch({ query: latestPosts.query, params: { locale } });
+    const { data } = await sanityFetch({ query: latestPosts.query });
     const posts = latestPosts.parse(data);
     if (!posts) return <h2>No posts found.</h2>;
     return (

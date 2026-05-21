@@ -15,6 +15,7 @@ import {
   PresentationIcon,
   InfoOutlineIcon,
   ArchiveIcon,
+  TagsIcon,
 } from "@sanity/icons";
 
 /**
@@ -40,7 +41,20 @@ export const structure: StructureToolOptions = {
         S.divider().title("Kolekcje"),
         Collection(S, { type: "post", title: "Wpisy", icon: ComposeIcon }),
         Collection(S, { type: "project", title: "Projekty", icon: EarthGlobeIcon }),
-        Collection(S, { type: "author", title: "Autorzy", icon: PresentationIcon }),
+        //Collection(S, { type: "author", title: "Autorzy", icon: PresentationIcon }),
+        // NOWE KOLEKCJE (Z importów WP): - POSTY, AUTHOR, TAGS, CATEGORIES
+        //Collection(S, { type: "post", title: "Wpisy", icon: ComposeIcon }),
+        //Collection(S, { type: "author", title: "Autorzy Akwedukt", icon: PresentationIcon }),
+        //Collection(S, { type: "category", title: "Kategorie", icon: BookIcon }),
+        //Collection(S, { type: "tag", title: "Tagi", icon: TagsIcon }),
+        //Collection(S, { type: "page", title: "Strony (WP)", icon: DocumentIcon }),
+        // ^^ nie działa przez intl
+
+        S.documentTypeListItem("post").title("Wpisy").icon(ComposeIcon),
+        S.documentTypeListItem("page").title("Strony (WP)").icon(DocumentIcon),
+        S.documentTypeListItem("category").title("Kategorie").icon(BookIcon),
+        S.documentTypeListItem("tag").title("Tagi").icon(TagsIcon),
+        S.documentTypeListItem("author").title("Autorzy Akwedukt").icon(PresentationIcon),
         S.divider().title("Ustawienia"),
         Singleton(S, { type: "settings", title: "Ustawienia", icon: ArchiveIcon }),
         S.divider().title("Tłumaczenia"),

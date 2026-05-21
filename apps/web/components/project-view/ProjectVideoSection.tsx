@@ -80,7 +80,7 @@ export default function ProjectVideoSection({ item }: ProjectVideoSectionProps) 
           {embedUrl ? (
             <iframe
               src={embedUrl}
-              title={item.video.title || "Video"}
+              title={/*item.video.title ||*/ "Video"}
               className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

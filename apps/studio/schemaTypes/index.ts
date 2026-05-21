@@ -1,7 +1,9 @@
-import category from "./category";
-import post from "./pages/post";
+//import author from "./author";
+//import category from "./category";
+//import post from "./pages/post";
+
 import project from "./pages/project";
-import author from "./author";
+
 import home from "./pages/home";
 import oNas from "./pages/oNas";
 import coNowego from "./pages/coNowego";
@@ -41,12 +43,19 @@ import heroBackgroundSlide from "./objects/heroBackgroundSlide";
 import partner from "./objects/partner";
 import testimonial from "./objects/testimonial";
 import { footerType } from "./footerType";
+import { authorType } from "./authorType";
+import { categoryType } from "./categoryType";
+import { pageType } from "./pageType";
+import { postType } from "./postType";
+import { tagType } from "./tagType";
+import { externalImageType } from "./externalImageType";
+import { portableTextType } from "./portableTextType";
 
 export const schemaTypes = [
-  category,
-  post,
+  //author,
+  //category,
+  //post,
   project,
-  author,
   settings,
   home,
   oNas,
@@ -86,4 +95,12 @@ export const schemaTypes = [
   partner,
   testimonial,
   footerType,
+  //WP IMPORT-TYPES
+  authorType,
+  categoryType,
+  pageType,
+  postType,
+  tagType,
+  externalImageType,
+  portableTextType,
 ];

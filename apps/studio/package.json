@@ -39,9 +39,18 @@
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
+    "@portabletext/block-tools": "^5.1.2",
+    "@sanity/client": "^7.20.0",
+    "@sanity/schema": "^5.26.0",
+    "@types/jsdom": "^28.0.3",
     "@types/node": "^22.0",
     "@types/react": "^19.1",
+    "@wordpress/block-serialization-default-parser": "^5.46.0",
+    "html-entities": "^2.6.0",
+    "jsdom": "^29.1.1",
     "oxlint": "^1.50.0",
-    "typescript": "^5.8"
+    "p-limit": "^7.3.0",
+    "typescript": "^5.8",
+    "wp-types": "^4.69.0"
   }
 }

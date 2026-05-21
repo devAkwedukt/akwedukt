@@ -66,8 +66,8 @@ export default async function PostPage({
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <div className="flex flex-col gap-6 border border-dotted p-5">
             <div key={p._id} className="flex flex-col gap-2 relative">
-              <SanityImage image={p.image} mode="cover" width={600} height={300} />
-              <SanityRichText value={p.body} />
+              <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
+              <SanityRichText value={p.content} />
             </div>
           </div>
         </div>

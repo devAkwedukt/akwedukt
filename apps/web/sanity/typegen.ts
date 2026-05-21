@@ -90,6 +90,123 @@ export type Photo = {
   _type: "image";
 };
 
+export type PortableText = Array<
+  | {
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }
+  | {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }
+  | ({
+      _key: string;
+    } & ExternalImage)
+>;
+
+export type ExternalImage = {
+  _type: "externalImage";
+  url?: string;
+};
+
+export type Tag = {
+  _id: string;
+  _type: "tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type AuthorReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "author";
+};
+
+export type Page = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  date?: string;
+  modified?: string;
+  status?:
+    | "publish"
+    | "future"
+    | "draft"
+    | "pending"
+    | "private"
+    | "trash"
+    | "auto-draft"
+    | "inherit";
+  content?: PortableText;
+  excerpt?: PortableText;
+  featuredMedia?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  author?: AuthorReference;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Category = {
+  _id: string;
+  _type: "category";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+};
+
 export type Footer = {
   _id: string;
   _type: "footer";
@@ -467,17 +584,6 @@ export type Settings = {
   seo?: Seo;
 };
 
-export type Category = {
-  _id: string;
-  _type: "category";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  description?: string;
-  icon?: IconPicker;
-};
-
 export type IconPicker = {
   _type: "iconPicker";
   provider?: string;
@@ -564,13 +670,6 @@ export type PostReference = {
   [internalGroqTypeReferenceTo]?: "post";
 };
 
-export type AuthorReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "author";
-};
-
 export type InternationalizedArrayReferenceValue = {
   _type: "internationalizedArrayReferenceValue";
   value?:
@@ -631,17 +730,18 @@ export type Project = {
   >;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type CategoryReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "category";
+};
+
+export type TagReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "tag";
 };
 
 export type Post = {
@@ -650,19 +750,40 @@ export type Post = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  locale?: string;
-  seo?: Seo;
   title?: string;
   slug?: Slug;
+  date?: string;
+  modified?: string;
+  status?:
+    | "publish"
+    | "future"
+    | "draft"
+    | "pending"
+    | "private"
+    | "trash"
+    | "auto-draft"
+    | "inherit";
+  content?: PortableText;
+  excerpt?: PortableText;
+  featuredMedia?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  sticky?: boolean;
   author?: AuthorReference;
-  image?: Img;
   categories?: Array<
     {
       _key: string;
     } & CategoryReference
   >;
-  publishedAt?: string;
-  body?: RichText;
+  tags?: Array<
+    {
+      _key: string;
+    } & TagReference
+  >;
 };
 
 export type Author = {
@@ -671,28 +792,17 @@ export type Author = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  locale?: string;
   name?: string;
   slug?: Slug;
-  img?: Img;
-  bio?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal";
-    listItem?: never;
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  }>;
+  url?: string;
+  description?: string;
+  avatar?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type Wesprzyj = {
@@ -838,22 +948,6 @@ export type ONas = {
         _key: string;
       } & DocumentsSection)
   >;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type Home = {
@@ -1009,6 +1103,15 @@ export type AllSanitySchemaTypes =
   | ObjectImage
   | SliderObjectImage
   | Photo
+  | PortableText
+  | ExternalImage
+  | Tag
+  | Slug
+  | AuthorReference
+  | Page
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Category
   | Footer
   | Testimonial
   | Partner
@@ -1041,7 +1144,6 @@ export type AllSanitySchemaTypes =
   | RichText
   | Seo
   | Settings
-  | Category
   | IconPicker
   | TranslationMetadata
   | InternationalizedArrayReference
@@ -1054,11 +1156,10 @@ export type AllSanitySchemaTypes =
   | WspolpracaReference
   | WesprzyjReference
   | PostReference
-  | AuthorReference
   | InternationalizedArrayReferenceValue
   | Project
-  | Slug
   | CategoryReference
+  | TagReference
   | Post
   | Author
   | Wesprzyj
@@ -1068,8 +1169,6 @@ export type AllSanitySchemaTypes =
   | CoRobimy
   | CoNowego
   | ONas
-  | SanityImageCrop
-  | SanityImageHotspot
   | Home
   | MediaTag
   | SanityImagePaletteSwatch
