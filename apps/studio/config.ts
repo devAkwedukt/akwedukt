@@ -30,9 +30,11 @@ export const DOCUMENTS: DocumentConfig[] = [
   { _type: "volunteerWithUs", id: "volunteerWithUs", intl: true, singleton: true },
   { _type: "wspolpraca", id: "wspolpraca", intl: true, singleton: true },
   { _type: "wesprzyj", id: "wesprzyj", intl: true, singleton: true },
-  { _type: "footer", id: "footer", singleton: true },
+  { _type: "footer", id: "footer", intl: true, singleton: true },
   { _type: "settings", id: "settings" },
   { _type: "post", intl: true, path: "/post", slug: true },
   { _type: "project", intl: true, path: "/project", slug: true },
   { _type: "author", intl: true },
+  { _type: "category", intl: true },
+  { _type: "tag", intl: true },
 ];

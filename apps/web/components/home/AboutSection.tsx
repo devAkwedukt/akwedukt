@@ -27,7 +27,6 @@ export default function AboutSection({ item }: { item: AboutSection }) {
         {item.subtitle && <p className="body-lg leading-normal text-balance">{item.subtitle}</p>}
         {item.button && item.button.url && (
           <Button
-            className="px-0"
             as="link"
             href={item.button.url}
             variant="link"

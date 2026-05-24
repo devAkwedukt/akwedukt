@@ -57,7 +57,7 @@ export default defineType({
       const valueCount = values?.length || 0;
       return {
         title: title || "Sekcja Wartości",
-        subtitle: `${valueCount} wartość${valueCount !== 1 ? "ci" : ""}`,
+        subtitle: `${valueCount} ${valueCount === 1 ? "wartość" : "wartości"}`,
       };
     },
   },

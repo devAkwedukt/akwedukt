@@ -83,7 +83,7 @@ export default function ButtonExamples() {
       {/* DISABLED STATES */}
       <div className="flex flex-col gap-4">
         <h3 className="text-lg font-semibold text-gray-700">Disabled States</h3>
-        <div className="flex flex-wrap gap-4 sm:flex-nowrap">
+        <div className="flex flex-wrap gap-8 sm:flex-nowrap">
           <Button size="small" variant="primary" disabled>
             variant: primary size: small
           </Button>

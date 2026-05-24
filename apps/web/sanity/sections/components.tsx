@@ -13,6 +13,7 @@ import type {
   DocumentsSection,
   ProjectTitleSection,
   ProjectsGallerySection,
+  PostsGallerySection,
   ProjectFaqSection,
   ProjectSignupSection,
   ProjectPhotoInfoSection,
@@ -22,6 +23,7 @@ import type {
   FaqAccordionSection,
 } from "@/sanity/typegen";
 import ProjectsGalleryWrapper from "@/components/project-list/ProjectsGalleryWrapper";
+import PostsGalleryWrapper from "@/components/post-list/PostsGalleryWrapper";
 import { ComponentType } from "react";
 import { q } from "../groqd";
 import { sanityFetch } from "../live";
@@ -76,8 +78,8 @@ export const components: { [key: string]: ComponentType<any> } = {
       <>
         {posts.map((post) => (
           <Link key={post._id} href={`/post/${post.slug?.current}`}>
-            <h2>{post.title}</h2>
             <SanityImage image={post.image} height={300} width={300} />
+            <h2>{post.title}</h2>
           </Link>
         ))}
       </>
@@ -85,6 +87,9 @@ export const components: { [key: string]: ComponentType<any> } = {
   },
   projectsGallerySection: async ({ item }: { item: ProjectsGallerySection }) => {
     return <ProjectsGalleryWrapper item={item} />;
+  },
+  postsGallerySection: async ({ item }: { item: PostsGallerySection }) => {
+    return <PostsGalleryWrapper item={item} />;
   },
   heroSection: ({ item }: { item: HeroSection }) => (
     <HeroSlider slides={item.slides ?? []} enabled={item.enabled} />

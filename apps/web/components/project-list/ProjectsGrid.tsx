@@ -42,7 +42,7 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
                 variant="link"
                 size="medium"
                 rightIcon="arrow-right-alt"
-                className="pl-0 mt-auto"
+                className="mt-auto"
               >
                 {ctaText}
               </Button>

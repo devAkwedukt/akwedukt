@@ -26,6 +26,15 @@ const iconIds = [
   "linkedin",
   "facebook",
   "instagram",
+  "match-case",
+  "linkedin-alt",
+  "tiktok",
+  "edu-institution",
+  "volunteer",
+  "educator",
+  "search",
+  "pin",
+  "check",
 ];
 
 export default function IconExamples() {

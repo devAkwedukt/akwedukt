@@ -1,0 +1,15 @@
+import NotFound from "@/components/NotFound";
+
+export default async function NotFoundPage({
+  params,
+}: {
+  params: Promise<{ locale: "pl" | "en" }>;
+}) {
+  const { locale } = await params;
+
+  return (
+    <div className="min-h-[calc(100vh-200px)] flex items-center justify-center">
+      <NotFound homeHref={`/${locale}`} />
+    </div>
+  );
+}

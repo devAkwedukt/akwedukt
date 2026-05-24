@@ -1,5 +1,6 @@
 import { ComposeIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { languageField } from "../plugins/intl";
 
 export const postType = defineType({
   name: "post",
@@ -7,8 +8,23 @@ export const postType = defineType({
   type: "document",
   icon: ComposeIcon,
   fields: [
+    languageField,
     defineField({ name: "title", type: "string" }),
-    defineField({ name: "slug", type: "slug" }),
+    defineField({
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+        slugify: (input: string) =>
+          input
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .trim(),
+      },
+    }),
     defineField({ name: "date", type: "datetime" }),
     defineField({ name: "modified", type: "datetime" }),
     defineField({
@@ -29,11 +45,11 @@ export const postType = defineType({
     }),
     defineField({
       name: "content",
-      type: "portableText",
+      type: "richText",
     }),
     defineField({
       name: "excerpt",
-      type: "portableText",
+      type: "richText",
     }),
     defineField({ name: "featuredMedia", type: "image" }),
     defineField({ name: "sticky", type: "boolean" }),

@@ -1,7 +1,3 @@
-//import author from "./author";
-//import category from "./category";
-//import post from "./pages/post";
-
 import project from "./pages/project";
 
 import home from "./pages/home";
@@ -31,6 +27,7 @@ import ourHistorySection from "./sections/ourHistorySection";
 import ourTeamSection from "./sections/ourTeamSection";
 import projectTitleSection from "./sections/projectTitleSection";
 import projectsGallerySection from "./sections/projectsGallerySection";
+import postsGallerySection from "./sections/postsGallerySection";
 import projectFaqSection from "./sections/projectFaqSection";
 import projectSignupSection from "./sections/projectSignupSection";
 import projectPhotoInfoSection from "./sections/projectPhotoInfoSection";
@@ -45,16 +42,11 @@ import testimonial from "./objects/testimonial";
 import { footerType } from "./footerType";
 import { authorType } from "./authorType";
 import { categoryType } from "./categoryType";
-import { pageType } from "./pageType";
 import { postType } from "./postType";
 import { tagType } from "./tagType";
 import { externalImageType } from "./externalImageType";
-import { portableTextType } from "./portableTextType";
 
 export const schemaTypes = [
-  //author,
-  //category,
-  //post,
   project,
   settings,
   home,
@@ -83,6 +75,7 @@ export const schemaTypes = [
   ourTeamSection,
   projectTitleSection,
   projectsGallerySection,
+  postsGallerySection,
   projectFaqSection,
   projectSignupSection,
   projectPhotoInfoSection,
@@ -98,9 +91,7 @@ export const schemaTypes = [
   //WP IMPORT-TYPES
   authorType,
   categoryType,
-  pageType,
   postType,
   tagType,
   externalImageType,
-  portableTextType,
 ];

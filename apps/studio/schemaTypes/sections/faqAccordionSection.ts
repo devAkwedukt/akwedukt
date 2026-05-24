@@ -58,7 +58,15 @@ export default defineType({
       const firstQuestion = questions?.[0]?.question;
       return {
         title: title || "Sekcja FAQ z akordeonem",
-        subtitle: `${questionCount} pytanie${questionCount !== 1 ? "nia" : ""}`,
+        subtitle: `${questionCount} pyta${
+          questionCount === 1
+            ? "nie"
+            : questionCount % 10 >= 2 &&
+                questionCount % 10 <= 4 &&
+                (questionCount % 100 < 12 || questionCount % 100 > 14)
+              ? "nia"
+              : "ń"
+        }`,
         description: firstQuestion ? firstQuestion.substring(0, 50) + "..." : "",
       };
     },

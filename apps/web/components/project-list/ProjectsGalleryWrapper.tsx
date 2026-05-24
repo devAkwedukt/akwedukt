@@ -40,7 +40,6 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
             href={item.seeAllProjectsUrl}
             variant={item.ctaVariant || "primary"}
             size="large"
-            className="py-5 px-7"
           >
             {item.seeAllProjectsText}
           </Button>

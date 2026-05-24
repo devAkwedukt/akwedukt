@@ -62,14 +62,11 @@ export default async function PostPage({
 
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <div className="flex flex-col gap-6 border border-dotted p-5">
-            <div key={p._id} className="flex flex-col gap-2 relative">
-              <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
-              <SanityRichText value={p.content} />
-            </div>
-          </div>
+      <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 sm:items-start">
+        <div>
+          {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
+          <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
+          <SanityRichText value={p.content} withImageSlider={true} />
         </div>
       </main>
     </div>

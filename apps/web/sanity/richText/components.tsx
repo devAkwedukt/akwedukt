@@ -12,6 +12,8 @@ export const components: PortableTextComponents = {
     h2: ({ children }) => <h2 className="heading-2">{children}</h2>,
     h3: ({ children }) => <h3 className="heading-3">{children}</h3>,
     h4: ({ children }) => <h4 className="heading-4">{children}</h4>,
+    h5: ({ children }) => <h5 className="heading-4">{children}</h5>,
+    h6: ({ children }) => <h6 className="heading-4">{children}</h6>,
     blockquote: ({ children }) => <blockquote className="italic">{children}</blockquote>,
   },
   marks: {

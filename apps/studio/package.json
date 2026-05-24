@@ -20,7 +20,7 @@
     "schemagen": "sanity schema extract --watch",
     "singletons": "pnpm exec sanity exec ./scripts/createSingletons.ts --with-user-token",
     "login": "sanity login",
-    "backup": "sanity dataset export development ./backups/development.tar.gz && sanity dataset export production ./backups/development.tar.gz",
+    "backup": "sanity dataset export development ./backups/development.tar.gz && sanity dataset export production ./backups/production.tar.gz",
     "seed": "pnpm run backup && sanity dataset delete development && sanity dataset create development && sanity dataset import ./backups/production.tar.gz development"
   },
   "dependencies": {

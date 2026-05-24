@@ -30,9 +30,10 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
               {doc.description && <p className="body-medium font-medium">{doc.description}</p>}
               {/* Download Button */}
               <SanityFile file={doc.file} className="w-fit">
-                <p className="font-semibold tracking-wide flex items-center gap-2 ">
-                  {doc.buttonText || "Pobierz"} <IconButton icon="download" shape="square" />
-                </p>
+                <div className="font-semibold tracking-wide flex items-center gap-2 ">
+                  {doc.buttonText || "Pobierz"}
+                  <IconButton icon="download" shape="square" />
+                </div>
               </SanityFile>
             </div>
           ))}

@@ -44,17 +44,17 @@ type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 const sizeStyles: Record<ButtonSize, string> = {
   xs: "p-xs text-sm gap-xxs rounded-sm sm:text-base",
-  small: "p-s text-sm gap-xxs rounded-lg",
-  medium: "p-m text-base gap-s rounded-xl",
-  large: "p-m text-lg gap-m rounded-xl",
+  small: "py-3 px-4 text-sm gap-2 rounded-lg",
+  medium: "py-4 px-6 text-base gap-3 rounded-xl",
+  large: "py-4 px-6 text-lg gap-4 rounded-xl",
 };
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
     "bg-ocean-green-700 text-neutral-50 hover:bg-ocean-green-600 hover:cursor-pointer active:bg-ocean-green-800 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed",
   secondary:
-    "bg-neutral-50 text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-[1.5px] hover:outline-offset-[-0.75px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 active:outline active:outline-[1.5px] active:outline-offset-[-0.75px] active:outline-blue-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed",
-  link: "bg-transparent text-deep-navy-blue-900 hover:text-deep-navy-blue-900 hover:underline hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed disabled:hover:no-underline",
+    "bg-neutral-50 text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:outline hover:outline-[1.5px] hover:outline-offset-[-0.75px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-300 active:outline active:outline-[1.5px] active:outline-offset-[-0.75px] active:outline-blue-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed",
+  link: "bg-transparent text-deep-navy-blue-900 hover:text-deep-navy-blue-900 hover:underline hover:cursor-pointer active:bg-blue-100 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed disabled:hover:no-underline focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400",
   filter:
     "bg-transparent text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-[1.5px] hover:outline-offset-[-0.75px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 active:outline active:outline-[1.5px] active:outline-offset-[-0.75px] active:outline-blue-700 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed",
 };
@@ -80,11 +80,18 @@ export function Button({
   const commonProps = {
     className: clsx(
       "inline-flex items-center justify-center font-semibold transition leading-none w-fit tracking-[0.015em]",
-      sizeStyles[size],
       variantStyles[variant],
+      sizeStyles[size],
       loading && "cursor-wait opacity-75",
       className
     ),
+    style:
+      variant === "link"
+        ? {
+            marginLeft:
+              size === "small" ? "-1rem" : size === "medium" || size === "large" ? "-1.5rem" : "0",
+          }
+        : undefined,
     disabled: isDisabled,
     "aria-label": ariaLabel,
     "aria-describedby": ariaDescribedBy,

@@ -1,10 +1,12 @@
 import { defineField, defineType } from "sanity";
+import { languageField } from "../plugins/intl";
 
 export const footerType = defineType({
   name: "footer",
   title: "Ustawienia Danych Stopki",
   type: "document",
   fields: [
+    languageField,
     defineField({
       name: "companyInfo",
       title: "Dane Organizacji",
