@@ -12,7 +12,7 @@ export default function NotFound({ homeHref }: NotFoundProps) {
       <div className="space-y-6">
         <p className="text-red-600 text-base font-bold">404 Error</p>
         <h1 className="text-red-600 text-5xl font-bold font-serif">Oops...</h1>
-        <p className="text-[#103770] text-lg">
+        <p className="text-[#103770] text-lg text-left">
           Przepraszamy, wygląda na to że strona, której szukasz nie istnieje.
           <br />
           Skorzystaj z przydatnych linków.
