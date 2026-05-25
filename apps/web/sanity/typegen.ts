@@ -141,6 +141,147 @@ export type HeroSlide = {
   }>;
 };
 
+export type CoalitionSection = {
+  _type: "coalitionSection";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+  buttonText?: string;
+  buttonUrl?: string;
+};
+
+export type CooperationModelsSection = {
+  _type: "cooperationModelsSection";
+  title?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+};
+
+export type InstitutionBenefitsSection = {
+  _type: "institutionBenefitsSection";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  cardsTitle?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+  buttonText?: string;
+  buttonUrl?: string;
+};
+
+export type AboutStatsSection = {
+  _type: "aboutStatsSection";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  stats?: Array<{
+    number?: string;
+    label?: string;
+    _key: string;
+  }>;
+};
+
+export type TeacherEngagementSection = {
+  _type: "teacherEngagementSection";
+  title?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+  buttonText?: string;
+  buttonUrl?: string;
+  bottomImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
+export type TeacherBenefitsSection = {
+  _type: "teacherBenefitsSection";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+  buttonText?: string;
+  buttonUrl?: string;
+};
+
+export type CooperationCardsSection = {
+  _type: "cooperationCardsSection";
+  title?: string;
+  subtitle?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    buttonText?: string;
+    buttonUrl?: string;
+    _key: string;
+  }>;
+};
+
 export type FaqAccordionSection = {
   _type: "faqAccordionSection";
   title?: string;
@@ -175,6 +316,8 @@ export type ProjectVideoSection = {
 
 export type ProjectQuestionsSection = {
   _type: "projectQuestionsSection";
+  title?: string;
+  subtitle?: string;
   questions?: Array<{
     question?: string;
     answer?: string;
@@ -207,11 +350,23 @@ export type ProjectFaqSection = {
   }>;
 };
 
+export type PostReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "post";
+};
+
 export type PostsGallerySection = {
   _type: "postsGallerySection";
   title?: string;
   subtitle?: string;
   variant?: "latest" | "next";
+  posts?: Array<
+    {
+      _key: string;
+    } & PostReference
+  >;
   limit?: number;
   ctaText?: string;
   seeAllPostsText?: string;
@@ -230,7 +385,7 @@ export type ProjectsGallerySection = {
   _type: "projectsGallerySection";
   title?: string;
   subtitle?: string;
-  projectFilter?: "all" | "polish" | "international";
+  projectFilter?: "all" | "polish" | "international" | "international_en";
   statusFilter?: "all" | "pending" | "active" | "completed";
   projects?: Array<
     {
@@ -314,6 +469,7 @@ export type WhatWeDoSection = {
 export type DocumentsSection = {
   _type: "documentsSection";
   enabled?: boolean;
+  backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   title?: string;
   subtitle?: string;
   documents?: Array<{
@@ -538,6 +694,27 @@ export type WspolpracaReference = {
   [internalGroqTypeReferenceTo]?: "wspolpraca";
 };
 
+export type EdukatoryReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "edukatory";
+};
+
+export type DlaInstytucjiReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "dlaInstytucji";
+};
+
+export type WolontariuszyReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "wolontariuszy";
+};
+
 export type WesprzyjReference = {
   _ref: string;
   _type: "reference";
@@ -550,13 +727,6 @@ export type FooterReference = {
   _type: "reference";
   _weak?: boolean;
   [internalGroqTypeReferenceTo]?: "footer";
-};
-
-export type PostReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "post";
 };
 
 export type AuthorReference = {
@@ -590,6 +760,9 @@ export type InternationalizedArrayReferenceValue = {
     | DlaRodzicowReference
     | VolunteerWithUsReference
     | WspolpracaReference
+    | EdukatoryReference
+    | DlaInstytucjiReference
+    | WolontariuszyReference
     | WesprzyjReference
     | FooterReference
     | PostReference
@@ -639,7 +812,7 @@ export type Project = {
   slug?: Slug;
   mainImage?: Img;
   shortDescription?: string;
-  projectTypes?: "polish" | "international";
+  projectTypes?: "polish" | "international" | "international_en";
   projectStatus?: "pending" | "active" | "completed";
   startDate?: string;
   endDate?: string;
@@ -797,6 +970,81 @@ export type Wesprzyj = {
   >;
 };
 
+export type Wolontariuszy = {
+  _id: string;
+  _type: "wolontariuszy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & CooperationCardsSection)
+    | ({
+        _key: string;
+      } & AboutStatsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & PostsGallerySection)
+  >;
+};
+
+export type DlaInstytucji = {
+  _id: string;
+  _type: "dlaInstytucji";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & InstitutionBenefitsSection)
+    | ({
+        _key: string;
+      } & CooperationModelsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & CoalitionSection)
+    | ({
+        _key: string;
+      } & ValuesSection)
+  >;
+};
+
+export type Edukatory = {
+  _id: string;
+  _type: "edukatory";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & TeacherBenefitsSection)
+    | ({
+        _key: string;
+      } & TeacherEngagementSection)
+    | ({
+        _key: string;
+      } & DocumentsSection)
+  >;
+};
+
 export type Wspolpraca = {
   _id: string;
   _type: "wspolpraca";
@@ -807,9 +1055,18 @@ export type Wspolpraca = {
   seo?: Seo;
   documentName?: string;
   sections?: Array<
-    {
-      _key: string;
-    } & HeroSection
+    | ({
+        _key: string;
+      } & CooperationCardsSection)
+    | ({
+        _key: string;
+      } & AboutStatsSection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & PostsGallerySection)
   >;
 };
 
@@ -823,9 +1080,18 @@ export type VolunteerWithUs = {
   seo?: Seo;
   documentName?: string;
   sections?: Array<
-    {
-      _key: string;
-    } & HeroSection
+    | ({
+        _key: string;
+      } & ProjectsGallerySection)
+    | ({
+        _key: string;
+      } & PartnersSection)
+    | ({
+        _key: string;
+      } & PhotoInfoSection)
+    | ({
+        _key: string;
+      } & FaqAccordionSection)
   >;
 };
 
@@ -1087,6 +1353,13 @@ export type AllSanitySchemaTypes =
   | Partner
   | HeroBackgroundSlide
   | HeroSlide
+  | CoalitionSection
+  | CooperationModelsSection
+  | InstitutionBenefitsSection
+  | AboutStatsSection
+  | TeacherEngagementSection
+  | TeacherBenefitsSection
+  | CooperationCardsSection
   | FaqAccordionSection
   | PhotoInfoSection
   | ProjectVideoSection
@@ -1094,6 +1367,7 @@ export type AllSanitySchemaTypes =
   | ProjectPhotoInfoSection
   | ProjectSignupSection
   | ProjectFaqSection
+  | PostReference
   | PostsGallerySection
   | ProjectReference
   | ProjectsGallerySection
@@ -1125,9 +1399,11 @@ export type AllSanitySchemaTypes =
   | DlaRodzicowReference
   | VolunteerWithUsReference
   | WspolpracaReference
+  | EdukatoryReference
+  | DlaInstytucjiReference
+  | WolontariuszyReference
   | WesprzyjReference
   | FooterReference
-  | PostReference
   | AuthorReference
   | CategoryReference
   | TagReference
@@ -1142,6 +1418,9 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Footer
   | Wesprzyj
+  | Wolontariuszy
+  | DlaInstytucji
+  | Edukatory
   | Wspolpraca
   | VolunteerWithUs
   | DlaRodzicow
@@ -1406,6 +1685,57 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       sections: Array<
         | ({
             _key: string;
+          } & AboutStatsSection)
+        | ({
+            _key: string;
+          } & CooperationCardsSection)
+        | ({
+            _key: string;
+          } & PartnersSection)
+        | ({
+            _key: string;
+          } & PostsGallerySection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & CoalitionSection)
+        | ({
+            _key: string;
+          } & CooperationModelsSection)
+        | ({
+            _key: string;
+          } & InstitutionBenefitsSection)
+        | ({
+            _key: string;
+          } & PartnersSection)
+        | ({
+            _key: string;
+          } & ValuesSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
           } & DocumentsSection)
         | ({
             _key: string;
@@ -1463,6 +1793,51 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       sections: Array<
         | ({
             _key: string;
+          } & DocumentsSection)
+        | ({
+            _key: string;
+          } & TeacherBenefitsSection)
+        | ({
+            _key: string;
+          } & TeacherEngagementSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & FaqAccordionSection)
+        | ({
+            _key: string;
+          } & PartnersSection)
+        | ({
+            _key: string;
+          } & PhotoInfoSection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
           } & FaqAccordionSection)
         | ({
             _key: string;
@@ -1497,7 +1872,7 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       mainImage: Img | null;
       shortDescription: string | null;
       startDate: string | null;
-      projectTypes: "international" | "polish" | null;
+      projectTypes: "international_en" | "international" | "polish" | null;
       projectStatus: "active" | "completed" | "pending" | null;
       sections: Array<
         | ({

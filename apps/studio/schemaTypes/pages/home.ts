@@ -18,7 +18,7 @@ export default defineType({
       type: "array",
       group: "content",
       options: {
-        layout: "grid",
+        layout: "list",
       },
       of: [
         defineArrayMember({

@@ -43,6 +43,17 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              question: "question",
+            },
+            prepare: ({ question }) => {
+              return {
+                title:
+                  question?.substring(0, 50) + (question?.length > 50 ? "..." : "") || "Pytanie",
+              };
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required().min(1),

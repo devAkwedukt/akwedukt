@@ -12,6 +12,19 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Szary neutralny", value: "neutral-50" },
+          { title: "Niebieski jasny", value: "deep-navy-blue-50" },
+        ],
+      },
+      initialValue: "white",
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",

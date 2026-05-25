@@ -33,6 +33,7 @@ export default defineType({
           { title: "Wszystkie projekty", value: "all" },
           { title: "Tylko projekty polskie", value: "polish" },
           { title: "Tylko projekty międzynarodowe", value: "international" },
+          { title: "Tylko projekty międzynarodowe (EN)", value: "international_en" },
         ],
       },
       initialValue: "all",
@@ -124,6 +125,7 @@ export default defineType({
         all: "Wszystkie",
         polish: "Polskie",
         international: "Międzynarodowe",
+        international_en: "Międzynarodowe (EN)",
       };
 
       const statusLabels = {

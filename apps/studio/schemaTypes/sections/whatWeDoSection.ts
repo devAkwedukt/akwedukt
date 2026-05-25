@@ -42,6 +42,17 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              description: "description",
+            },
+            prepare: ({ description }) => {
+              const text = description?.[0]?.children?.[0]?.text || "Opis";
+              return {
+                title: text.substring(0, 50) + (text.length > 50 ? "..." : ""),
+              };
+            },
+          },
         },
       ],
       validation: (Rule) => Rule.required().min(5).max(5),
@@ -71,25 +82,19 @@ export default defineType({
               validation: (Rule) => Rule.required(),
             }),
           ],
+          preview: {
+            select: {
+              image: "image",
+            },
+            prepare: ({ image }) => {
+              return {
+                title: "Zdjęcie",
+                media: image,
+              };
+            },
+          },
         },
       ],
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-      descriptions: "descriptions",
-      slider: "slider",
-    },
-    prepare({ title, descriptions, slider }) {
-      const descCount = descriptions?.length || 0;
-      const imageCount = slider?.length || 0;
-      const firstImage = slider?.[0]?.image;
-      return {
-        title: title || "Co robimy",
-        subtitle: `${descCount} opisów, ${imageCount} zdjęć`,
-        media: firstImage,
-      };
-    },
-  },
 });

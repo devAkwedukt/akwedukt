@@ -1,7 +1,7 @@
 import { getPosts, getTotalPostsCount, getAllCategories } from "@/sanity/queries/posts";
-import { PostsGrid } from "@/components/post-list/PostsGrid";
+import { PostsGrid } from "@/components/sections/post-list/PostsGrid";
 import { Pagination } from "@/components/ui/Pagination";
-import SearchFilterServer from "@/components/SearchFilterServer";
+import SearchFilterServer from "@/components/views/posts/SearchFilterServer";
 import { Metadata } from "next";
 
 interface PostsPageProps {

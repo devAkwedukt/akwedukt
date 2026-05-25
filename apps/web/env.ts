@@ -37,6 +37,7 @@ export const envSchema = z.object({
   NEXT_PUBLIC_SANITY_USE_CDN: z.enum(["true", "false"]),
   CI: z.enum(["true", "false"]).optional(),
   NEXT_PUBLIC_SANITY_STUDIO_URL: z.url().optional(),
+  NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY: z.string().optional(),
 });
 
 declare global {

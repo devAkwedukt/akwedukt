@@ -18,7 +18,7 @@ export default defineType({
       type: "array",
       group: "content",
       options: {
-        layout: "grid",
+        layout: "list",
       },
       of: [
         defineArrayMember({
@@ -32,6 +32,16 @@ export default defineType({
         defineArrayMember({
           name: "whatWeDoSection",
           type: "whatWeDoSection",
+          preview: {
+            select: {
+              title: "title",
+            },
+            prepare: ({ title }) => {
+              return {
+                title: title || "Co robimy",
+              };
+            },
+          },
         }),
         defineArrayMember({
           name: "ourHistorySection",

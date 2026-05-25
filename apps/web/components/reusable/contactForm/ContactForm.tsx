@@ -115,7 +115,10 @@ function ContactForm() {
   };
 
   return (
-    <section className="py-24 px-20 gap-[10%] flex flex-row items-center justify-between">
+    <section
+      id="contact"
+      className="py-24 px-20 gap-[10%] flex flex-row items-center justify-between"
+    >
       <aside className="flex max-w-162.5 flex-col gap-12">
         <div className="flex flex-col gap-4">
           <h2 className="text-6xl font-bold tracking-tight">Napisz do nas</h2>

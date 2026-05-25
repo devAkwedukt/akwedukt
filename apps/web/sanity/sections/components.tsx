@@ -1,5 +1,4 @@
 import type {
-  PostsSection,
   HeroSection,
   HeroBackgroundSection,
   AboutSection,
@@ -21,33 +20,41 @@ import type {
   ProjectVideoSection,
   PhotoInfoSection,
   FaqAccordionSection,
+  CooperationCardsSection,
+  AboutStatsSection,
+  TeacherBenefitsSection,
+  TeacherEngagementSection,
+  InstitutionBenefitsSection,
 } from "@/sanity/typegen";
-import ProjectsGalleryWrapper from "@/components/project-list/ProjectsGalleryWrapper";
-import PostsGalleryWrapper from "@/components/post-list/PostsGalleryWrapper";
+import ProjectsGalleryWrapper from "@/components/sections/project-list/ProjectsGalleryWrapper";
+import PostsGalleryWrapper from "@/components/sections/post-list/PostsGalleryWrapper";
 import { ComponentType } from "react";
-import { q } from "../groqd";
-import { sanityFetch } from "../live";
-import { Link } from "@/i18n/navigation";
-import { SanityImage } from "@/sanity/image/SanityImage";
-import HeroSlider from "@/components/home/hero/HeroSlider";
+import HeroSlider from "@/components/views/home/hero/HeroSlider";
 import HeroBackgroundSectionComponent from "@/components/reusable/HeroBackgroundSection";
-import AboutSectionComponent from "@/components/home/AboutSection";
+import AboutSectionComponent from "@/components/views/home/AboutSection";
 import PartnersSectionComponent from "@/components/reusable/PartnersSection";
 import TestimonialsSectionComponent from "@/components/reusable/TestimonialsSection";
-import ValuesSectionComponent from "@/components/home/ValuesSection";
-import WhoWeAreSectionComponent from "@/components/about/WhoWeAreSection";
-import WhatWeDoSectionComponent from "@/components/about/WhatWeDoSection";
-import OurHistorySectionComponent from "@/components/about/OurHistorySection";
-import OurTeamSectionComponent from "@/components/about/OurTeamSection";
+import ValuesSectionComponent from "@/components/reusable/ValuesSection";
+import WhoWeAreSectionComponent from "@/components/views/about/WhoWeAreSection";
+import WhatWeDoSectionComponent from "@/components/views/about/WhatWeDoSection";
+import OurHistorySectionComponent from "@/components/views/about/OurHistorySection";
+import OurTeamSectionComponent from "@/components/views/about/OurTeamSection";
 import DocumentsSectionComponent from "@/components/reusable/DocumentsSection";
-import ProjectTitleSectionComponent from "@/components/project-view/ProjectTitleSection";
-import ProjectFaqSectionComponent from "@/components/project-view/ProjectFaqSection";
-import ProjectSignupSectionComponent from "@/components/project-view/ProjectSignupSection";
-import ProjectPhotoInfoSectionComponent from "@/components/project-view/ProjectPhotoInfoSection";
-import ProjectQuestionsSectionComponent from "@/components/project-view/ProjectQuestionsSection";
-import ProjectVideoSectionComponent from "@/components/project-view/ProjectVideoSection";
-import PhotoInfoSectionComponent from "@/components/what-we-do/PhotoInfoSection";
-import FaqAccordionSectionComponent from "@/components/what-we-do/FaqAccordionSection";
+import ProjectTitleSectionComponent from "@/components/views/project-view/ProjectTitleSection";
+import ProjectFaqSectionComponent from "@/components/views/project-view/ProjectFaqSection";
+import ProjectSignupSectionComponent from "@/components/views/project-view/ProjectSignupSection";
+import ProjectPhotoInfoSectionComponent from "@/components/views/project-view/ProjectPhotoInfoSection";
+import ProjectQuestionsSectionComponent from "@/components/views/project-view/ProjectQuestionsSection";
+import ProjectVideoSectionComponent from "@/components/views/project-view/ProjectVideoSection";
+import PhotoInfoSectionComponent from "@/components/reusable/PhotoInfoSection";
+import FaqAccordionSectionComponent from "@/components/views/what-we-do/FaqAccordionSection";
+import CooperationCardsSectionComponent from "@/components/views/cooperation/CooperationCardsSection";
+import AboutStatsSectionComponent from "@/components/views/cooperation/AboutStatsSection";
+import TeacherBenefitsSectionComponent from "@/components/views/cooperation/TeacherBenefitsSection";
+import TeacherEngagementSectionComponent from "@/components/views/cooperation/TeacherEngagementSection";
+import InstitutionBenefitsSectionComponent from "@/components/views/cooperation/InstitutionBenefitsSection";
+import CooperationModelsSectionComponent from "@/components/views/cooperation/CooperationModelsSection";
+import CoalitionSectionComponent from "@/components/views/cooperation/CoalitionSection";
 
 /**
  * Example: A `section` registry mapping Sanity `_type` values to React components.
@@ -60,31 +67,6 @@ import FaqAccordionSectionComponent from "@/components/what-we-do/FaqAccordionSe
  */
 export const components: { [key: string]: ComponentType<any> } = {
   aboutSection: ({ item }: { item: AboutSection }) => <AboutSectionComponent item={item} />,
-  sectionPost: async ({ item }: { item: PostsSection }) => {
-    const latestPosts = q.star
-      .filterByType("post")
-      .slice(0, item.displayNumber ?? 3)
-      .order("date desc")
-      .project((sub) => ({
-        _id: sub.field("_id"),
-        title: sub.field("title"),
-        image: sub.field("featuredMedia"),
-        slug: sub.field("slug"),
-      }));
-    const { data } = await sanityFetch({ query: latestPosts.query });
-    const posts = latestPosts.parse(data);
-    if (!posts) return <h2>No posts found.</h2>;
-    return (
-      <>
-        {posts.map((post) => (
-          <Link key={post._id} href={`/post/${post.slug?.current}`}>
-            <SanityImage image={post.image} height={300} width={300} />
-            <h2>{post.title}</h2>
-          </Link>
-        ))}
-      </>
-    );
-  },
   projectsGallerySection: async ({ item }: { item: ProjectsGallerySection }) => {
     return <ProjectsGalleryWrapper item={item} />;
   },
@@ -141,4 +123,23 @@ export const components: { [key: string]: ComponentType<any> } = {
   faqAccordionSection: ({ item }: { item: FaqAccordionSection }) => (
     <FaqAccordionSectionComponent item={item} />
   ),
+  cooperationCardsSection: ({ item }: { item: CooperationCardsSection }) => (
+    <CooperationCardsSectionComponent item={item} />
+  ),
+  aboutStatsSection: ({ item }: { item: AboutStatsSection }) => (
+    <AboutStatsSectionComponent item={item} />
+  ),
+  teacherBenefitsSection: ({ item }: { item: TeacherBenefitsSection }) => (
+    <TeacherBenefitsSectionComponent item={item} />
+  ),
+  teacherEngagementSection: ({ item }: { item: TeacherEngagementSection }) => (
+    <TeacherEngagementSectionComponent item={item} />
+  ),
+  institutionBenefitsSection: ({ item }: { item: InstitutionBenefitsSection }) => (
+    <InstitutionBenefitsSectionComponent item={item} />
+  ),
+  cooperationModelsSection: ({ item }: { item: any }) => (
+    <CooperationModelsSectionComponent item={item} />
+  ),
+  coalitionSection: ({ item }: { item: any }) => <CoalitionSectionComponent item={item} />,
 };

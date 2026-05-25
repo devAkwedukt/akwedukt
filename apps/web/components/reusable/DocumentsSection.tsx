@@ -8,8 +8,19 @@ import { IconButton } from "../ui/IconButton";
 export default function DocumentsSection({ item }: { item: DocumentsSection }) {
   if (item.enabled === false) return null;
 
+  const getBackgroundClass = () => {
+    switch (item.backgroundColor) {
+      case "neutral-50":
+        return "bg-neutral-50";
+      case "deep-navy-blue-50":
+        return "bg-deep-navy-blue-50";
+      default:
+        return "bg-white";
+    }
+  };
+
   return (
-    <section className="w-full py-24 px-20">
+    <section className={`w-full py-24 px-20 ${getBackgroundClass()}`}>
       {/* Header */}
       <div className="text-center mb-12">
         {item.title && <h2 className="heading-2 mb-6">{item.title}</h2>}

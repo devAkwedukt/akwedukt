@@ -2,10 +2,12 @@ import { defineField, defineType, defineArrayMember } from "sanity";
 import { languageField } from "../../plugins/intl";
 import { pageGroups } from "../../utils/groups";
 import { seoField, documentNameField } from "../../utils/fields";
+import cooperationModelsSection from "../sections/cooperationModelsSection";
+import coalitionSection from "../sections/coalitionSection";
 
 export default defineType({
-  name: "volunteerWithUs",
-  title: "Volunteer with us",
+  name: "dlaInstytucji",
+  title: "Dla instytucji",
   type: "document",
   groups: pageGroups,
   fields: [
@@ -22,20 +24,24 @@ export default defineType({
       },
       of: [
         defineArrayMember({
-          name: "projectsGallerySection",
-          type: "projectsGallerySection",
+          name: "institutionBenefitsSection",
+          type: "institutionBenefitsSection",
+        }),
+        defineArrayMember({
+          name: "cooperationModelsSection",
+          type: "cooperationModelsSection",
         }),
         defineArrayMember({
           name: "partnersSection",
           type: "partnersSection",
         }),
         defineArrayMember({
-          name: "photoInfoSection",
-          type: "photoInfoSection",
+          name: "coalitionSection",
+          type: "coalitionSection",
         }),
         defineArrayMember({
-          name: "faqAccordionSection",
-          type: "faqAccordionSection",
+          name: "valuesSection",
+          type: "valuesSection",
         }),
       ],
     }),

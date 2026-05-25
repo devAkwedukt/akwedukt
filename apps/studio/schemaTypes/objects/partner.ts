@@ -9,7 +9,6 @@ export default defineType({
       name: "name",
       title: "Nazwa",
       type: "string",
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "logo",
@@ -24,7 +23,6 @@ export default defineType({
       name: "url",
       title: "URL",
       type: "url",
-      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

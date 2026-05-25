@@ -18,12 +18,24 @@ export default defineType({
       type: "array",
       group: "content",
       options: {
-        layout: "grid",
+        layout: "list",
       },
       of: [
         defineArrayMember({
-          name: "heroSection",
-          type: "heroSection",
+          name: "cooperationCardsSection",
+          type: "cooperationCardsSection",
+        }),
+        defineArrayMember({
+          name: "aboutStatsSection",
+          type: "aboutStatsSection",
+        }),
+        defineArrayMember({
+          name: "partnersSection",
+          type: "partnersSection",
+        }),
+        defineArrayMember({
+          name: "postsGallerySection",
+          type: "postsGallerySection",
         }),
       ],
     }),

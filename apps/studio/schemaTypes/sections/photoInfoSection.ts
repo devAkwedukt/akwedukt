@@ -37,17 +37,14 @@ export default defineType({
           name: "text",
           title: "Tekst przycisku",
           type: "string",
-          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: "url",
           title: "URL przycisku",
           type: "string",
           description: "Może być pełnym URL lub ścieżką wewnętrznej strony (np. '/o-nas')",
-          validation: (Rule) => Rule.required(),
         }),
       ],
-      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {

@@ -8,7 +8,7 @@ interface PhotoInfoSectionProps {
 }
 
 export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
-  if (!item.title || !item.photo || !item.description || !item.button) {
+  if (!item.title || !item.photo || !item.description) {
     return null;
   }
 
@@ -64,7 +64,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
         </div>
 
         {/* Button */}
-        {item.button.url && item.button.text && (
+        {item.button && item.button.url && item.button.text && (
           <Button
             href={item.button.url}
             as="link"

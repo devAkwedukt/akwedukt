@@ -51,6 +51,7 @@ export default defineType({
         list: [
           { title: "Polski", value: "polish" },
           { title: "Międzynarodowy", value: "international" },
+          { title: "Międzynarodowy (EN)", value: "international_en" },
         ],
       },
     }),

@@ -4,8 +4,8 @@ import { pageGroups } from "../../utils/groups";
 import { seoField, documentNameField } from "../../utils/fields";
 
 export default defineType({
-  name: "wesprzyj",
-  title: "Wesprzyj nas",
+  name: "wolontariuszy",
+  title: "Wolontariuszy",
   type: "document",
   groups: pageGroups,
   fields: [
@@ -22,8 +22,20 @@ export default defineType({
       },
       of: [
         defineArrayMember({
-          name: "heroSection",
-          type: "heroSection",
+          name: "cooperationCardsSection",
+          type: "cooperationCardsSection",
+        }),
+        defineArrayMember({
+          name: "aboutStatsSection",
+          type: "aboutStatsSection",
+        }),
+        defineArrayMember({
+          name: "partnersSection",
+          type: "partnersSection",
+        }),
+        defineArrayMember({
+          name: "postsGallerySection",
+          type: "postsGallerySection",
         }),
       ],
     }),

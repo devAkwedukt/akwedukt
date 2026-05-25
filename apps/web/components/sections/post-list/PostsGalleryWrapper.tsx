@@ -1,4 +1,4 @@
-import { getLatestPosts, getNextPosts } from "@/sanity/queries/posts";
+import { getLatestPosts, getNextPosts, getPostById } from "@/sanity/queries/posts";
 import { PostsGrid } from "./PostsGrid";
 import { Button } from "@/components/ui/Button";
 import type { PostsGallerySection } from "@/sanity/typegen";
@@ -10,13 +10,23 @@ interface PostsGalleryWrapperProps {
 export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperProps) {
   let posts;
 
-  // Load posts based on variant
-  if (item.variant === "latest") {
-    posts = await getLatestPosts(item.limit ?? 3);
-  } else if (item.variant === "next") {
-    posts = await getNextPosts(item.limit ?? 3);
+  // If posts are manually selected, use them
+  if (item.posts && item.posts.length > 0) {
+    const postIds = item.posts.map((p) => p._ref).filter(Boolean);
+    posts = await Promise.all(
+      postIds.map(async (postId: string) => {
+        return await getPostById(postId);
+      })
+    );
   } else {
-    posts = await getLatestPosts(item.limit ?? 3);
+    // Otherwise, load posts automatically based on variant
+    if (item.variant === "latest") {
+      posts = await getLatestPosts(item.limit ?? 3);
+    } else if (item.variant === "next") {
+      posts = await getNextPosts(item.limit ?? 3);
+    } else {
+      posts = await getLatestPosts(item.limit ?? 3);
+    }
   }
 
   const filteredPosts = posts.filter(Boolean);

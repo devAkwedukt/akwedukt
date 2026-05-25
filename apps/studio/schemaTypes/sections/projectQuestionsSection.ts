@@ -8,6 +8,18 @@ export default defineType({
   groups: [{ name: "content", title: "Treść" }],
   fields: [
     defineField({
+      name: "title",
+      title: "Tytuł",
+      type: "string",
+      group: "content",
+    }),
+    defineField({
+      name: "subtitle",
+      title: "Podtytuł",
+      type: "string",
+      group: "content",
+    }),
+    defineField({
       name: "questions",
       title: "Pytania i odpowiedzi",
       type: "array",
