@@ -9,8 +9,8 @@ export default function AboutSection({ item }: { item: AboutSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="pr-20 py-16 lg:py-24 flex flex-row justify-start items-center gap-20 border-y border-deep-navy-blue-100">
-      <aside className="flex w-150 h-150 relative translate-x-4 before:absolute before:w-150 before:h-150 before:right-8 before:top-8 before:bg-purple-200 before:-z-10">
+    <section className="px-20 py-16 lg:py-24 flex flex-row justify-start items-center gap-18 border-y border-deep-navy-blue-100 max-w-480 mx-auto">
+      <aside className="flex w-150 h-150 relative">
         {/* Image */}
         {item.image && (
           <SanityImage

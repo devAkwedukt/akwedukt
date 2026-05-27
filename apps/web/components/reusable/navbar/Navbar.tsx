@@ -89,7 +89,7 @@ function Navbar() {
             <Link
               key={link}
               href={link}
-              className={`font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 border-b-2 leading-tight active:text-blue-700 focus:duration-0 focus:outline-2 focus:outline-pink-500 focus:rounded-sm ${
+              className={`font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 border-b-2 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm ${
                 isActive
                   ? "text-blue-800 border-blue-800"
                   : "text-deep-navy-blue-900 border-transparent hover:border-deep-navy-blue-900"

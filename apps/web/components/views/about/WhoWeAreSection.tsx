@@ -8,7 +8,7 @@ export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full py-20 flex flex-row justify-start items-center gap-20">
+    <section className="w-full py-20 px-20 flex flex-row justify-start items-center gap-20 max-w-480 mx-auto bg-gray-50">
       {/* Image */}
       {item.image && (
         <aside className="relative h-150 w-150 overflow-hidden">
@@ -22,6 +22,7 @@ export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
 
       {/* Text Content */}
       <article className="flex flex-col items-start gap-6 max-w-160">
+        <p className="body-lg font-bold leading-relaxed">Kim jesteśmy</p>
         {item.title && <h2 className="heading-2">{item.title}</h2>}
         {item.description && (
           <p className="body-lg leading-normal text-balance">{item.description}</p>

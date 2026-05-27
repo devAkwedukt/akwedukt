@@ -24,7 +24,7 @@ export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) 
   }
 
   return (
-    <section className="bg-gray-50 px-6 py-12 md:px-10 md:py-14 lg:px-20 lg:py-16">
+    <section className="bg-gray-50 px-6 py-12 md:px-10 md:py-14 lg:px-20 lg:py-16 mx-auto max-w-480">
       <div className="mx-auto w-full max-w-300">
         <div className="mb-10 flex flex-col gap-6 text-center">
           <h2 className="heading-2">{item.title}</h2>

@@ -16,7 +16,7 @@ export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabl
   if (!slides?.length) return null;
 
   return (
-    <header className="w-full mt-16 py-8 lg:py-14 bg-neutral-50 relative overflow-clip overflow-y-visible">
+    <header className="w-full mt-0 py-8 min-h-137.5 lg:py-22 bg-gray-50 relative overflow-clip overflow-y-visible">
       {/* SLIDER VIEWPORT */}
       <div ref={emblaRef} className="w-full overflow-y-visible">
         {/* SLIDER TRACK */}
@@ -33,14 +33,23 @@ export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabl
                 <div className="w-full flex flex-col md:items-center gap-8 md:gap-12 lg:gap-18">
                   <div className="w-full flex flex-col md:items-center gap-4 md:gap-6 lg:gap-8">
                     {slide.title && (
-                      <h1 className="heading-1 max-w-[810px] md:text-center">{slide.title}</h1>
+                      <h1 className="heading-1 max-w-[810px] text-center">{slide.title}</h1>
                     )}
 
-                    {slide.description && <p className="body-lg-bold">{slide.description}</p>}
+                    {slide.description && (
+                      <p className="body-lg font-bold rotate-0.78">{slide.description}</p>
+                    )}
                   </div>
 
                   {slide.button?.label && slide.button?.url && (
-                    <Button as="link" href={slide.button.url} variant="primary" size="large">
+                    <Button
+                      as="link"
+                      href={slide.button.url}
+                      variant="primary"
+                      size="large"
+                      //temporary fix
+                      className="py-5 min-h-16"
+                    >
                       {slide.button.label}
                     </Button>
                   )}

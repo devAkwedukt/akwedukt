@@ -46,7 +46,7 @@ export function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex justify-center items-center gap-4">
+    <div className="mt-10 flex justify-center items-center gap-4">
       {/* Previous button */}
       <IconButton
         as="link"
@@ -59,12 +59,12 @@ export function Pagination({
       />
 
       {/* Page numbers */}
-      <div className="px-1 rounded-sm inline-flex justify-center items-center">
+      <div className="px-1 rounded-sm inline-flex justify-center items-center gap-1.5">
         {pages.map((pageNum) => (
           <Link
             key={pageNum}
             href={buildUrl(pageNum)}
-            className={`text-base leading-[25.60px] transition text-center px-1 rounded-sm focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-pink-500 ${
+            className={`text-lg leading-[25.60px] transition text-center px-1 rounded-sm focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-pink-500 ${
               currentPage === pageNum
                 ? "font-bold text-blue-700"
                 : "hover:text-blue-700 hover:underline"

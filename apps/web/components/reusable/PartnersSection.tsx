@@ -14,7 +14,7 @@ export default function PartnersSection({ item }: { item: PartnersSection }) {
         {item.title && <h2 className="heading-2 px-20">{item.title}</h2>}
 
         {/* Partners Grid */}
-        <div className="flex flex-row flex-wrap justify-between gap-8 w-full px-4">
+        <div className="flex flex-row flex-wrap justify-center gap-16 w-full">
           {item.partners.map((partner) => (
             <a
               key={partner._key}

@@ -76,7 +76,7 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
 
   return (
     <section className="bg-blue-50 w-full px-20 py-16 lg:py-22 lg:pb-32 relative">
-      <div className="flex flex-row items-start justify-start gap-14">
+      <div className="flex flex-row items-start justify-start gap-14 max-w-480 mx-auto">
         {/* Section Title and Subtitle */}
         <aside className="flex flex-col gap-8">
           {item.title && <h2 className="heading-2 text-nowrap">{item.title}</h2>}
@@ -108,9 +108,9 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
               data-testimonial-card
               className="bg-gray-50 p-6 min-w-90 min-h-90 snap-start"
             >
-              <RenderIcon icon="location" className="text-deep-navy-blue-900/80" size={32} />
+              <h2 className="heading-2 text-deep-navy-blue-900/80 leading-none">“</h2>
               {/* Testimonial Text */}
-              <blockquote className="mt-2 mb-4">
+              <blockquote className="mt-0 mb-4">
                 <p className="text-lg leading-relaxed text-balance">{testimonial.text}</p>
               </blockquote>
 

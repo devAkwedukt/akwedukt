@@ -29,11 +29,11 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
 
       {/* Documents Grid */}
       {item.documents && item.documents.length > 0 && (
-        <main className="flex flex-row justify-start flex-wrap items-start gap-[5%]">
+        <main className="flex flex-row justify-start flex-wrap items-start gap-12">
           {item.documents.map((doc, index) => (
             <div
               key={index}
-              className="flex flex-col gap-6 p-4 border-2 border-deep-navy-blue-800 w-3/10"
+              className="flex flex-col gap-6 p-4 border-0 border-deep-navy-blue-800 w-[calc((1/3)*100%-48px)] "
             >
               {/* Name of the Document */}
               <h3 className="body-lg font-bold">{doc.name}</h3>

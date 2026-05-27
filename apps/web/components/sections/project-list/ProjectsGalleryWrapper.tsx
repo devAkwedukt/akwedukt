@@ -27,7 +27,7 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
   const filteredProjects = validProjects.filter(Boolean);
 
   return (
-    <section className="py-18 px-20 bg-gray-50">
+    <section className="py-18 px-20 bg-gray-50 max-w-480 mx-auto">
       {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
       {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
 

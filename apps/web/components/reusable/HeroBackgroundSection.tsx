@@ -13,7 +13,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
   if (!item?.enabled || !item?.slides?.length) return null;
 
   return (
-    <section className="relative w-full h-screen min-h-150 overflow-hidden">
+    <header className="relative w-full min-h-150 overflow-hidden">
       {/* SLIDER VIEWPORT */}
       <div ref={emblaRef} className="w-full h-full">
         {/* SLIDER TRACK */}
@@ -49,7 +49,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
                         href={slide.button.url}
                         variant="primary"
                         size="large"
-                        className="mt-4"
+                        className="mt-4 min-h-16 py-5"
                       >
                         {slide.button.label}
                       </Button>
@@ -74,6 +74,6 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
           <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="right" />
         </div>
       )}
-    </section>
+    </header>
   );
 }

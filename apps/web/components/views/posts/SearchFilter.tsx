@@ -24,7 +24,7 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
       {/* Search Input */}
       <div className="relative">
         <svg
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted w-5 h-5"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2  w-5 h-5"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -41,12 +41,12 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
           placeholder="Szukaj w tytułach i treści..."
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+          className="w-full pl-10 pr-4 py-3 border-2 border-deep-navy-blue-900 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
         />
         {searchQuery && (
           <button
             onClick={() => handleSearchChange("")}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted hover:text-gray-600 transition-colors"
+            className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2  hover:text-deep-navy-blue-500 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -91,7 +91,7 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
         <div className="flex justify-end">
           <button
             onClick={clearAllFilters}
-            className="text-sm text-gray-600 hover:text-foreground underline transition-colors"
+            className="text-base cursor-pointer font-medium hover:text-deep-navy-blue-600 underline transition-colors"
           >
             Wyczyść wszystkie filtry
           </button>
@@ -101,16 +101,16 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
       {/* Active Filters Summary */}
       {hasActiveFilters && (
         <div className="bg-gray-50 rounded-lg p-4">
-          <div className="text-sm text-gray-600">
+          <div className="text-lg">
             {searchQuery && (
               <div className="mb-1">
-                Szukanie: <span className="font-medium">{searchQuery}</span>
+                Szukanie: <span className="font-semibold">{searchQuery}</span>
               </div>
             )}
             {selectedCategories.length > 0 && (
               <div>
                 Wybrane kategorie:{" "}
-                <span className="font-medium">
+                <span className="font-semibold">
                   {selectedCategories
                     .map((catId) => categories.find((c) => c._id === catId)?.name)
                     .filter(Boolean)

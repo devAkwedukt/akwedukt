@@ -58,7 +58,7 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
       />
       <header className="text-center mb-12">
         <h1 className="heading-1 mb-4">Kronika wydarzeń</h1>
-        <p className="text-lg text-gray-600">
+        <p className="text-lg">
           Zobacz galerię naszych wspomnień i poczuj rytm, w jakim bije serce naszej społeczności
         </p>
       </header>
@@ -78,14 +78,14 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
           />
 
           {/* Results count */}
-          <div className="text-center mt-8 text-gray-600">
+          <div className="text-lg text-center my-10">
             Pokazano {filteredPosts.length} z {totalCount} postów
           </div>
         </>
       ) : (
         <div className="text-center py-12">
           <h2 className="heading-2 mb-4">Nie znaleziono postów</h2>
-          <p className="text-gray-600">Nie znaleziono postów pasujących do wybranych kryteriów.</p>
+          <p className="text-lg">Nie znaleziono postów pasujących do wybranych kryteriów.</p>
         </div>
       )}
     </div>

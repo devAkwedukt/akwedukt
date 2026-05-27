@@ -7,7 +7,7 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full px-20 py-16 lg:py-24">
+    <section className="w-full px-20 py-16 lg:py-24 max-w-480 mx-auto">
       <div className="">
         {/* Section Title */}
         {item.title && (
