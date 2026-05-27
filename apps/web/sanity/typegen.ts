@@ -367,14 +367,7 @@ export type ProjectVideoSection = {
   subtitle?: string;
   video?: Video;
   socialLinks?: Array<{
-    platform?:
-      | "facebook"
-      | "instagram"
-      | "linkedin"
-      | "twitter"
-      | "youtube"
-      | "tiktok"
-      | "other";
+    platform?: "facebook" | "instagram" | "linkedin" | "twitter" | "youtube" | "tiktok" | "other";
     url?: string;
     label?: string;
     _key: string;

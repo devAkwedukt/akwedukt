@@ -33,6 +33,3 @@
 # Backups
 *.tar.gz
 
-# sanity
-sanity/typegen.ts
-schema.json

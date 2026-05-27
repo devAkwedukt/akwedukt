@@ -21,7 +21,7 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
     );
   } else {
     // Otherwise, load projects automatically based on filters
-    validProjects = await getProjects(item.limit ?? 3, item.projectFilter, item.statusFilter);
+    validProjects = await getProjects(item.limit ?? 3, 0, item.projectFilter, item.statusFilter);
   }
 
   const filteredProjects = validProjects.filter(Boolean);
