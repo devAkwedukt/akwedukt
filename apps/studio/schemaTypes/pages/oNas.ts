@@ -36,7 +36,7 @@ export default defineType({
             select: {
               title: "title",
             },
-            prepare: ({ title }) => {
+            prepare: ({ title }: { title?: string }) => {
               return {
                 title: title || "Co robimy",
               };

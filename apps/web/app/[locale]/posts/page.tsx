@@ -3,8 +3,11 @@ import { PostsGrid } from "@/components/sections/post-list/PostsGrid";
 import { Pagination } from "@/components/ui/Pagination";
 import SearchFilterServer from "@/components/views/posts/SearchFilterServer";
 import { Metadata } from "next";
+import { Breadcrumbs } from "@/components/ui";
+import { setRequestLocale } from "next-intl/server";
 
 interface PostsPageProps {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{
     page?: string;
     category?: string | string[];
@@ -22,8 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function PostsPage({ searchParams }: PostsPageProps) {
+export default async function PostsPage({ params, searchParams }: PostsPageProps) {
+  const { locale } = await params;
   const resolvedSearchParams = await searchParams;
+
+  setRequestLocale(locale);
   const currentPage = parseInt(resolvedSearchParams.page || "1", 10);
 
   const categoryFilter = resolvedSearchParams.category;
@@ -43,6 +49,13 @@ export default async function PostsPage({ searchParams }: PostsPageProps) {
 
   return (
     <div className="container mx-auto px-4 py-12">
+      <Breadcrumbs
+        items={[
+          { label: "Strona główna", href: `/${locale}` },
+          { label: "Co nowego", href: `/${locale}/co-nowego` },
+          { label: "Kronika wydarzeń" },
+        ]}
+      />
       <header className="text-center mb-12">
         <h1 className="heading-1 mb-4">Kronika wydarzeń</h1>
         <p className="text-lg text-gray-600">

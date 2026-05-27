@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
+import { Breadcrumbs } from "@/components/ui";
 
 // GROQD Query builders
 const projectSlugs = q.star
@@ -68,7 +69,14 @@ export default async function ProjectPage({
   if (!p) notFound();
 
   return (
-    <main>
+    <main className="w-full">
+      <Breadcrumbs
+        items={[
+          { label: "Strona główna", href: `/${locale}` },
+          { label: "Co robimy", href: `/${locale}/co-robimy` },
+          { label: p.title || "Projekt" },
+        ]}
+      />
       <SanitySections value={p.sections} />
       <ContactForm />
     </main>

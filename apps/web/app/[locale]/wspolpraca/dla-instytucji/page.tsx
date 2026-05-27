@@ -5,6 +5,7 @@ import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
+import { Breadcrumbs } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "Dla instytucji | Stowarzyszenie Akwedukt",
@@ -27,6 +28,13 @@ export default async function DlaInstytucji({ params }: { params: Promise<{ loca
     <div className="flex min-h-screen items-center justify-center">
       <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
         <div className="w-full flex flex-col gap-6">
+          <Breadcrumbs
+            items={[
+              { label: "Strona główna", href: `/${locale}` },
+              { label: "Współpraca", href: `/${locale}/wspolpraca` },
+              { label: "Dla instytucji" },
+            ]}
+          />
           <SanitySections value={page?.sections} />
           <ContactForm />
         </div>

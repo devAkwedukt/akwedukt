@@ -40,3 +40,7 @@ yarn-error.log*
 *.pem
 
 .idea
+
+# sanity
+sanity/typegen.ts
+schema.json

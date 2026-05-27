@@ -6,6 +6,7 @@ import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
+import { Breadcrumbs } from "@/components/ui";
 
 // QROQD Query builders
 const postSlugs = q.star
@@ -63,10 +64,19 @@ export default async function PostPage({
   return (
     <div className="flex min-h-screen items-center justify-center">
       <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <div>
-          {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
-          <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
-          <SanityRichText value={p.content} withImageSlider={true} />
+        <div className="w-full">
+          <Breadcrumbs
+            items={[
+              { label: "Strona główna", href: `/${locale}` },
+              { label: "Kronika wydarzeń", href: `/${locale}/posts` },
+              { label: p.title || "Post" },
+            ]}
+          />
+          <div>
+            {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
+            <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
+            <SanityRichText value={p.content} withImageSlider={true} />
+          </div>
         </div>
       </main>
     </div>

@@ -5,6 +5,7 @@ import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
+import { Breadcrumbs } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "O nas | Stowarzyszenie Akwedukt",
@@ -27,6 +28,9 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
     <div className="flex items-center justify-center">
       <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
         <div className="w-full flex flex-col gap-6">
+          <Breadcrumbs
+            items={[{ label: "Strona główna", href: `/${locale}` }, { label: "O nas" }]}
+          />
           <SanitySections value={page?.sections} />
           <ContactForm />
         </div>

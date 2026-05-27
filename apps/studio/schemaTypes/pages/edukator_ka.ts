@@ -4,8 +4,8 @@ import { pageGroups } from "../../utils/groups";
 import { seoField, documentNameField } from "../../utils/fields";
 
 export default defineType({
-  name: "edukatory",
-  title: "Edukatory",
+  name: "edukator_ka",
+  title: "Edukator_ka",
   type: "document",
   groups: pageGroups,
   fields: [

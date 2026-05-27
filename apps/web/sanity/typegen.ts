@@ -57,6 +57,27 @@ export type PhotoInfoSectionButton = {
   url?: string;
 };
 
+export type DonationCard = {
+  title?: string;
+  description?: string;
+  accountNumber?: string;
+  transferTitle?: string;
+};
+
+export type FundraisingCard = {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+};
+
+export type VolunteerCard = {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -139,6 +160,45 @@ export type HeroSlide = {
     position?: "center" | "top-right" | "bottom-left" | "bottom-right";
     _key: string;
   }>;
+};
+
+export type SupportImpactSection = {
+  _type: "supportImpactSection";
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  title?: string;
+  description?: string;
+  cards?: Array<{
+    amount?: string;
+    description?: string;
+    color?: "blue" | "purple" | "pink" | "orange";
+    _key: string;
+  }>;
+};
+
+export type SupportOptionsSection = {
+  _type: "supportOptionsSection";
+  donationCard?: DonationCard;
+  fundraisingCard?: FundraisingCard;
+  volunteerCard?: VolunteerCard;
+};
+
+export type SupportHeroSection = {
+  _type: "supportHeroSection";
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type CoalitionSection = {
@@ -307,7 +367,14 @@ export type ProjectVideoSection = {
   subtitle?: string;
   video?: Video;
   socialLinks?: Array<{
-    platform?: "facebook" | "instagram" | "linkedin" | "twitter" | "youtube" | "tiktok" | "other";
+    platform?:
+      | "facebook"
+      | "instagram"
+      | "linkedin"
+      | "twitter"
+      | "youtube"
+      | "tiktok"
+      | "other";
     url?: string;
     label?: string;
     _key: string;
@@ -694,11 +761,11 @@ export type WspolpracaReference = {
   [internalGroqTypeReferenceTo]?: "wspolpraca";
 };
 
-export type EdukatoryReference = {
+export type Edukator_kaReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "edukatory";
+  [internalGroqTypeReferenceTo]?: "edukator_ka";
 };
 
 export type DlaInstytucjiReference = {
@@ -708,11 +775,11 @@ export type DlaInstytucjiReference = {
   [internalGroqTypeReferenceTo]?: "dlaInstytucji";
 };
 
-export type WolontariuszyReference = {
+export type WolontariatReference = {
   _ref: string;
   _type: "reference";
   _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "wolontariuszy";
+  [internalGroqTypeReferenceTo]?: "wolontariat";
 };
 
 export type WesprzyjReference = {
@@ -760,9 +827,9 @@ export type InternationalizedArrayReferenceValue = {
     | DlaRodzicowReference
     | VolunteerWithUsReference
     | WspolpracaReference
-    | EdukatoryReference
+    | Edukator_kaReference
     | DlaInstytucjiReference
-    | WolontariuszyReference
+    | WolontariatReference
     | WesprzyjReference
     | FooterReference
     | PostReference
@@ -964,15 +1031,21 @@ export type Wesprzyj = {
   seo?: Seo;
   documentName?: string;
   sections?: Array<
-    {
-      _key: string;
-    } & HeroSection
+    | ({
+        _key: string;
+      } & SupportHeroSection)
+    | ({
+        _key: string;
+      } & SupportOptionsSection)
+    | ({
+        _key: string;
+      } & SupportImpactSection)
   >;
 };
 
-export type Wolontariuszy = {
+export type Wolontariat = {
   _id: string;
-  _type: "wolontariuszy";
+  _type: "wolontariat";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -980,18 +1053,9 @@ export type Wolontariuszy = {
   seo?: Seo;
   documentName?: string;
   sections?: Array<
-    | ({
-        _key: string;
-      } & CooperationCardsSection)
-    | ({
-        _key: string;
-      } & AboutStatsSection)
-    | ({
-        _key: string;
-      } & PartnersSection)
-    | ({
-        _key: string;
-      } & PostsGallerySection)
+    {
+      _key: string;
+    } & DocumentsSection
   >;
 };
 
@@ -1023,9 +1087,9 @@ export type DlaInstytucji = {
   >;
 };
 
-export type Edukatory = {
+export type Edukator_ka = {
   _id: string;
-  _type: "edukatory";
+  _type: "edukator_ka";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
@@ -1344,6 +1408,9 @@ export type AllSanitySchemaTypes =
   | SanityFileAssetReference
   | ObjectFile
   | PhotoInfoSectionButton
+  | DonationCard
+  | FundraisingCard
+  | VolunteerCard
   | SanityImageAssetReference
   | ObjectImage
   | SliderObjectImage
@@ -1353,6 +1420,9 @@ export type AllSanitySchemaTypes =
   | Partner
   | HeroBackgroundSlide
   | HeroSlide
+  | SupportImpactSection
+  | SupportOptionsSection
+  | SupportHeroSection
   | CoalitionSection
   | CooperationModelsSection
   | InstitutionBenefitsSection
@@ -1399,9 +1469,9 @@ export type AllSanitySchemaTypes =
   | DlaRodzicowReference
   | VolunteerWithUsReference
   | WspolpracaReference
-  | EdukatoryReference
+  | Edukator_kaReference
   | DlaInstytucjiReference
-  | WolontariuszyReference
+  | WolontariatReference
   | WesprzyjReference
   | FooterReference
   | AuthorReference
@@ -1418,9 +1488,9 @@ export type AllSanitySchemaTypes =
   | SanityImageHotspot
   | Footer
   | Wesprzyj
-  | Wolontariuszy
+  | Wolontariat
   | DlaInstytucji
-  | Edukatory
+  | Edukator_ka
   | Wspolpraca
   | VolunteerWithUs
   | DlaRodzicow
@@ -1637,7 +1707,7 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       sections: Array<
         {
           _key: string;
-        } & HeroSection
+        } & DocumentsSection
       > | null;
     }
   | {
@@ -1863,6 +1933,27 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & ProjectsGallerySection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & SupportHeroSection)
+        | ({
+            _key: string;
+          } & SupportImpactSection)
+        | ({
+            _key: string;
+          } & SupportOptionsSection)
       > | null;
     }
   | {

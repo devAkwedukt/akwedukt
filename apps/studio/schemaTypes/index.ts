@@ -7,9 +7,9 @@ import coRobimy from "./pages/coRobimy";
 import dlaRodzicow from "./pages/dlaRodzicow";
 import volunteerWithUs from "./pages/volunteerWithUs";
 import wspolpraca from "./pages/wspolpraca";
-import edukatory from "./pages/edukatory";
+import edukator_ka from "./pages/edukator_ka";
 import dlaInstytucji from "./pages/dlaInstytucji";
-import wolontariuszy from "./pages/wolontariuszy";
+import wolontariat from "./pages/wolontariat";
 import wesprzyj from "./pages/wesprzyj";
 import settings from "./settings";
 import seo from "./seo";
@@ -45,6 +45,9 @@ import aboutStatsSection from "./sections/aboutStatsSection";
 import institutionBenefitsSection from "./sections/institutionBenefitsSection";
 import cooperationModelsSection from "./sections/cooperationModelsSection";
 import coalitionSection from "./sections/coalitionSection";
+import supportHeroSection from "./sections/supportHeroSection";
+import supportOptionsSection from "./sections/supportOptionsSection";
+import supportImpactSection from "./sections/supportImpactSection";
 import heroSlide from "./objects/heroSlide";
 import heroBackgroundSlide from "./objects/heroBackgroundSlide";
 import partner from "./objects/partner";
@@ -66,9 +69,9 @@ export const schemaTypes = [
   dlaRodzicow,
   volunteerWithUs,
   wspolpraca,
-  edukatory,
+  edukator_ka,
   dlaInstytucji,
-  wolontariuszy,
+  wolontariat,
   wesprzyj,
   seo,
   richText,
@@ -103,6 +106,9 @@ export const schemaTypes = [
   institutionBenefitsSection,
   cooperationModelsSection,
   coalitionSection,
+  supportHeroSection,
+  supportOptionsSection,
+  supportImpactSection,
   heroSlide,
   heroBackgroundSlide,
   partner,

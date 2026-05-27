@@ -22,8 +22,16 @@ export default defineType({
       },
       of: [
         defineArrayMember({
-          name: "heroSection",
-          type: "heroSection",
+          name: "supportHeroSection",
+          type: "supportHeroSection",
+        }),
+        defineArrayMember({
+          name: "supportOptionsSection",
+          type: "supportOptionsSection",
+        }),
+        defineArrayMember({
+          name: "supportImpactSection",
+          type: "supportImpactSection",
         }),
       ],
     }),
