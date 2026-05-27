@@ -36,20 +36,52 @@ export default defineType({
           type: "object",
           fields: [
             defineField({
+              name: "heading",
+              title: "Nagłówek",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
               name: "description",
               title: "Opis",
-              type: "richText",
-              validation: (Rule) => Rule.required(),
+              type: "text",
+            }),
+            defineField({
+              name: "features",
+              title: "Charakterystyki",
+              type: "array",
+              of: [
+                {
+                  type: "object",
+                  fields: [
+                    defineField({
+                      name: "description",
+                      title: "Opis",
+                      type: "text",
+                      validation: (Rule) => Rule.required(),
+                    }),
+                  ],
+                  preview: {
+                    select: {
+                      description: "description",
+                    },
+                    prepare: ({ description }) => {
+                      return {
+                        title: description || "Charakterystyka",
+                      };
+                    },
+                  },
+                },
+              ],
             }),
           ],
           preview: {
             select: {
-              description: "description",
+              heading: "heading",
             },
-            prepare: ({ description }) => {
-              const text = description?.[0]?.children?.[0]?.text || "Opis";
+            prepare: ({ heading }) => {
               return {
-                title: text.substring(0, 50) + (text.length > 50 ? "..." : ""),
+                title: heading || "Opis",
               };
             },
           },

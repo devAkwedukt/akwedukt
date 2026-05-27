@@ -517,7 +517,12 @@ export type WhatWeDoSection = {
   subtitle?: string;
   subsubtitle?: string;
   descriptions?: Array<{
-    description?: RichText;
+    heading?: string;
+    description?: string;
+    features?: Array<{
+      description?: string;
+      _key: string;
+    }>;
     _key: string;
   }>;
   slider?: Array<{
