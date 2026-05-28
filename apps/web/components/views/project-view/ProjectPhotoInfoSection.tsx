@@ -19,10 +19,8 @@ export default function ProjectPhotoInfoSection({ item }: ProjectPhotoInfoSectio
           <SanityImage image={item.photo} className="w-full h-auto rounded-lg shadow-lg" />
         </div>
         <div>
-          <h2 className="text-[#103770] text-3xl font-bold font-['Plus_Jakarta_Sans'] mb-4">
-            {item.title}
-          </h2>
-          <div className="text-[#103770] text-base font-normal font-['Plus_Jakarta_Sans'] leading-relaxed">
+          <h2 className="heading-2 mb-4">{item.title}</h2>
+          <div className="text-base leading-relaxed">
             <SanityRichText value={item.description} />
           </div>
           {item.buttonText && item.buttonUrl && (

@@ -75,21 +75,19 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
 
             {/* TEXT CONTENT OF POST */}
             <div className="pt-6 flex flex-col grow">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center justify-between gap-2 mb-2">
                 {post.date && (
-                  <div className="text-md text-gray-600">
-                    {new Date(post.date).toLocaleDateString()}
-                  </div>
+                  <div className="text-md">{new Date(post.date).toLocaleDateString()}</div>
                 )}
-                {post.categories && post.categories.length > 0 && post.date && (
-                  <span className="text-gray-400">•</span>
-                )}
+                {/*post.categories && post.categories.length > 0 && post.date && (
+                  <span className="">•</span>
+                )*/}
                 {post.categories && post.categories.length > 0 && (
                   <div className="flex flex-wrap gap-1">
                     {post.categories.slice(0, 1).map((category) => (
                       <span
                         key={category._id}
-                        className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium text-[#103770] ${getCategoryColor(category.name)}`}
+                        className={`inline-flex items-center px-2 py-1 rounded-sm text-sm font-medium ${getCategoryColor(category.name)}`}
                       >
                         {category.name}
                       </span>
@@ -102,7 +100,7 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
 
               {/* SHORT EXCERPT - 2 lines with ellipsis */}
               {(post.excerpt || post.content) && (
-                <div className="mb-6 text-gray-600 line-clamp-2 leading-relaxed">
+                <div className="mb-6 line-clamp-2 leading-relaxed text-balance">
                   {truncateText(getExcerptText(post.excerpt, post.content))}
                 </div>
               )}

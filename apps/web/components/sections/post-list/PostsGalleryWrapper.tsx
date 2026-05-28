@@ -32,9 +32,11 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
   const filteredPosts = posts.filter(Boolean);
 
   return (
-    <section className="py-18 px-20 bg-gray-50">
-      {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
-      {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
+    <section className="py-18 px-20 bg-gray-50 max-w-480 mx-auto">
+      <header className="max-w-250 mx-auto">
+        {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
+        {item.subtitle && <p className="text-lg text-center text-balance">{item.subtitle}</p>}
+      </header>
 
       <PostsGrid posts={filteredPosts} ctaText={item.ctaText} />
 

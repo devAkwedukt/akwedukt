@@ -17,11 +17,11 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
 
       {/* Employees Grid */}
       {item.employees && item.employees.length > 0 && (
-        <div className="flex flex-row justify-between items-stretch gap-8 flex-wrap">
+        <div className="flex flex-row justify-start items-stretch gap-8 flex-wrap">
           {item.employees.map((employee, index) => (
             <div
               key={index}
-              className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-[calc(100%/3-32px)]"
+              className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-[calc((100%-4rem)/3)]"
             >
               {/* Employee Photo */}
               {employee.photo && (

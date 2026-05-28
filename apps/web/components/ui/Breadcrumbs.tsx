@@ -11,7 +11,7 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items }: BreadcrumbsProps) {
   return (
-    <nav className="container inline-flex items-center justify-start">
+    <nav className="py-9 pb-8 inline-flex items-center justify-start px-20 max-w-480">
       {items.map((item, index) => (
         <div key={index} className="flex items-center">
           {index > 0 && <span className="px-1 text-sm font-bold text-gray-950">/</span>}
