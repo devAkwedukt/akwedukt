@@ -20,16 +20,12 @@ export default async function VolunteerWithUs({ params }: { params: Promise<{ lo
   const page = volunteerWithUs.parse(data)[0];
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start">
-        <div className="w-full flex flex-col gap-6">
-          <Breadcrumbs
-            items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Volunteer With Us" }]}
-          />
-          <SanitySections value={page?.sections} />
-          <ContactForm />
-        </div>
-      </main>
-    </div>
+    <>
+      <Breadcrumbs
+        items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Volunteer With Us" }]}
+      />
+      <SanitySections value={page?.sections} />
+      <ContactForm />
+    </>
   );
 }

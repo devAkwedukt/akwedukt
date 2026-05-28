@@ -13,7 +13,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
   if (!item?.enabled || !item?.slides?.length) return null;
 
   return (
-    <header className="relative w-full min-h-150 overflow-hidden">
+    <header className="relative w-full min-h-140 overflow-hidden">
       {/* SLIDER VIEWPORT */}
       <div ref={emblaRef} className="w-full h-full">
         {/* SLIDER TRACK */}
@@ -22,10 +22,10 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
             <div key={index} className="flex-[0_0_100%] relative">
               {/* BACKGROUND IMAGE */}
               {slide.backgroundImage && (
-                <div className="absolute inset-0 z-0">
+                <div className="absolute z-0">
                   <SanityImage
                     image={slide.backgroundImage}
-                    className="object-contain w-full h-full"
+                    className="object-cover w-full h-full"
                     alt={slide.title || "Hero background image"}
                   />
                   {/* Optional overlay for better text readability */}
@@ -34,27 +34,25 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
               )}
 
               {/* CONTENT */}
-              <div className="relative z-10 h-full flex items-center justify-center">
-                <div className="container text-center">
-                  <div className="max-w-4xl mx-auto flex flex-col items-center gap-8">
-                    {slide.title && <h1 className="heading-1">{slide.title}</h1>}
+              <div className="relative z-10 flex items-center justify-center mt-14 h-full">
+                <div className="max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
+                  {slide.title && <h1 className="heading-1">{slide.title}</h1>}
 
-                    {slide.description && (
-                      <p className="body-lg-bold max-w-2xl">{slide.description}</p>
-                    )}
+                  {slide.description && (
+                    <p className="body-lg-bold max-w-2xl">{slide.description}</p>
+                  )}
 
-                    {slide.button?.label && slide.button?.url && (
-                      <Button
-                        as="link"
-                        href={slide.button.url}
-                        variant="primary"
-                        size="large"
-                        className="mt-4 min-h-16 py-5"
-                      >
-                        {slide.button.label}
-                      </Button>
-                    )}
-                  </div>
+                  {slide.button?.label && slide.button?.url && (
+                    <Button
+                      as="link"
+                      href={slide.button.url}
+                      variant="primary"
+                      size="large"
+                      className="mt-4 min-h-16 py-5"
+                    >
+                      {slide.button.label}
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>
