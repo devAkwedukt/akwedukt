@@ -2,6 +2,7 @@ import { getLatestPosts, getNextPosts, getPostById } from "@/sanity/queries/post
 import { PostsGrid } from "./PostsGrid";
 import { Button } from "@/components/ui/Button";
 import type { PostsGallerySection } from "@/sanity/typegen";
+import { SanityImage } from "@/sanity/image/SanityImage";
 
 interface PostsGalleryWrapperProps {
   item: PostsGallerySection;
@@ -32,26 +33,60 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
   const filteredPosts = posts.filter(Boolean);
 
   return (
-    <section className="py-18 px-20 bg-gray-50 max-w-480 mx-auto">
-      <header className="max-w-250 mx-auto">
-        {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
-        {item.subtitle && <p className="text-lg text-center text-balance">{item.subtitle}</p>}
-      </header>
+    <>
+      <section className="relative py-18 px-20 bg-gray-50 max-w-480 mx-auto">
+        {item.topImage && (
+          <SanityImage
+            image={item.topImage}
+            className="absolute top-0 right-20"
+            width={96}
+            height={93}
+          />
+        )}
+        {item.topImage2 && (
+          <SanityImage
+            image={item.topImage2}
+            className="absolute top-30 right-0"
+            width={160}
+            height={85}
+          />
+        )}
+        <header className="max-w-250 mx-auto">
+          {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
+          {item.subtitle && <p className="text-lg text-center text-balance">{item.subtitle}</p>}
+        </header>
 
-      <PostsGrid posts={filteredPosts} ctaText={item.ctaText} />
+        <PostsGrid posts={filteredPosts} ctaText={item.ctaText} />
 
-      {item.seeAllPostsText && item.seeAllPostsUrl && (
-        <div className="mt-14 flex justify-center">
-          <Button
-            as="link"
-            href={item.seeAllPostsUrl}
-            variant={item.ctaVariant || "primary"}
-            size="large"
-          >
-            {item.seeAllPostsText}
-          </Button>
-        </div>
+        {item.seeAllPostsText && item.seeAllPostsUrl && (
+          <div className="mt-14 flex justify-center">
+            <Button
+              as="link"
+              href={item.seeAllPostsUrl}
+              variant={item.ctaVariant || "primary"}
+              size="large"
+            >
+              {item.seeAllPostsText}
+            </Button>
+          </div>
+        )}
+        {item.bottomImage && (
+          <SanityImage
+            image={item.bottomImage}
+            className="absolute bottom-10 right-10"
+            width={129}
+            height={95}
+          />
+        )}
+      </section>
+      {item.footerImage && (
+        <SanityImage
+          image={item.footerImage}
+          className="w-full h-auto object-cover"
+          width={1440}
+          height={240}
+        />
       )}
-    </section>
+    </>
   );
 }

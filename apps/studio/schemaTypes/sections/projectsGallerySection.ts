@@ -1,5 +1,31 @@
 import { defineField, defineType } from "sanity";
 
+type DecorationVariant =
+  | "what-we-do-international"
+  | "what-we-do-polish"
+  | "cooperation-international-en"
+  | "what-new-current"
+  | "parents-current";
+
+const isDecorationVariantHidden =
+  (variant: DecorationVariant) =>
+  ({ document, path }: { document?: unknown; path: unknown[] }) => {
+    const keyedSegment = path[1] as { _key?: string };
+
+    const sections = (
+      document as {
+        sections?: Array<{
+          _key: string;
+          decorationVariant?: DecorationVariant;
+        }>;
+      }
+    )?.sections;
+
+    const currentSection = sections?.find((section) => section._key === keyedSegment?._key);
+
+    return currentSection?.decorationVariant !== variant;
+  };
+
 export default defineType({
   name: "projectsGallerySection",
   title: "Sekcja galerii projektów",
@@ -109,6 +135,126 @@ export default defineType({
       type: "string",
       group: "content",
       description: "Pełny URL do strony z wszystkimi projektami",
+    }),
+    defineField({
+      name: "decorationVariant",
+      title: "Wariant dekoracji",
+      type: "string",
+      group: "content",
+      options: {
+        list: [
+          { title: "Co robimy - Międzynarodowe projekty", value: "what-we-do-international" },
+          { title: "Co robimy - Polskie projekty", value: "what-we-do-polish" },
+          {
+            title: "Międzynarodowa współpraca - Międzynarodowe projekty (EN)",
+            value: "cooperation-international-en",
+          },
+          { title: "Co nowego - Aktualne projekty", value: "what-new-current" },
+          { title: "Dla rodziców - Aktualne projekty", value: "parents-current" },
+        ],
+      },
+    }),
+    defineField({
+      name: "decorationImages",
+      title: "Obrazy dekoracji",
+      type: "object",
+      group: "content",
+      fields: [
+        defineField({
+          name: "whatWeDoInternational",
+          title: "Co robimy - Międzynarodowe projekty",
+          type: "object",
+          hidden: isDecorationVariantHidden("what-we-do-international"),
+          fields: [
+            defineField({
+              name: "desktop",
+              title: "Desktop - Gwiazda",
+              type: "image",
+            }),
+            defineField({
+              name: "desktop2",
+              title: "Desktop - Ptak",
+              type: "image",
+            }),
+            defineField({
+              name: "mobile",
+              title: "Mobile - Niebieska gwiazda",
+              type: "image",
+            }),
+            defineField({
+              name: "mobile2",
+              title: "Mobile - Fala",
+              type: "image",
+            }),
+          ],
+        }),
+
+        defineField({
+          name: "whatWeDoPolish",
+          title: "Co robimy - Polskie projekty",
+          type: "object",
+          hidden: isDecorationVariantHidden("what-we-do-polish"),
+          fields: [
+            defineField({
+              name: "desktop",
+              title: "Desktop - Wielokolorowa linia lewa",
+              type: "image",
+            }),
+            defineField({
+              name: "mobile",
+              title: "Mobile - Wielokolorowa linia prawa",
+              type: "image",
+            }),
+          ],
+        }),
+
+        defineField({
+          name: "cooperationInternationalEn",
+          title: "Międzynarodowa współpraca - Międzynarodowe projekty (EN)",
+          type: "object",
+          hidden: isDecorationVariantHidden("cooperation-international-en"),
+          fields: [
+            defineField({
+              name: "desktop",
+              title: "Desktop - Doodle",
+              type: "image",
+            }),
+          ],
+        }),
+
+        defineField({
+          name: "parentsCurrent",
+          title: "Dla rodziców - Aktualne projekty",
+          type: "object",
+          hidden: isDecorationVariantHidden("parents-current"),
+          fields: [
+            defineField({
+              name: "desktop",
+              title: "Desktop - Gwiazda",
+              type: "image",
+            }),
+          ],
+        }),
+
+        defineField({
+          name: "whatNewCurrent",
+          title: "Co nowego - Aktualne projekty",
+          type: "object",
+          hidden: isDecorationVariantHidden("what-new-current"),
+          fields: [
+            defineField({
+              name: "desktop",
+              title: "Desktop",
+              type: "image",
+            }),
+            defineField({
+              name: "mobile",
+              title: "Mobile",
+              type: "image",
+            }),
+          ],
+        }),
+      ],
     }),
   ],
   preview: {

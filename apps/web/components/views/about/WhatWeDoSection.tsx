@@ -4,6 +4,7 @@ import type { WhatWeDoSection } from "@/sanity/typegen";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import { SliderDots } from "@/components/ui/SliderDots";
 import { SliderArrows } from "@/components/ui/SliderArrows";
+import { Fragment } from "react";
 import { useSlider } from "@/hooks/useSlider";
 
 export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
@@ -72,8 +73,8 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
             const numberColorClass = numberColorClasses[index] || "text-purple-500";
 
             return (
-              <>
-                <div key={index} className="w-[calc((100%-6rem)/3)] flex flex-col gap-4">
+              <Fragment key={index}>
+                <div className="w-[calc((100%-6rem)/3)] flex flex-col gap-4">
                   <div className="h-35 flex flex-col gap-4">
                     <span
                       className={`self-start text-6xl font-bold font-serif ${numberColorClass}`}
@@ -107,7 +108,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
                     fill="#FAE2F1"
                   />
                 </svg>
-              </>
+              </Fragment>
             );
           })}
         </div>

@@ -50,7 +50,7 @@ import ProjectPhotoInfoSectionComponent from "@/components/views/project-view/Pr
 import ProjectQuestionsSectionComponent from "@/components/views/project-view/ProjectQuestionsSection";
 import ProjectVideoSectionComponent from "@/components/views/project-view/ProjectVideoSection";
 import PhotoInfoSectionComponent from "@/components/reusable/PhotoInfoSection";
-import FaqAccordionSectionComponent from "@/components/views/what-we-do/FaqAccordionSection";
+import FaqAccordionSectionComponent from "@/components/reusable/FaqAccordionSection";
 import CooperationCardsSectionComponent from "@/components/views/cooperation/CooperationCardsSection";
 import AboutStatsSectionComponent from "@/components/views/cooperation/AboutStatsSection";
 import TeacherBenefitsSectionComponent from "@/components/views/cooperation/TeacherBenefitsSection";

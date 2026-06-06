@@ -34,6 +34,14 @@ export type HeroBackgroundSlideButton = {
   url?: string;
 };
 
+export type DecorationImages = {
+  whatWeDoInternational?: WhatWeDoInternational;
+  whatWeDoPolish?: WhatWeDoPolish;
+  cooperationInternationalEn?: CooperationInternationalEn;
+  parentsCurrent?: ParentsCurrent;
+  whatNewCurrent?: WhatNewCurrent;
+};
+
 export type AboutSectionButton = {
   label?: string;
   url?: string;
@@ -50,6 +58,118 @@ export type ObjectFile = {
   asset?: SanityFileAssetReference;
   media?: unknown; // Unable to locate the referenced type "file.media" in schema
   _type: "file";
+};
+
+export type WhatWeDoInternational = {
+  desktop?: Desktop;
+  desktop2?: Desktop2;
+  mobile?: Mobile;
+  mobile2?: Mobile2;
+};
+
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type Desktop = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Desktop2 = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "desktop2.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Mobile = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "mobile.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type Mobile2 = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "mobile2.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type WhatWeDoPolish = {
+  desktop?: WhatWeDoPolishDesktop;
+  mobile?: WhatWeDoPolishMobile;
+};
+
+export type WhatWeDoPolishDesktop = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "whatWeDoPolish.desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type WhatWeDoPolishMobile = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "whatWeDoPolish.mobile.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type CooperationInternationalEn = {
+  desktop?: CooperationInternationalEnDesktop;
+};
+
+export type CooperationInternationalEnDesktop = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "cooperationInternationalEn.desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type ParentsCurrent = {
+  desktop?: ParentsCurrentDesktop;
+};
+
+export type ParentsCurrentDesktop = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "parentsCurrent.desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type WhatNewCurrent = {
+  desktop?: WhatNewCurrentDesktop;
+  mobile?: WhatNewCurrentMobile;
+};
+
+export type WhatNewCurrentDesktop = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "whatNewCurrent.desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type WhatNewCurrentMobile = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "whatNewCurrent.mobile.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
 };
 
 export type PhotoInfoSectionButton = {
@@ -76,13 +196,6 @@ export type VolunteerCard = {
   description?: string;
   buttonText?: string;
   buttonLink?: string;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type ObjectImage = {
@@ -359,6 +472,27 @@ export type PhotoInfoSection = {
   photo?: Img;
   description?: RichText;
   button?: PhotoInfoSectionButton;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  footerImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  footerImageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type ProjectVideoSection = {
@@ -432,6 +566,34 @@ export type PostsGallerySection = {
   seeAllPostsText?: string;
   seeAllPostsUrl?: string;
   ctaVariant?: "primary" | "secondary";
+  topImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  topImage2?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bottomImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  footerImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type ProjectReference = {
@@ -457,6 +619,13 @@ export type ProjectsGallerySection = {
   ctaVariant?: "primary" | "secondary" | "link";
   seeAllProjectsText?: string;
   seeAllProjectsUrl?: string;
+  decorationVariant?:
+    | "what-we-do-international"
+    | "what-we-do-polish"
+    | "cooperation-international-en"
+    | "what-new-current"
+    | "parents-current";
+  decorationImages?: DecorationImages;
 };
 
 export type ProjectTitleSection = {
@@ -491,6 +660,13 @@ export type OurHistorySection = {
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
+    _type: "image";
+  };
+  bottomImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
     _type: "image";
   };
 };
@@ -568,6 +744,20 @@ export type TestimonialsSection = {
       _key: string;
     } & Testimonial
   >;
+  bottomDoodle?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  bottomImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type PartnersSection = {
@@ -1402,14 +1592,30 @@ export type AllSanitySchemaTypes =
   | Video
   | Button
   | HeroBackgroundSlideButton
+  | DecorationImages
   | AboutSectionButton
   | SanityFileAssetReference
   | ObjectFile
+  | WhatWeDoInternational
+  | SanityImageAssetReference
+  | Desktop
+  | Desktop2
+  | Mobile
+  | Mobile2
+  | WhatWeDoPolish
+  | WhatWeDoPolishDesktop
+  | WhatWeDoPolishMobile
+  | CooperationInternationalEn
+  | CooperationInternationalEnDesktop
+  | ParentsCurrent
+  | ParentsCurrentDesktop
+  | WhatNewCurrent
+  | WhatNewCurrentDesktop
+  | WhatNewCurrentMobile
   | PhotoInfoSectionButton
   | DonationCard
   | FundraisingCard
   | VolunteerCard
-  | SanityImageAssetReference
   | ObjectImage
   | SliderObjectImage
   | Photo

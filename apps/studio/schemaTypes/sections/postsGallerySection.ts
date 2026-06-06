@@ -89,6 +89,28 @@ export default defineType({
       },
       initialValue: "primary",
     }),
+    defineField({
+      name: "topImage",
+      title: "Obraz na górze",
+      type: "image",
+    }),
+    defineField({
+      name: "topImage2",
+      title: "Obraz na górze (2)",
+      type: "image",
+    }),
+    defineField({
+      name: "bottomImage",
+      title: "Obraz na dole",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
+    defineField({
+      name: "footerImage",
+      title: "Obraz pod sekcją",
+      type: "image",
+      description: "Obraz poza sekcją",
+    }),
   ],
   preview: {
     select: {

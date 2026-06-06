@@ -29,6 +29,16 @@ export default defineType({
       of: [{ type: "testimonial" }],
       validation: (Rule) => Rule.min(1),
     }),
+    defineField({
+      name: "bottomDoodle",
+      title: "Doodle na dole",
+      type: "image",
+    }),
+    defineField({
+      name: "bottomImage",
+      title: "Obraz pod sekcją",
+      type: "image",
+    }),
   ],
   preview: {
     select: {

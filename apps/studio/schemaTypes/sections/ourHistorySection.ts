@@ -38,6 +38,11 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "bottomImage",
+      title: "Obraz pod sekcją",
+      type: "image",
+    }),
   ],
   preview: {
     select: {

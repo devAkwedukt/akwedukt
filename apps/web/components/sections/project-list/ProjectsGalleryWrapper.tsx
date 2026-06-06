@@ -2,6 +2,8 @@ import { getProjectById, getProjects } from "@/sanity/queries/projects";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { Button } from "@/components/ui/Button";
 import type { ProjectsGallerySection } from "@/sanity/typegen";
+import { SanityImage } from "@/sanity/image/SanityImage";
+import ProjectsGalleryDecoration from "./ProjectsGalleryDecoration";
 
 interface ProjectsGalleryWrapperProps {
   item: ProjectsGallerySection;
@@ -27,24 +29,32 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
   const filteredProjects = validProjects.filter(Boolean);
 
   return (
-    <section className="py-18 px-20 bg-gray-50 max-w-480 mx-auto">
-      {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
-      {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
+    <div className="relative">
+      <section className="relative py-18 px-20 bg-gray-50 max-w-480 mx-auto">
+        {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
+        {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
 
-      <ProjectsGrid projects={filteredProjects} ctaText={item.ctaText} />
+        <ProjectsGrid projects={filteredProjects} ctaText={item.ctaText} />
 
-      {item.seeAllProjectsText && item.seeAllProjectsUrl && (
-        <div className="mt-14 flex justify-center">
-          <Button
-            as="link"
-            href={item.seeAllProjectsUrl}
-            variant={item.ctaVariant || "primary"}
-            size="large"
-          >
-            {item.seeAllProjectsText}
-          </Button>
-        </div>
+        {item.seeAllProjectsText && item.seeAllProjectsUrl && (
+          <div className="mt-14 flex justify-center">
+            <Button
+              as="link"
+              href={item.seeAllProjectsUrl}
+              variant={item.ctaVariant || "primary"}
+              size="large"
+            >
+              {item.seeAllProjectsText}
+            </Button>
+          </div>
+        )}
+      </section>
+      {item.decorationVariant && (
+        <ProjectsGalleryDecoration
+          variant={item.decorationVariant}
+          decorationImages={item.decorationImages}
+        />
       )}
-    </section>
+    </div>
   );
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import type { FaqAccordionSection } from "@/sanity/typegen";
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
-import { RenderIcon } from "../../ui";
+import { RenderIcon } from "../ui";
 
 interface FaqAccordionSectionProps {
   item: FaqAccordionSection;

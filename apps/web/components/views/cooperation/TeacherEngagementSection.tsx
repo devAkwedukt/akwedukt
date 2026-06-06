@@ -47,8 +47,8 @@ export default function TeacherEngagementSection({ item }: { item: TeacherEngage
         <SanityImage
           image={item.bottomImage}
           className="w-full h-auto object-cover"
-          width={1920}
-          height={400}
+          width={1440}
+          height={240}
         />
       )}
     </div>
