@@ -10,7 +10,8 @@ export default function CooperationCardsSection({ item }: { item: CooperationCar
         {item.title && <h2 className="heading-2">{item.title}</h2>}
         {item.subtitle && <p className="body-lg">{item.subtitle}</p>}
       </header>
-      <main className="w-full flex justify-start items-start gap-14">
+
+      <main className="w-full flex justify-between items-start gap-14">
         {item.cards.map((card, index) => (
           <div
             key={index}

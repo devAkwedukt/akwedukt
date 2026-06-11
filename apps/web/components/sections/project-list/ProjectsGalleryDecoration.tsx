@@ -21,7 +21,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop"
           image={decorationImages.whatWeDoInternational.desktop}
           alt="Dekoracja - projekty"
-          className="absolute top-0 right-0 hidden md:block"
+          className="absolute -top-10 right-1/4 hidden md:block"
           width={72}
           height={76}
         />
@@ -31,7 +31,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop-2"
           image={decorationImages.whatWeDoInternational.desktop2}
           alt="Dekoracja - projekty"
-          className="absolute top-20 right-0 hidden md:block"
+          className="absolute top-15 right-1/12 hidden md:block"
           width={201}
           height={106}
         />
@@ -64,7 +64,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop"
           image={decorationImages.whatWeDoPolish.desktop}
           alt="Dekoracja - polskie projekty"
-          className="absolute top-0 left0 hidden md:block"
+          className="absolute -top-1/6 left-0 hidden md:block"
           width={141}
           height={447}
         />
@@ -87,7 +87,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop"
           image={decorationImages.cooperationInternationalEn.desktop}
           alt="Dekoracja - projekty"
-          className="absolute top-0 right-0 w-53.5 h-37.75 md:w-91 md:h-51.5"
+          className="absolute -top-8 right-1/24 w-53.5 h-37.75 md:w-91 md:h-51.5"
         />
       ) : null,
     ],
@@ -98,7 +98,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop"
           image={decorationImages.parentsCurrent.desktop}
           alt="Dekoracja - projekty"
-          className="absolute top-0 right-0 w-14.5 h-17 md:w-23 md:h-26.75"
+          className="absolute -top-7.5 right-1/12 w-14.5 h-17 md:w-23 md:h-26.75"
         />
       ) : null,
     ],

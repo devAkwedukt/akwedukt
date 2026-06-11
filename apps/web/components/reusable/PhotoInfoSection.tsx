@@ -14,7 +14,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
 
   return (
     <>
-      <section className="py-16 flex flex-row items-center gap-14 px-20 bg-gray-50 max-w-480 mx-auto">
+      <section className="py-20 flex flex-row items-center gap-14 px-20 bg-gray-50 max-w-480 mx-auto">
         {/* Photo */}
         <aside className="max-w-150">
           <SanityImage

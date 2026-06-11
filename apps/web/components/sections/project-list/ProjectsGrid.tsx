@@ -33,7 +33,7 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
               {project.startDate && (
                 <div className="text-md">{new Date(project.startDate).toLocaleDateString()}</div>
               )}
-              <h3 className="heading-3 text-blue-900 mb-2">{project.title}</h3>
+              <h3 className="heading-3 mb-2">{project.title}</h3>
               <p className="mb-6 text-balance leading-relaxed">{project.shortDescription}</p>
 
               <Button

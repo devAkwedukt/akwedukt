@@ -96,7 +96,7 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
                 )}
               </div>
 
-              <h3 className="heading-3 text-blue-900 mb-2">{post.title}</h3>
+              <h3 className="heading-3 mb-2">{post.title}</h3>
 
               {/* SHORT EXCERPT - 2 lines with ellipsis */}
               {(post.excerpt || post.content) && (

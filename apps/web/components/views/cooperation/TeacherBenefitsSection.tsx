@@ -6,71 +6,55 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
   if (!item.cards?.length) return null;
 
   return (
-    <div className="w-full px-20 py-14 bg-[#f0f5fc] flex justify-between items-start">
+    <section className="w-full px-20 py-18 bg-deep-navy-blue-50 flex justify-start gap-[10%] items-center">
       {item.image && (
         <SanityImage
           image={item.image}
-          className="size-[500px] object-cover"
-          width={500}
-          height={500}
+          className="size-150 object-cover"
+          width={600}
+          height={600}
         />
       )}
-      <div className="flex flex-col gap-12">
-        <div className="flex flex-col gap-6">
-          {item.title && (
-            <h2 className="w-[640px] text-[#103770] text-[56px] font-bold font-serif leading-[59.36px]">
-              {item.title}
-            </h2>
-          )}
+
+      <article className="flex flex-col gap-12">
+        <header className="flex flex-col gap-6">
+          {item.title && <h2 className="heading-2">{item.title}</h2>}
           <div className="flex flex-col gap-4">
-            {item.subtitle && (
-              <div className="w-[560px] text-[#103770] text-2xl font-bold leading-[31.20px]">
-                {item.subtitle}
-              </div>
-            )}
-            {item.description && (
-              <div className="w-[598px] text-[#103770] text-lg leading-[28.80px]">
-                {item.description}
-              </div>
-            )}
+            {item.subtitle && <p className="text-2xl font-bold">{item.subtitle}</p>}
+            {item.description && <p className="text-lg">{item.description}</p>}
           </div>
-        </div>
-        <div className="flex flex-col gap-6">
+        </header>
+
+        <main className="flex flex-col gap-6">
           <div className="flex gap-8">
             {item.cards.slice(0, 2).map((card, index) => (
-              <div key={index} className="w-[330px] p-4 bg-neutral-50 flex flex-col gap-4">
+              <div key={index} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
                 {card.title && (
-                  <div className="text-[#103770] text-xl font-bold leading-6">{card.title}</div>
+                  <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
                 )}
-                {card.description && (
-                  <div className="text-[#103770] text-base leading-[25.60px]">
-                    {card.description}
-                  </div>
-                )}
+                {card.description && <p className="text-base text-balance">{card.description}</p>}
               </div>
             ))}
           </div>
+
           <div className="flex gap-8">
             {item.cards.slice(2, 4).map((card, index) => (
-              <div key={index + 2} className="w-[330px] p-4 bg-neutral-50 flex flex-col gap-4">
+              <div key={index + 2} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
                 {card.title && (
-                  <div className="text-[#103770] text-xl font-bold leading-6">{card.title}</div>
+                  <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
                 )}
-                {card.description && (
-                  <div className="text-[#103770] text-base leading-[25.60px]">
-                    {card.description}
-                  </div>
-                )}
+                {card.description && <p className="text-base text-balance">{card.description}</p>}
               </div>
             ))}
           </div>
-        </div>
+        </main>
+
         {item.buttonText && item.buttonUrl && (
           <Button as="link" href={item.buttonUrl} variant="primary" size="large">
             {item.buttonText}
           </Button>
         )}
-      </div>
-    </div>
+      </article>
+    </section>
   );
 }

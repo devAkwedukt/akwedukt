@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface BreadcrumbItem {
@@ -7,11 +8,14 @@ interface BreadcrumbItem {
 
 interface BreadcrumbsProps {
   items: BreadcrumbItem[];
+  className?: string;
 }
 
-export default function Breadcrumbs({ items }: BreadcrumbsProps) {
+export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
-    <nav className="pt-10 pb-2 inline-flex items-center justify-start px-20 max-w-480">
+    <nav
+      className={cn("pt-10 pb-2 inline-flex items-center justify-start px-20 max-w-480", className)}
+    >
       {items.map((item, index) => (
         <div key={index} className="flex items-center">
           {index > 0 && <span className="px-1 text-sm font-bold text-gray-950">/</span>}

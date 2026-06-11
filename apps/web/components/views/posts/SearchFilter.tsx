@@ -22,7 +22,7 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
   return (
     <div className="mb-8 space-y-6">
       {/* Search Input */}
-      <div className="relative">
+      <div className="relative w-100 mx-auto">
         <svg
           className="absolute left-3 top-1/2 transform -translate-y-1/2  w-5 h-5"
           fill="none"
@@ -38,15 +38,16 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
         </svg>
         <input
           type="text"
+          //FIGMA: 'Wyszukaj projekt'
           placeholder="Szukaj w tytułach i treści..."
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 border-2 border-deep-navy-blue-900 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+          className="w-full pl-10 pr-4 py-3 border-2 border-deep-navy-blue-900 rounded-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-deep-navy-blue-700"
         />
         {searchQuery && (
           <button
             onClick={() => handleSearchChange("")}
-            className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2  hover:text-deep-navy-blue-500 transition-colors"
+            className="absolute cursor-pointer right-3 top-1/2 transform -translate-y-1/2 hover:text-deep-navy-blue-500 transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -61,12 +62,12 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
       </div>
 
       {/* Category Filters */}
-      <div className="space-y-3">
-        <h3 className="text-lg font-semibold text-foreground">Kategorie</h3>
+      <div className="flex flex-col gap-2 mx-auto justify-center items-center max-w-480">
+        {/* <h4 className="heading-4 font-semibold">Kategorie</h4> */}
         {categories.length === 0 ? (
-          <div className="text-sm text-muted">No categories found</div>
+          <h4 className="heading-4 font-semibold mt-4">No categories found</h4>
         ) : (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center items-center gap-12 mt-5">
             {categories.map((category) => {
               const isSelected = selectedCategories.includes(category._id);
               return (
@@ -100,7 +101,7 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
 
       {/* Active Filters Summary */}
       {hasActiveFilters && (
-        <div className="bg-gray-50 rounded-lg p-4">
+        <div className="bg-gray-50 rounded-lg py-4">
           <div className="text-lg">
             {searchQuery && (
               <div className="mb-1">

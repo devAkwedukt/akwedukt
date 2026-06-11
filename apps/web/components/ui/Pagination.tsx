@@ -46,7 +46,7 @@ export function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <div className="mt-10 flex justify-center items-center gap-4">
+    <div className="mt-14 mx-auto flex justify-center items-center gap-4">
       {/* Previous button */}
       <IconButton
         as="link"
