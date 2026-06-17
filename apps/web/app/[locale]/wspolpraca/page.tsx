@@ -28,6 +28,7 @@ export default async function Wspolpraca({ params }: { params: Promise<{ locale:
     <>
       <Breadcrumbs
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Współpraca" }]}
+        className="bg-gray-50 w-full"
       />
       <SanitySections value={page?.sections} />
       <ContactForm />

@@ -32,10 +32,12 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
         <main className="flex flex-row justify-start flex-wrap items-start gap-12">
           {item.documents.map((doc, index) => (
             <div key={index} className="flex flex-col gap-6 p-4 w-[calc((100%-6rem)/3)]">
-              {/* Name of the Document */}
-              <h3 className="body-lg font-bold">{doc.name}</h3>
-              {/* Optional Description */}
-              {doc.description && <p className="body-medium font-medium">{doc.description}</p>}
+              <div className="flex flex-col gap-1">
+                {/* Name of the Document */}
+                <h3 className="body-lg font-bold">{doc.name}</h3>
+                {/* Optional Description */}
+                {doc.description && <p className="body-medium font-medium">{doc.description}</p>}
+              </div>
               {/* Download Button */}
               <SanityFile file={doc.file} className="w-fit">
                 <div className="font-semibold tracking-wide flex items-center gap-2 ">

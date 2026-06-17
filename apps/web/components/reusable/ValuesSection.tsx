@@ -7,7 +7,7 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full px-20 py-16 lg:py-24 max-w-480 mx-auto">
+    <section className="w-full px-20 py-20 max-w-480 mx-auto">
       <div className="">
         {/* Section Title */}
         {item.title && (
@@ -29,7 +29,7 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
                   <p className="body-medium font-bold leading-relaxed">{value.subtitle}</p>
                 )}
                 {value.description && (
-                  <p className="body-small leading-relaxed">{value.description}</p>
+                  <p className="body-small leading-relaxed text-balance">{value.description}</p>
                 )}
               </div>
             ))}

@@ -4,35 +4,29 @@ export default function CooperationModelsSection({ item }: { item: CooperationMo
   if (!item.cards?.length) return null;
 
   return (
-    <div className="w-full px-20 py-14 bg-neutral-50 flex flex-col items-center gap-12">
-      <div className="w-full max-w-[1280px] flex flex-col items-center gap-12">
-        {item.title && (
-          <div className="w-full max-w-[900px] text-center text-[#103770] text-[56px] font-bold font-['Fraunces'] leading-[59.36px]">
-            {item.title}
-          </div>
-        )}
-        <div className="flex justify-center items-start gap-12">
+    <section className="max-w-480 w-full px-20 py-20 bg-deep-navy-blue-50 flex flex-col items-center gap-12">
+      <div className="w-full flex flex-col items-center gap-12">
+        {item.title && <h2 className="w-full text-center heading-2">{item.title}</h2>}
+        <div className="flex justify-between items-start gap-12">
           {item.cards.map((card, index) => (
-            <div key={index} className="w-[360px] p-4 flex flex-col items-start gap-6">
-              <div className="text-[#01a18e] text-[56px] font-bold font-['Fraunces'] leading-[59.36px]">
+            /* Single card */
+            <div
+              key={index}
+              className="flex flex-col gap-6 items-stretch self-stretch w-3/10 bg-gray-50 p-6 "
+            >
+              <h2 className="heading-2 text-ocean-green-500">
                 {String(index + 1).padStart(2, "0")}
-              </div>
+              </h2>
               <div className="flex flex-col items-start gap-4">
-                {card.title && (
-                  <div className="text-[#103770] text-2xl font-bold font-['Plus_Jakarta_Sans'] leading-[31.20px]">
-                    {card.title}
-                  </div>
-                )}
+                {card.title && <h3 className="heading-3 text-balance">{card.title}</h3>}
                 {card.description && (
-                  <div className="text-[#103770] text-lg font-normal font-['Plus_Jakarta_Sans'] leading-[28.80px]">
-                    {card.description}
-                  </div>
+                  <p className="text-lg font-normal text-balance">{card.description}</p>
                 )}
               </div>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

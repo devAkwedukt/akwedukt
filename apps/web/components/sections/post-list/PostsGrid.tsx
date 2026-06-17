@@ -58,9 +58,9 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
   };
 
   return (
-    <main className="grid grid-cols-3 gap-8 mt-12">
+    <main className="flex flex-row flex-wrap justify-between gap-8 mt-12 items-stretch">
       {posts.map((post) => (
-        <div key={post._id} className="overflow-hidden flex">
+        <div key={post._id} className="max-w-125 w-1/3 flex">
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF POST */}
             {post.featuredMedia && (

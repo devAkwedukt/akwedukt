@@ -6,6 +6,7 @@ import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
 import { Breadcrumbs } from "@/components/ui";
+import HeaderTest from "@/components/HeaderTest";
 
 export const metadata: Metadata = {
   title: "O nas | Stowarzyszenie Akwedukt",
@@ -26,7 +27,14 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      <Breadcrumbs items={[{ label: "Strona główna", href: `/${locale}` }, { label: "O nas" }]} />
+      {/*
+        na Figmie brak - tymczasowo wyłączone
+        <Breadcrumbs items={[{ label: "Strona główna", href: `/${locale}` }, { label: "O nas" }]} />
+       */}
+      <HeaderTest
+        headerText="Lepsi razem - poznaj nasz zespół i misję"
+        subHeading="Razem tworzymy przyszłość, w której każdy ma dostęp do wiedzy i możliwości rozwoju"
+      />
       <SanitySections value={page?.sections} />
       <ContactForm />
     </>

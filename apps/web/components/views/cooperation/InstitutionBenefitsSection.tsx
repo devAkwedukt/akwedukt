@@ -6,7 +6,7 @@ export default function InstitutionBenefitsSection({ item }: { item: Institution
   if (!item.cards?.length) return null;
 
   return (
-    <section className="max-w-480 w-full px-20 py-18 bg-gray-50 inline-flex justify-start gap-[5%] items-center">
+    <section className="max-w-480 w-full px-20 py-20 bg-gray-50 inline-flex justify-start gap-[5%] items-center">
       {/* Image */}
       {item.image && (
         <SanityImage
@@ -57,7 +57,7 @@ export default function InstitutionBenefitsSection({ item }: { item: Institution
 
         {/* Button */}
         {item.buttonText && item.buttonUrl && (
-          <Button as="link" href={item.buttonUrl} variant="primary">
+          <Button as="link" href={item.buttonUrl} variant="primary" className="min-h-15">
             {item.buttonText}
           </Button>
         )}

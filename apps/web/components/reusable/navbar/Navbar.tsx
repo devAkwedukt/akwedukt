@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 const endpoints = [
   { link: "/o-nas", label: "O nas" },
   { link: "/co-nowego", label: "Co nowego" },
-  { link: "/co-robimy", label: "Co Robimy" },
+  { link: "/co-robimy", label: "Co robimy" },
   { link: "/dla-rodzicow", label: "Dla rodziców" },
   { link: "/volunteer-with-us", label: "Volunteer with us" },
   { link: "/wspolpraca", label: "Współpraca" },

@@ -1,3 +1,4 @@
+import HeaderTest from "@/components/HeaderTest";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
 import { q } from "@/sanity/groqd";
 import { sanityFetch } from "@/sanity/live";
@@ -26,6 +27,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <>
       {/* <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start"> */}
+      <HeaderTest
+        headerText="Jesteśmy nurtem, który niesie zmianę"
+        subHeading="Pokonujemy bariery, dajemy energię i łączymy ze światem."
+      />
       <SanitySections value={h?.sections} />
       <ContactForm />
       {/* </main>*/}

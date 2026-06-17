@@ -6,7 +6,7 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-20 py-18 bg-deep-navy-blue-50 flex justify-start gap-[10%] items-center">
+    <section className="max-w-480 w-full px-20 py-18 bg-deep-navy-blue-50 flex justify-start gap-[5%] items-center">
       {item.image && (
         <SanityImage
           image={item.image}
@@ -19,7 +19,7 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
       <article className="flex flex-col gap-12">
         <header className="flex flex-col gap-6">
           {item.title && <h2 className="heading-2">{item.title}</h2>}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-0">
             {item.subtitle && <p className="text-2xl font-bold">{item.subtitle}</p>}
             {item.description && <p className="text-lg">{item.description}</p>}
           </div>
@@ -27,7 +27,7 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
 
         <main className="flex flex-col gap-6">
           <div className="flex gap-8">
-            {item.cards.slice(0, 2).map((card, index) => (
+            {item.cards.slice(0, 2).map((card: any, index: number) => (
               <div key={index} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
                 {card.title && (
                   <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
@@ -38,7 +38,7 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
           </div>
 
           <div className="flex gap-8">
-            {item.cards.slice(2, 4).map((card, index) => (
+            {item.cards.slice(2, 4).map((card: any, index: number) => (
               <div key={index + 2} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
                 {card.title && (
                   <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
@@ -50,7 +50,13 @@ export default function TeacherBenefitsSection({ item }: { item: TeacherBenefits
         </main>
 
         {item.buttonText && item.buttonUrl && (
-          <Button as="link" href={item.buttonUrl} variant="primary" size="large">
+          <Button
+            as="link"
+            href={item.buttonUrl}
+            variant="primary"
+            size="large"
+            className="min-h-15"
+          >
             {item.buttonText}
           </Button>
         )}

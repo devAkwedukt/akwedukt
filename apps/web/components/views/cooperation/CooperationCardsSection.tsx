@@ -5,7 +5,7 @@ export default function CooperationCardsSection({ item }: { item: CooperationCar
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-20 py-16 bg-deep-navy-blue-50 flex flex-col items-center gap-14 overflow-hidden">
+    <section className="w-full px-20 py-16 bg-gray-50 flex flex-col items-center gap-14 overflow-hidden">
       <header className="flex flex-col justify-center items-center gap-6">
         {item.title && <h2 className="heading-2">{item.title}</h2>}
         {item.subtitle && <p className="body-lg">{item.subtitle}</p>}
@@ -15,7 +15,7 @@ export default function CooperationCardsSection({ item }: { item: CooperationCar
         {item.cards.map((card, index) => (
           <div
             key={index}
-            className="w-3/10 p-6 bg-neutral-50 flex justify-start items-start gap-12"
+            className="w-3/10 p-6 bg-deep-navy-blue-50 flex justify-start items-start gap-12"
           >
             <div className="w-full flex flex-col justify-start items-start gap-4">
               <h2 className="heading-2 text-orange-500">{String(index + 1).padStart(2, "0")}</h2>

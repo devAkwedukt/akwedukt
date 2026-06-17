@@ -57,8 +57,9 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
         ]}
         className="px-0"
       />
+
       <header className="text-center mb-12 pt-16 relative">
-        <h1 className="heading-1 mb-4">Kronika wydarzeń</h1>
+        <h1 className="heading-1 mb-6">Kronika wydarzeń</h1>
         <p className="text-lg">
           Zobacz galerię naszych wspomnień i poczuj rytm, w jakim bije serce naszej społeczności
         </p>
@@ -101,9 +102,9 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
           />
 
           {/* Results count */}
-          <div className="text-lg text-center py-8 pb-18">
+          <p className="text-lg text-center py-8 pb-18">
             Pokazano {filteredPosts.length} z {totalCount} postów
-          </div>
+          </p>
         </>
       ) : (
         <div className="text-center py-14">
