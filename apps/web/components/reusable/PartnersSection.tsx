@@ -8,8 +8,8 @@ export default function PartnersSection({ item }: { item: PartnersSection }) {
   if (!item.enabled || !item.partners?.length) return null;
 
   return (
-    <section className="max-w-480 w-full py-18 2xl:py-24 bg-gray-50 px-20">
-      <div className="flex flex-col items-start gap-10">
+    <section className="w-full py-18 2xl:py-24 bg-gray-50 px-20">
+      <div className="max-w-480 mx-auto flex flex-col items-start gap-10">
         {/* Section Title */}
         {item.title && <h2 className="heading-2 ">{item.title}</h2>}
 

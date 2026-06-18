@@ -4,8 +4,8 @@ export default function CooperationModelsSection({ item }: { item: CooperationMo
   if (!item.cards?.length) return null;
 
   return (
-    <section className="max-w-480 w-full px-20 py-16 2xl:py-20 bg-deep-navy-blue-50 flex flex-col items-center gap-12">
-      <div className="w-full flex flex-col items-center gap-12">
+    <section className="w-full px-20 py-16 2xl:py-20 bg-deep-navy-blue-50 flex flex-col items-center gap-12">
+      <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-12">
         {item.title && <h2 className="w-full text-center heading-2">{item.title}</h2>}
         <div className="flex justify-between items-start gap-8 2xl:gap-12">
           {item.cards.map((card, index) => (
@@ -14,7 +14,7 @@ export default function CooperationModelsSection({ item }: { item: CooperationMo
               key={index}
               className="flex flex-col gap-6 items-stretch self-stretch w-1/3 2xl:w-3/10 bg-gray-50 p-6 "
             >
-              <h2 className="heading-2 text-ocean-green-500">
+              <h2 className="heading-2 text-ocean-green-700">
                 {String(index + 1).padStart(2, "0")}
               </h2>
               <div className="flex flex-col items-start gap-4">
@@ -26,7 +26,7 @@ export default function CooperationModelsSection({ item }: { item: CooperationMo
             </div>
           ))}
         </div>
-      </div>
+      </main>
     </section>
   );
 }

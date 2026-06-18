@@ -30,7 +30,7 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
 
   return (
     <div className="relative">
-      <section className="max-w-480 py-14 2xl:py-20 px-20 bg-blue-50 mx-auto relative">
+      <section className="py-14 2xl:py-20 px-20 bg-blue-50 mx-auto relative">
         {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
         {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
 

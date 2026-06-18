@@ -9,26 +9,26 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
 
   return (
     <>
-      <section className="max-w-480 w-full py-16 2xl:py-24 px-20 flex flex-row justify-start items-center gap-16 2xl:gap-20 mx-auto bg-gray-50">
-        {/* Text Content */}
-        <article className="flex flex-col items-start gap-6 max-w-150">
-          <p className="body-lg font-bold leading-relaxed">Nasza historia</p>
-          {item.title && <h2 className="heading-2">{item.title}</h2>}
-          {item.description && (
-            <p className="body-lg leading-normal text-balance">{item.description}</p>
-          )}
-        </article>
+      <section className="w-full py-16 2xl:py-24 px-20 mx-auto bg-gray-50">
+        <main className="max-w-480 mx-auto flex flex-row justify-start gap-16 2xl:gap-20 items-center">
+          {/* Text Content */}
+          <article className="flex flex-col items-start gap-6 max-w-150">
+            <p className="body-lg font-bold leading-relaxed">Nasza historia</p>
+            {item.title && <h2 className="heading-2">{item.title}</h2>}
+            {item.description && (
+              <p className="body-lg leading-normal text-balance">{item.description}</p>
+            )}
+          </article>
 
-        {/* Image */}
-        {item.image && (
-          <aside className="relative h-150 w-150 overflow-hidden">
+          {/* Image */}
+          {item.image && (
             <SanityImage
               image={item.image}
-              className="object-cover"
+              className="object-cover size-150"
               alt={item.image.alt || item.title || "Zdjęcie sekcji Nasza historia"}
             />
-          </aside>
-        )}
+          )}
+        </main>
       </section>
 
       {item.bottomImage && (

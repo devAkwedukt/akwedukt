@@ -29,19 +29,17 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
   };
 
   return (
-    <section className="px-5 py-14 md:px-20 bg-[#f0f5fc]">
-      <div className="max-w-1280 mx-auto flex flex-col gap-20">
+    <section className="px-5 py-14 md:px-20 bg-deep-navy-blue-50">
+      <main className="max-w-480 mx-auto flex flex-col gap-20">
         <div className="flex flex-col md:flex-row justify-center items-start gap-12">
           {/* Donation Card */}
           <div className="flex-1 flex flex-col gap-6">
-            <h3 className="text-deep-navy-blue-900 font-serif font-bold text-4xl leading-10">
-              {item.donationCard?.title}
-            </h3>
-            <p className="text-deep-navy-blue-900 text-base leading-[25.60px]">
+            <h3 className="heading-3 font-serif text-4xl">{item.donationCard?.title}</h3>
+            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
               {item.donationCard?.description}
             </p>
             <div className="flex items-start gap-6">
-              <span className="text-deep-navy-blue-900 text-base leading-[25.60px]">
+              <span className="text-deep-navy-blue-900 text-base leading-relaxed">
                 Nr konta: {item.donationCard?.accountNumber}
               </span>
               <button
@@ -58,7 +56,7 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
               </button>
             </div>
             <div className="flex items-start gap-6">
-              <span className="text-deep-navy-blue-900 text-base leading-[25.60px]">
+              <span className="text-deep-navy-blue-900 text-base leading-relaxed">
                 Tytuł: {item.donationCard?.transferTitle}
               </span>
               <button
@@ -78,10 +76,8 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
 
           {/* Fundraising Card */}
           <div className="flex-1 flex flex-col gap-6">
-            <h3 className="text-deep-navy-blue-900 font-serif font-bold text-4xl leading-10">
-              {item.fundraisingCard?.title}
-            </h3>
-            <p className="text-deep-navy-blue-900 text-base leading-[25.60px]">
+            <h3 className="heading-3 font-serif text-4xl">{item.fundraisingCard?.title}</h3>
+            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
               {item.fundraisingCard?.description}
             </p>
             <Button
@@ -96,10 +92,8 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
 
           {/* Volunteer Card */}
           <div className="flex-1 flex flex-col gap-6">
-            <h3 className="text-deep-navy-blue-900 font-serif font-bold text-4xl leading-10">
-              {item.volunteerCard?.title}
-            </h3>
-            <p className="text-deep-navy-blue-900 text-base leading-[25.60px]">
+            <h3 className="heading-3 font-serif text-4xl">{item.volunteerCard?.title}</h3>
+            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
               {item.volunteerCard?.description}
             </p>
             <Button
@@ -112,7 +106,7 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
             </Button>
           </div>
         </div>
-      </div>
+      </main>
     </section>
   );
 }

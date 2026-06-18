@@ -34,7 +34,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
 
   return (
     <>
-      <section className="max-w-480 py-14 2xl:py-20 px-20 bg-gray-50 mx-auto relative">
+      <section className="py-14 2xl:py-20 px-20 bg-gray-50 mx-auto relative">
         {item.topImage && (
           <SanityImage
             image={item.topImage}

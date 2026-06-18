@@ -13,9 +13,9 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="max-w-480 w-full xl:py-16 2xl:py-26 px-20 bg-gray-50 mx-auto">
+    <section className="w-full xl:py-16 2xl:py-26 px-20 bg-gray-50 mx-auto">
       {/* Header */}
-      <header className="flex flex-row justify-between items-start mb-14">
+      <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
         <article className="text-left flex flex-col">
           <p className="body-lg font-bold leading-relaxed">Co robimy</p>
           {item.title && <h2 className="heading-2 mt-4 mb-6 text-balance">{item.title}</h2>}
@@ -61,7 +61,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
       {/* Descriptions Grid */}
       {item.descriptions && item.descriptions.length > 0 && (
-        <div className="flex flex-wrap justify-start items-start gap-12 mb-12 relative">
+        <div className="max-w-480 mx-auto flex flex-wrap justify-start items-start gap-12 mb-12 relative">
           {item.descriptions.map((desc, index) => {
             const numberColorClasses = [
               "text-purple-500",
@@ -116,7 +116,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <div className="w-full py-14 flex flex-col items-center gap-8">
+        <div className="max-w-480 mx-auto w-full py-14 flex flex-col items-center gap-8">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">

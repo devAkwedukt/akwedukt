@@ -13,7 +13,7 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
   }
 
   return (
-    <main className="flex flex-row justify-between gap-8 mt-12 items-stretch">
+    <main className="max-w-480 mx-auto flex flex-row justify-between gap-8 mt-12 items-stretch">
       {projects.map((project) => (
         <div key={project._id} className="max-w-125 w-1/3 flex">
           <div className="flex flex-col h-full w-full">

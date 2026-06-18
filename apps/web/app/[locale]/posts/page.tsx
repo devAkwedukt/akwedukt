@@ -48,7 +48,7 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
   const filteredPosts = posts.filter(Boolean);
 
   return (
-    <section className="max-w-480 mx-auto px-20 bg-gray-50">
+    <section className="mx-auto px-20 bg-gray-50">
       <Breadcrumbs
         items={[
           { label: "Strona główna", href: `/${locale}` },

@@ -20,7 +20,7 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
   } = usePostSearch(serverCategories);
 
   return (
-    <div className="mb-8 space-y-6">
+    <div className="max-w-480 mx-auto mb-8 space-y-6">
       {/* Search Input */}
       <div className="relative w-100 mx-auto">
         <svg
