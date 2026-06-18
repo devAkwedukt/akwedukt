@@ -115,7 +115,7 @@ function ContactForm() {
   return (
     <section
       id="contact"
-      className="py-24 px-20 flex flex-row items-center justify-end gap-[10%] max-w-480 mx-auto"
+      className="max-w-480 py-16 2xl:py-24 px-20 flex flex-row items-center justify-end gap-20 2xl:gap-[10%] mx-auto"
     >
       <aside className="flex items-center">
         <svg
@@ -157,7 +157,7 @@ function ContactForm() {
         </svg>
       </aside>
 
-      <aside className="flex max-w-162.5 flex-col gap-12">
+      <aside className="flex max-w-162.5 flex-col gap-10 2xl:gap-12">
         <div className="flex flex-col gap-4">
           <h2 className="text-6xl font-bold tracking-tight">Napisz do nas</h2>
           <p className="text-xl text-balance">

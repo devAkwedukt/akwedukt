@@ -20,7 +20,7 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
   };
 
   return (
-    <section className={`w-full py-24 px-20 ${getBackgroundClass()}`}>
+    <section className={`w-full py-16 2xl:py-24 px-20 ${getBackgroundClass()}`}>
       {/* Header */}
       <div className="text-center mb-12">
         {item.title && <h2 className="heading-2 mb-6">{item.title}</h2>}

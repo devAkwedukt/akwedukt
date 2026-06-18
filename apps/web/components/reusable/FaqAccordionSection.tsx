@@ -24,14 +24,14 @@ export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) 
   }
 
   return (
-    <section className="bg-gray-50 px-6 py-12 md:px-10 md:py-14 lg:px-20 lg:py-16 mx-auto max-w-480">
+    <section className="max-w-480 bg-gray-50 py-16 2xl:py-18 px-6 md:px-10 lg:px-20 mx-auto">
       <div className="mx-auto w-full max-w-300">
         <div className="mb-10 flex flex-col gap-6 text-center">
           <h2 className="heading-2">{item.title}</h2>
           {item.subtitle && <p className="mx-auto max-w-4xl text-lg">{item.subtitle}</p>}
         </div>
 
-        <main className="mt-16 mx-auto w-full max-w-300">
+        <main className="mt-16 mx-auto w-full 2xl:max-w-300 max-w-225">
           {item.questions.map((faq, index) => {
             const isOpen = Boolean(openItems[index]);
             const contentId = `faq-answer-${faq._key ?? index}`;

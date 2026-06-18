@@ -5,7 +5,7 @@ export default function CoalitionSection({ item }: { item: any }) {
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-20 py-20 bg-deep-navy-blue-50 flex justify-start gap-[5%] items-center">
+    <section className="w-full px-20 py-16 2xl:py-20 bg-deep-navy-blue-50 flex justify-start gap-16 2xl:gap-[5%] items-center">
       <article className="flex flex-col items-start gap-12 max-w-175">
         <header className="flex flex-col gap-6">
           {item.title && <h2 className="heading-2">{item.title}</h2>}

@@ -6,7 +6,7 @@ export default function AboutStatsSection({ item }: { item: AboutStatsSection })
   if (!item.stats?.length) return null;
 
   return (
-    <section className="w-full px-20 py-20 bg-deep-navy-blue-50 flex justify-start items-center gap-12">
+    <section className="w-full px-20 py-16 2xl:py-20 bg-deep-navy-blue-50 flex justify-start items-center gap-12">
       {item.image && (
         <SanityImage
           image={item.image}

@@ -22,7 +22,7 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
               <div className="">
                 <SanityImage
                   image={project.mainImage}
-                  className="w-full h-90 object-cover"
+                  className="w-full h-75 object-cover 2xl:h-90"
                   alt={project.title || ""}
                 />
               </div>

@@ -34,11 +34,11 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
 
   return (
     <>
-      <section className="relative py-20 px-20 bg-gray-50 max-w-480 mx-auto">
+      <section className="max-w-480 py-14 2xl:py-20 px-20 bg-gray-50 mx-auto relative">
         {item.topImage && (
           <SanityImage
             image={item.topImage}
-            className="absolute -top-7.5 right-40"
+            className="absolute -top-7.5 2xl:right-40 right-30"
             width={96}
             height={93}
           />
@@ -46,7 +46,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
         {item.topImage2 && (
           <SanityImage
             image={item.topImage2}
-            className="absolute top-25 right-17.5"
+            className="absolute top-25 2xl:right-17.5 right-12.5"
             width={160}
             height={85}
           />
@@ -79,6 +79,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
           />
         )}
       </section>
+
       {item.footerImage && (
         <SanityImage
           image={item.footerImage}

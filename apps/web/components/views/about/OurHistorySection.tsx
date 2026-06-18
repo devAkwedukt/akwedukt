@@ -9,7 +9,7 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
 
   return (
     <>
-      <section className="w-full py-24 px-20 flex flex-row justify-start items-center gap-20 max-w-480 mx-auto bg-gray-50">
+      <section className="max-w-480 w-full py-16 2xl:py-24 px-20 flex flex-row justify-start items-center gap-16 2xl:gap-20 mx-auto bg-gray-50">
         {/* Text Content */}
         <article className="flex flex-col items-start gap-6 max-w-150">
           <p className="body-lg font-bold leading-relaxed">Nasza historia</p>
@@ -30,6 +30,7 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
           </aside>
         )}
       </section>
+
       {item.bottomImage && (
         <SanityImage
           image={item.bottomImage}

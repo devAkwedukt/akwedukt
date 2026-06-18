@@ -7,7 +7,7 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full px-20 py-20 max-w-480 mx-auto">
+    <section className="max-w-480 w-full px-20 py-16 2xl:py-20 mx-auto">
       <div className="">
         {/* Section Title */}
         {item.title && (
@@ -18,7 +18,7 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
 
         {/* Values Grid */}
         {item.values && item.values.length > 0 && (
-          <div className="flex flex-row justify-between gap-16">
+          <div className="flex flex-row justify-between gap-12 2xl:gap-16">
             {item.values.map((value, index) => (
               <div
                 key={index}

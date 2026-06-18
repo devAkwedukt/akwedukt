@@ -14,7 +14,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
 
   return (
     <>
-      <section className="py-20 flex flex-row items-center gap-14 px-20 bg-gray-50 max-w-480 mx-auto">
+      <section className="max-w-480 py-16 2xl:py-20 px-20 gap-14 flex flex-row items-center bg-gray-50  mx-auto">
         {/* Photo */}
         <aside className="max-w-150">
           <SanityImage
@@ -26,7 +26,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
         </aside>
 
         {/* Content */}
-        <article className="relative flex flex-col gap-6 max-w-150">
+        <article className="relative flex flex-col gap-6 max-w-120 2xl:max-w-150">
           {item.decorImage && (
             <SanityImage
               image={item.decorImage}
@@ -57,6 +57,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
           )}
         </article>
       </section>
+
       {item.footerImage && (
         <SanityImage
           image={item.footerImage}

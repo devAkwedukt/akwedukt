@@ -7,17 +7,17 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full px-20 py-24 bg-blue-50">
+    <section className="max-w-480 w-full px-20 py-16 2xl:py-24 bg-blue-50">
       {/* Header */}
-      <div className="text-center mb-20 flex flex-col gap-4">
+      <header className="text-center mb-16 2xl:mb-20 flex flex-col gap-4">
         <p className="body-lg font-bold leading-relaxed">Nasz zespół</p>
         {item.title && <h2 className="heading-2 mb-2">{item.title}</h2>}
         {item.subtitle && <p className="body-lg">{item.subtitle}</p>}
-      </div>
+      </header>
 
       {/* Employees Grid */}
       {item.employees && item.employees.length > 0 && (
-        <div className="flex flex-row justify-start items-stretch gap-8 flex-wrap relative">
+        <main className="flex flex-row justify-start items-stretch gap-8 flex-wrap relative">
           {item.employees.map((employee, index) => (
             <div
               key={index}
@@ -118,7 +118,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
               fill="#EA98CA"
             />
           </svg>
-        </div>
+        </main>
       )}
     </section>
   );

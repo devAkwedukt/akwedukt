@@ -58,7 +58,7 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
   };
 
   return (
-    <main className="flex flex-row flex-wrap justify-between gap-8 mt-12 items-stretch">
+    <main className="flex flex-row justify-between gap-8 mt-12 items-stretch">
       {posts.map((post) => (
         <div key={post._id} className="max-w-125 w-1/3 flex">
           <div className="flex flex-col h-full w-full">
@@ -67,7 +67,7 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
               <div className="">
                 <SanityImage
                   image={post.featuredMedia}
-                  className="w-full h-90 object-cover"
+                  className="w-full h-75 object-cover 2xl:h-90"
                   alt={post.title || ""}
                 />
               </div>

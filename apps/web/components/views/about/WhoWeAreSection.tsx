@@ -8,7 +8,7 @@ export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full py-20 px-20 flex flex-row justify-start items-center gap-20 max-w-480 mx-auto bg-gray-50">
+    <section className="max-w-480 w-full py-16 2xl:py-20 px-20 flex flex-row justify-start items-center gap-16 2xl:gap-20 mx-auto bg-gray-50">
       {/* Image */}
       {item.image && (
         <aside className="relative h-150 w-150 overflow-hidden">
