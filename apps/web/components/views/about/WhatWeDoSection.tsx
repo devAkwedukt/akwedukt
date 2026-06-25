@@ -61,7 +61,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
       {/* Descriptions Grid */}
       {item.descriptions && item.descriptions.length > 0 && (
-        <div className="max-w-480 mx-auto flex flex-wrap justify-start items-start gap-12 mb-12 relative">
+        <main className="max-w-480 mx-auto flex flex-wrap justify-start items-start gap-12 mb-12 relative">
           {item.descriptions.map((desc, index) => {
             const numberColorClasses = [
               "text-purple-500",
@@ -111,20 +111,23 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
               </Fragment>
             );
           })}
-        </div>
+        </main>
       )}
 
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <div className="max-w-480 mx-auto w-full py-14 flex flex-col items-center gap-8">
+        <main className="max-w-480 mx-auto w-full py-14 flex flex-col items-center gap-6">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">
               {item.slider.map((slide, index) => (
-                <div key={index} className="flex-[0_0_100%] aspect-16/9 overflow-hidden">
+                <div
+                  key={index}
+                  className="flex-[0_0_100%] aspect-16/9 overflow-hidden max-h-200 active:cursor-grabbing"
+                >
                   <SanityImage
                     image={slide.image}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full object-center"
                     alt={slide.image?.alt || `Zdjęcie ${index + 1}`}
                   />
                 </div>
@@ -134,7 +137,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
           {/* Slider Controls */}
           {item.slider.length > 1 && (
-            <div className="w-full px-20 flex justify-between items-center">
+            <div className="w-full flex justify-between items-center">
               <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
               <SliderDots
                 count={scrollSnaps.length}
@@ -147,13 +150,11 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
           {/* Caption */}
           {item.slider[selectedIndex]?.image?.alt && (
-            <div className="w-full max-w-[900px] px-20 text-center">
-              <p className="text-[#08080a] text-base font-normal leading-[25.60px]">
-                {item.slider[selectedIndex].image.alt}
-              </p>
+            <div className="w-full max-w-250 px-20 text-center">
+              <p className="text-lg text-balance">{item.slider[selectedIndex].image.alt}</p>
             </div>
           )}
-        </div>
+        </main>
       )}
     </section>
   );

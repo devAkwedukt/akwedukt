@@ -38,13 +38,14 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
             <p className="text-deep-navy-blue-900 text-base leading-relaxed">
               {item.donationCard?.description}
             </p>
+
             <div className="flex items-start gap-6">
               <span className="text-deep-navy-blue-900 text-base leading-relaxed">
                 Nr konta: {item.donationCard?.accountNumber}
               </span>
               <button
                 onClick={() => copyToClipboard(item.donationCard?.accountNumber || "", "account")}
-                className="relative hover:opacity-70 transition-opacity"
+                className="cursor-pointer relative hover:text-deep-navy-blue-500 active:scale-95 transition-colors duration-225 ease"
                 aria-label="Kopiuj numer konta"
               >
                 <RenderIcon icon="copy" size={24} />
@@ -55,13 +56,14 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
                 )}
               </button>
             </div>
+
             <div className="flex items-start gap-6">
               <span className="text-deep-navy-blue-900 text-base leading-relaxed">
                 Tytuł: {item.donationCard?.transferTitle}
               </span>
               <button
                 onClick={() => copyToClipboard(item.donationCard?.transferTitle || "", "title")}
-                className="relative hover:opacity-70 transition-opacity"
+                className="cursor-pointer relative hover:text-deep-navy-blue-500 active:scale-95 transition-colors duration-225 ease"
                 aria-label="Kopiuj tytuł przelewu"
               >
                 <RenderIcon icon="copy" size={24} />

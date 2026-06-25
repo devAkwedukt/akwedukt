@@ -44,7 +44,7 @@ export function SanityFile({ file, children, className, ...props }: SanityFilePr
       rel="noopener noreferrer"
       className={cn(
         className,
-        "bg-transparent text-deep-navy-blue-900 hover:text-deep-navy-blue-900 hover:underline hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed disabled:hover:no-underline"
+        "bg-transparent text-deep-navy-blue-900 hover:text-deep-navy-blue-900 hover:underline hover:cursor-pointer active:bg-blue-100 active:text-deep-navy-blue-900 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed disabled:hover:no-underline p-1 -ml-1 rounded-md transition-colors duration-200 ease-in-out"
       )}
       {...props}
     >

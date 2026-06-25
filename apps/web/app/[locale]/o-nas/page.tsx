@@ -32,8 +32,8 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
         <Breadcrumbs items={[{ label: "Strona główna", href: `/${locale}` }, { label: "O nas" }]} />
        */}
       <HeaderTest
-        headerText="Lepsi razem - poznaj nasz zespół i misję"
-        subHeading="Razem tworzymy przyszłość, w której każdy ma dostęp do wiedzy i możliwości rozwoju"
+        headerText="Z lokalnych źródeł płyniemy w świat"
+        subHeading="Odkrywaj z nami nowe możliwości"
       />
       <SanitySections value={page?.sections} />
       <ContactForm />

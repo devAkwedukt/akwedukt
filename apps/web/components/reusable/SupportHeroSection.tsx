@@ -11,7 +11,7 @@ export default function SupportHeroSection({ item }: SupportHeroSectionProps) {
   }
 
   return (
-    <section className="px-5 py-16 2xl:py-20 md:px-10 xl:px-20 flex items-center gap-8 md:gap-14">
+    <section className="max-w-480 px-5 py-16 2xl:py-20 md:px-10 xl:px-20 flex items-center gap-8 md:gap-14">
       <article className="flex flex-col gap-6 max-w-150">
         <h2 className="heading-2 ">{item.title}</h2>
         <p className="text-lg">{item.description}</p>

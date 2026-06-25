@@ -11,16 +11,16 @@ type SliderDotsProps = {
 
 export function SliderDots({ count, selectedIndex, onSelect, className }: SliderDotsProps) {
   return (
-    <div className={`inline-flex justify-center items-center gap-2 z-30 ${className}`}>
+    <div className={`inline-flex justify-center items-center gap-4 z-30 ${className}`}>
       {Array.from({ length: count }).map((_, index) => (
         <button
           key={index}
           onClick={() => onSelect(index)}
           className={clsx(
-            "w-2 h-2 rounded-full transition",
+            "p-1 w-3 h-3 rounded-full transition-all duration-300 ease",
             index === selectedIndex
-              ? "bg-deep-navy-blue-900"
-              : "bg-deep-navy-blue-300 cursor-pointer hover:opacity-80"
+              ? "bg-deep-navy-blue-900 w-9"
+              : "bg-deep-navy-blue-300 cursor-pointer hover:bg-deep-navy-blue-400"
           )}
         />
       ))}

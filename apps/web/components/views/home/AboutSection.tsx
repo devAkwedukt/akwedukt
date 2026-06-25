@@ -32,6 +32,7 @@ export default function AboutSection({ item }: { item: AboutSection }) {
             variant="link"
             size="large"
             rightIcon="arrow-right-alt"
+            className="text-deep-navy-blue-700!"
           >
             {item.button.label}
           </Button>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import type { Project } from "@/sanity/typegen";
+import Link from "next/link";
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -33,8 +34,10 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
               {project.startDate && (
                 <div className="text-md">{new Date(project.startDate).toLocaleDateString()}</div>
               )}
-              <h3 className="heading-3 mb-2">{project.title}</h3>
-              <p className="mb-6 text-balance leading-relaxed">{project.shortDescription}</p>
+              <Link href={`/project/${project.slug?.current}`} className="heading-3 mb-2 w-fit">
+                {project.title}
+              </Link>
+              <p className="mb-6 leading-relaxed text-balance">{project.shortDescription}</p>
 
               <Button
                 as="link"

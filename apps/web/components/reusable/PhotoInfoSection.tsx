@@ -52,6 +52,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
                 variant="link"
                 size="medium"
                 rightIcon="arrow-right-alt"
+                className="text-deep-navy-blue-700!"
               >
                 {item.button.text}
               </Button>

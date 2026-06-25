@@ -31,7 +31,7 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
       {item.documents && item.documents.length > 0 && (
         <main className="max-w-480 mx-auto  flex flex-row justify-start flex-wrap items-start gap-12">
           {item.documents.map((doc, index) => (
-            <div key={index} className="flex flex-col gap-6 p-4 w-[calc((100%-6rem)/3)]">
+            <div key={index} className="flex flex-col gap-5 p-4 w-[calc((100%-6rem)/3)]">
               <div className="flex flex-col gap-1">
                 {/* Name of the Document */}
                 <h3 className="body-lg font-bold">{doc.name}</h3>
@@ -39,10 +39,14 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
                 {doc.description && <p className="body-medium font-medium">{doc.description}</p>}
               </div>
               {/* Download Button */}
-              <SanityFile file={doc.file} className="w-fit">
-                <div className="font-semibold tracking-wide flex items-center gap-2 ">
+              <SanityFile file={doc.file} className="w-fit !active:bg-red-500">
+                <div className="font-semibold tracking-wide flex items-center gap-2">
                   {doc.buttonText || "Pobierz"}
-                  <IconButton icon="download" shape="square" />
+                  <IconButton
+                    icon="download"
+                    shape="square"
+                    className="hover:bg-transparent active:bg-transparent active:text-deep-navy-blue-900"
+                  />
                 </div>
               </SanityFile>
             </div>

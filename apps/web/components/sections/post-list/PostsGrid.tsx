@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import type { POST_BY_ID_QUERY_RESULT, Slug } from "@/sanity/typegen";
 import { getCategoryColor } from "@/constants/categories";
+import Link from "next/link";
 
 // Type for post with expanded categories (using typegen structure)
 type PostWithExpandedCategories = Exclude<POST_BY_ID_QUERY_RESULT, null>;
@@ -96,7 +97,9 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
                 )}
               </div>
 
-              <h3 className="heading-3 mb-2">{post.title}</h3>
+              <Link href={`/post/${post.slug?.current}`} className="heading-3 mb-2 w-fit">
+                {post.title}
+              </Link>
 
               {/* SHORT EXCERPT - 2 lines with ellipsis */}
               {(post.excerpt || post.content) && (
