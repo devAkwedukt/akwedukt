@@ -30,14 +30,18 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
 
   return (
     <div className="relative">
-      <section className="py-14 2xl:py-20 px-20 bg-blue-50 mx-auto relative">
-        {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
-        {item.subtitle && <p className="text-lg text-center">{item.subtitle}</p>}
+      <section className="py-8 md:py-14 2xl:py-20 px-6 md:px-20 bg-blue-50 mx-auto relative">
+        {item.title && (
+          <h2 className="font-bold heading-2 text-left md:text-center mb-4">{item.title}</h2>
+        )}
+        {item.subtitle && (
+          <p className="text-base md:text-lg text-left md:text-center">{item.subtitle}</p>
+        )}
 
         <ProjectsGrid projects={filteredProjects} ctaText={item.ctaText} />
 
         {item.seeAllProjectsText && item.seeAllProjectsUrl && (
-          <div className="mt-14 flex justify-center">
+          <div className="mt-14 flex justify-start md:justify-center">
             <Button
               as="link"
               href={item.seeAllProjectsUrl}

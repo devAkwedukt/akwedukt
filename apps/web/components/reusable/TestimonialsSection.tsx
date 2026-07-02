@@ -77,16 +77,16 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
 
   return (
     <>
-      <section className="bg-blue-50 w-full px-20 py-16 pb-32 2xl:py-22 2xl:pb-32 relative">
-        <div className="flex flex-row items-start justify-start gap-14 max-w-480 mx-auto">
+      <section className="overflow-x-hidden bg-blue-50 w-full px-6 md:px-20 py-8 md:py-16 pb-32 2xl:py-22 2xl:pb-32 relative">
+        <div className="flex flex-col md:flex-row items-start justify-start gap-14 max-w-480 mx-auto">
           {/* Section Title and Subtitle */}
-          <aside className="flex flex-col gap-8">
+          <aside className="flex flex-col gap-6 md:gap-8">
             {item.title && <h2 className="heading-2 text-nowrap">{item.title}</h2>}
             {item.subtitle && <p className="body-lg text-nowrap">{item.subtitle}</p>}
             {item.bottomImage && (
               <SanityImage
                 image={item.bottomDoodle}
-                className="translate-x-1/2 translate-y-full"
+                className="absolute md:static scale-55 md:scale-100 -translate-y-1/3 translate-x-3/2 md:translate-x-1/2 md:translate-y-full"
                 width={149}
                 height={124}
               />
@@ -96,23 +96,25 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
           {/* Testimonials Slider */}
           <main
             ref={testimonialsContainerRef}
-            className="flex flex-row gap-8 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex flex-row gap-6 md:gap-8 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial._key}
                 data-testimonial-card
-                className="bg-gray-50 p-6 min-w-85 2xl:min-w-90 2xl:min-h-90  snap-start"
+                className="bg-gray-50 p-4 md:p-6 w-70 md:max-w-auto md:min-w-85 2xl:min-w-90 2xl:min-h-90 snap-start"
               >
                 <h2 className="heading-2 text-deep-navy-blue-900/80 leading-none">“</h2>
                 {/* Testimonial Text */}
                 <blockquote className="mt-0 mb-4">
-                  <p className="text-lg leading-relaxed text-balance">{testimonial.text}</p>
+                  <p className="text-base md:text-lg leading-relaxed text-balance">
+                    {testimonial.text}
+                  </p>
                 </blockquote>
 
                 {/* Author Info */}
                 <div className="flex items-start flex-col">
-                  <p className="font-bold text-lg leading-relaxed text-balance">
+                  <p className="font-bold text-base md:text-lg leading-relaxed text-balance">
                     {testimonial.authorName}
                   </p>
                   <p className="text-base">{testimonial.authorRole}</p>
@@ -150,7 +152,7 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
       {item.bottomImage && (
         <SanityImage
           image={item.bottomImage}
-          className="w-full h-auto object-cover"
+          className="w-full h-auto object-cover md:py-0 py-[12.5%]"
           width={1440}
           height={290}
         />

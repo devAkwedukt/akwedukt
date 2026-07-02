@@ -59,9 +59,9 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
   };
 
   return (
-    <main className="max-w-480 mx-auto flex flex-row flex-wrap justify-between gap-8 mt-12 items-stretch">
+    <main className="max-w-480 mx-auto flex md:flex-row flex-wrap justify-between gap-8 mt-8 md:mt-12 items-stretch">
       {posts.map((post) => (
-        <div key={post._id} className="max-w-125 w-[calc((100%-4rem)/3)] flex">
+        <div key={post._id} className="max-w-125 w-full md:w-[calc((100%-4rem)/3)] flex">
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF POST */}
             {post.featuredMedia && (

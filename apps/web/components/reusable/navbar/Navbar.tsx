@@ -27,6 +27,7 @@ const stripLocalePrefix = (path: string) => {
 };
 
 function Navbar() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
@@ -56,7 +57,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full flex flex-row items-center bg-gray-50 py-4 justify-between px-20 z-1000 transition-transform duration-300 ease-in-out ${
+      className={`fixed top-0 w-full flex flex-row items-center bg-gray-50 py-4 justify-between px-4 md:px-20 z-1000 transition-transform duration-300 ease-in-out ${
         isHidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
@@ -78,7 +79,7 @@ function Navbar() {
       </Link>
 
       {/* Links */}
-      <ul className="flex flex-row gap-7 items-center">
+      <ul className="hidden md:flex flex-row gap-6 items-center ">
         {endpoints.map(({ link, label }) => {
           const normalizedLink = normalizePath(link);
           const isActive =
@@ -107,6 +108,61 @@ function Navbar() {
           size={40}
         />
       </ul>
+
+      <RenderIcon
+        icon="menu"
+        size={42}
+        className={`block md:hidden ${isSidebarOpen ? "opacity-0" : "opacity-100"}`}
+        onClick={() => {
+          setIsSidebarOpen(true);
+        }}
+      />
+      <RenderIcon
+        icon="close"
+        size={42}
+        className={`block md:hidden ${isSidebarOpen ? "opacity-100" : "hidden! opacity-0"}`}
+        onClick={() => {
+          setIsSidebarOpen(false);
+        }}
+      />
+
+      {/* MOBILE MENU - SIDEBAR */}
+      <div
+        className={`absolute duration-150 ease-in-out origin-right transition right-0 p-6 top-full bg-gray-50 w-7/10 h-auto block md:hidden ${isSidebarOpen ? "translate-x-0 duration-200" : "translate-x-full"}`}
+      >
+        <ul className="flex flex-col gap-6 items-start">
+          {endpoints.map(({ link, label }) => {
+            const normalizedLink = normalizePath(link);
+            const isActive =
+              normalizedPathname === normalizedLink ||
+              normalizedPathname.startsWith(`${normalizedLink}/`);
+
+            return (
+              <Link
+                key={link}
+                href={link}
+                onClick={() => {
+                  setIsSidebarOpen(false);
+                }}
+                className={`relative font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out pt-1.5 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
+                  isActive
+                    ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
+                    : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
+                }`}
+              >
+                {label}
+              </Link>
+            );
+          })}
+
+          {/* Text size switcher */}
+          <RenderIcon
+            icon="text-size"
+            className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-20 duration-175 ease-in-out"
+            size={40}
+          />
+        </ul>
+      </div>
     </nav>
   );
 }

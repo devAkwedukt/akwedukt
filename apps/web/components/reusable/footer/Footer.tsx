@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { RenderIcon } from "../../ui";
 import { getFooterData } from "@/sanity/queries/groq.example";
+import FooterTooltip from "./FooterTooltip";
 //import { useState } from "react";
 
 const endpoints = [
@@ -19,28 +20,11 @@ async function Footer() {
   if (!data) return null;
 
   const { companyInfo, legalInfo, bankAccount, contact, socialMedia } = data;
-  //const [copiedAccount, setCopiedAccount] = useState(false);
-  //const [copiedTitle, setCopiedTitle] = useState(false);
-  /*
-  const copyToClipboard = async (text: string, type: "account" | "title") => {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (type === "account") {
-        setCopiedAccount(true);
-        setTimeout(() => setCopiedAccount(false), 2000);
-      } else {
-        setCopiedTitle(true);
-        setTimeout(() => setCopiedTitle(false), 2000);
-      }
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
-    }
-  };*/
 
   return (
-    <footer className="bg-foreground text-gray-50 flex gap-16 flex-col justify-between py-20 px-20 selection:bg-gray-50 selection:text-foreground">
-      <div className="flex flex-row justify-between">
-        <aside className="flex flex-col justify-between">
+    <footer className="bg-foreground text-gray-50 flex gap-8 md:gap-16 flex-col justify-between py-8 md:py-20 px-6 md:px-20 selection:bg-gray-50 selection:text-foreground">
+      <div className="flex flex-col md:flex-row justify-between">
+        <aside className="flex gap-20 md:gap-0 flex-col justify-between mb-4 md:mb-0">
           {/* Logo */}
           <Link href="/" className="w-fit">
             <svg
@@ -71,58 +55,58 @@ async function Footer() {
           </div>
         </aside>
 
-        <div className="flex flex-row gap-14">
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
+          <div className="flex flex-col gap-2 md:gap-6">
+            <div className="flex flex-col gap-1 md:gap-2">
               <p className="mb-2 font-bold">{companyInfo?.name}</p>
               <p>{companyInfo?.street}</p>
               <p>{companyInfo?.city}</p>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 md:gap-2">
               <p>NIP: {legalInfo?.nip}</p>
               <p>KRS: {legalInfo?.krs}</p>
               <p>REGON: {legalInfo?.regon}</p>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1 md:gap-2">
               <p>{bankAccount?.bankName}</p>
               <p className="flex items-center gap-2">
                 {bankAccount?.accountNumber}
-                <button
-                  // onClick={() => copyToClipboard(bankAccount?.accountNumber || "", "account")}
-                  className="flex cursor-pointer relative hover:text-deep-navy-blue-300 active:scale-95 transition-colors duration-200 ease-in-out"
-                  aria-label="Kopiuj numer konta"
-                >
-                  <RenderIcon icon="copy" size={24} />
-                  {false && (
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-background text-foreground text-xs px-2 py-1 rounded">
-                      Skopiowano!
-                    </span>
-                  )}
-                </button>
+                {bankAccount?.accountNumber && (
+                  <FooterTooltip text="Kopiuj numer konta" copyText={bankAccount.accountNumber} />
+                )}
               </p>
             </div>
           </div>
-          <div className="flex flex-col">
-            <a className="p-2 font-bold w-fit" href={`mailto:${contact?.email?.trim()}`}>
+
+          <div className="flex flex-col my-0 md:my-0">
+            <a
+              className="pl-0 p-1 md:p-2 md:pl-2 font-bold w-fit"
+              href={`mailto:${contact?.email?.trim()}`}
+            >
               {contact?.email}
             </a>
 
             {contact?.phones?.map((phone: string) => (
-              <a key={phone} href={`tel:${phone.replace(/\s+/g, "")}`} className="p-2 w-fit">
+              <a
+                key={phone}
+                href={`tel:${phone.replace(/\s+/g, "")}`}
+                className="pl-0 p-1 md:pl-2 md:p-2 w-fit"
+              >
                 {phone}
               </a>
             ))}
           </div>
+
           <div>
             {/* Links */}
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3 md:gap-4 md:border-t-0 border-t border-gray-50 pt-4 md:pt-0">
               {endpoints.map(({ link, label }) => (
                 <Link
                   key={link}
                   href={link}
-                  className="relative font-semibold font-jakarta text-base items-center duration-150 delay-20 ease-in-out p-1 hover:text-deep-navy-blue-200 pb-px active:text-blue-200 focus:duration-0 focus:outline-2 w-fit focus:outline-pink-500 focus:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:bg-deep-navy-blue-200 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-left hover:after:scale-x-100 motion-reduce:after:transition-none"
+                  className="relative font-semibold font-jakarta text-base items-center duration-150 delay-20 ease-in-out pl-0 p-1 md:pl-1 hover:text-deep-navy-blue-200 pb-px active:text-blue-200 focus:duration-0 focus:outline-2 w-fit focus:outline-pink-500 focus:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:bg-deep-navy-blue-200 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-left hover:after:scale-x-100 motion-reduce:after:transition-none"
                 >
                   {label}
                 </Link>
@@ -132,25 +116,25 @@ async function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-row justify-between items-center border-t pt-2 border-deep-navy-blue-200">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-center border-t pt-2 md:border-deep-navy-blue-200 border-gray-50 gap-6 md:gap-0">
         <p className="text-deep-navy-blue-200 text-sm">© 2026 Stowarzyszenie Akwedukt</p>
-        <div className="flex flex-row gap-4 items-center">
+        <div className="flex flex-col md:flex-row gap-1 md:gap-4 items-start md:items-center">
           <Link
-            className="text-deep-navy-blue-200 font-semibold p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
+            className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
             href="/regulaminy-i-dokumenty"
           >
             Regulaminy i dokumenty
           </Link>
-          <span className="select-none text-deep-navy-blue-200">|</span>
+          <span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>
           <Link
-            className="text-deep-navy-blue-200 font-semibold p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
+            className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
             href="/polityka-prywatnosci"
           >
             Polityka prywatności
           </Link>
-          <span className="select-none text-deep-navy-blue-200">|</span>
+          <span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>
           <Link
-            className="text-deep-navy-blue-200 font-semibold p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
+            className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
             href="/cookies"
           >
             Cookies

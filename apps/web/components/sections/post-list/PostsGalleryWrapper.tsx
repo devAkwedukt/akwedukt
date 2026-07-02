@@ -34,7 +34,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
 
   return (
     <>
-      <section className="py-14 2xl:py-20 px-20 bg-gray-50 mx-auto relative">
+      <section className="py-8 md:py-14 2xl:py-20 px-6 md:px-20 bg-gray-50 mx-auto relative">
         {item.topImage && (
           <SanityImage
             image={item.topImage}
@@ -52,14 +52,20 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
           />
         )}
         <header className="max-w-250 mx-auto">
-          {item.title && <h2 className="heading-2 text-center mb-4">{item.title}</h2>}
-          {item.subtitle && <p className="text-lg text-center text-balance">{item.subtitle}</p>}
+          {item.title && (
+            <h2 className="font-bold heading-2 text-left md:text-center mb-4">{item.title}</h2>
+          )}
+          {item.subtitle && (
+            <p className="text-base md:text-lg text-left md:text-center text-balance">
+              {item.subtitle}
+            </p>
+          )}
         </header>
 
         <PostsGrid posts={filteredPosts} ctaText={item.ctaText} />
 
         {item.seeAllPostsText && item.seeAllPostsUrl && (
-          <div className="mt-14 flex justify-center">
+          <div className="mt-14 flex justify-start md:justify-center">
             <Button
               as="link"
               href={item.seeAllPostsUrl}
