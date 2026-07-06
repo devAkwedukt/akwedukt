@@ -14,8 +14,8 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
 
   return (
     <>
-      <section className="py-16 2xl:py-20 px-20 bg-gray-50 mx-auto">
-        <main className="max-w-480 mx-auto flex flex-row items-center gap-14">
+      <section className="py-12 md:py-16 2xl:py-20 px-6 md:px-20 bg-gray-50 mx-auto">
+        <main className="max-w-480 mx-auto flex flex-col-reverse md:flex-row items-center gap-12 md:gap-14">
           {/* Photo */}
           <aside className="max-w-150">
             <SanityImage
@@ -40,7 +40,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
             <h2 className="heading-2">{item.title}</h2>
 
             {/* Rich text description */}
-            <div className="text-lg">
+            <div className="text-base md:body-lg text-balance">
               <SanityRichText value={item.description} />
             </div>
 

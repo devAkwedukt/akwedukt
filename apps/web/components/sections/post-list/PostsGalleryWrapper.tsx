@@ -38,7 +38,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
         {item.topImage && (
           <SanityImage
             image={item.topImage}
-            className="absolute -top-7.5 2xl:right-40 right-30"
+            className="absolute md:-top-7.5 -top-15 2xl:right-40 right-1/12 md:right-30 scale-40 md:scale-100"
             width={96}
             height={93}
           />
@@ -46,7 +46,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
         {item.topImage2 && (
           <SanityImage
             image={item.topImage2}
-            className="absolute top-25 2xl:right-17.5 right-12.5"
+            className="absolute md:top-25 2xl:right-17.5 -top-1/50 -right-1/7 md:right-12.5 scale-40 md:scale-100"
             width={160}
             height={85}
           />

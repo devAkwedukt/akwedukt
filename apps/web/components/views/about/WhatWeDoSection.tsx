@@ -13,17 +13,17 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full xl:py-16 2xl:py-26 px-20 bg-gray-50 mx-auto">
+    <section className="absolute w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Header */}
       <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
         <article className="text-left flex flex-col">
-          <p className="body-lg font-bold leading-relaxed">Co robimy</p>
+          <p className="text-base md:body-lg font-bold leading-relaxed">Co robimy</p>
           {item.title && <h2 className="heading-2 mt-4 mb-6 text-balance">{item.title}</h2>}
-          {item.subtitle && <p className="body-lg text-balance">{item.subtitle}</p>}
+          {item.subtitle && <p className="text-base md:body-lg text-balance">{item.subtitle}</p>}
           {item.subsubtitle && <p className="body-lg">{item.subsubtitle}</p>}
         </article>
 
-        <aside>
+        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-0 top-1/12 z-0">
           <svg
             width="442"
             height="279"
@@ -74,7 +74,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
             return (
               <Fragment key={index}>
-                <div className="w-[calc((100%-6rem)/3)] flex flex-col gap-4">
+                <div className="w-full md:w-[calc((100%-6rem)/3)] flex flex-col gap-0 md:gap-4">
                   <div className="h-35 flex flex-col gap-4">
                     <span
                       className={`self-start text-6xl font-bold font-serif ${numberColorClass}`}
@@ -83,11 +83,13 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
                     </span>
                     {desc.heading && <h3 className="heading-3 leading-tight">{desc.heading}</h3>}
                   </div>
-                  {desc.description && <p className="text-lg text-balance">{desc.description}</p>}
+                  {desc.description && (
+                    <p className="text-base md:text-lg text-balance">{desc.description}</p>
+                  )}
                   {desc.features && desc.features.length > 0 && (
-                    <ul className="list-disc pl-5 flex flex-col gap-2">
+                    <ul className="list-disc pl-5 flex flex-col gap-0 md:gap-2">
                       {desc.features.map((feature, fIndex) => (
-                        <li key={fIndex} className="text-lg text-balance">
+                        <li key={fIndex} className="text-base md:text-lg text-balance">
                           {feature.description}
                         </li>
                       ))}

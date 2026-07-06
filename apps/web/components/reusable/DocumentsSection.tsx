@@ -20,18 +20,21 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
   };
 
   return (
-    <section className={`w-full py-16 2xl:py-24 px-20 ${getBackgroundClass()}`}>
+    <section className={`w-full py-12 md:py-16 2xl:py-24 px-6 md:px-20 ${getBackgroundClass()}`}>
       {/* Header */}
-      <div className="text-center mb-12">
+      <div className="text-left- md:text-center mb-12">
         {item.title && <h2 className="heading-2 mb-6">{item.title}</h2>}
-        {item.subtitle && <p className="body-lg">{item.subtitle}</p>}
+        {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}
       </div>
 
       {/* Documents Grid */}
       {item.documents && item.documents.length > 0 && (
-        <main className="max-w-480 mx-auto  flex flex-row justify-start flex-wrap items-start gap-12">
+        <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start flex-wrap items-start gap-12">
           {item.documents.map((doc, index) => (
-            <div key={index} className="flex flex-col gap-5 p-4 w-[calc((100%-6rem)/3)]">
+            <div
+              key={index}
+              className="flex flex-col gap-4 md:gap-5 p-0 md:p-4 w-full md:w-[calc((100%-6rem)/3)]"
+            >
               <div className="flex flex-col gap-1">
                 {/* Name of the Document */}
                 <h3 className="body-lg font-bold">{doc.name}</h3>

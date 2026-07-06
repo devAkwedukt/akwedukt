@@ -7,7 +7,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="w-full px-20 py-16 2xl:py-24 bg-blue-50">
+    <section className="w-full px-6 md:px-20 py-12 md:py-16 2xl:py-24 bg-blue-50">
       {/* Header */}
       <header className="text-center mb-16 2xl:mb-20 flex flex-col gap-4">
         <p className="body-lg font-bold leading-relaxed">Nasz zespół</p>
@@ -17,11 +17,11 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
 
       {/* Employees Grid */}
       {item.employees && item.employees.length > 0 && (
-        <main className="max-w-480 mx-auto flex flex-row justify-start items-stretch gap-8 flex-wrap relative">
+        <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start items-stretch gap-8 flex-wrap relative">
           {item.employees.map((employee, index) => (
             <div
               key={index}
-              className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-[calc((100%-4rem)/3)]"
+              className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-full md:w-[calc((100%-4rem)/3)]"
             >
               {/* Employee Photo */}
               {employee.photo && (

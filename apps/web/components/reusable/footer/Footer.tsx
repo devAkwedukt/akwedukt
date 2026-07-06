@@ -22,7 +22,7 @@ async function Footer() {
   const { companyInfo, legalInfo, bankAccount, contact, socialMedia } = data;
 
   return (
-    <footer className="bg-foreground text-gray-50 flex gap-8 md:gap-16 flex-col justify-between py-8 md:py-20 px-6 md:px-20 selection:bg-gray-50 selection:text-foreground">
+    <footer className="bg-foreground text-gray-50 flex gap-8 md:gap-16 flex-col justify-between py-8 md:py-20 px-6 md:px-20 selection:text-deep-navy-blue-900! selection:bg-background!">
       <div className="flex flex-col md:flex-row justify-between">
         <aside className="flex gap-20 md:gap-0 flex-col justify-between mb-4 md:mb-0">
           {/* Logo */}
@@ -48,7 +48,7 @@ async function Footer() {
                 <RenderIcon
                   icon={social.platform.toLowerCase()}
                   size={48}
-                  className="cursor-pointer hover:-translate-y-0.75 duration-225 delay-20 ease-in-out hover:text-deep-navy-blue-200"
+                  className="cursor-pointer hover:-translate-y-0.75 duration-225 delay-20 ease-in-out hover:text-deep-navy-blue-200 w-8 h-8 md:w-12 md:h-12"
                 />
               </a>
             ))}

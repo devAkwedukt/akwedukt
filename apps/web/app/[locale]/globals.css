@@ -143,9 +143,23 @@
   --spacing-xxxxl: 64px;
 }
 
+html {
+  /* block overflow of X axis for proper work of mobile sliders */
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-deep-navy-blue-900) var(--color-background);
+}
+
+* {
+  &::selection {
+    color: var(--color-background);
+    background-color: var(--color-foreground);
+  }
+}
+
 @layer base {
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans overflow-x-hidden;
   }
   h1,
   h2 {
@@ -160,25 +174,25 @@
 
   /* Typography from design system */
   .heading-1 {
-    @apply font-bold leading-[57.24px] md:leading-none tracking-tighter md:tracking-[-0.075em];
+    @apply font-bold leading-[1.05] md:leading-none tracking-tighter md:tracking-[-0.075em];
     font-size: 3.375rem;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-1 {
-      font-size: clamp(3.375rem, 8vw, 4.5rem);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
     }
   }
 
   .heading-2 {
-    @apply font-bold leading-11 md:leading-[59.36px];
+    @apply font-bold leading-11 md:leading-[1.125];
     font-size: 2.5rem;
     letter-spacing: -0.025em;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-2 {
-      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
     }
   }
 
