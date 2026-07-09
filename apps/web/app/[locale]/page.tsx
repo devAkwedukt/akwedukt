@@ -32,7 +32,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         subHeading="Pokonujemy bariery, dajemy energię i łączymy ze światem."
       />
       <SanitySections value={h?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
       {/* </main>*/}
     </>
   );

@@ -31,7 +31,10 @@ export default async function Wspolpraca({ params }: { params: Promise<{ locale:
         className="bg-gray-50 w-full"
       />
       <SanitySections value={page?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </>
   );
 }

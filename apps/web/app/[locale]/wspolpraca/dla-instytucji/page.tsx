@@ -34,7 +34,10 @@ export default async function DlaInstytucji({ params }: { params: Promise<{ loca
         ]}
       />
       <SanitySections value={page?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </>
   );
 }

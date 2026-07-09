@@ -78,7 +78,10 @@ export default async function ProjectPage({
         ]}
       />
       <SanitySections value={p.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </main>
   );
 }

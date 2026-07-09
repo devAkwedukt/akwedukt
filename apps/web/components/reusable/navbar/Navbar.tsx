@@ -95,7 +95,7 @@ function Navbar() {
             <Link
               key={link}
               href={link}
-              className={`relative font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
+              className={`relative font-semibold font-jakarta delay-25 after:delay-25 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
                 isActive
                   ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
                   : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
@@ -109,7 +109,7 @@ function Navbar() {
         {/* Text size switcher */}
         <RenderIcon
           icon="text-size"
-          className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-20 duration-175 ease-in-out"
+          className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-25 duration-175 ease-in-out active:bg-blue-200 active:scale-95 active:duration-25"
           size={40}
         />
       </ul>
@@ -163,7 +163,7 @@ function Navbar() {
           {/* Text size switcher */}
           <RenderIcon
             icon="text-size"
-            className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-20 duration-175 ease-in-out"
+            className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-20 duration-175 ease-in-out active:bg-blue-200"
             size={40}
           />
         </ul>

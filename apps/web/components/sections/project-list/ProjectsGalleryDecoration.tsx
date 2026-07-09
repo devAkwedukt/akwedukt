@@ -41,7 +41,7 @@ export default function ProjectsGalleryDecoration({
           key="mobile"
           image={decorationImages.whatWeDoInternational.mobile}
           alt="Dekoracja - projekty"
-          className="absolute top-0 right-0 block md:hidden"
+          className="absolute -top-6 scale-50 -translate-y-1/2 right-1/16 block md:hidden"
           width={63}
           height={61}
         />
@@ -51,7 +51,7 @@ export default function ProjectsGalleryDecoration({
           key="mobile-2"
           image={decorationImages.whatWeDoInternational.mobile2}
           alt="Dekoracja - projekty"
-          className="absolute top-20 right-0 block md:hidden"
+          className="absolute top-8 scale-50 -translate-y-1/2 translate-x-1/2 right-1/12 block md:hidden"
           width={63}
           height={40}
         />
@@ -74,7 +74,7 @@ export default function ProjectsGalleryDecoration({
           key="mobile"
           image={decorationImages.whatWeDoPolish.mobile}
           alt="Dekoracja - polskie projekty"
-          className="absolute top-0 right-0 block md:hidden"
+          className="absolute -translate-y-[57.5%] top-0 right-0 block md:hidden"
           width={99}
           height={285}
         />
@@ -87,7 +87,7 @@ export default function ProjectsGalleryDecoration({
           key="desktop"
           image={decorationImages.cooperationInternationalEn.desktop}
           alt="Dekoracja - projekty"
-          className="absolute -top-8 right-1/24 w-53.5 h-37.75 md:w-91 md:h-51.5"
+          className="absolute top-1/7 md:-top-8 -right-1/6 md:right-1/24 w-53.5 h-37.75 md:w-91 md:h-51.5"
         />
       ) : null,
     ],

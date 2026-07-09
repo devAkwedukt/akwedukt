@@ -11,7 +11,7 @@ type SliderDotsProps = {
 
 export function SliderDots({ count, selectedIndex, onSelect, className }: SliderDotsProps) {
   return (
-    <div className={`inline-flex justify-center items-center gap-4 z-30 ${className}`}>
+    <div className={`inline-flex justify-center items-center gap-3.25 md:gap-4 z-30 ${className}`}>
       {Array.from({ length: count }).map((_, index) => (
         <button
           key={index}

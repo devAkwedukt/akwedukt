@@ -30,7 +30,10 @@ export default async function DlaRodzicow({ params }: { params: Promise<{ locale
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Dla rodziców" }]}
       />
       <SanitySections value={page?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </>
   );
 }

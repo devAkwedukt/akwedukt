@@ -16,14 +16,14 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
   return (
     <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-between gap-8 mt-8 md:mt-12 items-stretch">
       {projects.map((project) => (
-        <div key={project._id} className="max-w-125 w-full md:w-1/3 flex">
+        <div key={project._id} className="group max-w-125 w-full md:w-1/3 flex">
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF PROJECT */}
             {project.mainImage && (
-              <div className="">
+              <div className="overflow-hidden">
                 <SanityImage
                   image={project.mainImage}
-                  className="w-full h-75 object-cover 2xl:h-90"
+                  className="w-full h-75 object-cover 2xl:h-90 group-hover:scale-104 transition-transform duration-400 delay-20 will-change-transform"
                   alt={project.title || ""}
                 />
               </div>

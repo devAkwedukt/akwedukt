@@ -13,17 +13,17 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
   if (!item.enabled) return null;
 
   return (
-    <section className="absolute w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
+    <section className="relative w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Header */}
       <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
-        <article className="text-left flex flex-col">
+        <article className="text-left flex flex-col max-w-165 md:max-w-250">
           <p className="text-base md:body-lg font-bold leading-relaxed">Co robimy</p>
           {item.title && <h2 className="heading-2 mt-4 mb-6 text-balance">{item.title}</h2>}
           {item.subtitle && <p className="text-base md:body-lg text-balance">{item.subtitle}</p>}
           {item.subsubtitle && <p className="body-lg">{item.subsubtitle}</p>}
         </article>
 
-        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-0 top-1/12 z-0">
+        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-0 md:right-1/5 top-0 md:top-1/30 z-0">
           <svg
             width="442"
             height="279"
@@ -61,7 +61,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
       {/* Descriptions Grid */}
       {item.descriptions && item.descriptions.length > 0 && (
-        <main className="max-w-480 mx-auto flex flex-wrap justify-start items-start gap-12 mb-12 relative">
+        <main className="max-w-480 mx-auto flex flex-wrap justify-start items-start gap-8 md:gap-12 mb-12 relative">
           {item.descriptions.map((desc, index) => {
             const numberColorClasses = [
               "text-purple-500",
@@ -75,13 +75,15 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
             return (
               <Fragment key={index}>
                 <div className="w-full md:w-[calc((100%-6rem)/3)] flex flex-col gap-0 md:gap-4">
-                  <div className="h-35 flex flex-col gap-4">
+                  <div className="h-auto md:h-35 flex flex-col gap-4">
                     <span
-                      className={`self-start text-6xl font-bold font-serif ${numberColorClass}`}
+                      className={`self-start text-4xl md:text-6xl font-bold font-serif ${numberColorClass}`}
                     >
                       {String(index + 1).padStart(2, "0")}
                     </span>
-                    {desc.heading && <h3 className="heading-3 leading-tight">{desc.heading}</h3>}
+                    {desc.heading && (
+                      <h3 className="heading-3 leading-tight mb-4 md:mb-0">{desc.heading}</h3>
+                    )}
                   </div>
                   {desc.description && (
                     <p className="text-base md:text-lg text-balance">{desc.description}</p>
@@ -118,7 +120,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <main className="max-w-480 mx-auto w-full py-14 flex flex-col items-center gap-6">
+        <main className="max-w-480 mx-auto w-full py-8 md:py-14 flex flex-col items-center gap-6">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">
@@ -152,8 +154,10 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
 
           {/* Caption */}
           {item.slider[selectedIndex]?.image?.alt && (
-            <div className="w-full max-w-250 px-20 text-center">
-              <p className="text-lg text-balance">{item.slider[selectedIndex].image.alt}</p>
+            <div className="w-full max-w-full md:max-w-250 md:px-20 text-center">
+              <p className="body-base md:text-lg text-balance">
+                {item.slider[selectedIndex].image.alt}
+              </p>
             </div>
           )}
         </main>

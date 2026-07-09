@@ -5,8 +5,8 @@ export default function CoalitionSection({ item }: { item: any }) {
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-20 py-16 2xl:py-20 bg-deep-navy-blue-50">
-      <main className="max-w-480 mx-auto flex justify-start gap-16 2xl:gap-[5%] items-center">
+    <section className="w-full p-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">
+      <main className="max-w-480 mx-auto flex justify-start flex-col md:flex-row gap-16 2xl:gap-[5%] items-center">
         <article className="flex flex-col items-start gap-12 max-w-175">
           <header className="flex flex-col gap-6">
             {item.title && <h2 className="heading-2">{item.title}</h2>}
@@ -17,9 +17,12 @@ export default function CoalitionSection({ item }: { item: any }) {
           </header>
 
           <div className="flex flex-col gap-6">
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8 flex-col md:flex-row">
               {item.cards.slice(0, 2).map((card: any, index: number) => (
-                <div key={index} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
+                <div
+                  key={index + 1}
+                  className="w-full md:max-w-85 p-0 md:p-6 bg-background md:bg-gray-50 flex flex-col gap-2 md:gap-4"
+                >
                   {card.title && (
                     <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
                   )}
@@ -28,9 +31,12 @@ export default function CoalitionSection({ item }: { item: any }) {
               ))}
             </div>
 
-            <div className="flex gap-8">
+            <div className="flex gap-4 md:gap-8 flex-col md:flex-row">
               {item.cards.slice(2, 4).map((card: any, index: number) => (
-                <div key={index + 2} className="max-w-85 p-6 bg-gray-50 flex flex-col gap-4">
+                <div
+                  key={index + 2}
+                  className="w-full md:max-w-85 p-0 md:p-6 bg-background md:bg-gray-50 flex flex-col gap-2 md:gap-4"
+                >
                   {card.title && (
                     <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
                   )}
@@ -56,7 +62,7 @@ export default function CoalitionSection({ item }: { item: any }) {
         {item.image && (
           <SanityImage
             image={item.image}
-            className="w-150 h-150 object-cover"
+            className="size-80 md:size-150 object-cover"
             width={600}
             height={600}
           />

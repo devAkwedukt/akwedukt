@@ -49,7 +49,15 @@ function inputClassName(hasError: boolean) {
   }`;
 }
 
-function ContactForm() {
+interface ContactFormProps {
+  headingText?: string;
+  subHeadingText?: string;
+}
+
+function ContactForm({
+  headingText = "Napisz do nas",
+  subHeadingText = "Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe.",
+}: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -157,13 +165,10 @@ function ContactForm() {
         </svg>
       </aside>
 
-      <aside className="flex max-w-162.5 flex-col gap-10 2xl:gap-12">
+      <aside className="flex max-w-162.5 md:max-w-175 flex-col gap-10 2xl:gap-12">
         <div className="flex flex-col gap-4">
-          <h2 className="heading-2 text-4xl md:text-6xl">Napisz do nas</h2>
-          <p className="text-base md:text-xl text-balance">
-            Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą
-            najszybciej jak to możliwe.
-          </p>
+          <h2 className="heading-2 text-4xl md:text-6xl">{headingText}</h2>
+          <p className="text-base md:text-xl text-balance">{subHeadingText}</p>
         </div>
 
         <form className="mx-auto flex w-full flex-col gap-6" noValidate onSubmit={handleSubmit}>

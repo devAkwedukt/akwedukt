@@ -6,13 +6,13 @@ export default function InstitutionBenefitsSection({ item }: { item: Institution
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-20 py-16 2xl:py-20 bg-gray-50">
-      <main className="max-w-480 mx-auto flex justify-start gap-16 2xl:gap-[5%] items-center">
+    <section className="w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-gray-50">
+      <main className="max-w-480 mx-auto flex justify-start flex-col-reverse md:flex-row gap-12 md:gap-16 2xl:gap-[5%] items-center">
         {/* Image */}
         {item.image && (
           <SanityImage
             image={item.image}
-            className="size-150 relative object-contain"
+            className="size-80 md:size-150 relative object-contain"
             width={600}
             height={600}
           />
@@ -23,9 +23,11 @@ export default function InstitutionBenefitsSection({ item }: { item: Institution
           <header className="self-stretch flex flex-col justify-start items-start gap-6">
             {item.title && <h2 className="heading-2 justify-start">{item.title}</h2>}
             <div className="self-stretch flex flex-col justify-start items-start gap-4">
-              {item.subtitle && <p className="justify-start text-2xl font-bold">{item.subtitle}</p>}
+              {item.subtitle && (
+                <p className="justify-start text-lg md:text-2xl font-bold">{item.subtitle}</p>
+              )}
               {item.description && (
-                <p className="justify-start text-lg font-normal">{item.description}</p>
+                <p className="justify-start text-base md:text-lg font-normal">{item.description}</p>
               )}
             </div>
           </header>

@@ -30,7 +30,10 @@ export default async function CoRobimy({ params }: { params: Promise<{ locale: s
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Co robimy" }]}
       />
       <SanitySections value={page?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </>
   );
 }

@@ -29,7 +29,7 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
 
       {/* Documents Grid */}
       {item.documents && item.documents.length > 0 && (
-        <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start flex-wrap items-start gap-12">
+        <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start flex-wrap items-start gap-8 md:gap-12">
           {item.documents.map((doc, index) => (
             <div
               key={index}
@@ -37,13 +37,13 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
             >
               <div className="flex flex-col gap-1">
                 {/* Name of the Document */}
-                <h3 className="body-lg font-bold">{doc.name}</h3>
+                <h3 className="body-lg leading-normal md:leading-relaxed font-bold">{doc.name}</h3>
                 {/* Optional Description */}
                 {doc.description && <p className="body-medium font-medium">{doc.description}</p>}
               </div>
               {/* Download Button */}
               <SanityFile file={doc.file} className="w-fit !active:bg-red-500">
-                <div className="font-semibold tracking-wide flex items-center gap-2">
+                <div className="font-semibold tracking-wide flex items-center gap-2 pr-1 py-0.5">
                   {doc.buttonText || "Pobierz"}
                   <IconButton
                     icon="download"

@@ -52,18 +52,18 @@ export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) 
                       [index]: !prev[index],
                     }))
                   }
-                  className="group flex w-full items-start justify-between gap-6 text-left focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:outline-offset-2"
+                  className="group flex w-full items-center justify-between gap-6 text-left focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:outline-offset-2"
                   aria-expanded={isOpen}
                   aria-controls={contentId}
                 >
-                  <h3 className="py-px text-base md:text-lg font-bold leading-relaxed cursor-pointer">
+                  <span className="select-text py-px text-base md:text-lg font-bold leading-normal md:leading-relaxed cursor-pointer">
                     {faq.question}
-                  </h3>
+                  </span>
 
                   <RenderIcon
                     icon="arrow-down"
                     size={32}
-                    className={`cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    className={`overflow-visible cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       isOpen ? "rotate-180" : "rotate-0"
                     }`}
                   />

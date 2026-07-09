@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { RenderIcon } from "../ui";
 import { IconButton } from "../ui/IconButton";
 import { SanityImage } from "@/sanity/image/SanityImage";
+import MobileTestimonialsSlider from "./MobileTestimonialsSlider/MobileTestimonialsSlider";
 
 export default function TestimonialsSection({ item }: { item: TestimonialsSection }) {
   const testimonials = item.testimonials ?? [];
@@ -77,7 +78,7 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
 
   return (
     <>
-      <section className="overflow-x-hidden bg-blue-50 w-full px-6 md:px-20 py-8 md:py-16 pb-32 2xl:py-22 2xl:pb-32 relative">
+      <section className="overflow-x-hidden bg-blue-50 w-full px-6 md:px-20 py-10 md:py-16 pb-10 md:pb-30 2xl:py-22 2xl:pb-32 relative">
         <div className="flex flex-col md:flex-row items-start justify-start gap-14 max-w-480 mx-auto">
           {/* Section Title and Subtitle */}
           <aside className="flex flex-col gap-6 md:gap-8">
@@ -96,15 +97,15 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
           {/* Testimonials Slider */}
           <main
             ref={testimonialsContainerRef}
-            className="flex flex-row gap-6 md:gap-8 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="hidden md:flex flex-row gap-6 md:gap-8 flex-nowrap overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial._key}
                 data-testimonial-card
-                className="bg-gray-50 p-4 md:p-6 w-70 md:max-w-auto md:min-w-85 2xl:min-w-90 2xl:min-h-90 snap-start"
+                className="hidden md:flex flex-col bg-gray-50 p-4 md:p-6 w-70 md:max-w-auto md:min-w-85 2xl:min-w-90 2xl:min-h-90 snap-start"
               >
-                <h2 className="heading-2 text-deep-navy-blue-900/80 leading-none">“</h2>
+                <h2 className="heading-2 text-deep-navy-blue-900/80 leading-none w-fit">“</h2>
                 {/* Testimonial Text */}
                 <blockquote className="mt-0 mb-4">
                   <p className="text-base md:text-lg leading-relaxed text-balance">
@@ -122,7 +123,8 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
               </div>
             ))}
 
-            <div className="absolute right-20 bottom-10 flex flex-row gap-4">
+            {/* Slider Controls */}
+            <div className="absolute right-20 bottom-10 hidden md:flex flex-row gap-4">
               <IconButton
                 icon="arrow-left-alt"
                 shape="circle"
@@ -147,6 +149,9 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
               />
             </div>
           </main>
+
+          {/* Mobile Testimonial Cards */}
+          <MobileTestimonialsSlider testimonials={testimonials} />
         </div>
       </section>
       {item.bottomImage && (

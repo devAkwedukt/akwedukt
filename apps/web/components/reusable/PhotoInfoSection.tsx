@@ -31,7 +31,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
             {item.decorImage && (
               <SanityImage
                 image={item.decorImage}
-                className="absolute -right-1/4 top-1/12"
+                className="absolute -right-1/4 top-1/12 hidden md:flex"
                 width={125}
                 height={121}
               />

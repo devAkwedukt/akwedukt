@@ -157,6 +157,12 @@ html {
   }
 }
 
+svg,
+img,
+button {
+  user-select: none;
+}
+
 @layer base {
   body {
     @apply bg-background text-foreground font-sans overflow-x-hidden;
@@ -185,7 +191,7 @@ html {
   }
 
   .heading-2 {
-    @apply font-bold leading-11 md:leading-[1.125];
+    @apply font-bold leading-[1.1] md:leading-[1.125];
     font-size: 2.5rem;
     letter-spacing: -0.025em;
   }
@@ -197,7 +203,7 @@ html {
   }
 
   .heading-3 {
-    @apply font-bold leading-6 md:leading-7;
+    @apply font-bold leading-normal md:leading-relaxed;
     font-size: 1.25rem;
     letter-spacing: -0.01em;
   }
