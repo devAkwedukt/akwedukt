@@ -21,11 +21,11 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
     >
       {items.map((item, index) => (
         <div key={index} className="flex items-center">
-          {index > 0 && <span className="px-1 text-sm font-bold text-gray-950">/</span>}
+          {index > 0 && <span className="px-0.5 md:px-1 text-sm font-bold text-gray-950">/</span>}
           {item.href ? (
             <Link
               href={item.href}
-              className="text-nowrap px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
+              className="text-nowrap px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
             >
               {item.label}
             </Link>

@@ -1,5 +1,5 @@
 ﻿"use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { z } from "zod";
 
 const subjectOptions = [
@@ -8,6 +8,15 @@ const subjectOptions = [
   "Jestem ze szkoły/instytucji i szukam współpracy",
   "Mam inne, szalone pytanie",
 ] as const;
+
+const subjectOptionsEn = [
+  "I want to become a volunteer!",
+  "Let's organize a workshop/event together!",
+  "I'm from a school/institution and looking for a partnership",
+  "I have a completely different, crazy question!",
+] as const;
+
+type ContactFormLanguage = "pl" | "en";
 
 type ContactFormValues = {
   name: string;
@@ -27,19 +36,65 @@ const initialValues: ContactFormValues = {
   acceptedTerms: false,
 };
 
-const contactFormSchema = z.object({
-  name: z.string().trim().min(1, "Wpisz imię i nazwisko."),
-  email: z.string().trim().min(1, "Wpisz e-mail.").email("Podaj poprawny adres e-mail."),
-  subject: z
-    .string()
-    .refine((value) => subjectOptions.includes(value as (typeof subjectOptions)[number]), {
-      message: "Wybierz temat.",
+const contactFormTranslations = {
+  pl: {
+    labels: {
+      name: "Imię i nazwisko",
+      email: "Email",
+      subject: "Wybierz temat",
+      message: "Wpisz wiadomość",
+      terms: "Akceptuję regulamin",
+      submit: "Wyślij",
+      success: "Dziękujemy, wiadomość została wysłana.",
+    },
+    errors: {
+      name: "Wpisz imię i nazwisko.",
+      email: "Wpisz e-mail.",
+      emailFormat: "Podaj poprawny adres e-mail.",
+      subject: "Wybierz temat.",
+      message: "Wpisz wiadomość.",
+      acceptedTerms: "Zaakceptuj regulamin.",
+    },
+  },
+  en: {
+    labels: {
+      name: "Full Name",
+      email: "Email",
+      subject: "Select a topic",
+      message: "Your message",
+      terms: "I accept the terms and conditions",
+      submit: "Send",
+      success: "Thank you, your message has been sent.",
+    },
+    errors: {
+      name: "Enter your full name.",
+      email: "Enter your email.",
+      emailFormat: "Enter a valid email address.",
+      subject: "Select a topic.",
+      message: "Enter your message.",
+      acceptedTerms: "Accept the terms and conditions.",
+    },
+  },
+} as const;
+
+const getContactFormSchema = (language: ContactFormLanguage) => {
+  const messages = contactFormTranslations[language].errors;
+  const validSubjectOptions = (
+    language === "en" ? subjectOptionsEn : subjectOptions
+  ) as readonly string[];
+
+  return z.object({
+    name: z.string().trim().min(1, messages.name),
+    email: z.string().trim().min(1, messages.email).email(messages.emailFormat),
+    subject: z.string().refine((value) => validSubjectOptions.includes(value as string), {
+      message: messages.subject,
     }),
-  message: z.string().trim().min(1, "Wpisz wiadomość."),
-  acceptedTerms: z.boolean().refine((value) => value, {
-    message: "Zaakceptuj regulamin.",
-  }),
-});
+    message: z.string().trim().min(1, messages.message),
+    acceptedTerms: z.boolean().refine((value) => value, {
+      message: messages.acceptedTerms,
+    }),
+  });
+};
 
 function inputClassName(hasError: boolean) {
   return `w-full rounded-md border bg-transparent px-4 py-3 text-base text-deep-navy-blue-900 placeholder:text-deep-navy-blue-900/90 focus:outline-none focus:ring-2 ${
@@ -52,15 +107,32 @@ function inputClassName(hasError: boolean) {
 interface ContactFormProps {
   headingText?: string;
   subHeadingText?: string;
+  language?: ContactFormLanguage;
 }
 
 function ContactForm({
   headingText = "Napisz do nas",
   subHeadingText = "Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe.",
+  language = "pl",
 }: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const translation = contactFormTranslations[language];
+  const currentSubjectOptions = language === "en" ? subjectOptionsEn : subjectOptions;
+  const contactFormSchema = getContactFormSchema(language);
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setIsSubmitted(false);
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [isSubmitted]);
 
   const clearFieldError = (field: keyof ContactFormValues) => {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
@@ -125,7 +197,7 @@ function ContactForm({
       id="contact"
       className="max-w-480 py-8 md:py-16 2xl:py-24 px-6 md:px-20 flex flex-col-reverse md:flex-row items-center justify-end gap-0 md:gap-20 2xl:gap-[10%] mx-auto overflow-x-hidden"
     >
-      <aside className="flex items-center">
+      <aside className="flex items-center h-85 md:h-auto">
         <svg
           width="560"
           height="576"
@@ -177,7 +249,7 @@ function ContactForm({
               className="cursor-pointer w-fit mb-1 block text-base md:text-xl font-semibold text-deep-navy-blue-900"
               htmlFor="name"
             >
-              Imię i Nazwisko
+              {translation.labels.name}
             </label>
             <input
               autoComplete="name"
@@ -215,7 +287,7 @@ function ContactForm({
               className="cursor-pointer w-fit mb-1 block text-base md:text-xl font-semibold text-deep-navy-blue-900"
               htmlFor="subject"
             >
-              Wybierz temat
+              {translation.labels.subject}
             </label>
             <div className="relative">
               <select
@@ -226,7 +298,7 @@ function ContactForm({
                 value={values.subject}
               >
                 <option value=""></option>
-                {subjectOptions.map((option) => (
+                {currentSubjectOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}
                   </option>
@@ -253,7 +325,7 @@ function ContactForm({
               className="cursor-pointer w-fit mb-1 block text-base md:text-xl font-semibold text-deep-navy-blue-900"
               htmlFor="message"
             >
-              Wpisz wiadomość
+              {translation.labels.message}
             </label>
             <textarea
               className={`${inputClassName(Boolean(errors.message))} min-h-30 resize-y`}
@@ -292,7 +364,7 @@ function ContactForm({
               </div>
 
               <span className="text-base md:text-xl leading-none select-none">
-                Akceptuję <span className="underline">Regulamin</span>
+                {translation.labels.terms}
               </span>
             </label>
 
@@ -305,14 +377,19 @@ function ContactForm({
             className="mt-3 rounded-xl cursor-pointer w-full border bg-ocean-green-700 border-ocean-green-700 px-4 py-4 text-background transition-colors tracking-wider hover:bg-ocean-green-900 hover:border-ocean-green-800 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400"
             type="submit"
           >
-            Wyślij
+            {translation.labels.submit}
           </button>
 
-          {isSubmitted ? (
-            <p className="text-lg font-semibold -tracking-[0.02em]">
-              Dziękujemy, wiadomość została wysłana.
+          <div className="min-h-[1.5rem]">
+            <p
+              aria-live="polite"
+              className={`text-lg font-semibold -tracking-[0.02em] transition-opacity duration-250 ease-in-out ${
+                isSubmitted ? "opacity-100 text-deep-navy-blue-900" : "opacity-0"
+              }`}
+            >
+              {translation.labels.success}
             </p>
-          ) : null}
+          </div>
         </form>
       </aside>
     </section>

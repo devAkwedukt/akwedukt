@@ -29,19 +29,17 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
   };
 
   return (
-    <section className="px-5 py-14 md:px-20 bg-deep-navy-blue-50">
+    <section className="px-6 py-8 md:py-14 2xl:py-18 md:px-20 bg-deep-navy-blue-50">
       <main className="max-w-480 mx-auto flex flex-col gap-20">
         <div className="flex flex-col md:flex-row justify-center items-start gap-12">
           {/* Donation Card */}
-          <div className="flex-1 flex flex-col gap-6">
-            <h3 className="heading-3 font-serif text-4xl">{item.donationCard?.title}</h3>
-            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
-              {item.donationCard?.description}
-            </p>
+          <div className="flex-1 flex flex-col gap-4 md:gap-6">
+            <h3 className="heading-3 md:text-4xl md:font-serif">{item.donationCard?.title}</h3>
+            <p className="text-base leading-relaxed">{item.donationCard?.description}</p>
 
-            <div className="flex items-start gap-6">
-              <span className="text-deep-navy-blue-900 text-base leading-relaxed">
-                Nr konta: {item.donationCard?.accountNumber}
+            <div className="flex items-start gap-2 md:gap-4">
+              <span className="text-base leading-relaxed">
+                <b>Konto:</b> {item.donationCard?.accountNumber}
               </span>
               <button
                 onClick={() => copyToClipboard(item.donationCard?.accountNumber || "", "account")}
@@ -57,9 +55,9 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
               </button>
             </div>
 
-            <div className="flex items-start gap-6">
-              <span className="text-deep-navy-blue-900 text-base leading-relaxed">
-                Tytuł: {item.donationCard?.transferTitle}
+            <div className="flex items-start gap-2 md:gap-4">
+              <span className="text-base leading-relaxed">
+                <b>Tytuł:</b> {item.donationCard?.transferTitle}
               </span>
               <button
                 onClick={() => copyToClipboard(item.donationCard?.transferTitle || "", "title")}
@@ -77,11 +75,9 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
           </div>
 
           {/* Fundraising Card */}
-          <div className="flex-1 flex flex-col gap-6">
-            <h3 className="heading-3 font-serif text-4xl">{item.fundraisingCard?.title}</h3>
-            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
-              {item.fundraisingCard?.description}
-            </p>
+          <div className="flex-1 flex flex-col gap-4 md:gap-6">
+            <h3 className="heading-3 md:text-4xl md:font-serif">{item.fundraisingCard?.title}</h3>
+            <p className="text-base leading-relaxed">{item.fundraisingCard?.description}</p>
             <Button
               as="link"
               href={item.fundraisingCard?.buttonLink || "#"}
@@ -93,11 +89,9 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
           </div>
 
           {/* Volunteer Card */}
-          <div className="flex-1 flex flex-col gap-6">
-            <h3 className="heading-3 font-serif text-4xl">{item.volunteerCard?.title}</h3>
-            <p className="text-deep-navy-blue-900 text-base leading-relaxed">
-              {item.volunteerCard?.description}
-            </p>
+          <div className="flex-1 flex flex-col gap-4 md:gap-6">
+            <h3 className="heading-3 md:text-4xl md:font-serif">{item.volunteerCard?.title}</h3>
+            <p className="text-base leading-relaxed">{item.volunteerCard?.description}</p>
             <Button
               as="link"
               href={item.volunteerCard?.buttonLink || "#"}

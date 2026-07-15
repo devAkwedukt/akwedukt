@@ -56,7 +56,9 @@ export default function PartnersSection({ item }: { item: PartnersSection }) {
                 key={index}
                 onClick={() => scrollTo(index)}
                 className={`h-2 rounded-full transition-all ${
-                  index === selectedIndex ? "bg-blue-600 w-6" : "bg-gray-300 w-2 hover:bg-gray-400"
+                  index === selectedIndex
+                    ? "bg-deep-navy-blue-900 w-6"
+                    : "bg-deep-navy-blue-100 w-2 hover:bg-gray-400"
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
               />

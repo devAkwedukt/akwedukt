@@ -28,6 +28,7 @@ export default async function VolunteerWithUs({ params }: { params: Promise<{ lo
       <ContactForm
         headingText="Contact us"
         subHeadingText="Do you have a question, a problem or a suggestion? Send us a message and we’ll get back to you as soon as possible."
+        language="en"
       />
     </>
   );

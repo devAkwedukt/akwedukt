@@ -27,10 +27,13 @@ export default async function Wesprzyj({ params }: { params: Promise<{ locale: s
   return (
     <>
       <Breadcrumbs
-        items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Wsparcie" }]}
+        items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Wesprzyj nas" }]}
       />
       <SanitySections value={page?.sections} />
-      <ContactForm />
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
     </>
   );
 }

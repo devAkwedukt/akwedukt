@@ -86,7 +86,7 @@ function MobileTestimonialsSlider({ testimonials }: { testimonials: any[] }) {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`h-3 rounded-full p-1 transition-all duration-300 ease ${
-              index === currentIndex ? "bg-deep-navy-blue-700 w-9" : "bg-deep-navy-blue-300 w-3"
+              index === currentIndex ? "bg-deep-navy-blue-900 w-9" : "bg-deep-navy-blue-100 w-3"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

@@ -20,7 +20,7 @@ export function SliderDots({ count, selectedIndex, onSelect, className }: Slider
             "p-1 w-3 h-3 rounded-full transition-all duration-300 ease",
             index === selectedIndex
               ? "bg-deep-navy-blue-900 w-9"
-              : "bg-deep-navy-blue-300 cursor-pointer hover:bg-deep-navy-blue-400"
+              : "bg-deep-navy-blue-100 cursor-pointer hover:bg-deep-navy-blue-300"
           )}
         />
       ))}
