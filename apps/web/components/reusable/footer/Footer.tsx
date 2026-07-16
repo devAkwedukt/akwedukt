@@ -23,7 +23,7 @@ async function Footer() {
 
   return (
     <footer className="bg-foreground text-gray-50 flex gap-8 md:gap-16 flex-col justify-between py-8 md:py-20 px-6 md:px-20 selection:text-deep-navy-blue-900! selection:bg-background!">
-      <div className="flex flex-col md:flex-row justify-between">
+      <div className="max-w-480 w-full mx-auto flex flex-col md:flex-row justify-between">
         <aside className="flex gap-20 md:gap-0 flex-col justify-between mb-4 md:mb-0">
           {/* Logo */}
           <Link href="/" className="w-fit">
@@ -116,7 +116,7 @@ async function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col-reverse md:flex-row justify-between items-start md:items-center border-t pt-2 md:border-deep-navy-blue-200 border-gray-50 gap-6 md:gap-0">
+      <div className="max-w-480 w-full mx-auto flex flex-col-reverse md:flex-row justify-between items-start md:items-center border-t pt-2 md:border-deep-navy-blue-200 border-gray-50 gap-6 md:gap-0">
         <p className="text-deep-navy-blue-200 text-sm">© 2026 Stowarzyszenie Akwedukt</p>
         <div className="flex flex-col md:flex-row gap-1 md:gap-4 items-start md:items-center">
           <Link

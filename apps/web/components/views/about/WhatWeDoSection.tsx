@@ -23,7 +23,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
           {item.subsubtitle && <p className="body-lg">{item.subsubtitle}</p>}
         </article>
 
-        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-0 md:right-1/5 top-0 md:top-1/30 z-0">
+        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-0 md:right-1/5 top-1/8 md:top-1/30 z-0">
           <svg
             width="442"
             height="279"

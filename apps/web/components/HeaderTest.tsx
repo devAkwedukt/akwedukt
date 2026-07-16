@@ -114,8 +114,8 @@ function HeaderTest({ headerText, subHeading }: { headerText: string; subHeading
         </svg>
       </div>
 
-      {/* Mobile Devices SVGs */}
-      <div className="flex md:hidden">
+      {/* Mobile Devices SVGs "flex md:hidden" */}
+      <div className="hidden">
         {/* Right dark-blue spiral */}
         <svg
           width="283"
