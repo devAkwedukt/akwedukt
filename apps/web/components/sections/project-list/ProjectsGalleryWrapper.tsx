@@ -2,7 +2,6 @@ import { getProjectById, getProjects } from "@/sanity/queries/projects";
 import { ProjectsGrid } from "./ProjectsGrid";
 import { Button } from "@/components/ui/Button";
 import type { ProjectsGallerySection } from "@/sanity/typegen";
-import { SanityImage } from "@/sanity/image/SanityImage";
 import ProjectsGalleryDecoration from "./ProjectsGalleryDecoration";
 
 interface ProjectsGalleryWrapperProps {
@@ -27,10 +26,22 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
   }
 
   const filteredProjects = validProjects.filter(Boolean);
+  const getBackgroundClass = () => {
+    switch (item.backgroundColor) {
+      case "neutral-50":
+        return "bg-neutral-50";
+      case "deep-navy-blue-50":
+        return "bg-deep-navy-blue-50";
+      default:
+        return "bg-white";
+    }
+  };
 
   return (
     <div className="relative">
-      <section className="py-8 md:py-14 2xl:py-20 px-6 md:px-20 bg-blue-50 mx-auto relative">
+      <section
+        className={`py-8 md:py-14 2xl:py-20 px-6 md:px-20 ${getBackgroundClass()} mx-auto relative`}
+      >
         {item.title && (
           <h2 className="font-bold heading-2 text-left md:text-center mb-4">{item.title}</h2>
         )}

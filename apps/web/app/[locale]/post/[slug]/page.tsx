@@ -72,10 +72,18 @@ export default async function PostPage({
               { label: p.title || "Post" },
             ]}
           />
-          <div>
-            {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
-            <SanityImage image={p.featuredMedia} mode="cover" width={600} height={300} />
-            <SanityRichText value={p.content} withImageSlider={true} />
+          <div className="flow-root">
+            <SanityImage
+              className="mb-4 w-full md:float-left md:mr-6 md:mb-4 md:w-80 h-auto rounded-lg"
+              image={p.featuredMedia}
+              mode="cover"
+              width={600}
+              height={300}
+            />
+            <div>
+              {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
+              <SanityRichText value={p.content} withImageSlider={true} />
+            </div>
           </div>
         </div>
       </main>

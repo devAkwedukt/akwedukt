@@ -42,8 +42,7 @@ export const getPosts = cache(
   async (
     limit: number = 12,
     offset: number = 0,
-    categoryFilter?: string | string[],
-    tagFilter?: string,
+    tagFilter?: string | string[],
     statusFilter: string = "publish",
     searchQuery?: string
   ) => {
@@ -56,23 +55,17 @@ export const getPosts = cache(
       params.searchQuery = `*${searchQuery.trim()}*`;
     }
 
-    // Handle category filter (single or multiple)
-    if (categoryFilter) {
-      if (Array.isArray(categoryFilter)) {
-        if (categoryFilter.length > 0) {
-          filterClause += "&& count(categories[@._ref in $categoryFilter]) > 0 ";
-          params.categoryFilter = categoryFilter;
+    // Handle tag filter (single or multiple)
+    if (tagFilter) {
+      if (Array.isArray(tagFilter)) {
+        if (tagFilter.length > 0) {
+          filterClause += "&& count(tags[@._ref in $tagFilter]) > 0 ";
+          params.tagFilter = tagFilter;
         }
-      } else if (categoryFilter !== "all") {
-        filterClause += "&& $categoryFilter in categories[]._ref ";
-        params.categoryFilter = categoryFilter;
+      } else if (tagFilter !== "all") {
+        filterClause += "&& $tagFilter in tags[]._ref ";
+        params.tagFilter = tagFilter;
       }
-    }
-
-    // Handle tag filter
-    if (tagFilter && tagFilter !== "all") {
-      filterClause += "&& $tagFilter in tags[]._ref ";
-      params.tagFilter = tagFilter;
     }
 
     // Handle status filter
@@ -115,20 +108,15 @@ export const getPosts = cache(
 );
 
 export const getLatestPosts = cache(async (limit: number = 3) => {
-  return getPosts(limit, 0, undefined, undefined, "publish");
+  return getPosts(limit, 0, undefined, "publish");
 });
 
 export const getNextPosts = cache(async (limit: number = 3, offset: number = 3) => {
-  return getPosts(limit, offset, undefined, undefined, "publish");
+  return getPosts(limit, offset, undefined, "publish");
 });
 
 export const getTotalPostsCount = cache(
-  async (
-    categoryFilter?: string | string[],
-    tagFilter?: string,
-    statusFilter: string = "publish",
-    searchQuery?: string
-  ) => {
+  async (tagFilter?: string | string[], statusFilter: string = "publish", searchQuery?: string) => {
     let filterClause = "";
     const params: any = {};
 
@@ -138,23 +126,17 @@ export const getTotalPostsCount = cache(
       params.searchQuery = `*${searchQuery.trim()}*`;
     }
 
-    // Handle category filter (single or multiple)
-    if (categoryFilter) {
-      if (Array.isArray(categoryFilter)) {
-        if (categoryFilter.length > 0) {
-          filterClause += "&& count(categories[@._ref in $categoryFilter]) > 0 ";
-          params.categoryFilter = categoryFilter;
+    // Handle tag filter (single or multiple)
+    if (tagFilter) {
+      if (Array.isArray(tagFilter)) {
+        if (tagFilter.length > 0) {
+          filterClause += "&& count(tags[@._ref in $tagFilter]) > 0 ";
+          params.tagFilter = tagFilter;
         }
-      } else if (categoryFilter !== "all") {
-        filterClause += "&& $categoryFilter in categories[]._ref ";
-        params.categoryFilter = categoryFilter;
+      } else if (tagFilter !== "all") {
+        filterClause += "&& $tagFilter in tags[]._ref ";
+        params.tagFilter = tagFilter;
       }
-    }
-
-    // Handle tag filter
-    if (tagFilter && tagFilter !== "all") {
-      filterClause += "&& $tagFilter in tags[]._ref ";
-      params.tagFilter = tagFilter;
     }
 
     // Handle status filter
@@ -174,6 +156,16 @@ export const getTotalPostsCount = cache(
 export const getAllCategories = cache(async () => {
   const { data } = await sanityFetch({
     query: `*[_type == "category"] | order(name asc) {
+      _id,
+      name,
+      slug
+    }`,
+  });
+  return data || [];
+});
+export const getAllTags = cache(async () => {
+  const { data } = await sanityFetch({
+    query: `*[_type == "tag"] | order(name asc) {
       _id,
       name,
       slug

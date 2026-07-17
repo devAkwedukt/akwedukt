@@ -2,7 +2,6 @@
 
 import type { TestimonialsSection } from "@/sanity/typegen";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { RenderIcon } from "../ui";
 import { IconButton } from "../ui/IconButton";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import MobileTestimonialsSlider from "./MobileTestimonialsSlider/MobileTestimonialsSlider";

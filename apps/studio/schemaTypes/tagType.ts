@@ -10,7 +10,21 @@ export const tagType = defineType({
   fields: [
     languageField,
     defineField({ name: "name", type: "string" }),
-    defineField({ name: "slug", type: "slug" }),
+    defineField({
+      name: "slug",
+      type: "slug",
+      options: {
+        source: "name",
+        maxLength: 96,
+        slugify: (input: string) =>
+          input
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, "")
+            .replace(/\s+/g, "-")
+            .replace(/-+/g, "-")
+            .trim(),
+      },
+    }),
   ],
   preview: {
     select: {

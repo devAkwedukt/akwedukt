@@ -258,6 +258,13 @@ export type HeroBackgroundSlide = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  backgroundImageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   title?: string;
   description?: string;
   button?: HeroBackgroundSlideButton;
@@ -619,6 +626,7 @@ export type ProjectsGallerySection = {
   ctaVariant?: "primary" | "secondary" | "link";
   seeAllProjectsText?: string;
   seeAllProjectsUrl?: string;
+  backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   decorationVariant?:
     | "what-we-do-international"
     | "what-we-do-polish"
@@ -807,11 +815,6 @@ export type HeroSection = {
   >;
 };
 
-export type PostsSection = {
-  _type: "postsSection";
-  displayNumber?: number;
-};
-
 export type LeadSection = {
   _type: "leadSection";
   title?: string;
@@ -984,13 +987,6 @@ export type FooterReference = {
   [internalGroqTypeReferenceTo]?: "footer";
 };
 
-export type AuthorReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "author";
-};
-
 export type CategoryReference = {
   _ref: string;
   _type: "reference";
@@ -1022,7 +1018,6 @@ export type InternationalizedArrayReferenceValue = {
     | FooterReference
     | PostReference
     | ProjectReference
-    | AuthorReference
     | CategoryReference
     | TagReference;
 };
@@ -1109,7 +1104,6 @@ export type Post = {
   title?: string;
   slug?: Slug;
   date?: string;
-  modified?: string;
   status?:
     | "publish"
     | "future"
@@ -1128,8 +1122,6 @@ export type Post = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  sticky?: boolean;
-  author?: AuthorReference;
   categories?: Array<
     {
       _key: string;
@@ -1140,25 +1132,6 @@ export type Post = {
       _key: string;
     } & TagReference
   >;
-};
-
-export type Author = {
-  _id: string;
-  _type: "author";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: string;
-  slug?: Slug;
-  url?: string;
-  description?: string;
-  avatar?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
 };
 
 export type SanityImageCrop = {
@@ -1657,7 +1630,6 @@ export type AllSanitySchemaTypes =
   | AboutSection
   | HeroBackgroundSection
   | HeroSection
-  | PostsSection
   | LeadSection
   | Img
   | RichText
@@ -1678,7 +1650,6 @@ export type AllSanitySchemaTypes =
   | WolontariatReference
   | WesprzyjReference
   | FooterReference
-  | AuthorReference
   | CategoryReference
   | TagReference
   | InternationalizedArrayReferenceValue
@@ -1687,7 +1658,6 @@ export type AllSanitySchemaTypes =
   | Category
   | Project
   | Post
-  | Author
   | SanityImageCrop
   | SanityImageHotspot
   | Footer
@@ -1812,7 +1782,7 @@ export type POST_BY_ID_QUERY_RESULT =
       title: string | null;
       slug: Slug | null;
       date: string | null;
-      modified: string | null;
+      modified: null;
       status:
         | "auto-draft"
         | "draft"
@@ -1832,12 +1802,8 @@ export type POST_BY_ID_QUERY_RESULT =
         crop?: SanityImageCrop;
         _type: "image";
       } | null;
-      sticky: boolean | null;
-      author: {
-        _id: string;
-        name: string | null;
-        slug: Slug | null;
-      } | null;
+      sticky: null;
+      author: null;
       categories: Array<{
         _id: string;
         name: string | null;

@@ -37,7 +37,6 @@ export const DOCUMENTS: DocumentConfig[] = [
   { _type: "settings", id: "settings" },
   { _type: "post", intl: true, path: "/post", slug: true },
   { _type: "project", intl: true, path: "/project", slug: true },
-  { _type: "author", intl: true },
   { _type: "category", intl: true },
   { _type: "tag", intl: true },
 ];

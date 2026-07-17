@@ -2,22 +2,28 @@
 
 import { Button } from "@/components/ui/Button";
 import { usePostSearch } from "@/hooks/usePostSearch";
-import { getCategoryColor } from "@/constants/categories";
+import { getCategoryColor, getColorHex } from "@/constants/categories";
 
-interface SearchFilterProps {
-  serverCategories?: any[];
+interface Tag {
+  _id: string;
+  name: string;
+  slug: { current: string };
 }
 
-export function SearchFilter({ serverCategories }: SearchFilterProps) {
+interface SearchFilterProps {
+  serverTags?: Tag[];
+}
+
+export function SearchFilter({ serverTags }: SearchFilterProps) {
   const {
     searchQuery,
-    selectedCategories,
-    categories,
+    selectedTags,
+    tags,
     handleSearchChange,
-    toggleCategory,
+    toggleTag,
     clearAllFilters,
     hasActiveFilters,
-  } = usePostSearch(serverCategories);
+  } = usePostSearch(serverTags);
 
   return (
     <div className="max-w-480 mx-auto mb-8 space-y-6">
@@ -61,25 +67,26 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
         )}
       </div>
 
-      {/* Category Filters */}
+      {/* Tag Filters */}
       <div className="flex flex-col gap-2 mx-auto justify-center items-center max-w-480">
-        {/* <h4 className="heading-4 font-semibold">Kategorie</h4> */}
-        {categories.length === 0 ? (
-          <h4 className="heading-4 font-semibold mt-4">No categories found</h4>
+        {/* <h4 className="heading-4 font-semibold">Tagi</h4> */}
+        {tags.length === 0 ? (
+          <h4 className="heading-4 font-semibold mt-4">No tags found</h4>
         ) : (
           <div className="flex flex-wrap justify-center items-center gap-12 mt-5">
-            {categories.map((category) => {
-              const isSelected = selectedCategories.includes(category._id);
+            {tags.map((tag) => {
+              const isSelected = selectedTags.includes(tag._id);
+              const bgColor = getCategoryColor(tag.name);
               return (
                 <Button
-                  key={category._id}
+                  key={tag._id}
                   variant="filter"
                   size="xs"
                   rightIcon={isSelected ? "close" : "add"}
-                  onClick={() => toggleCategory(category._id)}
-                  className={`${isSelected ? `${getCategoryColor(category.name)}` : ""}`}
+                  onClick={() => toggleTag(tag._id)}
+                  style={isSelected ? { backgroundColor: getColorHex(bgColor) } : undefined}
                 >
-                  {category.name}
+                  {tag.name}
                 </Button>
               );
             })}
@@ -108,12 +115,12 @@ export function SearchFilter({ serverCategories }: SearchFilterProps) {
                 Szukanie: <span className="font-semibold">{searchQuery}</span>
               </div>
             )}
-            {selectedCategories.length > 0 && (
+            {selectedTags.length > 0 && (
               <div>
-                Wybrane kategorie:{" "}
+                Wybrane tagi:{" "}
                 <span className="font-semibold">
-                  {selectedCategories
-                    .map((catId) => categories.find((c) => c._id === catId)?.name)
+                  {selectedTags
+                    .map((tagId) => tags.find((t) => t._id === tagId)?.name)
                     .filter(Boolean)
                     .join(", ") || "Brak"}
                 </span>

@@ -1,4 +1,4 @@
-import { getPosts, getTotalPostsCount, getAllCategories } from "@/sanity/queries/posts";
+import { getPosts, getTotalPostsCount, getAllTags } from "@/sanity/queries/posts";
 import { PostsGrid } from "@/components/sections/post-list/PostsGrid";
 import { Pagination } from "@/components/ui/Pagination";
 import SearchFilterServer from "@/components/views/posts/SearchFilterServer";
@@ -10,8 +10,7 @@ interface PostsPageProps {
   params: Promise<{ locale: string }>;
   searchParams: Promise<{
     page?: string;
-    category?: string | string[];
-    tag?: string;
+    tag?: string | string[];
     search?: string;
   }>;
 }
@@ -32,16 +31,15 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
   setRequestLocale(locale);
   const currentPage = parseInt(resolvedSearchParams.page || "1", 10);
 
-  const categoryFilter = resolvedSearchParams.category;
   const tagFilter = resolvedSearchParams.tag;
   const searchQuery = resolvedSearchParams.search;
 
   const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
-  const [posts, totalCount, categories] = await Promise.all([
-    getPosts(POSTS_PER_PAGE, offset, categoryFilter, tagFilter, "publish", searchQuery),
-    getTotalPostsCount(categoryFilter, tagFilter, "publish", searchQuery),
-    getAllCategories(),
+  const [posts, totalCount, tags] = await Promise.all([
+    getPosts(POSTS_PER_PAGE, offset, tagFilter, "publish", searchQuery),
+    getTotalPostsCount(tagFilter, "publish", searchQuery),
+    getAllTags(),
   ]);
 
   const totalPages = Math.ceil(totalCount / POSTS_PER_PAGE);
@@ -87,7 +85,7 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
         </svg>
       </header>
 
-      <SearchFilterServer initialCategories={categories} />
+      <SearchFilterServer initialTags={tags} />
 
       {filteredPosts.length > 0 ? (
         <>
@@ -96,7 +94,6 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
-            categoryFilter={categoryFilter}
             tagFilter={tagFilter}
             searchQuery={searchQuery}
           />

@@ -26,7 +26,6 @@ export const postType = defineType({
       },
     }),
     defineField({ name: "date", type: "datetime" }),
-    defineField({ name: "modified", type: "datetime" }),
     defineField({
       name: "status",
       type: "string",
@@ -52,12 +51,6 @@ export const postType = defineType({
       type: "richText",
     }),
     defineField({ name: "featuredMedia", type: "image" }),
-    defineField({ name: "sticky", type: "boolean" }),
-    defineField({
-      name: "author",
-      type: "reference",
-      to: [{ type: "author" }],
-    }),
     defineField({
       name: "categories",
       type: "array",
@@ -72,7 +65,6 @@ export const postType = defineType({
   preview: {
     select: {
       title: "title",
-      subtitle: "author.name",
       media: "featuredMedia",
     },
   },

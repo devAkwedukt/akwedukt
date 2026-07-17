@@ -5,8 +5,7 @@ import Link from "next/link";
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
-  categoryFilter?: string | string[];
-  tagFilter?: string;
+  tagFilter?: string | string[];
   searchQuery?: string;
   baseUrl?: string;
   maxVisiblePages?: number;
@@ -15,7 +14,6 @@ interface PaginationProps {
 export function Pagination({
   currentPage,
   totalPages,
-  categoryFilter,
   tagFilter,
   searchQuery,
   baseUrl = "/posts",
@@ -30,14 +28,13 @@ export function Pagination({
   const buildUrl = (page: number) => {
     const params = new URLSearchParams();
     params.set("page", page.toString());
-    if (categoryFilter) {
-      if (Array.isArray(categoryFilter)) {
-        categoryFilter.forEach((cat) => params.append("category", cat));
+    if (tagFilter) {
+      if (Array.isArray(tagFilter)) {
+        tagFilter.forEach((tag) => params.append("tag", tag));
       } else {
-        params.set("category", categoryFilter);
+        params.set("tag", tagFilter);
       }
     }
-    if (tagFilter) params.set("tag", tagFilter);
     if (searchQuery) params.set("search", searchQuery);
     const queryString = params.toString();
     return queryString ? `${baseUrl}?${queryString}` : baseUrl;

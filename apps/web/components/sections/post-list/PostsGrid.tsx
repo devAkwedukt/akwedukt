@@ -80,17 +80,17 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
                 {post.date && (
                   <div className="text-md">{new Date(post.date).toLocaleDateString()}</div>
                 )}
-                {/*post.categories && post.categories.length > 0 && post.date && (
+                {/*post.tags && post.tags.length > 0 && post.date && (
                   <span className="">•</span>
                 )*/}
-                {post.categories && post.categories.length > 0 && (
+                {post.tags && post.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1">
-                    {post.categories.slice(0, 1).map((category) => (
+                    {post.tags.slice(0, 1).map((tag) => (
                       <span
-                        key={category._id}
-                        className={`inline-flex items-center px-2 py-1 rounded-sm text-sm font-medium ${getCategoryColor(category.name)}`}
+                        key={tag._id}
+                        className={`inline-flex items-center px-2 py-1 rounded-sm text-sm font-medium ${getCategoryColor(tag.name)}`}
                       >
-                        {category.name}
+                        {tag.name}
                       </span>
                     ))}
                   </div>

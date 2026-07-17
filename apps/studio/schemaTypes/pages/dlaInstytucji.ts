@@ -2,8 +2,6 @@ import { defineField, defineType, defineArrayMember } from "sanity";
 import { languageField } from "../../plugins/intl";
 import { pageGroups } from "../../utils/groups";
 import { seoField, documentNameField } from "../../utils/fields";
-import cooperationModelsSection from "../sections/cooperationModelsSection";
-import coalitionSection from "../sections/coalitionSection";
 
 export default defineType({
   name: "dlaInstytucji",

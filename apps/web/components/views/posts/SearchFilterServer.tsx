@@ -1,18 +1,13 @@
-import { getAllCategories } from "@/sanity/queries/posts";
+import { getAllTags } from "@/sanity/queries/posts";
 import { SearchFilter } from "./SearchFilter";
 
 interface SearchFilterServerProps {
-  initialCategories?: any[];
+  initialTags?: any[];
 }
 
-export default async function SearchFilterServer({
-  initialCategories,
-}: SearchFilterServerProps = {}) {
-  // Load categories on server side
-  const categories =
-    initialCategories && initialCategories.length > 0
-      ? initialCategories
-      : await getAllCategories();
+export default async function SearchFilterServer({ initialTags }: SearchFilterServerProps = {}) {
+  // Load tags on server side
+  const tags = initialTags && initialTags.length > 0 ? initialTags : await getAllTags();
 
-  return <SearchFilter serverCategories={categories} />;
+  return <SearchFilter serverTags={tags} />;
 }

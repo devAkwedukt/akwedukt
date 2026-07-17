@@ -3,45 +3,45 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-interface Category {
+interface Tag {
   _id: string;
   name: string;
   slug: { current: string };
 }
 
-export function usePostSearch(initialCategories: Category[] = []) {
+export function usePostSearch(initialTags: Tag[] = []) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [tags, setTags] = useState<Tag[]>(initialTags);
 
-  // Use server-provided categories
+  // Use server-provided tags
   useEffect(() => {
-    setCategories(initialCategories);
-  }, [initialCategories]);
+    setTags(initialTags);
+  }, [initialTags]);
 
   // Initialize state from URL params
   useEffect(() => {
     const query = searchParams.get("search");
-    const categoryParams = searchParams.getAll("category");
+    const tagParams = searchParams.getAll("tag");
 
     if (query) setSearchQuery(query);
-    if (categoryParams.length > 0) setSelectedCategories(categoryParams);
+    if (tagParams.length > 0) setSelectedTags(tagParams);
   }, [searchParams]);
 
   // Update URL when search state changes
   const updateURL = useCallback(
-    (query: string, cats: string[]) => {
+    (query: string, tags: string[]) => {
       const params = new URLSearchParams();
 
       if (query.trim()) {
         params.set("search", query.trim());
       }
 
-      cats.forEach((cat) => {
-        params.append("category", cat);
+      tags.forEach((tag) => {
+        params.append("tag", tag);
       });
 
       // Reset to page 1 when search changes
@@ -56,38 +56,38 @@ export function usePostSearch(initialCategories: Category[] = []) {
   const handleSearchChange = useCallback(
     (query: string) => {
       setSearchQuery(query);
-      updateURL(query, selectedCategories);
+      updateURL(query, selectedTags);
     },
-    [selectedCategories, updateURL]
+    [selectedTags, updateURL]
   );
 
-  const toggleCategory = useCallback(
-    (categoryId: string) => {
-      const newCategories = selectedCategories.includes(categoryId)
-        ? selectedCategories.filter((id) => id !== categoryId)
-        : [...selectedCategories, categoryId];
+  const toggleTag = useCallback(
+    (tagId: string) => {
+      const newTags = selectedTags.includes(tagId)
+        ? selectedTags.filter((id) => id !== tagId)
+        : [...selectedTags, tagId];
 
-      setSelectedCategories(newCategories);
-      updateURL(searchQuery, newCategories);
+      setSelectedTags(newTags);
+      updateURL(searchQuery, newTags);
     },
-    [selectedCategories, searchQuery, updateURL]
+    [selectedTags, searchQuery, updateURL]
   );
 
   const clearAllFilters = useCallback(() => {
     setSearchQuery("");
-    setSelectedCategories([]);
+    setSelectedTags([]);
     updateURL("", []);
   }, [updateURL]);
 
-  const hasActiveFilters = searchQuery.trim().length > 0 || selectedCategories.length > 0;
+  const hasActiveFilters = searchQuery.trim().length > 0 || selectedTags.length > 0;
 
   return {
     searchQuery,
-    selectedCategories,
-    categories,
+    selectedTags,
+    tags,
     hasActiveFilters,
     handleSearchChange,
-    toggleCategory,
+    toggleTag,
     clearAllFilters,
   };
 }

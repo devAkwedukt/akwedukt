@@ -13,6 +13,13 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "backgroundImageMob",
+      title: "Background Image Mobile",
+      type: "image",
+      options: { hotspot: true },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: "title",
       title: "Title",
       type: "string",

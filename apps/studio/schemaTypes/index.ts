@@ -16,7 +16,6 @@ import seo from "./seo";
 import img from "./img";
 import richText from "./richText";
 import leadSection from "./sections/leadSection";
-import postsSection from "./sections/postsSection";
 import heroSection from "./sections/heroSection";
 import heroBackgroundSection from "./sections/heroBackgroundSection";
 import aboutSection from "./sections/aboutSection";
@@ -53,7 +52,6 @@ import heroBackgroundSlide from "./objects/heroBackgroundSlide";
 import partner from "./objects/partner";
 import testimonial from "./objects/testimonial";
 import { footerType } from "./footerType";
-import { authorType } from "./authorType";
 import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { tagType } from "./tagType";
@@ -77,7 +75,6 @@ export const schemaTypes = [
   richText,
   img,
   leadSection,
-  postsSection,
   heroSection,
   heroBackgroundSection,
   aboutSection,
@@ -115,7 +112,6 @@ export const schemaTypes = [
   testimonial,
   footerType,
   //WP IMPORT-TYPES
-  authorType,
   categoryType,
   postType,
   tagType,

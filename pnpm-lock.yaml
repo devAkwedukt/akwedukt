@@ -88,12 +88,6 @@ importers:
       '@types/react':
         specifier: ^19.1
         version: 19.2.14
-      '@wordpress/block-serialization-default-parser':
-        specifier: ^5.46.0
-        version: 5.46.0
-      html-entities:
-        specifier: ^2.6.0
-        version: 2.6.0
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1(@noble/hashes@2.0.1)
@@ -106,9 +100,6 @@ importers:
       typescript:
         specifier: ^5.8
         version: 5.9.2
-      wp-types:
-        specifier: ^4.69.0
-        version: 4.69.0
 
   apps/web:
     dependencies:
@@ -3461,10 +3452,6 @@ packages:
   '@vitest/utils@4.1.2':
     resolution: {integrity: sha512-xw2/TiX82lQHA06cgbqRKFb5lCAy3axQ4H4SoUFhUsg+wztiet+co86IAMDtF6Vm1hc7J6j09oh/rgDn+JdKIQ==}
 
-  '@wordpress/block-serialization-default-parser@5.46.0':
-    resolution: {integrity: sha512-j9AWXtuBbjntWWapDTZVyLmRVYOA1me3lqR+ugkN54HvNiyQaDw0tt6JfJYGFTWhJ8peU90G2TO+IiFf6YDKQQ==}
-    engines: {node: '>=18.12.0', npm: '>=8.19.2'}
-
   '@xstate/react@5.0.5':
     resolution: {integrity: sha512-MfF/cPHa3lNKJmGFpUycMbNP25qBXyZXrxc8VYNroAu0Nnk0DV5WzAkTcQXma0xEC4dSwsoA+YQuKbZATtqvgg==}
     peerDependencies:
@@ -4859,9 +4846,6 @@ packages:
   html-encoding-sniffer@6.0.0:
     resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0}
-
-  html-entities@2.6.0:
-    resolution: {integrity: sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==}
 
   html-parse-stringify@3.0.1:
     resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
@@ -7335,9 +7319,6 @@ packages:
 
   wordwrap@1.0.0:
     resolution: {integrity: sha512-gvVzJFlPycKc5dZN4yPkP8w7Dc37BtP1yczEneOb4uq34pXZcvrtRTmWV8W+Ume+XCxKgbjM+nevkyFPMybd4Q==}
-
-  wp-types@4.69.0:
-    resolution: {integrity: sha512-2w0i2ygylpbYpqFskg1NlvH/1DM8thZuhxjihFRHdvjgFkmzJ2cHl2kq9cBnxYWHyLHzRiLI2TupKbq3yl2STQ==}
 
   wrap-ansi@7.0.0:
     resolution: {integrity: sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==}
@@ -10701,7 +10682,7 @@ snapshots:
     dependencies:
       '@date-fns/tz': 1.4.1
       '@date-fns/utc': 2.1.1
-      '@sanity/client': 7.20.0(debug@4.4.3)
+      '@sanity/client': 7.22.0
       '@sanity/types': 5.19.0(@types/react@19.2.14)(debug@4.4.3)
       date-fns: 4.1.0
       rxjs: 7.8.2
@@ -11408,8 +11389,6 @@ snapshots:
       '@vitest/pretty-format': 4.1.2
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
-
-  '@wordpress/block-serialization-default-parser@5.46.0': {}
 
   '@xstate/react@5.0.5(@types/react@19.2.14)(react@19.2.3)(xstate@5.30.0)':
     dependencies:
@@ -13019,8 +12998,6 @@ snapshots:
       '@exodus/bytes': 1.15.0(@noble/hashes@2.0.1)
     transitivePeerDependencies:
       - '@noble/hashes'
-
-  html-entities@2.6.0: {}
 
   html-parse-stringify@3.0.1:
     dependencies:
@@ -16117,10 +16094,6 @@ snapshots:
   word-wrap@1.2.5: {}
 
   wordwrap@1.0.0: {}
-
-  wp-types@4.69.0:
-    dependencies:
-      typescript: 5.9.2
 
   wrap-ansi@7.0.0:
     dependencies:

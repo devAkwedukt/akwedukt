@@ -45,7 +45,6 @@ export const structure: StructureToolOptions = {
         Collection(S, { type: "project", title: "Projekty", icon: EarthGlobeIcon }),
         // NOWE KOLEKCJE (Z importów WP): - POSTY, AUTHOR, TAGS, CATEGORIES
         Collection(S, { type: "post", title: "Wpisy", icon: ComposeIcon }),
-        Collection(S, { type: "author", title: "Autorzy Akwedukt", icon: PresentationIcon }),
         Collection(S, { type: "category", title: "Kategorie", icon: BookIcon }),
         Collection(S, { type: "tag", title: "Tagi", icon: TagsIcon }),
         S.divider().title("Ustawienia"),

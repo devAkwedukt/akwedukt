@@ -5,7 +5,6 @@ import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
-import { Breadcrumbs } from "@/components/ui";
 import HeaderTest from "@/components/HeaderTest";
 
 export const metadata: Metadata = {

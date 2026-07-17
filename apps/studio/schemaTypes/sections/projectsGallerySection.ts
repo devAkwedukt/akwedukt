@@ -137,6 +137,19 @@ export default defineType({
       description: "Pełny URL do strony z wszystkimi projektami",
     }),
     defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Szary neutralny", value: "neutral-50" },
+          { title: "Niebieski jasny", value: "deep-navy-blue-50" },
+        ],
+      },
+      initialValue: "white",
+    }),
+    defineField({
       name: "decorationVariant",
       title: "Wariant dekoracji",
       type: "string",

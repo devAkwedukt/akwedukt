@@ -22,9 +22,20 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
             <div key={index} className="flex-[0_0_100%] relative">
               {/* BACKGROUND IMAGE */}
               {slide.backgroundImage && (
-                <div className="absolute z-0">
+                <div className="absolute z-0 hidden md:block">
                   <SanityImage
                     image={slide.backgroundImage}
+                    className="object-cover w-full h-full"
+                    alt={slide.title || "Hero background image"}
+                  />
+                  {/* Optional overlay for better text readability */}
+                  <div className="absolute inset-0" />
+                </div>
+              )}
+              {slide.backgroundImageMob && (
+                <div className="absolute z-0 md:hidden">
+                  <SanityImage
+                    image={slide.backgroundImageMob}
                     className="object-cover w-full h-full"
                     alt={slide.title || "Hero background image"}
                   />
