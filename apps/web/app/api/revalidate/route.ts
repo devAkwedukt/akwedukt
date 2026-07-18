@@ -17,9 +17,34 @@ type WebhookPayload = {
 const getPathsToRevalidate = (body: WebhookPayload): string[] => {
   const paths: string[] = [];
 
-  // Revalidate specific page by slug
-  if (body.slug?.current && body.locale) {
+  // Revalidate specific page by slug (ignore placeholder "string" values)
+  if (
+    body.slug?.current &&
+    body.locale &&
+    body.slug.current !== "string" &&
+    body.locale !== "string"
+  ) {
     paths.push(`/${body.locale}/${body.slug.current}`);
+  }
+
+  // Revalidate pages with sections by document type
+  if (body._type && body._type !== "string") {
+    const locale = body.locale && body.locale !== "string" ? body.locale : "pl";
+
+    // Map document types to their paths
+    const typeToPath: Record<string, string> = {
+      home: `/${locale}`,
+      coNowego: `/${locale}/co-nowego`,
+      oNas: `/${locale}/o-nas`,
+      wspolpraca: `/${locale}/wspolpraca`,
+      dlaRodzicow: `/${locale}/dla-rodzicow`,
+      volunteerWithUs: `/${locale}/volunteer-with-us`,
+      wesprzyj: `/${locale}/wesprzyj`,
+    };
+
+    if (typeToPath[body._type]) {
+      paths.push(typeToPath[body._type]);
+    }
   }
 
   return paths;
@@ -28,24 +53,25 @@ const getPathsToRevalidate = (body: WebhookPayload): string[] => {
 const getTagsToRevalidate = (body: WebhookPayload): string[] => {
   const tags: string[] = [];
 
-  // Add type-specific tag
-  if (body._type) {
+  // Add type-specific tag (ignore placeholder "string")
+  if (body._type && body._type !== "string") {
     tags.push(body._type);
   }
 
-  // Add slug-based tag for specific pages
-  if (body.slug?.current) {
+  // Add slug-based tag for specific pages (ignore placeholder "string")
+  if (body.slug?.current && body.slug.current !== "string") {
     tags.push(`slug:${body.slug.current}`);
   }
 
-  // Add locale-specific tag
-  if (body.locale) {
+  // Add locale-specific tag (ignore placeholder "string")
+  if (body.locale && body.locale !== "string") {
     tags.push(`locale:${body.locale}`);
   }
 
-  // Fallback to sanity tag if no specific tags
+  // Only revalidate everything if we have no valid specific tags
   if (tags.length === 0) {
-    tags.push("sanity");
+    console.log("⚠️ No valid tags found, skipping revalidation to avoid ISR waste");
+    return [];
   }
 
   return tags;
