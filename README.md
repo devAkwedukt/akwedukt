@@ -1,6 +1,6 @@
-# 🚀 SOD Monorepo Template
+# 🚀 SOD Monorepo
 
-Welcome to the SOD Monorepo Template. This repository is set up to support multiple apps in a single workspace while keeping development simple and consistent.
+Welcome to the SOD Monorepo. This repository is set up to support multiple apps in a single workspace while keeping development simple and consistent.
 
 ## 🌟 What's Inside?
 
