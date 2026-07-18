@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
@@ -14,15 +14,49 @@ type WebhookPayload = {
   path?: string;
 };
 
+const getPathsToRevalidate = (body: WebhookPayload): string[] => {
+  const paths: string[] = [];
+
+  // Revalidate specific page by slug
+  if (body.slug?.current && body.locale) {
+    paths.push(`/${body.locale}/${body.slug.current}`);
+  }
+
+  return paths;
+};
+
 const getTagsToRevalidate = (body: WebhookPayload): string[] => {
-  // Revalidate entire site for any Sanity change
-  // Simple but effective approach
-  return ["sanity"];
+  const tags: string[] = [];
+
+  // Add type-specific tag
+  if (body._type) {
+    tags.push(body._type);
+  }
+
+  // Add slug-based tag for specific pages
+  if (body.slug?.current) {
+    tags.push(`slug:${body.slug.current}`);
+  }
+
+  // Add locale-specific tag
+  if (body.locale) {
+    tags.push(`locale:${body.locale}`);
+  }
+
+  // Fallback to sanity tag if no specific tags
+  if (tags.length === 0) {
+    tags.push("sanity");
+  }
+
+  return tags;
 };
 
 export async function POST(req: NextRequest) {
   try {
+    console.log("🔔 Webhook received at /api/revalidate");
+
     if (!process.env.SANITY_REVALIDATE_SECRET) {
+      console.error("❌ Missing SANITY_REVALIDATE_SECRET");
       return new Response("Missing environment variable SANITY_REVALIDATE_SECRET", { status: 500 });
     }
 
@@ -31,8 +65,11 @@ export async function POST(req: NextRequest) {
       process.env.SANITY_REVALIDATE_SECRET
     );
 
+    console.log("🔍 Signature validation:", { isValidSignature, body });
+
     if (!isValidSignature) {
       const message = "Invalid signature";
+      console.error("❌", message, { isValidSignature, body });
       return new Response(JSON.stringify({ message, isValidSignature, body }), {
         status: 401,
       });
@@ -40,19 +77,33 @@ export async function POST(req: NextRequest) {
 
     if (!body) {
       const message = "Missing body";
+      console.error("❌", message, { body });
       return new Response(JSON.stringify({ message, body }), {
         status: 400,
       });
     }
 
+    const paths = getPathsToRevalidate(body);
     const tags = getTagsToRevalidate(body);
-    tags.forEach((tag) => revalidateTag(tag, "max"));
 
-    const message = `Revalidated tags: ${tags.join(", ")}`;
-    console.log(message, { body });
-    return NextResponse.json({ body, message, tags });
+    console.log("🏷️ Tags to revalidate:", tags);
+    console.log("🛤️ Paths to revalidate:", paths);
+
+    tags.forEach((tag) => {
+      console.log(`🔄 Revalidating tag: ${tag}`);
+      revalidateTag(tag, "max");
+    });
+
+    paths.forEach((path) => {
+      console.log(`🔄 Revalidating path: ${path}`);
+      revalidatePath(path);
+    });
+
+    const message = `Revalidated tags: ${tags.join(", ")}, paths: ${paths.join(", ")}`;
+    console.log("✅", message, { body });
+    return NextResponse.json({ body, message, tags, paths });
   } catch (err) {
-    console.error(err);
+    console.error("❌ Webhook error:", err);
     return new Response((err as Error).message, { status: 500 });
   }
 }
