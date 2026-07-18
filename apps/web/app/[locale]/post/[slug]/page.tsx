@@ -81,7 +81,15 @@ export default async function PostPage({
               height={300}
             />
             <div>
-              {p.date && <div>{new Date(p.date).toLocaleDateString()}</div>}
+              {p.date && (
+                <div>
+                  {new Date(p.date).toLocaleDateString("pl-PL", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </div>
+              )}
               <SanityRichText value={p.content} withImageSlider={true} />
             </div>
           </div>

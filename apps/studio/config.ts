@@ -5,10 +5,7 @@ type LanguageConfig = {
   title: string;
 };
 
-export const LANGUAGES: LanguageConfig[] = [
-  { id: "pl", title: "PL" },
-  { id: "en", title: "EN" },
-];
+export const LANGUAGES: LanguageConfig[] = [{ id: "pl", title: "PL" }];
 
 type DocumentConfig = {
   _type: string;

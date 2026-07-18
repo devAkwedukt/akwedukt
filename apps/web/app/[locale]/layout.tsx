@@ -71,7 +71,7 @@ export default async function RootLayout({
   setRequestLocale(locale); // Enables static rendering, this should be done in every page/layout
 
   return (
-    <html lang="en">
+    <html lang="pl">
       <body className={`${fraunces.variable} ${jakarta.variable} antialiased`}>
         <NextIntlClientProvider>
           <Navbar />

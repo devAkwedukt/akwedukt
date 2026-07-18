@@ -78,7 +78,13 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
             <div className="pt-6 flex flex-col grow">
               <div className="flex items-center justify-between gap-2 mb-2">
                 {post.date && (
-                  <div className="text-md">{new Date(post.date).toLocaleDateString()}</div>
+                  <div className="text-md">
+                    {new Date(post.date).toLocaleDateString("pl-PL", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </div>
                 )}
                 {/*post.tags && post.tags.length > 0 && post.date && (
                   <span className="">•</span>

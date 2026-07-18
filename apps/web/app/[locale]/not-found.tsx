@@ -1,10 +1,6 @@
 import NotFound from "@/components/views/NotFound";
 
-export default async function LocaleNotFound({
-  params,
-}: {
-  params: Promise<{ locale: "pl" | "en" }>;
-}) {
+export default async function LocaleNotFound({ params }: { params: Promise<{ locale: "pl" }> }) {
   const resolvedParams = await params;
   const locale = resolvedParams?.locale || "pl";
 
