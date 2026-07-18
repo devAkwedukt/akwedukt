@@ -16,27 +16,28 @@ type WebhookPayload = {
 
 const getPathsToRevalidate = (body: WebhookPayload): string[] => {
   const paths: string[] = [];
+  const locale = body.locale || "pl";
 
   // Глобальні шляхи для всіх змін
-  paths.push("/");
+  paths.push(`/${locale}`);
 
   // Специфічні шляхи за типом документа
   if (body._type === "post" && body.slug?.current) {
-    paths.push(`/post/${body.slug.current}`);
-    paths.push("/posts");
+    paths.push(`/${locale}/post/${body.slug.current}`);
+    paths.push(`/${locale}/posts`);
   }
 
   if (body._type === "project" && body.slug?.current) {
-    paths.push(`/project/${body.slug.current}`);
-    paths.push("/projects");
+    paths.push(`/${locale}/project/${body.slug.current}`);
+    paths.push(`/${locale}/projects`);
   }
 
   if (body._type === "category") {
-    paths.push("/posts");
+    paths.push(`/${locale}/posts`);
   }
 
   if (body._type === "tag") {
-    paths.push("/posts");
+    paths.push(`/${locale}/posts`);
   }
 
   // Якщо вказаний конкретний path в payload
