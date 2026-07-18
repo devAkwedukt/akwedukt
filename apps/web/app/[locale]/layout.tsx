@@ -93,7 +93,7 @@ export default async function RootLayout({
           <SanityPreview />
         </NextIntlClientProvider>
       </body>
-      <SanityLive refreshOnMount={false} refreshOnFocus={false} refreshOnReconnect={false} />
+      <SanityLive />
     </html>
   );
 }

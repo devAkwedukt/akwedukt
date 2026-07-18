@@ -10,4 +10,7 @@ export const { sanityFetch, SanityLive } = defineLive({
   client,
   browserToken: process.env.SANITY_API_READ_TOKEN,
   serverToken: process.env.SANITY_API_READ_TOKEN,
+  fetchOptions: {
+    revalidate: Number(process.env.DEFAULT_REVALIDATE),
+  },
 });
