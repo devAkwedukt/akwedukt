@@ -4,6 +4,9 @@ declare module "klaro" {
     storageName?: string;
     cookieExpiresAfterDays?: number;
     privacyPolicy?: string;
+    mustConsent?: boolean;
+    acceptAll?: boolean;
+    noticeAsModal?: boolean;
     services: Service[];
     translations: Translations;
   }
@@ -44,5 +47,6 @@ declare module "klaro" {
     };
   }
 
-  export function show(config: KlaroConfig): void;
+  export function show(config: KlaroConfig, modal?: boolean | { modal?: boolean }): void;
+  export function render(config: KlaroConfig, opts?: { show?: boolean; modal?: boolean }): void;
 }
