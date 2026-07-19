@@ -44,6 +44,10 @@ export default defineType({
         {
           type: "reference",
           to: { type: "post" },
+          options: {
+            filter: "status == $status",
+            params: { status: "publish" },
+          },
         },
       ],
     }),

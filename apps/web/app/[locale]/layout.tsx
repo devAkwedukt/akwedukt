@@ -15,6 +15,7 @@ import { setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/reusable/navbar/Navbar";
 import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
+import KlaroConsent from "@/components/KlaroConsent";
 
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
@@ -91,6 +92,7 @@ export default async function RootLayout({
           <LenisScrollProvider />
           <Toaster />
           <SanityPreview />
+          <KlaroConsent />
         </NextIntlClientProvider>
       </body>
       {/*<SanityLive />*/}
