@@ -14,10 +14,6 @@ export const metadata: Metadata = {
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  console.log({
-    revalidate: Number(process.env.DEFAULT_REVALIDATE),
-    raw: process.env.DEFAULT_REVALIDATE,
-  });
 
   const home = q
     .parameters<{ locale: string }>()
