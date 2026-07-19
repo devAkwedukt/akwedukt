@@ -30,6 +30,63 @@ export const klaroConfig: KlaroConfig = {
         },
       },
     },
+    {
+      name: "youtube",
+      default: false,
+      purposes: ["marketing"],
+      cookies: [
+        [/^VISITOR_INFO1_LIVE/, "/", ".youtube.com"],
+        [/^YSC/, "/", ".youtube.com"],
+        [/^PREF/, "/", ".youtube.com"],
+        [/^CONSENT/, "/", ".youtube.com"],
+      ],
+      translations: {
+        zz: {
+          title: "YouTube",
+          description:
+            "YouTube is a video sharing platform that uses cookies for analytics and personalization.",
+        },
+        pl: {
+          title: "YouTube",
+          description:
+            "YouTube to platforma udostępniania wideo, która używa plików cookies do analizy i personalizacji.",
+        },
+        en: {
+          title: "YouTube",
+          description:
+            "YouTube is a video sharing platform that uses cookies for analytics and personalization.",
+        },
+      },
+    },
+    {
+      name: "vimeo",
+      default: false,
+      purposes: ["marketing"],
+      cookies: [
+        [/^vuid/, "/", ".vimeo.com"],
+        [/^__utma/, "/", ".vimeo.com"],
+        [/^__utmb/, "/", ".vimeo.com"],
+        [/^__utmc/, "/", ".vimeo.com"],
+        [/^__utmz/, "/", ".vimeo.com"],
+      ],
+      translations: {
+        zz: {
+          title: "Vimeo",
+          description:
+            "Vimeo is a video hosting platform that uses cookies for analytics and performance.",
+        },
+        pl: {
+          title: "Vimeo",
+          description:
+            "Vimeo to platforma hostingu wideo, która używa plików cookies do analizy i wydajności.",
+        },
+        en: {
+          title: "Vimeo",
+          description:
+            "Vimeo is a video hosting platform that uses cookies for analytics and performance.",
+        },
+      },
+    },
   ],
 
   translations: {
@@ -50,6 +107,7 @@ export const klaroConfig: KlaroConfig = {
       close: "Close",
       purposes: {
         analytics: "Analytics",
+        marketing: "Marketing",
       },
     },
     pl: {
@@ -71,6 +129,7 @@ export const klaroConfig: KlaroConfig = {
       close: "Zamknij",
       purposes: {
         analytics: "Analityka",
+        marketing: "Marketing",
       },
     },
     en: {
@@ -90,6 +149,7 @@ export const klaroConfig: KlaroConfig = {
       close: "Close",
       purposes: {
         analytics: "Analytics",
+        marketing: "Marketing",
       },
     },
   },
