@@ -61,6 +61,45 @@ export const postType = defineType({
       type: "array",
       of: [{ type: "reference", to: [{ type: "tag" }] }],
     }),
+    defineField({
+      name: "slider",
+      title: "Slider zdjęć",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "image",
+              title: "Zdjęcie",
+              type: "image",
+              options: {
+                hotspot: true,
+              },
+              fields: [
+                {
+                  name: "alt",
+                  title: "Opis alternatywny",
+                  type: "string",
+                },
+              ],
+              validation: (Rule) => Rule.required(),
+            }),
+          ],
+          preview: {
+            select: {
+              image: "image",
+            },
+            prepare: ({ image }) => {
+              return {
+                title: "Zdjęcie",
+                media: image,
+              };
+            },
+          },
+        },
+      ],
+    }),
   ],
   preview: {
     select: {

@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/ui";
+import ImageSection from "@/components/reusable/ImageSection";
 
 // QROQD Query builders
 const postSlugs = q.star
@@ -93,6 +94,7 @@ export default async function PostPage({
               <SanityRichText value={p.content} withImageSlider={true} />
             </div>
           </div>
+          <ImageSection slider={p.slider} />
         </div>
       </main>
     </div>

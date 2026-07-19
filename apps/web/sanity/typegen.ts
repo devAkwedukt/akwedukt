@@ -173,6 +173,7 @@ export type WhatNewCurrentMobile = {
 };
 
 export type PhotoInfoSectionButton = {
+  ctaVariant?: "primary" | "secondary" | "link";
   text?: string;
   url?: string;
 };
@@ -224,9 +225,85 @@ export type Photo = {
   _type: "image";
 };
 
+export type DocumentsObjectFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "object.file.media" in schema
+  _type: "file";
+};
+
 export type ExternalImage = {
   _type: "externalImage";
   url?: string;
+};
+
+export type PolicyDetailsSection = {
+  _type: "policyDetailsSection";
+  title?: string;
+  description?: RichText;
+  footerImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  footerImageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  cards?: Array<{
+    content?: RichText;
+    _key: string;
+  }>;
+};
+
+export type PolicySection = {
+  _type: "policySection";
+  title?: string;
+  description?: RichText;
+  decor?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
+};
+
+export type DocumentsTabSection = {
+  _type: "documentsTabSection";
+  title?: string;
+  description?: string;
+  tabs?: Array<{
+    title?: string;
+    documents?: Array<{
+      title?: string;
+      description?: string;
+      file?: DocumentsObjectFile;
+      buttonText?: string;
+      _key: string;
+    }>;
+    _key: string;
+  }>;
+};
+
+export type VolunteerTypes = {
+  _type: "volunteerTypes";
+  title?: string;
+  sections?: Array<{
+    number?: string;
+    title?: string;
+    items?: Array<{
+      title?: string;
+      description?: string;
+      _key: string;
+    }>;
+    _key: string;
+  }>;
 };
 
 export type Testimonial = {
@@ -477,8 +554,10 @@ export type PhotoInfoSection = {
   _type: "photoInfoSection";
   title?: string;
   photo?: Img;
+  imagePosition?: "left" | "right";
   description?: RichText;
   button?: PhotoInfoSectionButton;
+  backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   decorImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -640,6 +719,20 @@ export type ProjectTitleSection = {
   _type: "projectTitleSection";
   title?: string;
   description?: RichText;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  imageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   enabled?: boolean;
 };
 
@@ -815,12 +908,6 @@ export type HeroSection = {
   >;
 };
 
-export type LeadSection = {
-  _type: "leadSection";
-  title?: string;
-  subtitle?: string;
-};
-
 export type Img = {
   _type: "img";
   asset?: SanityImageAssetReference;
@@ -987,6 +1074,20 @@ export type FooterReference = {
   [internalGroqTypeReferenceTo]?: "footer";
 };
 
+export type DocumentsReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "documents";
+};
+
+export type PrivacyPolicyReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "privacyPolicy";
+};
+
 export type CategoryReference = {
   _ref: string;
   _type: "reference";
@@ -1016,6 +1117,8 @@ export type InternationalizedArrayReferenceValue = {
     | WolontariatReference
     | WesprzyjReference
     | FooterReference
+    | DocumentsReference
+    | PrivacyPolicyReference
     | PostReference
     | ProjectReference
     | CategoryReference
@@ -1132,6 +1235,17 @@ export type Post = {
       _key: string;
     } & TagReference
   >;
+  slider?: Array<{
+    image?: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: string;
+      _type: "image";
+    };
+    _key: string;
+  }>;
 };
 
 export type SanityImageCrop = {
@@ -1148,6 +1262,47 @@ export type SanityImageHotspot = {
   y?: number;
   height?: number;
   width?: number;
+};
+
+export type PrivacyPolicy = {
+  _id: string;
+  _type: "privacyPolicy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & ProjectTitleSection)
+    | ({
+        _key: string;
+      } & PolicySection)
+    | ({
+        _key: string;
+      } & PolicyDetailsSection)
+  >;
+};
+
+export type Documents = {
+  _id: string;
+  _type: "documents";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  locale?: string;
+  seo?: Seo;
+  documentName?: string;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & DocumentsTabSection)
+    | ({
+        _key: string;
+      } & FaqAccordionSection)
+  >;
 };
 
 export type Footer = {
@@ -1214,9 +1369,15 @@ export type Wolontariat = {
   seo?: Seo;
   documentName?: string;
   sections?: Array<
-    {
-      _key: string;
-    } & DocumentsSection
+    | ({
+        _key: string;
+      } & VolunteerTypes)
+    | ({
+        _key: string;
+      } & PhotoInfoSection)
+    | ({
+        _key: string;
+      } & DocumentsSection)
   >;
 };
 
@@ -1592,7 +1753,12 @@ export type AllSanitySchemaTypes =
   | ObjectImage
   | SliderObjectImage
   | Photo
+  | DocumentsObjectFile
   | ExternalImage
+  | PolicyDetailsSection
+  | PolicySection
+  | DocumentsTabSection
+  | VolunteerTypes
   | Testimonial
   | Partner
   | HeroBackgroundSlide
@@ -1630,7 +1796,6 @@ export type AllSanitySchemaTypes =
   | AboutSection
   | HeroBackgroundSection
   | HeroSection
-  | LeadSection
   | Img
   | RichText
   | Seo
@@ -1650,6 +1815,8 @@ export type AllSanitySchemaTypes =
   | WolontariatReference
   | WesprzyjReference
   | FooterReference
+  | DocumentsReference
+  | PrivacyPolicyReference
   | CategoryReference
   | TagReference
   | InternationalizedArrayReferenceValue
@@ -1660,6 +1827,8 @@ export type AllSanitySchemaTypes =
   | Post
   | SanityImageCrop
   | SanityImageHotspot
+  | PrivacyPolicy
+  | Documents
   | Footer
   | Wesprzyj
   | Wolontariat
@@ -1875,21 +2044,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       projectTypes: null;
       projectStatus: null;
       sections: Array<
-        {
-          _key: string;
-        } & DocumentsSection
-      > | null;
-    }
-  | {
-      _id: string;
-      title: null;
-      slug: null;
-      mainImage: null;
-      shortDescription: null;
-      startDate: null;
-      projectTypes: null;
-      projectStatus: null;
-      sections: Array<
         | ({
             _key: string;
           } & AboutSection)
@@ -2036,10 +2190,49 @@ export type PROJECT_BY_ID_QUERY_RESULT =
           } & DocumentsSection)
         | ({
             _key: string;
+          } & PhotoInfoSection)
+        | ({
+            _key: string;
+          } & VolunteerTypes)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & DocumentsSection)
+        | ({
+            _key: string;
           } & TeacherBenefitsSection)
         | ({
             _key: string;
           } & TeacherEngagementSection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & DocumentsTabSection)
+        | ({
+            _key: string;
+          } & FaqAccordionSection)
       > | null;
     }
   | {
@@ -2085,6 +2278,27 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & ProjectsGallerySection)
+      > | null;
+    }
+  | {
+      _id: string;
+      title: null;
+      slug: null;
+      mainImage: null;
+      shortDescription: null;
+      startDate: null;
+      projectTypes: null;
+      projectStatus: null;
+      sections: Array<
+        | ({
+            _key: string;
+          } & PolicyDetailsSection)
+        | ({
+            _key: string;
+          } & PolicySection)
+        | ({
+            _key: string;
+          } & ProjectTitleSection)
       > | null;
     }
   | {

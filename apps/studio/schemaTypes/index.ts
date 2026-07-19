@@ -15,7 +15,6 @@ import settings from "./settings";
 import seo from "./seo";
 import img from "./img";
 import richText from "./richText";
-import leadSection from "./sections/leadSection";
 import heroSection from "./sections/heroSection";
 import heroBackgroundSection from "./sections/heroBackgroundSection";
 import aboutSection from "./sections/aboutSection";
@@ -56,6 +55,12 @@ import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { tagType } from "./tagType";
 import { externalImageType } from "./externalImageType";
+import volunteerTypes from "./sections/volunteerTypes";
+import documentsTabSection from "./sections/documentsTabSection";
+import documents from "./pages/documents";
+import privacyPolicy from "./pages/privacyPolicy";
+import policySection from "./sections/policySection";
+import policyDetailsSection from "./sections/policyDetailsSection";
 
 export const schemaTypes = [
   project,
@@ -74,7 +79,6 @@ export const schemaTypes = [
   seo,
   richText,
   img,
-  leadSection,
   heroSection,
   heroBackgroundSection,
   aboutSection,
@@ -111,6 +115,12 @@ export const schemaTypes = [
   partner,
   testimonial,
   footerType,
+  volunteerTypes,
+  documentsTabSection,
+  documents,
+  privacyPolicy,
+  policySection,
+  policyDetailsSection,
   //WP IMPORT-TYPES
   categoryType,
   postType,

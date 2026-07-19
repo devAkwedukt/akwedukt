@@ -1,7 +1,6 @@
 "use client";
 
 import type { DocumentsSection } from "@/sanity/typegen";
-//import { Button } from "../ui";
 import { SanityFile } from "@/sanity/file/SanityFile";
 import { IconButton } from "../ui/IconButton";
 

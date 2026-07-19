@@ -21,6 +21,19 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "imagePosition",
+      title: "Pozycja zdjęcia",
+      type: "string",
+      initialValue: "left",
+      options: {
+        layout: "dropdown",
+        list: [
+          { title: "Po lewej", value: "left" },
+          { title: "Po prawej", value: "right" },
+        ],
+      },
+    }),
+    defineField({
       name: "description",
       title: "Opis",
       type: "richText",
@@ -34,6 +47,19 @@ export default defineType({
       group: "content",
       fields: [
         defineField({
+          name: "ctaVariant",
+          title: "Wariant przycisku",
+          type: "string",
+          options: {
+            list: [
+              { title: "Podstawowy", value: "primary" },
+              { title: "Dodatkowy", value: "secondary" },
+              { title: "Link", value: "link" },
+            ],
+          },
+          initialValue: "link",
+        }),
+        defineField({
           name: "text",
           title: "Tekst przycisku",
           type: "string",
@@ -45,6 +71,19 @@ export default defineType({
           description: "Może być pełnym URL lub ścieżką wewnętrznej strony (np. '/o-nas')",
         }),
       ],
+    }),
+    defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Szary neutralny", value: "neutral-50" },
+          { title: "Niebieski jasny", value: "deep-navy-blue-50" },
+        ],
+      },
+      initialValue: "white",
     }),
     defineField({
       name: "decorImage",

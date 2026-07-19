@@ -121,24 +121,24 @@ async function Footer() {
         <div className="flex flex-col md:flex-row gap-1 md:gap-4 items-start md:items-center">
           <Link
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
-            href="/regulaminy-i-dokumenty"
+            href="/documents"
           >
             Regulaminy i dokumenty
           </Link>
           <span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>
           <Link
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
-            href="/polityka-prywatnosci"
+            href="/privacy-policy"
           >
             Polityka prywatności
           </Link>
-          <span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>
-          <Link
-            className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
-            href="/cookies"
-          >
-            Cookies
-          </Link>
+          {/*<span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>*/}
+          {/*<Link*/}
+          {/*  className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"*/}
+          {/*  href="/cookies"*/}
+          {/*>*/}
+          {/*  Cookies*/}
+          {/*</Link>*/}
         </div>
       </div>
     </footer>

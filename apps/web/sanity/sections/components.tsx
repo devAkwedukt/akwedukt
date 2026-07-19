@@ -28,6 +28,10 @@ import type {
   SupportHeroSection,
   SupportOptionsSection,
   SupportImpactSection,
+  VolunteerTypes,
+  DocumentsTabSection,
+  PolicySection,
+  PolicyDetailsSection,
 } from "@/sanity/typegen";
 import ProjectsGalleryWrapper from "@/components/sections/project-list/ProjectsGalleryWrapper";
 import PostsGalleryWrapper from "@/components/sections/post-list/PostsGalleryWrapper";
@@ -61,6 +65,10 @@ import CoalitionSectionComponent from "@/components/views/cooperation/CoalitionS
 import SupportHeroSectionComponent from "@/components/reusable/SupportHeroSection";
 import SupportOptionsSectionComponent from "@/components/reusable/SupportOptionsSection";
 import SupportImpactSectionComponent from "@/components/reusable/SupportImpactSection";
+import VolunteerTypesComponent from "@/components/VolunteerTypes";
+import DocumentsTabSectionComponent from "@/components/DocumentsTabSection";
+import PolicySectionComponent from "@/components/reusable/PolicySection";
+import PolicyDetailsSectionComponent from "@/components/reusable/PolicyDetailsSection";
 
 /**
  * Example: A `section` registry mapping Sanity `_type` values to React components.
@@ -156,5 +164,13 @@ export const components: { [key: string]: ComponentType<any> } = {
   ),
   supportImpactSection: ({ item }: { item: SupportImpactSection }) => (
     <SupportImpactSectionComponent item={item} />
+  ),
+  volunteerTypes: ({ item }: { item: VolunteerTypes }) => <VolunteerTypesComponent item={item} />,
+  documentsTabSection: ({ item }: { item: DocumentsTabSection }) => (
+    <DocumentsTabSectionComponent section={item} />
+  ),
+  policySection: ({ item }: { item: PolicySection }) => <PolicySectionComponent item={item} />,
+  policyDetailsSection: ({ item }: { item: PolicyDetailsSection }) => (
+    <PolicyDetailsSectionComponent section={item} />
   ),
 };

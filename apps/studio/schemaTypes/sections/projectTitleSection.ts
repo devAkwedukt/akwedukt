@@ -18,6 +18,16 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "image",
+      title: "Obraz",
+      type: "image",
+    }),
+    defineField({
+      name: "imageMob",
+      title: "Obraz dla telefonów",
+      type: "image",
+    }),
+    defineField({
       name: "enabled",
       title: "Włącz sekcję",
       type: "boolean",

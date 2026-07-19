@@ -18,18 +18,23 @@ export function ImageSlider({ images }: { images: ImageSlide[] }) {
   if (!images?.length) return null;
 
   return (
-    <div className="mt-8">
-      <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex">
+    <div className="max-w-480 mx-auto w-full py-8 md:py-14 flex flex-col items-center gap-6">
+      <div ref={emblaRef} className="w-full overflow-hidden">
+        <div className="flex gap-6">
           {images.map((image, index) => (
-            <div key={index} className="flex-[0_0_100%]">
-              <div className="flex justify-center max-h-[75dvh] w-full">
-                {image._type === "image" ? (
-                  <SanityImage className="object-cover" image={image} />
-                ) : (
-                  <img src={image.url} alt={image.alt || ""} className="object-cover" />
-                )}
-              </div>
+            <div
+              key={index}
+              className="flex-[0_0_100%] aspect-video overflow-hidden max-h-200 active:cursor-grabbing"
+            >
+              {image._type === "image" ? (
+                <SanityImage className="object-cover w-full h-full object-center" image={image} />
+              ) : (
+                <img
+                  src={image.url}
+                  alt={image.alt || ""}
+                  className="object-cover w-full h-full object-center"
+                />
+              )}
             </div>
           ))}
         </div>
