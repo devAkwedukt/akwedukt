@@ -1,7 +1,7 @@
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetch, sanityFetchProduction } from "@/sanity/live";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -48,6 +48,8 @@ export async function generateMetadata({
   return mapMetadata(post.parse(data));
 }
 
+export const revalidate = 21600;
+
 /** This page renders posts dynamically based on the slug in the URL path */
 export default async function PostPage({
   params,
@@ -58,7 +60,7 @@ export default async function PostPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetch({ query: post.query, params: { slug } });
+  const { data } = await sanityFetchProduction({ query: post.query, params: { slug } });
   if (!data) notFound();
   const p = post.parse(data)!;
 

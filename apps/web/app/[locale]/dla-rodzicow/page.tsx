@@ -1,5 +1,5 @@
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Dla rodziców | Stowarzyszenie Akwedukt",
 };
 
+export const revalidate = 21600;
+
 export default async function DlaRodzicow({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -20,7 +22,7 @@ export default async function DlaRodzicow({ params }: { params: Promise<{ locale
     .star.filterByType("dlaRodzicow")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: dlaRodzicow.query, params: { locale } });
+  const { data } = await sanityFetchProduction({ query: dlaRodzicow.query, params: { locale } });
   if (!data) notFound();
   const page = dlaRodzicow.parse(data)[0];
 

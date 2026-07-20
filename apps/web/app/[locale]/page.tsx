@@ -1,7 +1,7 @@
 import HeaderTest from "@/components/HeaderTest";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -10,6 +10,8 @@ import { notFound } from "next/navigation";
 export const metadata: Metadata = {
   title: "Stowarzyszenie Akwedukt",
 };
+
+export const revalidate = 21600;
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,7 +22,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
     .star.filterByType("home")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: home.query, params: { locale } });
+  const { data } = await sanityFetchProduction({ query: home.query, params: { locale } });
   if (!data) notFound();
   const h = home.parse(data)[0];
 

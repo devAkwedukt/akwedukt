@@ -15,7 +15,7 @@ import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 import KlaroConsent from "@/components/KlaroConsent";
 
-export const revalidate = 3600;
+export const revalidate = 21600;
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
 
@@ -94,7 +94,7 @@ export default async function RootLayout({
           <KlaroConsent />
         </NextIntlClientProvider>
       </body>
-      {/*<SanityLive />*/}
+      <SanityLive />
     </html>
   );
 }

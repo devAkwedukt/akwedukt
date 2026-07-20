@@ -1,5 +1,5 @@
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   title: "Co nowego | Stowarzyszenie Akwedukt",
 };
 
+export const revalidate = 21600;
+
 export default async function CoNowego({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -19,7 +21,7 @@ export default async function CoNowego({ params }: { params: Promise<{ locale: s
     .star.filterByType("coNowego")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: coNowego.query, params: { locale } });
+  const { data } = await sanityFetchProduction({ query: coNowego.query, params: { locale } });
   if (!data) notFound();
   const page = coNowego.parse(data)[0];
 

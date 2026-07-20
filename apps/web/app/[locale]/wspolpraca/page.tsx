@@ -1,5 +1,5 @@
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Współpraca | Stowarzyszenie Akwedukt",
 };
 
+export const revalidate = 21600;
+
 export default async function Wspolpraca({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -20,7 +22,7 @@ export default async function Wspolpraca({ params }: { params: Promise<{ locale:
     .star.filterByType("wspolpraca")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: wspolpraca.query, params: { locale } });
+  const { data } = await sanityFetchProduction({ query: wspolpraca.query, params: { locale } });
   if (!data) notFound();
   const page = wspolpraca.parse(data)[0];
 

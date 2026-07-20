@@ -1,5 +1,5 @@
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Edukator_ka | Stowarzyszenie Akwedukt",
 };
 
+export const revalidate = 21600;
+
 export default async function Edukator_ka({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -20,7 +22,11 @@ export default async function Edukator_ka({ params }: { params: Promise<{ locale
     .star.filterByType("edukator_ka")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: edukator_ka.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: edukator_ka.query,
+    params: { locale },
+    revalidate: revalidate,
+  });
   if (!data) notFound();
   const page = edukator_ka.parse(data)[0];
 

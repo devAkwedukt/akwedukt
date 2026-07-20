@@ -1,5 +1,5 @@
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Wolontariat | Stowarzyszenie Akwedukt",
 };
 
+export const revalidate = 21600;
+
 export default async function Wolontariat({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -20,7 +22,7 @@ export default async function Wolontariat({ params }: { params: Promise<{ locale
     .star.filterByType("wolontariat")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetch({ query: wolontariat.query, params: { locale } });
+  const { data } = await sanityFetchProduction({ query: wolontariat.query, params: { locale } });
   if (!data) notFound();
   const page = wolontariat.parse(data)[0];
 

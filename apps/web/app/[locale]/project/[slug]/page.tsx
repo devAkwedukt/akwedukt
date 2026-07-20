@@ -1,6 +1,6 @@
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { q } from "@/sanity/groqd";
-import { sanityFetch } from "@/sanity/live";
+import { sanityFetch, sanityFetchProduction } from "@/sanity/live";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import type { Project } from "@/sanity/typegen";
 import { Metadata } from "next";
@@ -54,6 +54,8 @@ export async function generateMetadata({
   return mapMetadata(parsedProject);
 }
 
+export const revalidate = 21600;
+
 /** This page renders projects dynamically based on the slug in the URL path */
 export default async function ProjectPage({
   params,
@@ -64,7 +66,7 @@ export default async function ProjectPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetch({ query: project.query, params: { slug } });
+  const { data } = await sanityFetchProduction({ query: project.query, params: { slug } });
   const p = project.parse(data) as Project | null;
   if (!p) notFound();
 
