@@ -1,40 +1,60 @@
-import { revalidatePath } from "next/cache";
-import { type NextRequest, NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
-/**
- * @see https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs
- * @see https://www.sanity.io/learn/course/controlling-cached-content-in-next-js/path-based-revalidation
- */
+type WebhookPayload = {
+  _type: string;
+  slug?: string;
+};
 
-type WebhookPayload = { path?: string };
+function getTags({ _type, slug }: WebhookPayload): string[] {
+  switch (_type) {
+    case "post":
+      return slug ? ["posts", `post:${slug}`] : ["posts"];
+
+    case "project":
+      return slug ? ["projects", `project:${slug}`] : ["projects"];
+
+    default:
+      return [`page:${_type}`];
+  }
+}
 
 export async function POST(req: NextRequest) {
   try {
-    if (!process.env.SANITY_REVALIDATE_SECRET) {
-      return new Response("Missing environment variable SANITY_REVALIDATE_SECRET", { status: 500 });
+    const secret = process.env.SANITY_REVALIDATE_SECRET;
+
+    if (!secret) {
+      return NextResponse.json({ message: "Missing SANITY_REVALIDATE_SECRET" }, { status: 500 });
     }
 
-    const { isValidSignature, body } = await parseBody<WebhookPayload>(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET
-    );
+    const { isValidSignature, body } = await parseBody<WebhookPayload>(req, secret);
 
     if (!isValidSignature) {
-      const message = "Invalid signature";
-      return new Response(JSON.stringify({ message, isValidSignature, body }), {
-        status: 401,
-      });
-    } else if (!body?.path) {
-      const message = "Bad Request";
-      return new Response(JSON.stringify({ message, body }), { status: 400 });
+      return NextResponse.json({ message: "Invalid signature" }, { status: 401 });
     }
 
-    revalidatePath(body.path);
-    const message = `Updated route: ${body.path}`;
-    return NextResponse.json({ body, message });
-  } catch (err) {
-    console.error(err);
-    return new Response((err as Error).message, { status: 500 });
+    if (!body?._type) {
+      return NextResponse.json({ message: "Missing _type" }, { status: 400 });
+    }
+
+    const tags = getTags(body);
+
+    for (const tag of tags) {
+      revalidateTag(tag, "max");
+    }
+
+    return NextResponse.json({
+      revalidated: tags,
+    });
+  } catch (error) {
+    console.error(error);
+
+    return NextResponse.json(
+      {
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
   }
 }

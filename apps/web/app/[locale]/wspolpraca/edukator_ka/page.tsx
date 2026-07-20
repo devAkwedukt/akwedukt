@@ -25,7 +25,6 @@ export default async function Edukator_ka({ params }: { params: Promise<{ locale
   const { data } = await sanityFetchProduction({
     query: edukator_ka.query,
     params: { locale },
-    revalidate: revalidate,
   });
   if (!data) notFound();
   const page = edukator_ka.parse(data)[0];
