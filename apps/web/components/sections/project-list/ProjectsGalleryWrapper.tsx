@@ -10,7 +10,7 @@ interface ProjectsGalleryWrapperProps {
 
 //PROJEKTY (POLSKIE I MIĘDZYNARODOWE)
 export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWrapperProps) {
-  let validProjects;
+  let validProjects: any[];
 
   // If projects are manually selected, use them
   if (item.projects && item.projects.length > 0) {

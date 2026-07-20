@@ -1884,20 +1884,17 @@ export type FOOTER_QUERY_RESULT = {
 
 // Source: ../web/sanity/queries/posts.ts
 // Variable: POST_BY_ID_QUERY
-// Query: *[_id == $postId][0]{  _id,  title,  slug,  date,  modified,  status,  content,  excerpt,  featuredMedia,  sticky,  author->{    _id,    name,    slug  },  categories[]->{    _id,    name,    slug  },  tags[]->{    _id,    name,    slug  }}
+// Query: *[_id == $postId][0]{  _id,  title,  slug,  date,  status,  content,  excerpt,  featuredMedia,  categories[]->{    _id,    name,    slug  },  tags[]->{    _id,    name,    slug  }}
 export type POST_BY_ID_QUERY_RESULT =
   | {
       _id: string;
       title: null;
       slug: null;
       date: null;
-      modified: null;
       status: null;
       content: null;
       excerpt: null;
       featuredMedia: null;
-      sticky: null;
-      author: null;
       categories: null;
       tags: null;
     }
@@ -1906,13 +1903,10 @@ export type POST_BY_ID_QUERY_RESULT =
       title: string | null;
       slug: null;
       date: null;
-      modified: null;
       status: null;
       content: null;
       excerpt: null;
       featuredMedia: null;
-      sticky: null;
-      author: null;
       categories: null;
       tags: null;
     }
@@ -1921,13 +1915,10 @@ export type POST_BY_ID_QUERY_RESULT =
       title: null;
       slug: Slug | null;
       date: null;
-      modified: null;
       status: null;
       content: null;
       excerpt: null;
       featuredMedia: null;
-      sticky: null;
-      author: null;
       categories: null;
       tags: null;
     }
@@ -1936,13 +1927,10 @@ export type POST_BY_ID_QUERY_RESULT =
       title: string | null;
       slug: Slug | null;
       date: null;
-      modified: null;
       status: null;
       content: null;
       excerpt: null;
       featuredMedia: null;
-      sticky: null;
-      author: null;
       categories: null;
       tags: null;
     }
@@ -1951,7 +1939,6 @@ export type POST_BY_ID_QUERY_RESULT =
       title: string | null;
       slug: Slug | null;
       date: string | null;
-      modified: null;
       status:
         | "auto-draft"
         | "draft"
@@ -1971,8 +1958,6 @@ export type POST_BY_ID_QUERY_RESULT =
         crop?: SanityImageCrop;
         _type: "image";
       } | null;
-      sticky: null;
-      author: null;
       categories: Array<{
         _id: string;
         name: string | null;
@@ -1985,6 +1970,20 @@ export type POST_BY_ID_QUERY_RESULT =
       }> | null;
     }
   | null;
+
+// Source: ../web/sanity/queries/posts.ts
+// Variable: queryTotalPostsCount
+// Query: count(*[_type == "post" && !(_id in path("drafts.**")) ])
+export type QueryTotalPostsCountResult = number;
+
+// Source: ../web/sanity/queries/posts.ts
+// Variable: queryAllTags
+// Query: *[_type == "tag"] | order(name asc) {      _id,      name,      slug    }
+export type QueryAllTagsResult = Array<{
+  _id: string;
+  name: string | null;
+  slug: Slug | null;
+}>;
 
 // Source: ../web/sanity/queries/projects.ts
 // Variable: PROJECT_BY_ID_QUERY
@@ -2378,12 +2377,20 @@ export type PROJECT_BY_ID_QUERY_RESULT =
     }
   | null;
 
+// Source: ../web/sanity/queries/projects.ts
+// Variable: queryTotalProjectsCount
+// Query: count(*[_type == "project" && !(_id in path("drafts.**")) ])
+export type QueryTotalProjectsCountResult = number;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "footer"][0]{\n  companyInfo,\n  legalInfo,\n  bankAccount,\n  contact,\n  socialMedia\n}': FOOTER_QUERY_RESULT;
-    "*[_id == $postId][0]{\n  _id,\n  title,\n  slug,\n  date,\n  modified,\n  status,\n  content,\n  excerpt,\n  featuredMedia,\n  sticky,\n  author->{\n    _id,\n    name,\n    slug\n  },\n  categories[]->{\n    _id,\n    name,\n    slug\n  },\n  tags[]->{\n    _id,\n    name,\n    slug\n  }\n}": POST_BY_ID_QUERY_RESULT;
+    "*[_id == $postId][0]{\n  _id,\n  title,\n  slug,\n  date,\n  status,\n  content,\n  excerpt,\n  featuredMedia,\n  categories[]->{\n    _id,\n    name,\n    slug\n  },\n  tags[]->{\n    _id,\n    name,\n    slug\n  }\n}": POST_BY_ID_QUERY_RESULT;
+    'count(*[_type == "post" && !(_id in path("drafts.**")) ])': QueryTotalPostsCountResult;
+    '*[_type == "tag"] | order(name asc) {\n      _id,\n      name,\n      slug\n    }': QueryAllTagsResult;
     "*[_id == $projectId][0]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  shortDescription,\n  startDate,\n  projectTypes,\n  projectStatus,\n  sections\n}": PROJECT_BY_ID_QUERY_RESULT;
+    'count(*[_type == "project" && !(_id in path("drafts.**")) ])': QueryTotalProjectsCountResult;
   }
 }

@@ -23,7 +23,12 @@ export const getProjectById = cache(async (projectId: string) => {
 });
 
 export const getProjects = cache(
-  async (limit: number, offset: number = 0, projectFilter?: string, statusFilter?: string) => {
+  async (
+    limit: number,
+    offset: number = 0,
+    projectFilter?: string,
+    statusFilter?: string
+  ): Promise<any[]> => {
     let filterClause = "";
     const params: any = { limit, offset };
 
@@ -39,8 +44,7 @@ export const getProjects = cache(
       params.statusFilter = statusFilter;
     }
 
-    const { data } = await sanityFetch({
-      query: `*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}] | order(startDate desc)[$offset...($offset + $limit)] {
+    const queryProjects = `*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}] | order(startDate desc)[$offset...($offset + $limit)] {
       _id,
       title,
       slug,
@@ -49,15 +53,18 @@ export const getProjects = cache(
       startDate,
       projectTypes,
       projectStatus
-    }`,
+    }`;
+
+    const { data } = await sanityFetch({
+      query: queryProjects,
       params,
     });
-    return data || [];
+    return (data as any[]) || [];
   }
 );
 
 export const getTotalProjectsCount = cache(
-  async (projectFilter?: string, statusFilter?: string) => {
+  async (projectFilter?: string, statusFilter?: string): Promise<number> => {
     let filterClause = "";
     const params: any = {};
 
@@ -73,10 +80,14 @@ export const getTotalProjectsCount = cache(
       params.statusFilter = statusFilter;
     }
 
+    const queryTotalProjectsCount = defineQuery(
+      `count(*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}])`
+    );
+
     const { data } = await sanityFetch({
-      query: `count(*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}])`,
+      query: queryTotalProjectsCount,
       params,
     });
-    return data || 0;
+    return (data as number) || 0;
   }
 );

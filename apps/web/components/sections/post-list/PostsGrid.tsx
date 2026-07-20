@@ -1,11 +1,24 @@
 import { Button } from "@/components/ui/Button";
 import { SanityImage } from "@/sanity/image/SanityImage";
-import type { POST_BY_ID_QUERY_RESULT, Slug } from "@/sanity/typegen";
+import type { Post } from "@/sanity/typegen";
 import { getCategoryColor } from "@/constants/categories";
 import Link from "next/link";
 
-// Type for post with expanded categories (using typegen structure)
-type PostWithExpandedCategories = Exclude<POST_BY_ID_QUERY_RESULT, null>;
+// Type for post with expanded categories and tags (using typegen structure)
+type PostWithExpandedCategories = Omit<Exclude<Post, null>, "categories" | "tags"> & {
+  categories?: Array<{
+    _key: string;
+    _id: string;
+    name?: string;
+    slug?: { current?: string };
+  }>;
+  tags?: Array<{
+    _key: string;
+    _id: string;
+    name?: string;
+    slug?: { current?: string };
+  }>;
+};
 
 interface PostsGridProps {
   posts: PostWithExpandedCategories[];

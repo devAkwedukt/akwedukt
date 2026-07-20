@@ -10,13 +10,12 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-//import { Link } from "@/i18n/navigation";
-//import { locales } from "@/i18n/locales";
 import Navbar from "@/components/reusable/navbar/Navbar";
 import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 import KlaroConsent from "@/components/KlaroConsent";
 
+export const revalidate = 3600;
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
 
@@ -95,7 +94,7 @@ export default async function RootLayout({
           <KlaroConsent />
         </NextIntlClientProvider>
       </body>
-      {/*<SanityLive />*/}
+      <SanityLive />
     </html>
   );
 }

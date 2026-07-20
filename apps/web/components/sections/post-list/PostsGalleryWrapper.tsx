@@ -1,4 +1,9 @@
-import { getLatestPosts, getNextPosts, getPostById } from "@/sanity/queries/posts";
+import {
+  getLatestPosts,
+  getNextPosts,
+  getPostById,
+  type PostWithExpandedCategories,
+} from "@/sanity/queries/posts";
 import { PostsGrid } from "./PostsGrid";
 import { Button } from "@/components/ui/Button";
 import type { PostsGallerySection } from "@/sanity/typegen";
@@ -30,7 +35,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
     }
   }
 
-  const filteredPosts = posts.filter(Boolean);
+  const filteredPosts = posts.filter(Boolean) as PostWithExpandedCategories[];
 
   return (
     <>

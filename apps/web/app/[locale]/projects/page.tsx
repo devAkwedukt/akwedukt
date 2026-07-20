@@ -36,7 +36,7 @@ export default async function ProjectsPage({ params, searchParams }: ProjectsPag
   ]);
 
   const totalPages = Math.ceil(totalCount / PROJECTS_PER_PAGE);
-  const filteredProjects = projects.filter(Boolean);
+  const filteredProjects = (projects as any[]).filter(Boolean);
 
   return (
     <section className="max-w-480 mx-auto px-20 bg-gray-50">

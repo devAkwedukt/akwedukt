@@ -3,7 +3,7 @@
 import { RenderIcon } from "@/components/ui";
 import React, { useState } from "react";
 
-function FooterTooltip({ text, copyText }: { text: string; copyText: string }) {
+function FooterTooltip({ copyText }: { copyText: string }) {
   const [copiedAccount, setCopiedAccount] = useState(false);
 
   const copyToClipboard = async (text: string, type: "account") => {

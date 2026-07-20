@@ -1,23 +1,33 @@
 import { defineQuery } from "next-sanity";
 import { sanityFetch } from "../live";
 import { cache } from "react";
+import type { Post } from "../typegen";
+
+// Type for post with expanded categories and tags (using typegen structure)
+export type PostWithExpandedCategories = Omit<Exclude<Post, null>, "categories" | "tags"> & {
+  categories?: Array<{
+    _key: string;
+    _id: string;
+    name?: string;
+    slug?: { current?: string };
+  }>;
+  tags?: Array<{
+    _key: string;
+    _id: string;
+    name?: string;
+    slug?: { current?: string };
+  }>;
+};
 
 export const POST_BY_ID_QUERY = defineQuery(`*[_id == $postId][0]{
   _id,
   title,
   slug,
   date,
-  modified,
   status,
   content,
   excerpt,
   featuredMedia,
-  sticky,
-  author->{
-    _id,
-    name,
-    slug
-  },
   categories[]->{
     _id,
     name,
@@ -45,7 +55,7 @@ export const getPosts = cache(
     tagFilter?: string | string[],
     statusFilter: string = "publish",
     searchQuery?: string
-  ) => {
+  ): Promise<PostWithExpandedCategories[]> => {
     let filterClause = "";
     const params: any = { limit, offset };
 
@@ -74,8 +84,8 @@ export const getPosts = cache(
       params.statusFilter = statusFilter;
     }
 
-    const { data } = await sanityFetch({
-      query: `*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}] | order(date desc, sticky desc)[$offset...($offset + $limit)] {
+    const queryPostById =
+      defineQuery(`*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}] | order(date desc, sticky desc)[$offset...($offset + $limit)] {
       _id,
       title,
       slug,
@@ -84,12 +94,6 @@ export const getPosts = cache(
       excerpt,
       content,
       featuredMedia,
-      sticky,
-      author->{
-        _id,
-        name,
-        slug
-      },
       categories[]->{
         _id,
         name,
@@ -100,10 +104,13 @@ export const getPosts = cache(
         name,
         slug
       }
-    }`,
+    }`);
+
+    const { data } = await sanityFetch({
+      query: queryPostById,
       params,
     });
-    return data || [];
+    return (data as PostWithExpandedCategories[]) || [];
   }
 );
 
@@ -116,7 +123,11 @@ export const getNextPosts = cache(async (limit: number = 3, offset: number = 3) 
 });
 
 export const getTotalPostsCount = cache(
-  async (tagFilter?: string | string[], statusFilter: string = "publish", searchQuery?: string) => {
+  async (
+    tagFilter?: string | string[],
+    statusFilter: string = "publish",
+    searchQuery?: string
+  ): Promise<number> => {
     let filterClause = "";
     const params: any = {};
 
@@ -145,31 +156,26 @@ export const getTotalPostsCount = cache(
       params.statusFilter = statusFilter;
     }
 
+    const queryTotalPostsCount = defineQuery(
+      `count(*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}])`
+    );
+
     const { data } = await sanityFetch({
-      query: `count(*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}])`,
+      query: queryTotalPostsCount,
       params,
     });
-    return data || 0;
+    return (data as number) || 0;
   }
 );
 
-export const getAllCategories = cache(async () => {
-  const { data } = await sanityFetch({
-    query: `*[_type == "category"] | order(name asc) {
-      _id,
-      name,
-      slug
-    }`,
-  });
-  return data || [];
-});
 export const getAllTags = cache(async () => {
-  const { data } = await sanityFetch({
-    query: `*[_type == "tag"] | order(name asc) {
+  const queryAllTags = defineQuery(`*[_type == "tag"] | order(name asc) {
       _id,
       name,
       slug
-    }`,
+    }`);
+  const { data } = await sanityFetch({
+    query: queryAllTags,
   });
   return data || [];
 });

@@ -74,7 +74,7 @@ async function Footer() {
               <p className="flex items-center gap-2">
                 {bankAccount?.accountNumber}
                 {bankAccount?.accountNumber && (
-                  <FooterTooltip text="Kopiuj numer konta" copyText={bankAccount.accountNumber} />
+                  <FooterTooltip copyText={bankAccount.accountNumber} />
                 )}
               </p>
             </div>
