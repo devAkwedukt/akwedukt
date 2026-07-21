@@ -23,7 +23,7 @@ const project = q
 /** Next doesn't know what slugs exist -> we can inform it so it can pre-generate all projects
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params */
 export async function generateStaticParams() {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: projectSlugs.query,
     perspective: "published",
     stega: false,
@@ -39,7 +39,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params; // since slug is unique per language we don't need locale here
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: project.query,
     params: { slug },
     perspective: "published",
@@ -66,7 +66,7 @@ export default async function ProjectPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetch({ query: project.query, params: { slug } });
+  const { data } = await sanityFetchProduction({ query: project.query, params: { slug } });
   const p = project.parse(data) as Project | null;
   if (!p) notFound();
 
