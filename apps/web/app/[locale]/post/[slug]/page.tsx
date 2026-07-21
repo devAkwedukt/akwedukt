@@ -23,10 +23,11 @@ const post = q
 /** Next doesn't know what slugs exist -> we can inform it so it can pre-generate all posts
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params */
 export async function generateStaticParams() {
-  const { data } = await sanityFetchProduction({
-    query: postSlugs.query,
-  });
-  return postSlugs.parse(data); // [{ slug: example-slug }, ...]
+  // const { data } = await sanityFetchProduction({
+  //   query: postSlugs.query,
+  // });
+  // return postSlugs.parse(data); // [{ slug: example-slug }, ...]
+  return [];
 }
 
 /** This allows us to overwrite specific metadata fields from the parent (e.g. title, description)
