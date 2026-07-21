@@ -41,6 +41,8 @@ export async function POST(req: NextRequest) {
     const tags = getTags(body);
 
     for (const tag of tags) {
+      console.log("webhook-body", body);
+      console.log("webhook-tags", tags);
       revalidateTag(tag, "max");
     }
 

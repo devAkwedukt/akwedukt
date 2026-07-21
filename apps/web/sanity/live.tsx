@@ -22,9 +22,7 @@ type EntityTag =
 
 type CacheTag = string | EntityTag;
 
-type SanityFetchProductionProps = {
-  query: string;
-  params?: Record<string, unknown>;
+type SanityFetchProductionProps = Parameters<typeof sanityFetch>[0] & {
   cache?: CacheTag | CacheTag[];
 };
 
@@ -61,14 +59,16 @@ function resolveTags(cache?: CacheTag | CacheTag[]) {
   return [...tags];
 }
 
-export async function sanityFetchProduction({ query, params, cache }: SanityFetchProductionProps) {
+export async function sanityFetchProduction({ cache, ...options }: SanityFetchProductionProps) {
   const { isEnabled } = await draftMode();
 
   if (process.env.NODE_ENV === "development" || isEnabled) {
-    return sanityFetch({ query, params });
+    return sanityFetch(options);
   }
 
-  const data = await client.fetch(query, params, {
+  const data = await client.fetch(options.query, options.params, {
+    perspective: options.perspective,
+    stega: options.stega,
     next: {
       revalidate: DEFAULT_REVALIDATE_TIME,
       tags: resolveTags(cache),

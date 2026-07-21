@@ -11,8 +11,6 @@ export const metadata: Metadata = {
   title: "O nas | Stowarzyszenie Akwedukt",
 };
 
-export const revalidate = 21600;
-
 export default async function ONas({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);

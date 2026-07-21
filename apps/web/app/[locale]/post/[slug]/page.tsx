@@ -23,10 +23,9 @@ const post = q
 /** Next doesn't know what slugs exist -> we can inform it so it can pre-generate all posts
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params */
 export async function generateStaticParams() {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: postSlugs.query,
-    perspective: "published",
-    stega: false,
+    cache: "posts",
   });
   return postSlugs.parse(data); // [{ slug: example-slug }, ...]
 }
@@ -39,9 +38,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params; // since slug is unique per language we don't need locale here
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: post.query,
     params: { slug },
+    cache: { type: "post", slug },
     perspective: "published",
     stega: false,
   });

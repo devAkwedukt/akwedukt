@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../live";
+import { sanityFetchProduction } from "../live";
 import { cache } from "react";
 import type { Post } from "../typegen";
 
@@ -41,7 +41,7 @@ export const POST_BY_ID_QUERY = defineQuery(`*[_id == $postId][0]{
 }`);
 
 export const getPostById = cache(async (postId: string) => {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: POST_BY_ID_QUERY,
     params: { postId },
   });
@@ -106,7 +106,7 @@ export const getPosts = cache(
       }
     }`);
 
-    const { data } = await sanityFetch({
+    const { data } = await sanityFetchProduction({
       query: queryPostById,
       params,
     });
@@ -160,7 +160,7 @@ export const getTotalPostsCount = cache(
       `count(*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}])`
     );
 
-    const { data } = await sanityFetch({
+    const { data } = await sanityFetchProduction({
       query: queryTotalPostsCount,
       params,
     });
@@ -174,7 +174,7 @@ export const getAllTags = cache(async () => {
       name,
       slug
     }`);
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: queryAllTags,
   });
   return data || [];

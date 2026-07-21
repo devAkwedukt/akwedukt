@@ -1,5 +1,5 @@
 import { defineQuery } from "next-sanity";
-import { sanityFetch } from "../live";
+import { sanityFetchProduction } from "../live";
 import { cache } from "react";
 
 export const PROJECT_BY_ID_QUERY = defineQuery(`*[_id == $projectId][0]{
@@ -15,7 +15,7 @@ export const PROJECT_BY_ID_QUERY = defineQuery(`*[_id == $projectId][0]{
 }`);
 
 export const getProjectById = cache(async (projectId: string) => {
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: PROJECT_BY_ID_QUERY,
     params: { projectId },
   });
@@ -55,7 +55,7 @@ export const getProjects = cache(
       projectStatus
     }`;
 
-    const { data } = await sanityFetch({
+    const { data } = await sanityFetchProduction({
       query: queryProjects,
       params,
     });
@@ -84,7 +84,7 @@ export const getTotalProjectsCount = cache(
       `count(*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}])`
     );
 
-    const { data } = await sanityFetch({
+    const { data } = await sanityFetchProduction({
       query: queryTotalProjectsCount,
       params,
     });

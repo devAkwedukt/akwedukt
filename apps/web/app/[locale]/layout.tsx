@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
-import { sanityFetch, SanityLive } from "@/sanity/live";
+import { sanityFetchProduction, SanityLive } from "@/sanity/live";
 import { Toaster } from "sonner";
 import { SanityPreview } from "@/sanity/preview/SanityPreview";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
@@ -15,7 +15,6 @@ import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 import KlaroConsent from "@/components/KlaroConsent";
 
-export const revalidate = 21600;
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
 
@@ -24,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     .filterByType("settings")
     .slice(0)
     .project((sub) => ({ seo: sub.field("seo") }));
-  const { data } = await sanityFetch({
+  const { data } = await sanityFetchProduction({
     query: seo.query,
     params: { page: "settings" },
     stega: false, // always set `stega: false` in Next's `generate` functions
