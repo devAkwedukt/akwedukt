@@ -10,8 +10,8 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-// import Navbar from "@/components/reusable/navbar/Navbar";
-// import Footer from "@/components/reusable/footer/Footer";
+import Navbar from "@/components/reusable/navbar/Navbar";
+import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 import KlaroConsent from "@/components/KlaroConsent";
 
@@ -74,7 +74,7 @@ export default async function RootLayout({
     <html lang="pl">
       <body className={`${fraunces.variable} ${jakarta.variable} antialiased`}>
         <NextIntlClientProvider>
-          {/*<Navbar />*/}
+          <Navbar />
 
           {/*
           <div className="flex justify-center gap-3 uppercase pt-5">
@@ -87,7 +87,7 @@ export default async function RootLayout({
           */}
 
           <div className="pt-16">{children}</div>
-          {/*<Footer />*/}
+          <Footer />
           <LenisScrollProvider />
           <Toaster />
           <SanityPreview />
