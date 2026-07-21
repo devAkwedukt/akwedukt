@@ -20,7 +20,7 @@ export function SanitySections({ value = [] }: { value: Array<any> | null | unde
   if (!Array.isArray(value)) return null;
   // return render(value, components);
   return value.map((section) => {
-    if (section._type === "ourTeamSection") {
+    if (section._type === "heroBackgroundSection") {
       return null;
     }
 
