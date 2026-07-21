@@ -25,6 +25,7 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
   const { data } = await sanityFetchProduction({
     query: oNas.query,
     params: { locale },
+    cache: [{ type: "page", name: "oNas" }, "projects"],
   });
   if (!data) notFound();
   const page = oNas.parse(data)[0];

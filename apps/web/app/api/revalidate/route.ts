@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({
+      success: true,
       revalidated: tags,
     });
   } catch (error) {

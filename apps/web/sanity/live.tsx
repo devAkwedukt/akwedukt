@@ -10,38 +10,55 @@ export const { sanityFetch, SanityLive } = defineLive({
   serverToken: process.env.SANITY_API_READ_TOKEN,
 });
 
-export type CacheTag =
-  | string
-  | string[]
+type EntityTag =
   | {
       type: "post" | "project";
       slug: string;
+    }
+  | {
+      type: "page";
+      name: string;
     };
+
+type CacheTag = string | EntityTag;
 
 type SanityFetchProductionProps = {
   query: string;
   params?: Record<string, unknown>;
-  cache?: CacheTag;
+  cache?: CacheTag | CacheTag[];
 };
 
-function resolveTags(cache?: CacheTag): string[] {
+function resolveTags(cache?: CacheTag | CacheTag[]) {
   if (!cache) return [];
 
-  if (Array.isArray(cache)) {
-    return cache;
+  const items = Array.isArray(cache) ? cache : [cache];
+
+  const tags = new Set<string>();
+
+  for (const item of items) {
+    if (typeof item === "string") {
+      tags.add(item);
+      continue;
+    }
+
+    switch (item.type) {
+      case "page":
+        tags.add(`page:${item.name}`);
+        break;
+
+      case "post":
+        tags.add("posts");
+        tags.add(`post:${item.slug}`);
+        break;
+
+      case "project":
+        tags.add("projects");
+        tags.add(`project:${item.slug}`);
+        break;
+    }
   }
 
-  if (typeof cache === "string") {
-    return [`page:${cache}`];
-  }
-
-  switch (cache.type) {
-    case "post":
-      return ["posts", `post:${cache.slug}`];
-
-    case "project":
-      return ["projects", `project:${cache.slug}`];
-  }
+  return [...tags];
 }
 
 export async function sanityFetchProduction({ query, params, cache }: SanityFetchProductionProps) {
