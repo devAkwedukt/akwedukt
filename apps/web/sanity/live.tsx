@@ -1,4 +1,3 @@
-import { draftMode } from "next/headers";
 import { defineLive } from "next-sanity/live";
 
 import { client } from "./client";
@@ -60,12 +59,6 @@ function resolveTags(cache?: CacheTag | CacheTag[]) {
 }
 
 export async function sanityFetchProduction({ cache, ...options }: SanityFetchProductionProps) {
-  const { isEnabled } = await draftMode();
-
-  if (process.env.NODE_ENV === "development" || isEnabled) {
-    return sanityFetch(options);
-  }
-
   const data = await client.fetch(options.query, options.params, {
     perspective: options.perspective,
     stega: options.stega,
