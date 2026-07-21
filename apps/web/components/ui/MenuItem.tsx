@@ -71,6 +71,7 @@ export function MenuItem(props: MenuItemProps) {
   if ("href" in props && props.href && !disabled) {
     return (
       <Link
+        prefetch={false}
         href={props.href}
         {...commonProps}
         {...(rest as AnchorHTMLAttributes<HTMLAnchorElement>)}

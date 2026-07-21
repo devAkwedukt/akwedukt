@@ -167,7 +167,7 @@ export function IconButton({
       href,
       target,
       external = false,
-      prefetch = true,
+      prefetch = false,
       replace = false,
       scroll = true,
       ...linkRest
