@@ -66,7 +66,7 @@ export default async function ProjectPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetchProduction({ query: project.query, params: { slug } });
+  const { data } = await sanityFetch({ query: project.query, params: { slug } });
   const p = project.parse(data) as Project | null;
   if (!p) notFound();
 

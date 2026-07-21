@@ -58,7 +58,7 @@ export default async function PostPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetchProduction({ query: post.query, params: { slug } });
+  const { data } = await sanityFetch({ query: post.query, params: { slug } });
   if (!data) notFound();
   const p = post.parse(data)!;
 
