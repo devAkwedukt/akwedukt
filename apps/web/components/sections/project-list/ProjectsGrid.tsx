@@ -40,7 +40,11 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
               {/*    })}*/}
               {/*  </div>*/}
               {/*)}*/}
-              <Link href={`/project/${project.slug?.current}`} className="heading-3 mb-2 w-fit">
+              <Link
+                prefetch={false}
+                href={`/project/${project.slug?.current}`}
+                className="heading-3 mb-2 w-fit"
+              >
                 {project.title}
               </Link>
               <p className="mb-6 leading-relaxed text-balance">{project.shortDescription}</p>

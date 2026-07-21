@@ -24,6 +24,7 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
           {index > 0 && <span className="px-0.5 md:px-1 text-sm font-bold text-gray-950">/</span>}
           {item.href ? (
             <Link
+              prefetch={false}
               href={item.href}
               className="text-nowrap px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
             >

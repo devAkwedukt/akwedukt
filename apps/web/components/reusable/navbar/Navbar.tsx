@@ -64,6 +64,7 @@ function Navbar() {
       <div className="max-w-480 mx-auto flex flex-row items-center w-full justify-between">
         {/* Logo */}
         <Link
+          prefetch={false}
           href="/"
           onClick={() => {
             setIsSidebarOpen(false);
@@ -94,6 +95,7 @@ function Navbar() {
 
             return (
               <Link
+                prefetch={false}
                 key={link}
                 href={link}
                 className={`relative font-semibold font-jakarta delay-25 after:delay-25 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
@@ -145,6 +147,7 @@ function Navbar() {
 
               return (
                 <Link
+                  prefetch={false}
                   key={link}
                   href={link}
                   onClick={() => {

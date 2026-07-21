@@ -26,7 +26,7 @@ async function Footer() {
       <div className="max-w-480 w-full mx-auto flex flex-col md:flex-row justify-between">
         <aside className="flex gap-20 md:gap-0 flex-col justify-between mb-4 md:mb-0">
           {/* Logo */}
-          <Link href="/" className="w-fit">
+          <Link prefetch={false} href="/" className="w-fit">
             <svg
               width="150"
               height="43"
@@ -104,6 +104,7 @@ async function Footer() {
             <ul className="flex flex-col gap-3 md:gap-4 md:border-t-0 border-t border-gray-50 pt-4 md:pt-0">
               {endpoints.map(({ link, label }) => (
                 <Link
+                  prefetch={false}
                   key={link}
                   href={link}
                   className="relative font-semibold font-jakarta text-base items-center duration-150 delay-20 ease-in-out pl-0 p-1 md:pl-1 hover:text-deep-navy-blue-200 pb-px active:text-blue-200 focus:duration-0 focus:outline-2 w-fit focus:outline-pink-500 focus:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:bg-deep-navy-blue-200 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out hover:after:origin-left hover:after:scale-x-100 motion-reduce:after:transition-none"
@@ -120,6 +121,7 @@ async function Footer() {
         <p className="text-deep-navy-blue-200 text-sm">© 2026 Stowarzyszenie Akwedukt</p>
         <div className="flex flex-col md:flex-row gap-1 md:gap-4 items-start md:items-center">
           <Link
+            prefetch={false}
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
             href="/documents"
           >
@@ -127,6 +129,7 @@ async function Footer() {
           </Link>
           <span className="hidden md:flex select-none text-deep-navy-blue-200">|</span>
           <Link
+            prefetch={false}
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
             href="/privacy-policy"
           >

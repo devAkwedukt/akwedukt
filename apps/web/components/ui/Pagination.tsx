@@ -59,6 +59,7 @@ export function Pagination({
       <div className="px-1 rounded-sm inline-flex justify-center items-center gap-1.5">
         {pages.map((pageNum) => (
           <Link
+            prefetch={false}
             key={pageNum}
             href={buildUrl(pageNum)}
             className={`text-lg leading-[25.60px] transition text-center px-1 rounded-sm focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-pink-500 ${

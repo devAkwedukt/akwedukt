@@ -116,7 +116,11 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
                 )}
               </div>
 
-              <Link href={`/post/${post.slug?.current}`} className="heading-3 mb-2 w-fit">
+              <Link
+                prefetch={false}
+                href={`/post/${post.slug?.current}`}
+                className="heading-3 mb-2 w-fit"
+              >
                 {post.title}
               </Link>
 

@@ -22,7 +22,13 @@ export const components: PortableTextComponents = {
     link: ({ children, value }) => {
       const target = value.href.startsWith("http") ? "_blank" : undefined;
       return (
-        <Link href={value.href} target={target} rel="noopener noreferrer" className="underline">
+        <Link
+          prefetch={false}
+          href={value.href}
+          target={target}
+          rel="noopener noreferrer"
+          className="underline"
+        >
           {children}
         </Link>
       );
