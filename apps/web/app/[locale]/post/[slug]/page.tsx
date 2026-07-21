@@ -37,10 +37,9 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params; // since slug is unique per language we don't need locale here
-  const { data } = await sanityFetchProduction({
+  const { data } = await sanityFetch({
     query: post.query,
     params: { slug },
-    cache: { type: "post", slug },
     perspective: "published",
     stega: false,
   });
