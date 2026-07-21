@@ -19,11 +19,11 @@ import { components } from "./components";
 export function SanitySections({ value = [] }: { value: Array<any> | null | undefined }) {
   if (!Array.isArray(value)) return null;
   // return render(value, components);
-  return value.map((section) => {
-    if (section._type === "heroBackgroundSection") {
-      return null;
-    }
-
-    return render([section], components);
-  });
+  return (
+    <>
+      {value.map((section) => (
+        <div key={section._key}>{section._type}</div>
+      ))}
+    </>
+  );
 }
