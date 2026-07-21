@@ -18,19 +18,26 @@ import KlaroConsent from "@/components/KlaroConsent";
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
 
+// export async function generateMetadata(): Promise<Metadata> {
+//   const seo = q.star
+//     .filterByType("settings")
+//     .slice(0)
+//     .project((sub) => ({ seo: sub.field("seo") }));
+//   const { data } = await sanityFetchProduction({
+//     query: seo.query,
+//     params: { page: "settings" },
+//     stega: false, // always set `stega: false` in Next's `generate` functions
+//     cache: "settings",
+//   });
+//   return {
+//     metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
+//     ...mapMetadata(seo.parse(data)),
+//   };
+// }
+
 export async function generateMetadata(): Promise<Metadata> {
-  const seo = q.star
-    .filterByType("settings")
-    .slice(0)
-    .project((sub) => ({ seo: sub.field("seo") }));
-  const { data } = await sanityFetchProduction({
-    query: seo.query,
-    params: { page: "settings" },
-    stega: false, // always set `stega: false` in Next's `generate` functions
-  });
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_ORIGIN),
-    ...mapMetadata(seo.parse(data)),
+    title: "test",
   };
 }
 

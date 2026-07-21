@@ -42,6 +42,7 @@ export async function generateMetadata({
     params: { slug },
     perspective: "published",
     stega: false,
+    cache: "settings",
   });
   return mapMetadata(post.parse(data));
 }

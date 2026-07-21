@@ -44,6 +44,7 @@ export async function generateMetadata({
     params: { slug },
     perspective: "published",
     stega: false,
+    cache: "settings",
   });
 
   const parsedProject = project.parse(data) as Project | null;

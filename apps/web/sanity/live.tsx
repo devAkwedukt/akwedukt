@@ -59,8 +59,8 @@ function resolveTags(cache?: CacheTag | CacheTag[]) {
 
 export async function sanityFetchProduction({ cache, ...options }: SanityFetchProductionProps) {
   const data = await client.fetch(options.query, options.params, {
-    perspective: options.perspective,
-    stega: options.stega,
+    perspective: options.perspective ?? "published",
+    stega: options.stega ?? false,
     next: {
       revalidate: DEFAULT_REVALIDATE_TIME,
       tags: resolveTags(cache),
