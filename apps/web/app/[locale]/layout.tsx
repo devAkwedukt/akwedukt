@@ -94,7 +94,7 @@ export default async function RootLayout({
           <KlaroConsent />
         </NextIntlClientProvider>
       </body>
-      <SanityLive />
+      {/*<SanityLive />*/}
     </html>
   );
 }
