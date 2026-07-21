@@ -1,6 +1,6 @@
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { q } from "@/sanity/groqd";
-import { sanityFetchProduction } from "@/sanity/live";
+import { sanityFetch, sanityFetchProduction } from "@/sanity/live";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import type { Project } from "@/sanity/typegen";
 import { Metadata } from "next";
@@ -23,7 +23,7 @@ const project = q
 /** Next doesn't know what slugs exist -> we can inform it so it can pre-generate all projects
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-static-params */
 export async function generateStaticParams() {
-  const { data } = await sanityFetchProduction({
+  const { data } = await sanityFetch({
     query: projectSlugs.query,
     perspective: "published",
     stega: false,
