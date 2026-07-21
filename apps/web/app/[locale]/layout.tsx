@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
-import { sanityFetch, sanityFetchProduction, SanityLive } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { Toaster } from "sonner";
 import { SanityPreview } from "@/sanity/preview/SanityPreview";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";

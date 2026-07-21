@@ -1,6 +1,6 @@
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { q } from "@/sanity/groqd";
-import { sanityFetch, sanityFetchProduction } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import type { Project } from "@/sanity/typegen";
 import { Metadata } from "next";

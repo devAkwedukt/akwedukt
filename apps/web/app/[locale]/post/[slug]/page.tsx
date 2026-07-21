@@ -1,7 +1,7 @@
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import { q } from "@/sanity/groqd";
-import { sanityFetch, sanityFetchProduction } from "@/sanity/live";
+import { sanityFetchProduction } from "@/sanity/live";
 import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";

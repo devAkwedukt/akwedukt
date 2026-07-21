@@ -1,13 +1,6 @@
-import { defineLive } from "next-sanity/live";
-
 import { client } from "./client";
 
 export const DEFAULT_REVALIDATE_TIME = 21600; // 6h
-
-export const { sanityFetch, SanityLive } = defineLive({
-  client,
-  serverToken: process.env.SANITY_API_READ_TOKEN,
-});
 
 type EntityTag =
   | {
@@ -21,7 +14,13 @@ type EntityTag =
 
 type CacheTag = string | EntityTag;
 
-type SanityFetchProductionProps = Parameters<typeof sanityFetch>[0] & {
+type SanityPerspective = "published" | "drafts" | "raw";
+
+type SanityFetchProductionProps = {
+  query: string;
+  params?: Record<string, unknown>;
+  perspective?: SanityPerspective;
+  stega?: boolean;
   cache?: CacheTag | CacheTag[];
 };
 
