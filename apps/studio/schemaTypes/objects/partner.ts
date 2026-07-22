@@ -17,6 +17,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({

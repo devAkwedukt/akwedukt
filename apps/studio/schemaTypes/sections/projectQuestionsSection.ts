@@ -20,6 +20,19 @@ export default defineType({
       group: "content",
     }),
     defineField({
+      name: "backgroundColor",
+      title: "Kolor tła",
+      type: "string",
+      options: {
+        list: [
+          { title: "Biały", value: "white" },
+          { title: "Szary neutralny", value: "neutral-50" },
+          { title: "Niebieski jasny", value: "deep-navy-blue-50" },
+        ],
+      },
+      initialValue: "white",
+    }),
+    defineField({
       name: "questions",
       title: "Pytania i odpowiedzi",
       type: "array",

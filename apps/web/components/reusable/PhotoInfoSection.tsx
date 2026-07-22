@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import type { PhotoInfoSection } from "@/sanity/typegen";
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
 import { cn } from "@/lib/utils";
+import { IconButton } from "@/components/ui/IconButton";
 
 interface PhotoInfoSectionProps {
   item: PhotoInfoSection;
@@ -22,6 +23,16 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
         return "bg-white";
     }
   };
+  function getSocialIcon(platform: string): string {
+    const iconMap: Record<string, string> = {
+      facebook: "facebook",
+      instagram: "instagram",
+      linkedin: "linkedin",
+      tiktok: "tiktok",
+    };
+    return iconMap[platform.toLowerCase()] || "mail";
+  }
+  const socialLinks = item.socialLinks || [];
 
   return (
     <>
@@ -76,6 +87,24 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
               >
                 {item.button.text}
               </Button>
+            )}
+            {socialLinks.length > 0 && (
+              <div className="flex flex-wrap gap-4">
+                {socialLinks
+                  .filter((link) => link.url)
+                  .map((link, index) => (
+                    <IconButton
+                      key={index}
+                      as="link"
+                      href={link.url!}
+                      target="_blank"
+                      icon={getSocialIcon(link.platform || "other")}
+                      size="large"
+                      shape="square"
+                      aria-label={link.label || link.platform}
+                    />
+                  ))}
+              </div>
             )}
           </article>
         </main>

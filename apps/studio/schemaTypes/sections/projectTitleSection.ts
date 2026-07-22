@@ -21,11 +21,17 @@ export default defineType({
       name: "image",
       title: "Obraz",
       type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: "imageMob",
       title: "Obraz dla telefonów",
       type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       name: "enabled",

@@ -15,7 +15,6 @@ import type {
   PostsGallerySection,
   ProjectFaqSection,
   ProjectSignupSection,
-  ProjectPhotoInfoSection,
   ProjectQuestionsSection,
   ProjectVideoSection,
   PhotoInfoSection,
@@ -32,6 +31,8 @@ import type {
   DocumentsTabSection,
   PolicySection,
   PolicyDetailsSection,
+  ImageSection,
+  InfoSection,
 } from "@/sanity/typegen";
 import ProjectsGalleryWrapper from "@/components/sections/project-list/ProjectsGalleryWrapper";
 import PostsGalleryWrapper from "@/components/sections/post-list/PostsGalleryWrapper";
@@ -50,7 +51,6 @@ import DocumentsSectionComponent from "@/components/reusable/DocumentsSection";
 import ProjectTitleSectionComponent from "@/components/views/project-view/ProjectTitleSection";
 import ProjectFaqSectionComponent from "@/components/views/project-view/ProjectFaqSection";
 import ProjectSignupSectionComponent from "@/components/views/project-view/ProjectSignupSection";
-import ProjectPhotoInfoSectionComponent from "@/components/views/project-view/ProjectPhotoInfoSection";
 import ProjectQuestionsSectionComponent from "@/components/views/project-view/ProjectQuestionsSection";
 import ProjectVideoSectionComponent from "@/components/views/project-view/ProjectVideoSection";
 import PhotoInfoSectionComponent from "@/components/reusable/PhotoInfoSection";
@@ -69,6 +69,8 @@ import VolunteerTypesComponent from "@/components/VolunteerTypes";
 import DocumentsTabSectionComponent from "@/components/DocumentsTabSection";
 import PolicySectionComponent from "@/components/reusable/PolicySection";
 import PolicyDetailsSectionComponent from "@/components/reusable/PolicyDetailsSection";
+import ImageSectionComponent from "@/components/reusable/ImageSection";
+import InfoSectionComponent from "@/components/views/project-view/InfoSection";
 
 /**
  * Example: A `section` registry mapping Sanity `_type` values to React components.
@@ -122,9 +124,6 @@ export const components: { [key: string]: ComponentType<any> } = {
   projectSignupSection: ({ item }: { item: ProjectSignupSection }) => (
     <ProjectSignupSectionComponent item={item} />
   ),
-  projectPhotoInfoSection: ({ item }: { item: ProjectPhotoInfoSection }) => (
-    <ProjectPhotoInfoSectionComponent item={item} />
-  ),
   projectQuestionsSection: ({ item }: { item: ProjectQuestionsSection }) => (
     <ProjectQuestionsSectionComponent item={item} />
   ),
@@ -173,4 +172,8 @@ export const components: { [key: string]: ComponentType<any> } = {
   policyDetailsSection: ({ item }: { item: PolicyDetailsSection }) => (
     <PolicyDetailsSectionComponent section={item} />
   ),
+  imageSection: ({ item }: { item: ImageSection }) => (
+    <ImageSectionComponent slider={item?.slider} />
+  ),
+  infoSection: ({ item }: { item: InfoSection }) => <InfoSectionComponent item={item} />,
 };

@@ -16,9 +16,21 @@ export default defineType({
     defineField({
       name: "subtitle",
       title: "Podtytuł",
-      type: "text",
-      rows: 3,
+      type: "richText",
       group: "content",
+    }),
+    defineField({
+      name: "videoPosition",
+      title: "Pozycja video",
+      type: "string",
+      initialValue: "left",
+      options: {
+        layout: "dropdown",
+        list: [
+          { title: "Po lewej", value: "left" },
+          { title: "Po prawej", value: "right" },
+        ],
+      },
     }),
     defineField({
       name: "video",
@@ -31,11 +43,6 @@ export default defineType({
           title: "URL wideo (YouTube, Vimeo, etc.)",
           type: "url",
           validation: (Rule) => Rule.required(),
-        }),
-        defineField({
-          name: "thumbnail",
-          title: "Miniaturka wideo",
-          type: "img",
         }),
         defineField({
           name: "title",
@@ -63,10 +70,7 @@ export default defineType({
                   { title: "Facebook", value: "facebook" },
                   { title: "Instagram", value: "instagram" },
                   { title: "LinkedIn", value: "linkedin" },
-                  { title: "Twitter", value: "twitter" },
-                  { title: "YouTube", value: "youtube" },
                   { title: "TikTok", value: "tiktok" },
-                  { title: "Inny", value: "other" },
                 ],
               },
               validation: (Rule) => Rule.required(),
@@ -96,7 +100,6 @@ export default defineType({
       return {
         title: title || "Sekcja wideo projektu",
         subtitle: video?.title || "Sekcja wideo",
-        media: video?.thumbnail,
       };
     },
   },

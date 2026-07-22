@@ -23,7 +23,7 @@ export default function ImageSection({ slider }: { slider: WhatWeDoSection["slid
                 >
                   <SanityImage
                     image={slide.image}
-                    className="object-cover w-full h-full object-center"
+                    className="object-cover w-full h-full object-top"
                     alt={slide.image?.alt || `Zdjęcie ${index + 1}`}
                   />
                 </div>

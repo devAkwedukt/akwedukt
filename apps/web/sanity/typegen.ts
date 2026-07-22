@@ -18,13 +18,18 @@ export type Robots = {
   noFollow?: boolean;
 };
 
+export type Button = {
+  ctaVariant?: "primary" | "secondary" | "link";
+  text?: string;
+  url?: string;
+};
+
 export type Video = {
   url?: string;
-  thumbnail?: Img;
   title?: string;
 };
 
-export type Button = {
+export type HeroSlideButton = {
   label?: string;
   url?: string;
 };
@@ -172,12 +177,6 @@ export type WhatNewCurrentMobile = {
   _type: "image";
 };
 
-export type PhotoInfoSectionButton = {
-  ctaVariant?: "primary" | "secondary" | "link";
-  text?: string;
-  url?: string;
-};
-
 export type DonationCard = {
   title?: string;
   description?: string;
@@ -204,6 +203,7 @@ export type ObjectImage = {
   media?: unknown; // Unable to locate the referenced type "object.image.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
+  alt?: string;
   _type: "image";
 };
 
@@ -218,7 +218,7 @@ export type SliderObjectImage = {
 
 export type Photo = {
   asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "photo.media" in schema
+  media?: unknown; // Unable to locate the referenced type "object.photo.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   alt?: string;
@@ -231,9 +231,37 @@ export type DocumentsObjectFile = {
   _type: "file";
 };
 
+export type Image1 = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "object.image.media1" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+};
+
 export type ExternalImage = {
   _type: "externalImage";
   url?: string;
+};
+
+export type InfoSection = {
+  _type: "infoSection";
+  title?: string;
+  description?: string;
+  cards?: Array<{
+    title?: string;
+    description?: string;
+    _key: string;
+  }>;
+};
+
+export type ImageSection = {
+  _type: "imageSection";
+  slider?: Array<{
+    image?: Image1;
+    _key: string;
+  }>;
 };
 
 export type PolicyDetailsSection = {
@@ -321,6 +349,7 @@ export type Partner = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   url?: string;
@@ -333,6 +362,7 @@ export type HeroBackgroundSlide = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   backgroundImageMob?: {
@@ -340,6 +370,7 @@ export type HeroBackgroundSlide = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -351,7 +382,7 @@ export type HeroSlide = {
   _type: "heroSlide";
   title?: string;
   description?: string;
-  button?: Button;
+  button?: HeroSlideButton;
   animatedImages?: Array<{
     image?: ObjectImage;
     position?: "center" | "top-right" | "bottom-left" | "bottom-right";
@@ -366,6 +397,7 @@ export type SupportImpactSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -394,6 +426,7 @@ export type SupportHeroSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
 };
@@ -405,6 +438,7 @@ export type CoalitionSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -436,6 +470,7 @@ export type InstitutionBenefitsSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -458,6 +493,7 @@ export type AboutStatsSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -501,6 +537,7 @@ export type TeacherEngagementSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
 };
@@ -512,6 +549,7 @@ export type TeacherBenefitsSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   title?: string;
@@ -553,16 +591,30 @@ export type FaqAccordionSection = {
 export type PhotoInfoSection = {
   _type: "photoInfoSection";
   title?: string;
-  photo?: Img;
+  photo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   imagePosition?: "left" | "right";
   description?: RichText;
-  button?: PhotoInfoSectionButton;
+  button?: Button;
+  socialLinks?: Array<{
+    platform?: "facebook" | "instagram" | "linkedin" | "tiktok";
+    url?: string;
+    label?: string;
+    _key: string;
+  }>;
   backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   decorImage?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
+    alt?: string;
     _type: "image";
   };
   footerImage?: {
@@ -584,10 +636,11 @@ export type PhotoInfoSection = {
 export type ProjectVideoSection = {
   _type: "projectVideoSection";
   title?: string;
-  subtitle?: string;
+  subtitle?: RichText;
+  videoPosition?: "left" | "right";
   video?: Video;
   socialLinks?: Array<{
-    platform?: "facebook" | "instagram" | "linkedin" | "twitter" | "youtube" | "tiktok" | "other";
+    platform?: "facebook" | "instagram" | "linkedin" | "tiktok";
     url?: string;
     label?: string;
     _key: string;
@@ -598,6 +651,7 @@ export type ProjectQuestionsSection = {
   _type: "projectQuestionsSection";
   title?: string;
   subtitle?: string;
+  backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   questions?: Array<{
     question?: string;
     answer?: string;
@@ -605,20 +659,25 @@ export type ProjectQuestionsSection = {
   }>;
 };
 
-export type ProjectPhotoInfoSection = {
-  _type: "projectPhotoInfoSection";
-  photo?: Img;
-  title?: string;
-  description?: RichText;
-  buttonText?: string;
-  buttonUrl?: string;
-};
-
 export type ProjectSignupSection = {
   _type: "projectSignupSection";
   title?: string;
   buttonText?: string;
   buttonUrl?: string;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type ProjectFaqSection = {
@@ -1163,12 +1222,17 @@ export type Project = {
   seo?: Seo;
   title?: string;
   slug?: Slug;
-  mainImage?: Img;
+  mainImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  };
   shortDescription?: string;
   projectTypes?: "polish" | "international" | "international_en";
   projectStatus?: "pending" | "active" | "completed";
-  startDate?: string;
-  endDate?: string;
   sections?: Array<
     | ({
         _key: string;
@@ -1184,7 +1248,7 @@ export type Project = {
       } & DocumentsSection)
     | ({
         _key: string;
-      } & ProjectPhotoInfoSection)
+      } & PhotoInfoSection)
     | ({
         _key: string;
       } & ProjectQuestionsSection)
@@ -1194,7 +1258,32 @@ export type Project = {
     | ({
         _key: string;
       } & ProjectVideoSection)
+    | ({
+        _key: string;
+      } & FaqAccordionSection)
+    | ({
+        _key: string;
+      } & ImageSection)
+    | ({
+        _key: string;
+      } & InfoSection)
   >;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type Post = {
@@ -1246,22 +1335,6 @@ export type Post = {
     };
     _key: string;
   }>;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type PrivacyPolicy = {
@@ -1723,8 +1796,9 @@ export type Geopoint = {
 
 export type AllSanitySchemaTypes =
   | Robots
-  | Video
   | Button
+  | Video
+  | HeroSlideButton
   | HeroBackgroundSlideButton
   | DecorationImages
   | AboutSectionButton
@@ -1746,7 +1820,6 @@ export type AllSanitySchemaTypes =
   | WhatNewCurrent
   | WhatNewCurrentDesktop
   | WhatNewCurrentMobile
-  | PhotoInfoSectionButton
   | DonationCard
   | FundraisingCard
   | VolunteerCard
@@ -1754,7 +1827,10 @@ export type AllSanitySchemaTypes =
   | SliderObjectImage
   | Photo
   | DocumentsObjectFile
+  | Image1
   | ExternalImage
+  | InfoSection
+  | ImageSection
   | PolicyDetailsSection
   | PolicySection
   | DocumentsTabSection
@@ -1777,7 +1853,6 @@ export type AllSanitySchemaTypes =
   | PhotoInfoSection
   | ProjectVideoSection
   | ProjectQuestionsSection
-  | ProjectPhotoInfoSection
   | ProjectSignupSection
   | ProjectFaqSection
   | PostReference
@@ -1824,9 +1899,9 @@ export type AllSanitySchemaTypes =
   | Slug
   | Category
   | Project
-  | Post
   | SanityImageCrop
   | SanityImageHotspot
+  | Post
   | PrivacyPolicy
   | Documents
   | Footer
@@ -1987,7 +2062,7 @@ export type QueryAllTagsResult = Array<{
 
 // Source: ../web/sanity/queries/projects.ts
 // Variable: PROJECT_BY_ID_QUERY
-// Query: *[_id == $projectId][0]{  _id,  title,  slug,  mainImage,  shortDescription,  startDate,  projectTypes,  projectStatus,  sections}
+// Query: *[_id == $projectId][0]{  _id,  title,  slug,  mainImage,  shortDescription,  projectTypes,  projectStatus,  sections}
 export type PROJECT_BY_ID_QUERY_RESULT =
   | {
       _id: string;
@@ -1995,7 +2070,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: null;
@@ -2006,7 +2080,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: null;
@@ -2017,7 +2090,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: Slug | null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: null;
@@ -2028,7 +2100,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: Slug | null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: null;
@@ -2039,7 +2110,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2072,7 +2142,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2096,7 +2165,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2123,7 +2191,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2150,7 +2217,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2180,7 +2246,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2201,7 +2266,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2222,7 +2286,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2240,7 +2303,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2264,7 +2326,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2285,7 +2346,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2306,7 +2366,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2324,7 +2383,6 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       slug: null;
       mainImage: null;
       shortDescription: null;
-      startDate: null;
       projectTypes: null;
       projectStatus: null;
       sections: Array<
@@ -2343,9 +2401,15 @@ export type PROJECT_BY_ID_QUERY_RESULT =
       _id: string;
       title: string | null;
       slug: Slug | null;
-      mainImage: Img | null;
+      mainImage: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        alt?: string;
+        _type: "image";
+      } | null;
       shortDescription: string | null;
-      startDate: string | null;
       projectTypes: "international_en" | "international" | "polish" | null;
       projectStatus: "active" | "completed" | "pending" | null;
       sections: Array<
@@ -2354,13 +2418,22 @@ export type PROJECT_BY_ID_QUERY_RESULT =
           } & DocumentsSection)
         | ({
             _key: string;
+          } & FaqAccordionSection)
+        | ({
+            _key: string;
+          } & ImageSection)
+        | ({
+            _key: string;
+          } & InfoSection)
+        | ({
+            _key: string;
           } & PartnersSection)
         | ({
             _key: string;
-          } & ProjectFaqSection)
+          } & PhotoInfoSection)
         | ({
             _key: string;
-          } & ProjectPhotoInfoSection)
+          } & ProjectFaqSection)
         | ({
             _key: string;
           } & ProjectQuestionsSection)
@@ -2390,7 +2463,7 @@ declare module "@sanity/client" {
     "*[_id == $postId][0]{\n  _id,\n  title,\n  slug,\n  date,\n  status,\n  content,\n  excerpt,\n  featuredMedia,\n  categories[]->{\n    _id,\n    name,\n    slug\n  },\n  tags[]->{\n    _id,\n    name,\n    slug\n  }\n}": POST_BY_ID_QUERY_RESULT;
     'count(*[_type == "post" && !(_id in path("drafts.**")) ])': QueryTotalPostsCountResult;
     '*[_type == "tag"] | order(name asc) {\n      _id,\n      name,\n      slug\n    }': QueryAllTagsResult;
-    "*[_id == $projectId][0]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  shortDescription,\n  startDate,\n  projectTypes,\n  projectStatus,\n  sections\n}": PROJECT_BY_ID_QUERY_RESULT;
+    "*[_id == $projectId][0]{\n  _id,\n  title,\n  slug,\n  mainImage,\n  shortDescription,\n  projectTypes,\n  projectStatus,\n  sections\n}": PROJECT_BY_ID_QUERY_RESULT;
     'count(*[_type == "project" && !(_id in path("drafts.**")) ])': QueryTotalProjectsCountResult;
   }
 }

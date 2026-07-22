@@ -10,6 +10,16 @@ export default defineType({
       name: "image",
       title: "Zdjęcie",
       type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({

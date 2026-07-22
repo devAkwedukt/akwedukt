@@ -16,8 +16,15 @@ export default defineType({
     defineField({
       name: "photo",
       title: "Zdjęcie",
-      type: "img",
+      type: "image",
       group: "content",
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -73,6 +80,44 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "socialLinks",
+      title: "Linki do mediów społecznościowych",
+      type: "array",
+      group: "content",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({
+              name: "platform",
+              title: "Platforma",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Facebook", value: "facebook" },
+                  { title: "Instagram", value: "instagram" },
+                  { title: "LinkedIn", value: "linkedin" },
+                  { title: "TikTok", value: "tiktok" },
+                ],
+              },
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "url",
+              title: "URL",
+              type: "url",
+              validation: (Rule) => Rule.required(),
+            }),
+            defineField({
+              name: "label",
+              title: "Etykieta (opcjonalnie)",
+              type: "string",
+            }),
+          ],
+        },
+      ],
+    }),
+    defineField({
       name: "backgroundColor",
       title: "Kolor tła",
       type: "string",
@@ -89,6 +134,16 @@ export default defineType({
       name: "decorImage",
       title: "Obraz",
       type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       description: "Obraz wewnątrz sekcji",
     }),
     defineField({

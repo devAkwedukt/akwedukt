@@ -9,14 +9,32 @@ export default defineType({
       name: "backgroundImage",
       title: "Background Image",
       type: "image",
-      options: { hotspot: true },
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: "backgroundImageMob",
       title: "Background Image Mobile",
       type: "image",
-      options: { hotspot: true },
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
       validation: (Rule) => Rule.required(),
     }),
     defineField({

@@ -31,7 +31,6 @@ import projectsGallerySection from "./sections/projectsGallerySection";
 import postsGallerySection from "./sections/postsGallerySection";
 import projectFaqSection from "./sections/projectFaqSection";
 import projectSignupSection from "./sections/projectSignupSection";
-import projectPhotoInfoSection from "./sections/projectPhotoInfoSection";
 import projectQuestionsSection from "./sections/projectQuestionsSection";
 import projectVideoSection from "./sections/projectVideoSection";
 import photoInfoSection from "./sections/photoInfoSection";
@@ -61,6 +60,8 @@ import documents from "./pages/documents";
 import privacyPolicy from "./pages/privacyPolicy";
 import policySection from "./sections/policySection";
 import policyDetailsSection from "./sections/policyDetailsSection";
+import imageSection from "./sections/imageSection";
+import infoSection from "./sections/infoSection";
 
 export const schemaTypes = [
   project,
@@ -95,7 +96,6 @@ export const schemaTypes = [
   postsGallerySection,
   projectFaqSection,
   projectSignupSection,
-  projectPhotoInfoSection,
   projectQuestionsSection,
   projectVideoSection,
   photoInfoSection,
@@ -121,6 +121,8 @@ export const schemaTypes = [
   privacyPolicy,
   policySection,
   policyDetailsSection,
+  imageSection,
+  infoSection,
   //WP IMPORT-TYPES
   categoryType,
   postType,

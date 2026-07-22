@@ -51,6 +51,16 @@ export default defineType({
       name: "bottomImage",
       title: "Obraz na dole",
       type: "image",
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
     }),
   ],
   preview: {

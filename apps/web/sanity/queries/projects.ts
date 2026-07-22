@@ -8,7 +8,6 @@ export const PROJECT_BY_ID_QUERY = defineQuery(`*[_id == $projectId][0]{
   slug,
   mainImage,
   shortDescription,
-  startDate,
   projectTypes,
   projectStatus,
   sections
@@ -44,13 +43,12 @@ export const getProjects = cache(
       params.statusFilter = statusFilter;
     }
 
-    const queryProjects = `*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}] | order(startDate desc)[$offset...($offset + $limit)] {
+    const queryProjects = `*[_type == "project" && !(_id in path("drafts.**")) ${filterClause}][$offset...($offset + $limit)] {
       _id,
       title,
       slug,
       mainImage,
       shortDescription,
-      startDate,
       projectTypes,
       projectStatus
     }`;

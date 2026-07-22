@@ -27,6 +27,18 @@ export default defineType({
       group: "content",
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: "decorImage",
+      title: "Obraz",
+      type: "image",
+      description: "Obraz tło",
+    }),
+    defineField({
+      name: "decorImageMob",
+      title: "Obraz dla mobilnych",
+      type: "image",
+      description: "Obraz tło dla mobilnych",
+    }),
   ],
   preview: {
     select: {

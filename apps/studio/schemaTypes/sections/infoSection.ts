@@ -1,26 +1,10 @@
 import { defineType, defineField } from "sanity";
 
 export default defineType({
-  name: "aboutStatsSection",
-  title: "Sekcja statystyk",
+  name: "infoSection",
+  title: "Sekcja z informacjami",
   type: "object",
   fields: [
-    defineField({
-      name: "image",
-      title: "Zdjęcie",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Opis alternatywny",
-          type: "string",
-        },
-      ],
-      validation: (Rule) => Rule.required(),
-    }),
     defineField({
       name: "title",
       title: "Tytuł",
@@ -30,45 +14,44 @@ export default defineType({
     defineField({
       name: "description",
       title: "Opis",
-      type: "array",
-      of: [{ type: "block" }],
+      type: "text",
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: "stats",
-      title: "Statystyki",
+      name: "cards",
+      title: "Karty",
       type: "array",
       of: [
         {
           type: "object",
           fields: [
             defineField({
-              name: "number",
-              title: "Liczba",
+              name: "title",
+              title: "Tytuł karty",
               type: "string",
               validation: (Rule) => Rule.required(),
             }),
             defineField({
-              name: "label",
-              title: "Podpis",
-              type: "string",
+              name: "description",
+              title: "Opis karty",
+              type: "text",
               validation: (Rule) => Rule.required(),
             }),
           ],
         },
       ],
-      validation: (Rule) => Rule.length(4).required(),
+      validation: (Rule) => Rule.min(1).required(),
     }),
   ],
   preview: {
     select: {
       title: "title",
-      image: "image",
+      cards: "cards",
     },
-    prepare({ title, image }) {
+    prepare({ title, cards }) {
       return {
-        title: title || "Sekcja statystyk",
-        media: image,
+        title: title || "Sekcja z informacjami",
+        subtitle: `${cards?.length || 0} kart`,
       };
     },
   },

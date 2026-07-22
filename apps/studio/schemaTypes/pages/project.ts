@@ -32,8 +32,15 @@ export default defineType({
     defineField({
       name: "mainImage",
       title: "Główne zdjęcie",
-      type: "img",
+      type: "image",
       group: "content",
+      fields: [
+        {
+          name: "alt",
+          title: "Opis alternatywny",
+          type: "string",
+        },
+      ],
     }),
     defineField({
       name: "shortDescription",
@@ -69,18 +76,6 @@ export default defineType({
       },
     }),
     defineField({
-      name: "startDate",
-      title: "Data rozpoczęcia",
-      type: "datetime",
-      group: "content",
-    }),
-    defineField({
-      name: "endDate",
-      title: "Data zakończenia",
-      type: "datetime",
-      group: "content",
-    }),
-    defineField({
       name: "sections",
       title: "Sekcje strony",
       type: "array",
@@ -103,8 +98,8 @@ export default defineType({
           type: "documentsSection",
         }),
         defineArrayMember({
-          name: "projectPhotoInfoSection",
-          type: "projectPhotoInfoSection",
+          name: "photoInfoSection",
+          type: "photoInfoSection",
         }),
         defineArrayMember({
           name: "projectQuestionsSection",
@@ -117,6 +112,18 @@ export default defineType({
         defineArrayMember({
           name: "projectVideoSection",
           type: "projectVideoSection",
+        }),
+        defineArrayMember({
+          name: "faqAccordionSection",
+          type: "faqAccordionSection",
+        }),
+        defineArrayMember({
+          name: "imageSection",
+          type: "imageSection",
+        }),
+        defineArrayMember({
+          name: "infoSection",
+          type: "infoSection",
         }),
       ],
     }),
