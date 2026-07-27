@@ -39,12 +39,7 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
         subHeading="Odkrywaj z nami nowe możliwości"
       />
       {/*<SanitySections value={page?.sections} />*/}
-      <SanitySections
-        value={page?.sections?.map(({ _key, _type }) => ({
-          _key,
-          _type,
-        }))}
-      />
+      <SanitySections value={undefined} />
       <ContactForm
         headingText="Napisz do nas"
         subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
