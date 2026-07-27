@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { q } from "@/sanity/groqd";
 import { sanityFetchProduction } from "@/sanity/live";
-// import { SanitySections } from "@/sanity/sections/SanitySections";
+import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
@@ -26,7 +26,10 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
     cache: [{ type: "page", name: "oNas" }],
   });
   if (!data) notFound();
-  const page = oNas.parse(data)[0];
+  // const page = oNas.parse(data)[0];
+  const page = {
+    sections: [],
+  };
 
   return (
     <>
@@ -38,8 +41,7 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
         headerText="Z lokalnych źródeł płyniemy w świat"
         subHeading="Odkrywaj z nami nowe możliwości"
       />
-      {/*<SanitySections value={page?.sections} />*/}
-      <div>sections count: {page?.sections?.length}</div>
+      <SanitySections value={page?.sections} />
       <ContactForm
         headingText="Napisz do nas"
         subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
