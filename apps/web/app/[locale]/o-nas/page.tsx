@@ -23,7 +23,7 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
   const { data } = await sanityFetchProduction({
     query: oNas.query,
     params: { locale },
-    cache: [{ type: "page", name: "oNas" }, "projects"],
+    cache: [{ type: "page", name: "oNas" }],
   });
   if (!data) notFound();
   const page = oNas.parse(data)[0];
@@ -38,7 +38,13 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
         headerText="Z lokalnych źródeł płyniemy w świat"
         subHeading="Odkrywaj z nami nowe możliwości"
       />
-      <SanitySections value={page?.sections} />
+      {/*<SanitySections value={page?.sections} />*/}
+      <SanitySections
+        value={page?.sections?.map(({ _key, _type }) => ({
+          _key,
+          _type,
+        }))}
+      />
       <ContactForm
         headingText="Napisz do nas"
         subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
