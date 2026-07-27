@@ -26,10 +26,7 @@ export default async function ONas({ params }: { params: Promise<{ locale: strin
     cache: [{ type: "page", name: "oNas" }],
   });
   if (!data) notFound();
-  // const page = oNas.parse(data)[0];
-  const page = {
-    sections: [],
-  };
+  const page = oNas.parse(data)[0];
 
   return (
     <>
