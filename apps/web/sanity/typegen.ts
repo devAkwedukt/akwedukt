@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
 export type Robots = {
   noIndex?: boolean;
@@ -1925,8 +1927,6 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
-
-export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: ../web/sanity/queries/groq.example.ts
 // Variable: FOOTER_QUERY
