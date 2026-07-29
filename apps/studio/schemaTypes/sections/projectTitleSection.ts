@@ -19,15 +19,12 @@ export default defineType({
     }),
     defineField({
       name: "image",
-      title: "Obraz",
+      title: "Styl: Obraz",
       type: "image",
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: "imageMob",
-      title: "Obraz dla telefonów",
+      title: "Styl: Obraz dla telefonów",
       type: "image",
       options: {
         hotspot: true,

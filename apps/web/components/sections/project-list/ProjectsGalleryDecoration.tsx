@@ -90,6 +90,14 @@ export default function ProjectsGalleryDecoration({
           className="absolute top-1/7 md:-top-8 -right-1/6 md:right-1/24 w-53.5 h-37.75 md:w-91 md:h-51.5"
         />
       ) : null,
+      decorationImages?.cooperationInternationalEn?.backgroundImage ? (
+        <SanityImage
+          key="desktop-background"
+          image={decorationImages.cooperationInternationalEn.backgroundImage}
+          alt="Dekoracja - projekty"
+          className="absolute bottom-1/7 md:-bottom-8 -right-1/6 md:right-1/24 w-53.5 h-37.75 md:w-91 md:h-51.5"
+        />
+      ) : null,
     ],
 
     "parents-current": [

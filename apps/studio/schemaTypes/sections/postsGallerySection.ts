@@ -22,19 +22,6 @@ export default defineType({
       group: "content",
     }),
     defineField({
-      name: "variant",
-      title: "Wariant",
-      type: "string",
-      group: "content",
-      options: {
-        list: [
-          { title: "Najnowsze posty", value: "latest" },
-          { title: "Następne posty", value: "next" },
-        ],
-      },
-      initialValue: "latest",
-    }),
-    defineField({
       name: "posts",
       title: "Posty",
       type: "array",
@@ -50,6 +37,19 @@ export default defineType({
           },
         },
       ],
+    }),
+    defineField({
+      name: "variant",
+      title: "Wariant",
+      type: "string",
+      group: "content",
+      options: {
+        list: [
+          { title: "Najnowsze posty", value: "latest" },
+          { title: "Następne posty", value: "next" },
+        ],
+      },
+      initialValue: "latest",
     }),
     defineField({
       name: "limit",
@@ -82,7 +82,7 @@ export default defineType({
     }),
     defineField({
       name: "ctaVariant",
-      title: "Wariant przycisku",
+      title: "Styl: Wariant przycisku",
       type: "string",
       group: "content",
       options: {
@@ -95,23 +95,23 @@ export default defineType({
     }),
     defineField({
       name: "topImage",
-      title: "Obraz na górze",
+      title: "Styl: Obraz na górze",
       type: "image",
     }),
     defineField({
       name: "topImage2",
-      title: "Obraz na górze (2)",
+      title: "Styl: Obraz na górze (2)",
       type: "image",
     }),
     defineField({
       name: "bottomImage",
-      title: "Obraz na dole",
+      title: "Styl: Obraz na dole",
       type: "image",
       description: "Obraz wewnątrz sekcji",
     }),
     defineField({
       name: "footerImage",
-      title: "Obraz pod sekcją",
+      title: "Styl: Obraz pod sekcją",
       type: "image",
       description: "Obraz poza sekcją",
     }),

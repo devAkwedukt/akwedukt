@@ -89,6 +89,11 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: "decorImage",
+      title: "Styl: Doodle",
+      type: "image",
+    }),
   ],
 
   preview: {

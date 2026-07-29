@@ -13,7 +13,7 @@ export default defineType({
     }),
     defineField({
       name: "backgroundColor",
-      title: "Kolor tła",
+      title: "Styl: Kolor tła",
       type: "string",
       options: {
         list: [
@@ -70,6 +70,11 @@ export default defineType({
           ],
         },
       ],
+    }),
+    defineField({
+      name: "decorImage",
+      title: "Styl: Obraz dekoracyjny",
+      type: "image",
     }),
   ],
   preview: {

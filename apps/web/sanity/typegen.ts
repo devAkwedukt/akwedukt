@@ -136,11 +136,20 @@ export type WhatWeDoPolishMobile = {
 
 export type CooperationInternationalEn = {
   desktop?: CooperationInternationalEnDesktop;
+  backgroundImage?: BackgroundImage;
 };
 
 export type CooperationInternationalEnDesktop = {
   asset?: SanityImageAssetReference;
   media?: unknown; // Unable to locate the referenced type "cooperationInternationalEn.desktop.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
+};
+
+export type BackgroundImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "cooperationInternationalEn.backgroundImage.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   _type: "image";
@@ -256,6 +265,13 @@ export type InfoSection = {
     description?: string;
     _key: string;
   }>;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type ImageSection = {
@@ -334,6 +350,13 @@ export type VolunteerTypes = {
     }>;
     _key: string;
   }>;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type Testimonial = {
@@ -410,6 +433,13 @@ export type SupportImpactSection = {
     color?: "blue" | "purple" | "pink" | "orange";
     _key: string;
   }>;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type SupportOptionsSection = {
@@ -588,6 +618,13 @@ export type FaqAccordionSection = {
     answer?: RichText;
     _key: string;
   }>;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type PhotoInfoSection = {
@@ -616,7 +653,6 @@ export type PhotoInfoSection = {
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
-    alt?: string;
     _type: "image";
   };
   footerImage?: {
@@ -702,12 +738,12 @@ export type PostsGallerySection = {
   _type: "postsGallerySection";
   title?: string;
   subtitle?: string;
-  variant?: "latest" | "next";
   posts?: Array<
     {
       _key: string;
     } & PostReference
   >;
+  variant?: "latest" | "next";
   limit?: number;
   ctaText?: string;
   seeAllPostsText?: string;
@@ -754,13 +790,13 @@ export type ProjectsGallerySection = {
   _type: "projectsGallerySection";
   title?: string;
   subtitle?: string;
-  projectFilter?: "all" | "polish" | "international" | "international_en";
-  statusFilter?: "all" | "pending" | "active" | "completed";
   projects?: Array<
     {
       _key: string;
     } & ProjectReference
   >;
+  projectFilter?: "all" | "polish" | "international" | "international_en";
+  statusFilter?: "all" | "pending" | "active" | "completed";
   limit?: number;
   ctaText?: string;
   ctaVariant?: "primary" | "secondary" | "link";
@@ -809,6 +845,27 @@ export type OurTeamSection = {
     bio?: string;
     _key: string;
   }>;
+  decorImageAside?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageBottom?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type OurHistorySection = {
@@ -867,6 +924,34 @@ export type WhatWeDoSection = {
     image?: SliderObjectImage;
     _key: string;
   }>;
+  decorImageTop?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageBottom?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageTopMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImageBottomMob?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type DocumentsSection = {
@@ -882,6 +967,13 @@ export type DocumentsSection = {
     buttonText?: string;
     _key: string;
   }>;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type ValuesSection = {
@@ -947,6 +1039,20 @@ export type AboutSection = {
     _type: "image";
   };
   button?: AboutSectionButton;
+  decorImage?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  decorImage2?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type HeroBackgroundSection = {
@@ -1184,6 +1290,7 @@ export type InternationalizedArrayReferenceValue = {
     | ProjectReference
     | CategoryReference
     | TagReference;
+  language?: string;
 };
 
 export type Tag = {
@@ -1817,6 +1924,7 @@ export type AllSanitySchemaTypes =
   | WhatWeDoPolishMobile
   | CooperationInternationalEn
   | CooperationInternationalEnDesktop
+  | BackgroundImage
   | ParentsCurrent
   | ParentsCurrentDesktop
   | WhatNewCurrent

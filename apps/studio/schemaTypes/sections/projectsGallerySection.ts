@@ -50,6 +50,19 @@ export default defineType({
       rows: 3,
     }),
     defineField({
+      name: "projects",
+      title: "Projekty",
+      type: "array",
+      group: "content",
+      description: "Pozostaw puste, aby automatycznie załadować projekty zgodnie z filtrem",
+      of: [
+        {
+          type: "reference",
+          to: { type: "project" },
+        },
+      ],
+    }),
+    defineField({
       name: "projectFilter",
       title: "Filtr projektów",
       type: "string",
@@ -80,19 +93,6 @@ export default defineType({
       initialValue: "all",
     }),
     defineField({
-      name: "projects",
-      title: "Projekty",
-      type: "array",
-      group: "content",
-      description: "Pozostaw puste, aby automatycznie załadować projekty zgodnie z filtrem",
-      of: [
-        {
-          type: "reference",
-          to: { type: "project" },
-        },
-      ],
-    }),
-    defineField({
       name: "limit",
       title: "Limit projektów",
       type: "number",
@@ -110,7 +110,7 @@ export default defineType({
     }),
     defineField({
       name: "ctaVariant",
-      title: "Wariant przycisku",
+      title: "Styl: Wariant przycisku",
       type: "string",
       group: "content",
       options: {
@@ -138,7 +138,7 @@ export default defineType({
     }),
     defineField({
       name: "backgroundColor",
-      title: "Kolor tła",
+      title: "Styl: Kolor tła",
       type: "string",
       options: {
         list: [
@@ -151,7 +151,7 @@ export default defineType({
     }),
     defineField({
       name: "decorationVariant",
-      title: "Wariant dekoracji",
+      title: "Styl: Wariant dekoracji",
       type: "string",
       group: "content",
       options: {
@@ -159,7 +159,7 @@ export default defineType({
           { title: "Co robimy - Międzynarodowe projekty", value: "what-we-do-international" },
           { title: "Co robimy - Polskie projekty", value: "what-we-do-polish" },
           {
-            title: "Międzynarodowa współpraca - Międzynarodowe projekty (EN)",
+            title: "International projects (EN)",
             value: "cooperation-international-en",
           },
           { title: "Co nowego - Aktualne projekty", value: "what-new-current" },
@@ -169,7 +169,7 @@ export default defineType({
     }),
     defineField({
       name: "decorationImages",
-      title: "Obrazy dekoracji",
+      title: "Styl: Obrazy dekoracji",
       type: "object",
       group: "content",
       fields: [
@@ -181,22 +181,22 @@ export default defineType({
           fields: [
             defineField({
               name: "desktop",
-              title: "Desktop - Gwiazda",
+              title: "Styl: Desktop - Gwiazda",
               type: "image",
             }),
             defineField({
               name: "desktop2",
-              title: "Desktop - Ptak",
+              title: "Styl: Desktop - Ptak",
               type: "image",
             }),
             defineField({
               name: "mobile",
-              title: "Mobile - Niebieska gwiazda",
+              title: "Styl: Mobile - Niebieska gwiazda",
               type: "image",
             }),
             defineField({
               name: "mobile2",
-              title: "Mobile - Fala",
+              title: "Styl: Mobile - Fala",
               type: "image",
             }),
           ],
@@ -210,12 +210,12 @@ export default defineType({
           fields: [
             defineField({
               name: "desktop",
-              title: "Desktop - Wielokolorowa linia lewa",
+              title: "Styl: Desktop - Wielokolorowa linia lewa",
               type: "image",
             }),
             defineField({
               name: "mobile",
-              title: "Mobile - Wielokolorowa linia prawa",
+              title: "Styl: Mobile - Wielokolorowa linia prawa",
               type: "image",
             }),
           ],
@@ -223,13 +223,18 @@ export default defineType({
 
         defineField({
           name: "cooperationInternationalEn",
-          title: "Międzynarodowa współpraca - Międzynarodowe projekty (EN)",
+          title: "Międzynarodowe projekty (EN)",
           type: "object",
           hidden: isDecorationVariantHidden("cooperation-international-en"),
           fields: [
             defineField({
               name: "desktop",
-              title: "Desktop - Doodle",
+              title: "Styl: Desktop - Doodle",
+              type: "image",
+            }),
+            defineField({
+              name: "backgroundImage",
+              title: "Styl: Desktop - Tło",
               type: "image",
             }),
           ],
@@ -243,7 +248,7 @@ export default defineType({
           fields: [
             defineField({
               name: "desktop",
-              title: "Desktop - Gwiazda",
+              title: "Styl: Desktop - Gwiazda",
               type: "image",
             }),
           ],
@@ -257,7 +262,7 @@ export default defineType({
           fields: [
             defineField({
               name: "desktop",
-              title: "Desktop",
+              title: "Styl: Desktop",
               type: "image",
             }),
             defineField({

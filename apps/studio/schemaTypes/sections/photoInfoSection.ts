@@ -29,7 +29,7 @@ export default defineType({
     }),
     defineField({
       name: "imagePosition",
-      title: "Pozycja zdjęcia",
+      title: "Styl: Pozycja zdjęcia",
       type: "string",
       initialValue: "left",
       options: {
@@ -119,7 +119,7 @@ export default defineType({
     }),
     defineField({
       name: "backgroundColor",
-      title: "Kolor tła",
+      title: "Styl: Kolor tła",
       type: "string",
       options: {
         list: [
@@ -132,29 +132,19 @@ export default defineType({
     }),
     defineField({
       name: "decorImage",
-      title: "Obraz",
+      title: "Styl: Obraz",
       type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          title: "Opis alternatywny",
-          type: "string",
-        },
-      ],
       description: "Obraz wewnątrz sekcji",
     }),
     defineField({
       name: "footerImage",
-      title: "Obraz pod sekcją",
+      title: "Styl: Obraz pod sekcją",
       type: "image",
       description: "Obraz poza sekcją",
     }),
     defineField({
       name: "footerImageMob",
-      title: "Obraz pod sekcją dla mobilnych",
+      title: "Styl: Obraz pod sekcją dla mobilnych",
       type: "image",
       description: "Obraz poza sekcją",
     }),

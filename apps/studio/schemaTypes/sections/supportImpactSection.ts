@@ -73,6 +73,11 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required().min(4).max(4),
     }),
+    defineField({
+      name: "decorImage",
+      title: "Styl: Doodle",
+      type: "image",
+    }),
   ],
   preview: {
     select: {

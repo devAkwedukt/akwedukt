@@ -3,6 +3,7 @@
 import type { DocumentsSection } from "@/sanity/typegen";
 import { SanityFile } from "@/sanity/file/SanityFile";
 import { IconButton } from "../ui/IconButton";
+import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function DocumentsSection({ item }: { item: DocumentsSection }) {
   if (item.enabled === false) return null;
@@ -19,8 +20,13 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
   };
 
   return (
-    <section className={`w-full py-12 md:py-16 2xl:py-24 px-6 md:px-20 ${getBackgroundClass()}`}>
+    <section
+      className={`relative w-full py-12 md:py-16 2xl:py-24 px-6 md:px-20 ${getBackgroundClass()}`}
+    >
       {/* Header */}
+      {item.decorImage && (
+        <SanityImage image={item.decorImage} className=" absolute top-1/12 left-1/5 w-21.25 h-32" />
+      )}
       <div className="text-left- md:text-center mb-12">
         {item.title && <h2 className="heading-2 mb-6">{item.title}</h2>}
         {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}

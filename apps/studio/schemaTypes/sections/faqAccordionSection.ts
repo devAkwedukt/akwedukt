@@ -58,6 +58,11 @@ export default defineType({
       ],
       validation: (Rule) => Rule.required().min(1),
     }),
+    defineField({
+      name: "decorImage",
+      title: "Styl: Obraz",
+      type: "image",
+    }),
   ],
   preview: {
     select: {

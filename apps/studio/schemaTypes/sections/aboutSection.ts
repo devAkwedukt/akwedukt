@@ -56,6 +56,18 @@ export default defineType({
         }),
       ],
     }),
+    defineField({
+      name: "decorImage",
+      title: "Styl: Obraz",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
+    defineField({
+      name: "decorImage2",
+      title: "Styl: Obraz-2",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
   ],
   preview: {
     select: {

@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { FaqAccordionSection } from "@/sanity/typegen";
 import { SanityRichText } from "@/sanity/richText/SanityRichText";
 import { RenderIcon } from "../ui";
+import { SanityImage } from "@/sanity/image/SanityImage";
 
 interface FaqAccordionSectionProps {
   item: FaqAccordionSection;
@@ -24,7 +25,7 @@ export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) 
   }
 
   return (
-    <section className="bg-gray-50 py-12 md:py-16 2xl:py-18 px-6 md:px-10 lg:px-20 mx-auto">
+    <section className="relative bg-gray-50 py-12 md:py-16 2xl:py-18 px-6 md:px-10 lg:px-20 mx-auto">
       <div className="mx-auto w-full max-w-300">
         <header className="mb-10 flex flex-col gap-4 md:gap-6 text-left md:text-center">
           <h2 className="heading-2">{item.title}</h2>
@@ -94,6 +95,9 @@ export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) 
           })}
         </main>
       </div>
+      {item.decorImage && (
+        <SanityImage image={item.decorImage} className=" absolute top-0 right-0 w-33 h-75" />
+      )}
     </section>
   );
 }

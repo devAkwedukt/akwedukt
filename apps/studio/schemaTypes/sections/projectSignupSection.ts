@@ -29,13 +29,13 @@ export default defineType({
     }),
     defineField({
       name: "decorImage",
-      title: "Obraz",
+      title: "Styl: Obraz",
       type: "image",
       description: "Obraz tło",
     }),
     defineField({
       name: "decorImageMob",
-      title: "Obraz dla mobilnych",
+      title: "Styl: Obraz dla mobilnych",
       type: "image",
       description: "Obraz tło dla mobilnych",
     }),

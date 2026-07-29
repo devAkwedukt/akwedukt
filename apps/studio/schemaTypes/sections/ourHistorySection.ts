@@ -40,7 +40,7 @@ export default defineType({
     }),
     defineField({
       name: "bottomImage",
-      title: "Obraz pod sekcją",
+      title: "Styl: Obraz pod sekcją",
       type: "image",
     }),
   ],

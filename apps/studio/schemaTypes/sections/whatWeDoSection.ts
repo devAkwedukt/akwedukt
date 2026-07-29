@@ -128,5 +128,29 @@ export default defineType({
         },
       ],
     }),
+    defineField({
+      name: "decorImageTop",
+      title: "Styl: Obraz (Desktop) góry",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
+    defineField({
+      name: "decorImageBottom",
+      title: "Styl: Obraz (Desktop) dół",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
+    defineField({
+      name: "decorImageTopMob",
+      title: "Styl: Obraz (Mobile) góry",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
+    defineField({
+      name: "decorImageBottomMob",
+      title: "Styl: Obraz (Mobile) dół",
+      type: "image",
+      description: "Obraz wewnątrz sekcji",
+    }),
   ],
 });

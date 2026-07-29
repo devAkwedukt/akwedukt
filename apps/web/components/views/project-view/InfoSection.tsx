@@ -1,10 +1,11 @@
 import type { InfoSection } from "@/sanity/typegen";
+import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function InfoSection({ item }: { item: InfoSection }) {
   if (!item.cards?.length) return null;
 
   return (
-    <section className="w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">
+    <section className="relative w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">
       <main className="mx-auto flex flex-col md:flex-row justify-start gap-12 md:gap-16 2xl:gap-[5%]  items-center">
         <article className="flex flex-col gap-8 md:gap-12">
           <header className="flex flex-col gap-6">
@@ -32,6 +33,9 @@ export default function InfoSection({ item }: { item: InfoSection }) {
           </main>
         </article>
       </main>
+      {item.decorImage && (
+        <SanityImage image={item.decorImage} className=" absolute top-0 right-0 w-21.25 h-32" />
+      )}
     </section>
   );
 }

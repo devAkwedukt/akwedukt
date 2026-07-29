@@ -1,8 +1,9 @@
 import type { VolunteerTypes } from "@/sanity/typegen";
+import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
   return (
-    <section className="py-20">
+    <section className="relative py-20">
       <div className="container mx-auto">
         <h2 className="heading-2 mb-16 text-center">{item.title}</h2>
 
@@ -28,6 +29,9 @@ export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
           ))}
         </div>
       </div>
+      {item.decorImage && (
+        <SanityImage image={item.decorImage} className=" absolute bottom-0 right-0 w-110 h-70" />
+      )}
     </section>
   );
 }

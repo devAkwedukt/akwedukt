@@ -16,7 +16,7 @@ const colorClasses = {
 
 export default function SupportImpactSection({ item }: SupportImpactSectionProps) {
   return (
-    <section className="px-6 md:px-20 py-8 md:py-16 2xl:py-20 max-w-480">
+    <section className="relative px-6 md:px-20 py-8 md:py-16 2xl:py-20 max-w-480">
       <main className="mx-auto flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
         {/* Image - left on desktop, last on mobile */}
         <aside className="size-80 md:size-150">
@@ -54,6 +54,9 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
           </div>
         </article>
       </main>
+      {item.decorImage && (
+        <SanityImage image={item.decorImage} className=" absolute top-0 right-0 w-50 h-40" />
+      )}
     </section>
   );
 }
