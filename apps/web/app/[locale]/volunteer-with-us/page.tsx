@@ -20,6 +20,7 @@ export default async function VolunteerWithUs({ params }: { params: Promise<{ lo
   const { data } = await sanityFetchProduction({
     query: volunteerWithUs.query,
     params: { locale },
+    cache: [{ type: "page", name: "volunteerWithUs" }, "projects"],
   });
   if (!data) notFound();
   const page = volunteerWithUs.parse(data)[0];

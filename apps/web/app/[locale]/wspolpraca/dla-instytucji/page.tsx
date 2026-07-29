@@ -22,7 +22,11 @@ export default async function DlaInstytucji({ params }: { params: Promise<{ loca
     .star.filterByType("dlaInstytucji")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: dlaInstytucji.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: dlaInstytucji.query,
+    params: { locale },
+    cache: [{ type: "page", name: "dlaInstytucji" }],
+  });
   if (!data) notFound();
   const page = dlaInstytucji.parse(data)[0];
 

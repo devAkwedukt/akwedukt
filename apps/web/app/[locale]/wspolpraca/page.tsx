@@ -22,7 +22,11 @@ export default async function Wspolpraca({ params }: { params: Promise<{ locale:
     .star.filterByType("wspolpraca")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: wspolpraca.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: wspolpraca.query,
+    params: { locale },
+    cache: [{ type: "page", name: "wspolpraca" }],
+  });
   if (!data) notFound();
   const page = wspolpraca.parse(data)[0];
 

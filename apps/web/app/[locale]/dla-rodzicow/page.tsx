@@ -22,7 +22,11 @@ export default async function DlaRodzicow({ params }: { params: Promise<{ locale
     .star.filterByType("dlaRodzicow")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: dlaRodzicow.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: dlaRodzicow.query,
+    params: { locale },
+    cache: [{ type: "page", name: "dlaRodzicow" }, "projects"],
+  });
   if (!data) notFound();
   const page = dlaRodzicow.parse(data)[0];
 

@@ -22,7 +22,11 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ loca
     .star.filterByType("privacyPolicy")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: privacyPolicy.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: privacyPolicy.query,
+    params: { locale },
+    cache: [{ type: "page", name: "privacyPolicy" }],
+  });
   if (!data) notFound();
   const page = privacyPolicy.parse(data)[0];
 

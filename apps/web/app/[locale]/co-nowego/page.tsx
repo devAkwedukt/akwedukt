@@ -21,7 +21,11 @@ export default async function CoNowego({ params }: { params: Promise<{ locale: s
     .star.filterByType("coNowego")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: coNowego.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: coNowego.query,
+    params: { locale },
+    cache: [{ type: "page", name: "coNowego" }, "projects", "posts"],
+  });
   if (!data) notFound();
   const page = coNowego.parse(data)[0];
 

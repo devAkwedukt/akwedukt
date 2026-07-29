@@ -22,7 +22,11 @@ export default async function CoRobimy({ params }: { params: Promise<{ locale: s
     .star.filterByType("coRobimy")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: coRobimy.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: coRobimy.query,
+    params: { locale },
+    cache: [{ type: "page", name: "coRobimy" }, "projects"],
+  });
   if (!data) notFound();
   const page = coRobimy.parse(data)[0];
 

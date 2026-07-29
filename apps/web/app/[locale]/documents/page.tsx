@@ -22,7 +22,11 @@ export default async function Documents({ params }: { params: Promise<{ locale: 
     .star.filterByType("documents")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: documents.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: documents.query,
+    params: { locale },
+    cache: [{ type: "page", name: "documents" }],
+  });
   if (!data) notFound();
   const page = documents.parse(data)[0];
 

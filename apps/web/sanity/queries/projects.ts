@@ -56,6 +56,7 @@ export const getProjects = cache(
     const { data } = await sanityFetchProduction({
       query: queryProjects,
       params,
+      cache: [{ type: "page", name: "projects" }],
     });
     return (data as any[]) || [];
   }
@@ -85,6 +86,7 @@ export const getTotalProjectsCount = cache(
     const { data } = await sanityFetchProduction({
       query: queryTotalProjectsCount,
       params,
+      cache: [{ type: "page", name: "projects" }],
     });
     return (data as number) || 0;
   }

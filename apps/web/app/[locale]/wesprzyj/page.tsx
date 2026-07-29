@@ -22,7 +22,11 @@ export default async function Wesprzyj({ params }: { params: Promise<{ locale: s
     .star.filterByType("wesprzyj")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: wesprzyj.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: wesprzyj.query,
+    params: { locale },
+    cache: [{ type: "page", name: "wesprzyj" }],
+  });
   if (!data) notFound();
   const page = wesprzyj.parse(data)[0];
 

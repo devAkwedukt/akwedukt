@@ -22,7 +22,11 @@ export default async function Wolontariat({ params }: { params: Promise<{ locale
     .star.filterByType("wolontariat")
     .filterBy("locale == $locale");
 
-  const { data } = await sanityFetchProduction({ query: wolontariat.query, params: { locale } });
+  const { data } = await sanityFetchProduction({
+    query: wolontariat.query,
+    params: { locale },
+    cache: [{ type: "page", name: "wolontariat" }],
+  });
   if (!data) notFound();
   const page = wolontariat.parse(data)[0];
 
