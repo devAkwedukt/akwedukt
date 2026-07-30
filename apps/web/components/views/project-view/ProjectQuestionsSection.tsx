@@ -19,29 +19,25 @@ export default function ProjectQuestionsSection({ item }: ProjectQuestionsSectio
     }
   };
   return (
-    <div className={`container py-12 ${getBackgroundClass()}`}>
-      <div className="mb-8 text-center">
-        {item.title && (
-          <h2 className="text-[#103770] text-4xl font-bold font-['Fraunces'] mb-4">{item.title}</h2>
-        )}
-        {item.subtitle && (
-          <p className="text-[#103770] text-xl font-normal font-['Plus_Jakarta_Sans']">
-            {item.subtitle}
-          </p>
-        )}
-      </div>
-      <div className="space-y-8 md:space-y-0 md:grid md:grid-cols-3 md:gap-8">
+    <section className={`w-full py-8 md:py-14 2xl:py-20 px-6 md:px-20 ${getBackgroundClass()}`}>
+      <header className="mb-8 text-center max-w-480 mx-auto">
+        {item.title && <h2 className="heading-2 text-4xl mb-4">{item.title}</h2>}
+        {item.subtitle && <p className="text-xl font-normal">{item.subtitle}</p>}
+      </header>
+
+      <main className="max-w-480 mx-auto space-y-8 md:space-y-0 md:grid md:grid-cols-3 gap-12 md:gap-16">
         {item.questions.map((questionItem, index) => (
-          <div key={index} className="text-center md:text-left bg-white">
-            <h3 className="text-[#103770] text-2xl font-bold font-['Plus_Jakarta_Sans'] mb-4">
-              {questionItem.question}
-            </h3>
-            <div className="text-[#103770] text-base font-normal font-['Plus_Jakarta_Sans'] leading-relaxed whitespace-pre-wrap">
+          <div
+            key={index}
+            className="flex flex-col gap-4 text-center md:text-left bg-white p-4 md:p-6 min-h-75"
+          >
+            <h3 className="heading-3 text-2xl">{questionItem.question}</h3>
+            <div className="text-base md:text-lg font-normal leading-relaxed text-balance">
               {questionItem.answer}
             </div>
           </div>
         ))}
-      </div>
-    </div>
+      </main>
+    </section>
   );
 }

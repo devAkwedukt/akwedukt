@@ -42,11 +42,9 @@ export default function ProjectVideoSection({ item }: ProjectVideoSectionProps) 
   const socialLinks = item.socialLinks || [];
 
   return (
-    <div className="container w-full flex flex-col items-center py-12 md:flex-row gap-16">
-      <div className={cn(item.videoPosition === "right" ? "md:order-1" : "md:order-2")}>
-        <h2 className="text-deep-navy-blue-900 text-3xl font-bold font-['Plus_Jakarta_Sans'] mb-4">
-          {item.title}
-        </h2>
+    <div className="max-w-480 mx-auto w-full flex flex-col items-center py-8 md:py-14 2xl:py-20 px-6 md:px-20 md:flex-row gap-16 3xl:px-0">
+      <aside className={cn(item.videoPosition === "right" ? "md:order-1" : "md:order-2")}>
+        <h2 className="heading-2 mb-4">{item.title}</h2>
         {item.subtitle && <SanityRichText value={item.subtitle} />}
         {socialLinks.length > 0 && (
           <div className="flex flex-wrap gap-4">
@@ -66,8 +64,9 @@ export default function ProjectVideoSection({ item }: ProjectVideoSectionProps) 
               ))}
           </div>
         )}
-      </div>
-      <div
+      </aside>
+
+      <main
         className={cn(
           "w-full relative aspect-video bg-gray-200 rounded-lg overflow-hidden shadow-lg",
           item.videoPosition === "right" ? "md:order-2" : "md:order-1"
@@ -83,10 +82,10 @@ export default function ProjectVideoSection({ item }: ProjectVideoSectionProps) 
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-gray-600">Nie można załadować wideo</p>
+            <p className="text-deep-navy-blue-700">Nie można załadować wideo</p>
           </div>
         )}
-      </div>
+      </main>
     </div>
   );
 }

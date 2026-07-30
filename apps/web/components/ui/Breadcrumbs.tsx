@@ -13,30 +13,27 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
   return (
-    <nav
-      className={cn(
-        "pt-10 pb-2 inline-flex items-center flex-wrap justify-start px-6 md:px-20",
-        className
-      )}
-    >
-      {items.map((item, index) => (
-        <div key={index} className="flex items-center">
-          {index > 0 && <span className="px-0.5 md:px-1 text-sm font-bold text-gray-950">/</span>}
-          {item.href ? (
-            <Link
-              prefetch={false}
-              href={item.href}
-              className="text-nowrap px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
-            >
-              {item.label}
-            </Link>
-          ) : (
-            <span className="px-2 text-base font-bold text-ocean-green-700 text-nowrap">
-              {item.label}
-            </span>
-          )}
-        </div>
-      ))}
+    <nav className={cn("pt-10 pb-2 w-full px-6 md:px-20 3xl:px-0", className)}>
+      <div className="max-w-480 mx-auto flex items-center flex-wrap justify-start">
+        {items.map((item, index) => (
+          <div key={index} className="flex items-center">
+            {index > 0 && <span className="px-0.5 md:px-1 text-sm font-bold text-gray-950">/</span>}
+            {item.href ? (
+              <Link
+                prefetch={false}
+                href={item.href}
+                className="text-nowrap px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
+              >
+                {item.label}
+              </Link>
+            ) : (
+              <span className="px-2 text-base font-bold text-ocean-green-700 text-nowrap">
+                {item.label}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
     </nav>
   );
 }

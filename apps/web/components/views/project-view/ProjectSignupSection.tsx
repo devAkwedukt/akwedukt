@@ -12,7 +12,7 @@ export default function ProjectSignupSection({ item }: ProjectSignupSectionProps
   }
 
   return (
-    <div className="relative overflow-hidden w-full px-20 py-14 bg-deep-navy-blue-900 flex flex-col justify-center items-center gap-8">
+    <div className="relative overflow-hidden w-full px-6 md:px-20 py-12 md:py-14 2xl:py-18 bg-deep-navy-blue-900 flex flex-col justify-center items-center gap-8">
       {/* Background image */}
       <SanityImage
         image={item.decorImage}
@@ -29,11 +29,9 @@ export default function ProjectSignupSection({ item }: ProjectSignupSectionProps
       />
 
       {/* Content */}
-      <div className="relative z-10 w-full max-w-225 flex flex-col justify-center items-center gap-4">
-        <div className="w-full flex flex-col justify-center items-center gap-6">
-          <h1 className="text-center text-white text-[56px] font-bold font-['Fraunces'] leading-[59.36px]">
-            {item.title}
-          </h1>
+      <div className="relative z-10 w-full max-w-250 flex flex-col justify-center items-center gap-10">
+        <div className="w-full flex flex-col justify-center items-center">
+          <h2 className="heading-2 text-center text-white text-balance">{item.title}</h2>
         </div>
 
         <Button as="link" href={item.buttonUrl!} variant="secondary" size="medium">
