@@ -11,37 +11,36 @@ export default function ProjectFaqSection({ item }: ProjectFaqSectionProps) {
   }
 
   return (
-    <div className="container py-12">
+    <section className="max-w-480 mx-auto py-8 md:py-14 2xl:py-20 px-6 md:px-20 3xl:px-0">
       {item.items.map((faqItem, index) => (
         <div key={index}>
-          {index % 2 === 0 && index > 0 && <hr className="border-[#c8daf3] mb-8" />}
+          {index % 2 === 0 && index >= 0 && <hr className="border-deep-navy-blue-200 " />}
           {index % 2 === 0 && (
-            <div className="grid md:grid-cols-2 gap-x-8">
-              <div className="pt-8">
-                <div className="flex gap-4 mb-4">
-                  <span className="text-pink-500 text-3xl font-bold font-['Fraunces']">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="text-[#103770] text-xl font-bold font-['Plus_Jakarta_Sans'] mb-3">
-                  {faqItem.question}
-                </h3>
-                <div className="text-[#103770] text-base font-normal font-['Plus_Jakarta_Sans'] leading-relaxed">
-                  <SanityRichText value={faqItem.answer} />
+            <div className="grid md:grid-cols-2 gap-16">
+              <div className="flex flex-row items-start gap-8 py-12 max-w-200">
+                <span className="text-pink-500 text-3xl md:text-6xl font-bold font-serif">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="flex flex-col gap-4">
+                  <h3 className="heading-3 text-2xl">{faqItem.question}</h3>
+                  <div className="text-base md:text-lg font-normal leading-relaxed text-balance">
+                    <SanityRichText value={faqItem.answer} />
+                  </div>
                 </div>
               </div>
+
               {item.items && item.items[index + 1] && (
-                <div className="pt-8">
-                  <div className="flex gap-4 mb-4">
-                    <span className="text-pink-500 text-3xl font-bold font-['Fraunces']">
-                      {String(index + 2).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <h3 className="text-[#103770] text-xl font-bold font-['Plus_Jakarta_Sans'] mb-3">
-                    {item.items[index + 1].question}
-                  </h3>
-                  <div className="text-[#103770] text-base font-normal font-['Plus_Jakarta_Sans'] leading-relaxed">
-                    <SanityRichText value={item.items[index + 1].answer} />
+                <div className="flex flex-row items-start gap-8 py-12 max-w-200">
+                  <span className="text-pink-500 text-3xl md:text-6xl font-bold font-serif">
+                    {String(index + 2).padStart(2, "0")}
+                  </span>
+
+                  <div className="flex flex-col gap-4">
+                    <h3 className="heading-3 text-2xl">{item.items[index + 1].question}</h3>
+                    <div className="text-base md:text-lg font-normal leading-relaxed text-balance">
+                      <SanityRichText value={item.items[index + 1].answer} />
+                    </div>
                   </div>
                 </div>
               )}
@@ -49,6 +48,6 @@ export default function ProjectFaqSection({ item }: ProjectFaqSectionProps) {
           )}
         </div>
       ))}
-    </div>
+    </section>
   );
 }
