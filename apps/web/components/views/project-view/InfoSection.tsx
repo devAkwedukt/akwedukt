@@ -6,7 +6,7 @@ export default function InfoSection({ item }: { item: InfoSection }) {
 
   return (
     <section className="relative w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">
-      <main className="mx-auto flex flex-col md:flex-row justify-start gap-12 md:gap-16 2xl:gap-[5%]  items-center">
+      <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start gap-12 md:gap-16 2xl:gap-[5%]  items-center">
         <article className="flex flex-col gap-8 md:gap-12">
           <header className="flex flex-col gap-6 max-w-200">
             {item.title && <h2 className="heading-2 text-balance">{item.title}</h2>}

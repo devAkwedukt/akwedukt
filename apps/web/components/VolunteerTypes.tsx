@@ -18,15 +18,9 @@ const sectionColorStyles = [
 
 export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
   return (
-    <section className="relative py-20">
-      <div className="container mx-auto">
-        <h2 className="heading-2 mb-16 text-center">{item.title}</h2>
-
-        <div className="grid gap-10 lg:grid-cols-3">
-          {item.sections?.map((section) => (
-            <article key={section._key}>
-              <div className="mb-6">
-                <span className="text-5xl font-bold">{section.number}</span>
+    <section className="relative w-full px-6 md:px-15 2xl:px-20 py-8 md:py-16 2xl:py-20">
+      <main className="max-w-480 mx-auto flex flex-col gap-20">
+        <h2 className="heading-2  text-left md:text-center">{item.title}</h2>
 
         <div className="flex flex-col gap-8 md:gap-24">
           {item.sections?.map((section, sectionIndex) => {
@@ -67,7 +61,7 @@ export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
             );
           })}
         </div>
-      </div>
+      </main>
       {item.decorImage && (
         <SanityImage image={item.decorImage} className=" absolute bottom-0 right-0 w-110 h-70" />
       )}
