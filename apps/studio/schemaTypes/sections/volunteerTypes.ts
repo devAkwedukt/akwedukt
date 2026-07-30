@@ -23,7 +23,6 @@ export default defineType({
       name: "sections",
       title: "Sekcje",
       type: "array",
-      validation: (Rule) => Rule.required().min(3).max(3),
 
       of: [
         defineArrayMember({
@@ -48,7 +47,7 @@ export default defineType({
               name: "items",
               title: "Podpunkty",
               type: "array",
-              validation: (Rule) => Rule.required().min(1).max(3),
+              validation: (Rule) => Rule.required().min(1),
 
               of: [
                 defineArrayMember({

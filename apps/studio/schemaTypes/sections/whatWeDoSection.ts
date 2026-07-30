@@ -87,7 +87,6 @@ export default defineType({
           },
         },
       ],
-      validation: (Rule) => Rule.required().min(5).max(5),
     }),
     defineField({
       name: "decorImageTop",

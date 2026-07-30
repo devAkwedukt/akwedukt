@@ -41,7 +41,7 @@ export default defineType({
       name: "cards",
       title: "Karty",
       type: "array",
-      validation: (Rule) => Rule.required().min(5).max(5),
+      validation: (Rule) => Rule.required().min(1),
 
       of: [
         defineArrayMember({

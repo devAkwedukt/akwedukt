@@ -58,7 +58,6 @@ export default defineType({
           ],
         },
       ],
-      validation: (Rule) => Rule.min(3).max(3).required(),
     }),
   ],
   preview: {

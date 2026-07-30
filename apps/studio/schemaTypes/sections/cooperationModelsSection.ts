@@ -50,7 +50,6 @@ export default defineType({
           },
         },
       ],
-      validation: (Rule) => Rule.length(3).required(),
     }),
   ],
   preview: {
