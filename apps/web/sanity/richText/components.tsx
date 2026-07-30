@@ -7,7 +7,7 @@ import { Link } from "@/i18n/navigation";
  */
 export const components: PortableTextComponents = {
   block: {
-    normal: ({ children }) => <p className="body-base">{children}</p>,
+    normal: ({ children }) => <p className="">{children}</p>,
     h1: ({ children }) => <h1 className="heading-1">{children}</h1>,
     h2: ({ children }) => <h2 className="heading-2">{children}</h2>,
     h3: ({ children }) => <h3 className="heading-3">{children}</h3>,

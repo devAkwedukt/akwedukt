@@ -7,33 +7,34 @@ type Props = {
 };
 
 const numberColors = [
-  "text-indigo-600",
-  "text-lime-700",
-  "text-teal-700",
-  "text-fuchsia-700",
+  "text-purple-500",
+  "text-happy-green-800",
+  "text-ocean-green-700",
+  "text-pink-700",
   "text-orange-700",
 ];
 
+/* Dlaczego i na jakiej podstawie przetwarzamy Twoje dane? - 4 elementy  */
 export default function PolicyDetailsSection({ section }: Props) {
   if (section.enabled === false) return null;
   return (
-    <section className="bg-neutral-50 py-14 xl:py-20">
-      <div className="mx-auto container">
+    <section className="px-6 md:px-20 bg-neutral-50 py-14 xl:py-20">
+      <main className="mx-auto max-w-480">
         {/* Header */}
-        <div className="flex flex-col gap-6">
-          <h3 className="heading-3 text-primary">{section.title}</h3>
+        <header className="flex flex-col gap-6">
+          <h3 className="heading-3">{section.title}</h3>
 
           <div className="max-w-2xl">
             <SanityRichText value={section.description} />
           </div>
-        </div>
+        </header>
 
         {/* Cards */}
-        <div className="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-3">
+        <div className="mt-16 mb-16 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-3">
           {section.cards?.map((card, index) => (
             <article key={card._key} className="flex flex-col gap-8">
               <span
-                className={`font-fraunces text-5xl font-bold leading-none ${
+                className={`font-serif text-4xl md:text-6xl font-bold leading-none ${
                   numberColors[index % numberColors.length]
                 }`}
               >
@@ -44,7 +45,8 @@ export default function PolicyDetailsSection({ section }: Props) {
             </article>
           ))}
         </div>
-      </div>
+      </main>
+
       {section.footerImage && (
         <SanityImage
           image={section.footerImage}
