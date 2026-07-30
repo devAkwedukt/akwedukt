@@ -27,6 +27,7 @@ export async function generateStaticParams() {
     query: projectSlugs.query,
     perspective: "published",
     stega: false,
+    cache: ["projects"],
   });
   return projectSlugs.parse(data); // [{ slug: example-slug }, ...]
 }
@@ -70,7 +71,7 @@ export default async function ProjectPage({
   const { data } = await sanityFetchProduction({
     query: project.query,
     params: { slug },
-    cache: [{ type: "page", name: "project" }],
+    cache: [{ type: "project", slug }],
   });
   const p = project.parse(data) as Project | null;
   if (!p) notFound();

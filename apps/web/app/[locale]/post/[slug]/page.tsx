@@ -25,7 +25,7 @@ const post = q
 export async function generateStaticParams() {
   const { data } = await sanityFetchProduction({
     query: postSlugs.query,
-    cache: [{ type: "page", name: "post" }],
+    cache: ["posts"],
   });
   return postSlugs.parse(data); // [{ slug: example-slug }, ...]
 }
@@ -60,7 +60,11 @@ export default async function PostPage({
 
   setRequestLocale(locale); // Enables static rendering
 
-  const { data } = await sanityFetchProduction({ query: post.query, params: { slug } });
+  const { data } = await sanityFetchProduction({
+    query: post.query,
+    params: { slug },
+    cache: [{ type: "post", slug }],
+  });
   if (!data) notFound();
   const p = post.parse(data)!;
 
