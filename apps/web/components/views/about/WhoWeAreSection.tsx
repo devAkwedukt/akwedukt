@@ -5,7 +5,7 @@ import { SanityImage } from "@/sanity/image/SanityImage";
 
 //Akwedukt: Działamy dla Kwidzyna, otwieramy się na świat
 export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <section className="w-full py-12 md:py-16 2xl:py-20 px-6 md:px-20 mx-auto bg-gray-50">

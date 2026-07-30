@@ -8,6 +8,12 @@ export default defineType({
   groups: [{ name: "content", title: "Treść" }],
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",
@@ -21,7 +27,7 @@ export default defineType({
     }),
     defineField({
       name: "backgroundColor",
-      title: "Kolor tła",
+      title: "Styl: Kolor tła",
       type: "string",
       options: {
         list: [

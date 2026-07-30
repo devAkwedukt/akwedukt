@@ -2,7 +2,7 @@ import type { InfoSection } from "@/sanity/typegen";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function InfoSection({ item }: { item: InfoSection }) {
-  if (!item.cards?.length) return null;
+  if (!item.cards?.length || item.enabled === false) return null;
 
   return (
     <section className="relative w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">

@@ -3,7 +3,7 @@ import { SanityImage } from "@/sanity/image/SanityImage";
 import type { InstitutionBenefitsSection } from "@/sanity/typegen";
 
 export default function InstitutionBenefitsSection({ item }: { item: InstitutionBenefitsSection }) {
-  if (!item.cards?.length) return null;
+  if (!item.cards?.length || item.enabled === false) return null;
 
   return (
     <section className="w-full px-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-gray-50">

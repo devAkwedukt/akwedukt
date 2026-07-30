@@ -15,6 +15,7 @@ const numberColors = [
 ];
 
 export default function PolicyDetailsSection({ section }: Props) {
+  if (section.enabled === false) return null;
   return (
     <section className="bg-neutral-50 py-14 xl:py-20">
       <div className="mx-auto container">

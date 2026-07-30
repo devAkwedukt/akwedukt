@@ -6,6 +6,12 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł projektu",
       type: "string",
@@ -29,12 +35,6 @@ export default defineType({
       options: {
         hotspot: true,
       },
-    }),
-    defineField({
-      name: "enabled",
-      title: "Włącz sekcję",
-      type: "boolean",
-      initialValue: true,
     }),
   ],
   preview: {

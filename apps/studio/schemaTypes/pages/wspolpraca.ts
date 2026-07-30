@@ -37,6 +37,10 @@ export default defineType({
           name: "postsGallerySection",
           type: "postsGallerySection",
         }),
+        defineArrayMember({
+          name: "projectsGallerySection",
+          type: "projectsGallerySection",
+        }),
       ],
     }),
   ],

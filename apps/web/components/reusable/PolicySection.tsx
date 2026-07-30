@@ -13,6 +13,7 @@ export default function PolicySection({ item }: { item: PolicySection }) {
         return "bg-white";
     }
   };
+  if (item.enabled === false) return null;
   return (
     <div
       className={`container relative py-14 flex justify-start items-start gap-10 ${getBackgroundClass()}`}

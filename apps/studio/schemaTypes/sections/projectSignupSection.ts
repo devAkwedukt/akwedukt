@@ -7,6 +7,12 @@ export default defineType({
   groups: [{ name: "content", title: "Treść" }],
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",

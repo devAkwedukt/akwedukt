@@ -54,6 +54,22 @@ export type AboutSectionButton = {
   url?: string;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type ObjectImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+};
+
 export type SanityFileAssetReference = {
   _ref: string;
   _type: "reference";
@@ -72,13 +88,6 @@ export type WhatWeDoInternational = {
   desktop2?: Desktop2;
   mobile?: Mobile;
   mobile2?: Mobile2;
-};
-
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
 export type Desktop = {
@@ -209,18 +218,9 @@ export type VolunteerCard = {
   buttonLink?: string;
 };
 
-export type ObjectImage = {
+export type AnimatedImagesObjectImage = {
   asset?: SanityImageAssetReference;
   media?: unknown; // Unable to locate the referenced type "object.image.media" in schema
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
-
-export type SliderObjectImage = {
-  asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "slider.object.image.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   alt?: string;
@@ -242,15 +242,6 @@ export type DocumentsObjectFile = {
   _type: "file";
 };
 
-export type Image1 = {
-  asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "object.image.media1" in schema
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
-
 export type ExternalImage = {
   _type: "externalImage";
   url?: string;
@@ -258,6 +249,7 @@ export type ExternalImage = {
 
 export type InfoSection = {
   _type: "infoSection";
+  enabled?: boolean;
   title?: string;
   description?: string;
   cards?: Array<{
@@ -276,14 +268,16 @@ export type InfoSection = {
 
 export type ImageSection = {
   _type: "imageSection";
+  enabled?: boolean;
   slider?: Array<{
-    image?: Image1;
+    image?: ObjectImage;
     _key: string;
   }>;
 };
 
 export type PolicyDetailsSection = {
   _type: "policyDetailsSection";
+  enabled?: boolean;
   title?: string;
   description?: RichText;
   footerImage?: {
@@ -308,6 +302,7 @@ export type PolicyDetailsSection = {
 
 export type PolicySection = {
   _type: "policySection";
+  enabled?: boolean;
   title?: string;
   description?: RichText;
   decor?: {
@@ -322,6 +317,7 @@ export type PolicySection = {
 
 export type DocumentsTabSection = {
   _type: "documentsTabSection";
+  enabled?: boolean;
   title?: string;
   description?: string;
   tabs?: Array<{
@@ -339,6 +335,7 @@ export type DocumentsTabSection = {
 
 export type VolunteerTypes = {
   _type: "volunteerTypes";
+  enabled?: boolean;
   title?: string;
   sections?: Array<{
     number?: string;
@@ -409,7 +406,7 @@ export type HeroSlide = {
   description?: string;
   button?: HeroSlideButton;
   animatedImages?: Array<{
-    image?: ObjectImage;
+    image?: AnimatedImagesObjectImage;
     position?: "center" | "top-right" | "bottom-left" | "bottom-right";
     _key: string;
   }>;
@@ -417,6 +414,7 @@ export type HeroSlide = {
 
 export type SupportImpactSection = {
   _type: "supportImpactSection";
+  enabled?: boolean;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -444,6 +442,7 @@ export type SupportImpactSection = {
 
 export type SupportOptionsSection = {
   _type: "supportOptionsSection";
+  enabled?: boolean;
   donationCard?: DonationCard;
   fundraisingCard?: FundraisingCard;
   volunteerCard?: VolunteerCard;
@@ -451,6 +450,7 @@ export type SupportOptionsSection = {
 
 export type SupportHeroSection = {
   _type: "supportHeroSection";
+  enabled?: boolean;
   title?: string;
   description?: string;
   image?: {
@@ -465,6 +465,7 @@ export type SupportHeroSection = {
 
 export type CoalitionSection = {
   _type: "coalitionSection";
+  enabled?: boolean;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -487,6 +488,7 @@ export type CoalitionSection = {
 
 export type CooperationModelsSection = {
   _type: "cooperationModelsSection";
+  enabled?: boolean;
   title?: string;
   cards?: Array<{
     title?: string;
@@ -497,6 +499,7 @@ export type CooperationModelsSection = {
 
 export type InstitutionBenefitsSection = {
   _type: "institutionBenefitsSection";
+  enabled?: boolean;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -520,6 +523,7 @@ export type InstitutionBenefitsSection = {
 
 export type AboutStatsSection = {
   _type: "aboutStatsSection";
+  enabled?: boolean;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -556,6 +560,7 @@ export type AboutStatsSection = {
 
 export type TeacherEngagementSection = {
   _type: "teacherEngagementSection";
+  enabled?: boolean;
   title?: string;
   cards?: Array<{
     title?: string;
@@ -576,6 +581,7 @@ export type TeacherEngagementSection = {
 
 export type TeacherBenefitsSection = {
   _type: "teacherBenefitsSection";
+  enabled?: boolean;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -598,6 +604,7 @@ export type TeacherBenefitsSection = {
 
 export type CooperationCardsSection = {
   _type: "cooperationCardsSection";
+  enabled?: boolean;
   title?: string;
   subtitle?: string;
   cards?: Array<{
@@ -611,6 +618,7 @@ export type CooperationCardsSection = {
 
 export type FaqAccordionSection = {
   _type: "faqAccordionSection";
+  enabled?: boolean;
   title?: string;
   subtitle?: string;
   questions?: Array<{
@@ -629,6 +637,7 @@ export type FaqAccordionSection = {
 
 export type PhotoInfoSection = {
   _type: "photoInfoSection";
+  enabled?: boolean;
   title?: string;
   photo?: {
     asset?: SanityImageAssetReference;
@@ -673,6 +682,7 @@ export type PhotoInfoSection = {
 
 export type ProjectVideoSection = {
   _type: "projectVideoSection";
+  enabled?: boolean;
   title?: string;
   subtitle?: RichText;
   videoPosition?: "left" | "right";
@@ -687,6 +697,7 @@ export type ProjectVideoSection = {
 
 export type ProjectQuestionsSection = {
   _type: "projectQuestionsSection";
+  enabled?: boolean;
   title?: string;
   subtitle?: string;
   backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
@@ -699,6 +710,7 @@ export type ProjectQuestionsSection = {
 
 export type ProjectSignupSection = {
   _type: "projectSignupSection";
+  enabled?: boolean;
   title?: string;
   buttonText?: string;
   buttonUrl?: string;
@@ -720,6 +732,7 @@ export type ProjectSignupSection = {
 
 export type ProjectFaqSection = {
   _type: "projectFaqSection";
+  enabled?: boolean;
   items?: Array<{
     question?: string;
     answer?: RichText;
@@ -736,6 +749,7 @@ export type PostReference = {
 
 export type PostsGallerySection = {
   _type: "postsGallerySection";
+  enabled?: boolean;
   title?: string;
   subtitle?: string;
   posts?: Array<
@@ -788,6 +802,7 @@ export type ProjectReference = {
 
 export type ProjectsGallerySection = {
   _type: "projectsGallerySection";
+  enabled?: boolean;
   title?: string;
   subtitle?: string;
   projects?: Array<
@@ -814,6 +829,7 @@ export type ProjectsGallerySection = {
 
 export type ProjectTitleSection = {
   _type: "projectTitleSection";
+  enabled?: boolean;
   title?: string;
   description?: RichText;
   image?: {
@@ -830,7 +846,6 @@ export type ProjectTitleSection = {
     crop?: SanityImageCrop;
     _type: "image";
   };
-  enabled?: boolean;
 };
 
 export type OurTeamSection = {
@@ -918,10 +933,6 @@ export type WhatWeDoSection = {
       description?: string;
       _key: string;
     }>;
-    _key: string;
-  }>;
-  slider?: Array<{
-    image?: SliderObjectImage;
     _key: string;
   }>;
   decorImageTop?: {
@@ -1635,6 +1646,9 @@ export type Wspolpraca = {
     | ({
         _key: string;
       } & PostsGallerySection)
+    | ({
+        _key: string;
+      } & ProjectsGallerySection)
   >;
 };
 
@@ -1751,6 +1765,9 @@ export type ONas = {
     | ({
         _key: string;
       } & WhatWeDoSection)
+    | ({
+        _key: string;
+      } & ImageSection)
     | ({
         _key: string;
       } & OurHistorySection)
@@ -1911,10 +1928,11 @@ export type AllSanitySchemaTypes =
   | HeroBackgroundSlideButton
   | DecorationImages
   | AboutSectionButton
+  | SanityImageAssetReference
+  | ObjectImage
   | SanityFileAssetReference
   | ObjectFile
   | WhatWeDoInternational
-  | SanityImageAssetReference
   | Desktop
   | Desktop2
   | Mobile
@@ -1933,11 +1951,9 @@ export type AllSanitySchemaTypes =
   | DonationCard
   | FundraisingCard
   | VolunteerCard
-  | ObjectImage
-  | SliderObjectImage
+  | AnimatedImagesObjectImage
   | Photo
   | DocumentsObjectFile
-  | Image1
   | ExternalImage
   | InfoSection
   | ImageSection
@@ -2265,6 +2281,9 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & PostsGallerySection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
       > | null;
     }
   | {
@@ -2334,6 +2353,9 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & HeroBackgroundSection)
+        | ({
+            _key: string;
+          } & ImageSection)
         | ({
             _key: string;
           } & OurHistorySection)

@@ -34,7 +34,7 @@ function getSocialIcon(platform: string): string {
 }
 
 export default function ProjectVideoSection({ item }: ProjectVideoSectionProps) {
-  if (!item.video?.url || !item.title) {
+  if (!item.video?.url || !item.title || item.enabled === false) {
     return null;
   }
 

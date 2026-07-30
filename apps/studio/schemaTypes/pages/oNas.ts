@@ -32,16 +32,10 @@ export default defineType({
         defineArrayMember({
           name: "whatWeDoSection",
           type: "whatWeDoSection",
-          preview: {
-            select: {
-              title: "title",
-            },
-            prepare: ({ title }: { title?: string }) => {
-              return {
-                title: title || "Co robimy",
-              };
-            },
-          },
+        }),
+        defineArrayMember({
+          name: "imageSection",
+          type: "imageSection",
         }),
         defineArrayMember({
           name: "ourHistorySection",

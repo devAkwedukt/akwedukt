@@ -73,7 +73,7 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
     };
   }, [testimonials.length, updateScrollState]);
 
-  if (!item.enabled || testimonials.length === 0) return null;
+  if (item.enabled === false || testimonials.length === 0) return null;
 
   return (
     <>

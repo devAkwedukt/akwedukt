@@ -172,8 +172,6 @@ export const components: { [key: string]: ComponentType<any> } = {
   policyDetailsSection: ({ item }: { item: PolicyDetailsSection }) => (
     <PolicyDetailsSectionComponent section={item} />
   ),
-  imageSection: ({ item }: { item: ImageSection }) => (
-    <ImageSectionComponent slider={item?.slider} />
-  ),
+  imageSection: ({ item }: { item: ImageSection }) => <ImageSectionComponent item={item} />,
   infoSection: ({ item }: { item: InfoSection }) => <InfoSectionComponent item={item} />,
 };

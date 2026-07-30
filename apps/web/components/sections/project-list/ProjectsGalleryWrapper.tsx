@@ -37,6 +37,8 @@ export default async function ProjectsGalleryWrapper({ item }: ProjectsGalleryWr
     }
   };
 
+  if (item.enabled === false) return null;
+
   return (
     <div className="relative">
       <section

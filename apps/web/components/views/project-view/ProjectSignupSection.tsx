@@ -7,7 +7,7 @@ interface ProjectSignupSectionProps {
 }
 
 export default function ProjectSignupSection({ item }: ProjectSignupSectionProps) {
-  if (!item.title || !item.buttonText || !item.buttonUrl) {
+  if (!item.title || !item.buttonText || !item.buttonUrl || item.enabled === false) {
     return null;
   }
 

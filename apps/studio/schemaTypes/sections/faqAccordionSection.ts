@@ -2,10 +2,16 @@ import { defineField, defineType } from "sanity";
 
 export default defineType({
   name: "faqAccordionSection",
-  title: "Sekcja FAQ z akordeonem",
+  title: "FAQ – akordeon",
   type: "object",
   groups: [{ name: "content", title: "Treść" }],
   fields: [
+    defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
     defineField({
       name: "title",
       title: "Tytuł",

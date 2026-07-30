@@ -10,6 +10,12 @@ export default defineType({
   ],
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",

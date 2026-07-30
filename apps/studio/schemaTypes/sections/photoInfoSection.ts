@@ -7,6 +7,12 @@ export default defineType({
   groups: [{ name: "content", title: "Treść" }],
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",
@@ -55,7 +61,7 @@ export default defineType({
       fields: [
         defineField({
           name: "ctaVariant",
-          title: "Wariant przycisku",
+          title: "Styl: Wariant przycisku",
           type: "string",
           options: {
             list: [

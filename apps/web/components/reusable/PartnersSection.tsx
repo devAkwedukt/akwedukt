@@ -11,7 +11,7 @@ export default function PartnersSection({ item }: { item: PartnersSection }) {
     align: "start",
   });
 
-  if (!item.enabled || !item.partners?.length) return null;
+  if (item.enabled === false || !item.partners?.length) return null;
 
   return (
     <section className="w-full py-8 md:py-18 2xl:py-24 bg-gray-50">

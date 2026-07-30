@@ -10,7 +10,7 @@ import type { HeroBackgroundSection } from "@/sanity/typegen";
 export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSection }) {
   const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
 
-  if (!item?.enabled || !item?.slides?.length) return null;
+  if (item.enabled === false || !item?.slides?.length) return null;
 
   return (
     <header className="relative w-full min-h-140 overflow-hidden">

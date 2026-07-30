@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import type { CooperationCardsSection } from "@/sanity/typegen";
 
 export default function CooperationCardsSection({ item }: { item: CooperationCardsSection }) {
-  if (!item.cards?.length) return null;
+  if (!item.cards?.length || item.enabled === false) return null;
 
   return (
     <section className="w-full p-6 md:px-20 py-12 md:py-16 2xl:py-18 bg-gray-50 flex flex-col items-center gap-14 overflow-hidden">

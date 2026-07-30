@@ -5,7 +5,7 @@ import { SanityImage } from "@/sanity/image/SanityImage";
 
 //MARZENIE O KWIDZYNIE BEZ GRANIC
 export default function OurHistorySection({ item }: { item: OurHistorySection }) {
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <>

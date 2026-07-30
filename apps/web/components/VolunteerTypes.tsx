@@ -2,6 +2,7 @@ import type { VolunteerTypes } from "@/sanity/typegen";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
+  if (item.enabled === false) return null;
   return (
     <section className="relative py-20">
       <div className="container mx-auto">

@@ -28,6 +28,8 @@ export default function SupportOptionsSection({ item }: SupportOptionsSectionPro
     }
   };
 
+  if (item.enabled === false) return null;
+
   return (
     <section className="px-6 py-8 md:py-14 2xl:py-18 md:px-20 bg-deep-navy-blue-50">
       <main className="max-w-480 mx-auto flex flex-col gap-20">

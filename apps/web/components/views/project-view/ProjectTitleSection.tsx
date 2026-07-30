@@ -3,7 +3,7 @@ import type { ProjectTitleSection } from "@/sanity/typegen";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function ProjectTitleSection({ item }: { item: ProjectTitleSection }) {
-  if (!item?.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <div className="container relative py-14 flex justify-start items-start gap-10">

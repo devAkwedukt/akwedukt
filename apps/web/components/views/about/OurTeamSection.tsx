@@ -9,7 +9,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
   const [touchStart, setTouchStart] = useState<number>(0);
   const [touchEnd, setTouchEnd] = useState<number>(0);
 
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   const employees = item.employees ?? [];
   const totalSlides = employees.length;

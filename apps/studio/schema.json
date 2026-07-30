@@ -209,6 +209,91 @@
   },
   {
     "type": "type",
+    "name": "sanity.imageAsset.reference",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "_ref": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          }
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "reference"
+          }
+        },
+        "_weak": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        }
+      },
+      "dereferencesTo": "sanity.imageAsset"
+    }
+  },
+  {
+    "type": "type",
+    "name": "object.image",
+    "value": {
+      "type": "object",
+      "attributes": {
+        "asset": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageAsset.reference"
+          },
+          "optional": true
+        },
+        "media": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "image.media"
+          },
+          "optional": true
+        },
+        "hotspot": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageHotspot"
+          },
+          "optional": true
+        },
+        "crop": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "inline",
+            "name": "sanity.imageCrop"
+          },
+          "optional": true
+        },
+        "alt": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "_type": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string",
+            "value": "image"
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "type",
     "name": "sanity.fileAsset.reference",
     "value": {
       "type": "object",
@@ -308,36 +393,6 @@
           "optional": true
         }
       }
-    }
-  },
-  {
-    "type": "type",
-    "name": "sanity.imageAsset.reference",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "_ref": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          }
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "reference"
-          }
-        },
-        "_weak": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
-          },
-          "optional": true
-        }
-      },
-      "dereferencesTo": "sanity.imageAsset"
     }
   },
   {
@@ -1073,7 +1128,7 @@
   },
   {
     "type": "type",
-    "name": "object.image",
+    "name": "animatedImages.object.image",
     "value": {
       "type": "object",
       "attributes": {
@@ -1090,61 +1145,6 @@
           "value": {
             "type": "inline",
             "name": "object.image.media"
-          },
-          "optional": true
-        },
-        "hotspot": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageHotspot"
-          },
-          "optional": true
-        },
-        "crop": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageCrop"
-          },
-          "optional": true
-        },
-        "alt": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "image"
-          }
-        }
-      }
-    }
-  },
-  {
-    "type": "type",
-    "name": "slider.object.image",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "asset": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageAsset.reference"
-          },
-          "optional": true
-        },
-        "media": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "slider.object.image.media"
           },
           "optional": true
         },
@@ -1269,61 +1269,6 @@
     }
   },
   {
-    "type": "type",
-    "name": "image1",
-    "value": {
-      "type": "object",
-      "attributes": {
-        "asset": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageAsset.reference"
-          },
-          "optional": true
-        },
-        "media": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "object.image.media1"
-          },
-          "optional": true
-        },
-        "hotspot": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageHotspot"
-          },
-          "optional": true
-        },
-        "crop": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "inline",
-            "name": "sanity.imageCrop"
-          },
-          "optional": true
-        },
-        "alt": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string"
-          },
-          "optional": true
-        },
-        "_type": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "string",
-            "value": "image"
-          }
-        }
-      }
-    }
-  },
-  {
     "name": "externalImage",
     "type": "type",
     "value": {
@@ -1358,6 +1303,13 @@
             "type": "string",
             "value": "infoSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -1473,6 +1425,13 @@
             "value": "imageSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "slider": {
           "type": "objectAttribute",
           "value": {
@@ -1484,7 +1443,7 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "inline",
-                    "name": "image1"
+                    "name": "object.image"
                   },
                   "optional": true
                 }
@@ -1519,6 +1478,13 @@
             "type": "string",
             "value": "policyDetailsSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -1676,6 +1642,13 @@
             "value": "policySection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -1774,6 +1747,13 @@
             "type": "string",
             "value": "documentsTabSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -1886,6 +1866,13 @@
             "type": "string",
             "value": "volunteerTypes"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -2331,7 +2318,7 @@
                   "type": "objectAttribute",
                   "value": {
                     "type": "inline",
-                    "name": "object.image"
+                    "name": "animatedImages.object.image"
                   },
                   "optional": true
                 },
@@ -2391,6 +2378,13 @@
             "type": "string",
             "value": "supportImpactSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -2585,6 +2579,13 @@
             "value": "supportOptionsSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "donationCard": {
           "type": "objectAttribute",
           "value": {
@@ -2624,6 +2625,13 @@
             "type": "string",
             "value": "supportHeroSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -2708,6 +2716,13 @@
             "type": "string",
             "value": "coalitionSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -2851,6 +2866,13 @@
             "value": "cooperationModelsSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -2910,6 +2932,13 @@
             "type": "string",
             "value": "institutionBenefitsSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -3059,6 +3088,13 @@
             "type": "string",
             "value": "aboutStatsSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -3353,6 +3389,13 @@
             "value": "teacherEngagementSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -3480,6 +3523,13 @@
             "type": "string",
             "value": "teacherBenefitsSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "image": {
           "type": "objectAttribute",
@@ -3623,6 +3673,13 @@
             "value": "cooperationCardsSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -3703,6 +3760,13 @@
             "type": "string",
             "value": "faqAccordionSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -3818,6 +3882,13 @@
             "type": "string",
             "value": "photoInfoSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -4153,6 +4224,13 @@
             "value": "projectVideoSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -4271,6 +4349,13 @@
             "value": "projectQuestionsSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -4358,6 +4443,13 @@
             "type": "string",
             "value": "projectSignupSection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -4490,6 +4582,13 @@
             "value": "projectFaqSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "items": {
           "type": "objectAttribute",
           "value": {
@@ -4573,6 +4672,13 @@
             "type": "string",
             "value": "postsGallerySection"
           }
+        },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
         },
         "title": {
           "type": "objectAttribute",
@@ -4906,6 +5012,13 @@
             "value": "projectsGallerySection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -5115,6 +5228,13 @@
             "value": "projectTitleSection"
           }
         },
+        "enabled": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "boolean"
+          },
+          "optional": true
+        },
         "title": {
           "type": "objectAttribute",
           "value": {
@@ -5221,13 +5341,6 @@
                 }
               }
             }
-          },
-          "optional": true
-        },
-        "enabled": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "boolean"
           },
           "optional": true
         }
@@ -5782,37 +5895,6 @@
                         }
                       }
                     }
-                  },
-                  "optional": true
-                }
-              },
-              "rest": {
-                "type": "object",
-                "attributes": {
-                  "_key": {
-                    "type": "objectAttribute",
-                    "value": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "optional": true
-        },
-        "slider": {
-          "type": "objectAttribute",
-          "value": {
-            "type": "array",
-            "of": {
-              "type": "object",
-              "attributes": {
-                "image": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "inline",
-                    "name": "slider.object.image"
                   },
                   "optional": true
                 }
@@ -9749,6 +9831,21 @@
                   "type": "inline",
                   "name": "postsGallerySection"
                 }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "projectsGallerySection"
+                }
               }
             ]
           }
@@ -10358,6 +10455,21 @@
                 "rest": {
                   "type": "inline",
                   "name": "whatWeDoSection"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
+                  "name": "imageSection"
                 }
               },
               {

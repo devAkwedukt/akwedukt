@@ -10,7 +10,7 @@ interface PhotoInfoSectionProps {
 }
 
 export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
-  if (!item.title || !item.photo || !item.description) {
+  if (!item.title || !item.photo || !item.description || item.enabled === false) {
     return null;
   }
   const getBackgroundClass = () => {

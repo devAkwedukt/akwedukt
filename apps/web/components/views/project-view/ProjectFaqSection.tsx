@@ -6,7 +6,7 @@ interface ProjectFaqSectionProps {
 }
 
 export default function ProjectFaqSection({ item }: ProjectFaqSectionProps) {
-  if (!item.items || item.items.length === 0) {
+  if (!item.items || item.items.length === 0 || item.enabled === false) {
     return null;
   }
 

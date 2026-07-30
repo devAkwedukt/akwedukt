@@ -7,7 +7,7 @@ export default defineType({
   fields: [
     defineField({
       name: "backgroundImage",
-      title: "Background Image",
+      title: "Styl: Background Image",
       type: "image",
       options: {
         hotspot: true,
@@ -23,7 +23,7 @@ export default defineType({
     }),
     defineField({
       name: "backgroundImageMob",
-      title: "Background Image Mobile",
+      title: "Styl: Background Image Mobile",
       type: "image",
       options: {
         hotspot: true,

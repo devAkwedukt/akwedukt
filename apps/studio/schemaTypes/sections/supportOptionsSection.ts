@@ -6,6 +6,12 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "donationCard",
       title: "Donation Card",
       type: "object",

@@ -37,6 +37,8 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
 
   const filteredPosts = posts.filter(Boolean) as PostWithExpandedCategories[];
 
+  if (item.enabled === false) return null;
+
   return (
     <>
       <section className="py-8 md:py-14 2xl:py-20 px-6 md:px-20 bg-gray-50 mx-auto relative">

@@ -4,7 +4,7 @@ import type { ValuesSection } from "@/sanity/typegen";
 
 //NASZE WARTOŚCI
 export default function ValuesSection({ item }: { item: ValuesSection }) {
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <section className="max-w-480 w-full px-6 md:px-20 py-8 md:py-16 2xl:py-20 mx-auto">

@@ -6,7 +6,7 @@ interface SupportHeroSectionProps {
 }
 
 export default function SupportHeroSection({ item }: SupportHeroSectionProps) {
-  if (!item.title || !item.description) {
+  if (!item.title || !item.description || item.enabled === false) {
     return null;
   }
 

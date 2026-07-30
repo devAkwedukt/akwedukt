@@ -7,12 +7,17 @@ export default defineType({
 
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",
       validation: (Rule) => Rule.required(),
     }),
-
     defineField({
       name: "description",
       title: "Opis",
@@ -21,13 +26,13 @@ export default defineType({
     }),
     defineField({
       name: "footerImage",
-      title: "Obraz pod sekcją",
+      title: "Styl: Obraz pod sekcją",
       type: "image",
       description: "Obraz poza sekcją",
     }),
     defineField({
       name: "footerImageMob",
-      title: "Obraz pod sekcją dla mobilnych",
+      title: "Styl: Obraz pod sekcją dla mobilnych",
       type: "image",
       description: "Obraz poza sekcją",
     }),

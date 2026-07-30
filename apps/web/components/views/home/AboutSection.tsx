@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 
 //KRÓTKO O AKWEDUKCIE
 export default function AboutSection({ item }: { item: AboutSection }) {
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <section className="max-w-480 px-6 md:px-20 py-8 md:py-16 2xl:py-24 flex flex-col-reverse md:flex-row justify-start items-center gap-10 md:gap-16 2xl:gap-18 border-y border-deep-navy-blue-100 mx-auto">

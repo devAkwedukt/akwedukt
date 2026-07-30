@@ -6,6 +6,12 @@ export default defineType({
   type: "object",
   fields: [
     defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
       name: "title",
       title: "Tytuł",
       type: "string",
@@ -49,7 +55,7 @@ export default defineType({
     }),
     defineField({
       name: "bottomImage",
-      title: "Obraz na dole",
+      title: "Styl: Obraz na dole",
       type: "image",
       options: {
         hotspot: true,

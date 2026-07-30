@@ -31,12 +31,12 @@ export default defineType({
     }),
     defineField({
       name: "bottomDoodle",
-      title: "Doodle na dole",
+      title: "Styl: Doodle na dole",
       type: "image",
     }),
     defineField({
       name: "bottomImage",
-      title: "Obraz pod sekcją",
+      title: "Styl: Obraz pod sekcją",
       type: "image",
     }),
   ],

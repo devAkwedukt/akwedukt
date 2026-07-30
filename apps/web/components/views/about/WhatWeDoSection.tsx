@@ -6,7 +6,7 @@ import ImageSection from "@/components/reusable/ImageSection";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
-  if (!item.enabled) return null;
+  if (item.enabled === false) return null;
 
   return (
     <section className="relative w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
@@ -85,9 +85,6 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
           })}
         </main>
       )}
-
-      {/* Image Slider */}
-      {item.slider && item.slider.length > 0 && <ImageSection slider={item.slider} />}
     </section>
   );
 }

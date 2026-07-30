@@ -3,7 +3,7 @@ import { SanityImage } from "@/sanity/image/SanityImage";
 import type { TeacherEngagementSection } from "@/sanity/typegen";
 
 export default function TeacherEngagementSection({ item }: { item: TeacherEngagementSection }) {
-  if (!item.cards?.length) return null;
+  if (!item.cards?.length || item.enabled === false) return null;
 
   return (
     <section className="w-full bg-gray-50">

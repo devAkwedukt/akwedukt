@@ -3,7 +3,7 @@ import { SanityRichText } from "@/sanity/richText/SanityRichText";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function AboutStatsSection({ item }: { item: AboutStatsSection }) {
-  if (!item.stats?.length) return null;
+  if (!item.stats?.length || item.enabled === false) return null;
 
   return (
     <section className="w-full p-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-deep-navy-blue-50">

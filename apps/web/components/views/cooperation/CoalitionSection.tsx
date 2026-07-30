@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { SanityImage } from "@/sanity/image/SanityImage";
 
 export default function CoalitionSection({ item }: { item: any }) {
-  if (!item.cards?.length) return null;
+  if (!item.cards?.length || item.enabled === false) return null;
 
   return (
     <section className="w-full p-6 md:px-20 py-12 md:py-16 2xl:py-20 bg-background md:bg-deep-navy-blue-50">

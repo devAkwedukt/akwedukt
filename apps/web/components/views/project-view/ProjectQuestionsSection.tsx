@@ -5,7 +5,7 @@ interface ProjectQuestionsSectionProps {
 }
 
 export default function ProjectQuestionsSection({ item }: ProjectQuestionsSectionProps) {
-  if (!item.questions || item.questions.length === 0) {
+  if (!item.questions || item.questions.length === 0 || item.enabled === false) {
     return null;
   }
   const getBackgroundClass = () => {

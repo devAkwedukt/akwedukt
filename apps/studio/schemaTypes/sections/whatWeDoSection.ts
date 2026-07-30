@@ -90,45 +90,6 @@ export default defineType({
       validation: (Rule) => Rule.required().min(5).max(5),
     }),
     defineField({
-      name: "slider",
-      title: "Slider zdjęć",
-      type: "array",
-      of: [
-        {
-          type: "object",
-          fields: [
-            defineField({
-              name: "image",
-              title: "Zdjęcie",
-              type: "image",
-              options: {
-                hotspot: true,
-              },
-              fields: [
-                {
-                  name: "alt",
-                  title: "Opis alternatywny",
-                  type: "string",
-                },
-              ],
-              validation: (Rule) => Rule.required(),
-            }),
-          ],
-          preview: {
-            select: {
-              image: "image",
-            },
-            prepare: ({ image }) => {
-              return {
-                title: "Zdjęcie",
-                media: image,
-              };
-            },
-          },
-        },
-      ],
-    }),
-    defineField({
       name: "decorImageTop",
       title: "Styl: Obraz (Desktop) góry",
       type: "image",

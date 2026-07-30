@@ -3,10 +3,16 @@ import type { ProjectFaqSection } from "../../../web/sanity/typegen";
 
 export default defineType({
   name: "projectFaqSection",
-  title: "Sekcja FAQ projektu",
+  title: "FAQ – numerowana lista pytań i odpowiedzi",
   type: "object",
   groups: [{ name: "content", title: "Treść" }],
   fields: [
+    defineField({
+      name: "enabled",
+      title: "Włącz sekcję",
+      type: "boolean",
+      initialValue: true,
+    }),
     defineField({
       name: "items",
       title: "Pytania i odpowiedzi",

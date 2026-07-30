@@ -84,27 +84,29 @@ export const getPosts = cache(
       params.statusFilter = statusFilter;
     }
 
-    const queryPostById =
-      defineQuery(`*[_type == "post" && !(_id in path("drafts.**")) ${filterClause}] | order(date desc, sticky desc)[$offset...($offset + $limit)] {
-      _id,
-      title,
-      slug,
-      date,
-      status,
-      excerpt,
-      content,
-      featuredMedia,
-      categories[]->{
-        _id,
-        name,
-        slug
-      },
-      tags[]->{
-        _id,
-        name,
-        slug
-      }
-    }`);
+    const queryPostById = `*[
+  _type == "post" &&
+  !(_id in path("drafts.**"))
+  ${filterClause}] | order(date desc, sticky desc) [${offset}...${offset + limit}] {
+  _id,
+  title,
+  slug,
+  date,
+  status,
+  excerpt,
+  content,
+  featuredMedia,
+  categories[]->{
+    _id,
+    name,
+    slug
+  },
+  tags[]->{
+    _id,
+    name,
+    slug
+  }
+}`;
 
     const { data } = await sanityFetchProduction({
       query: queryPostById,

@@ -96,7 +96,7 @@ export default async function PostPage({
               <SanityRichText value={p.content} withImageSlider={true} />
             </div>
           </div>
-          <ImageSection slider={p.slider} />
+          <ImageSection item={{ _type: "imageSection", slider: p.slider, enabled: true }} />
         </div>
       </main>
     </div>

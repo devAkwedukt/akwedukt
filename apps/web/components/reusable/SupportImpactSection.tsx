@@ -15,6 +15,7 @@ const colorClasses = {
 };
 
 export default function SupportImpactSection({ item }: SupportImpactSectionProps) {
+  if (item.enabled === false) return null;
   return (
     <section className="relative px-6 md:px-20 py-8 md:py-16 2xl:py-20 max-w-480">
       <main className="mx-auto flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">

@@ -14,6 +14,7 @@ export default function DocumentsTabSection({ section }: Props) {
   const [activeTab, setActiveTab] = useState(0);
 
   const documents = tabs[activeTab]?.documents ?? [];
+  if (section.enabled === false) return null;
 
   return (
     <section className="py-16 xl:py-24">
