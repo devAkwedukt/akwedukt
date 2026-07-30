@@ -31,9 +31,6 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
 
             {/* TEXT CONTENT OF PROJECT */}
             <div className="pt-6 flex flex-col grow">
-              {project.startDate && (
-                <div className="text-md">{new Date(project.startDate).toLocaleDateString()}</div>
-              )}
               <Link href={`/project/${project.slug?.current}`} className="heading-3 mb-2 w-fit">
                 {project.title}
               </Link>
