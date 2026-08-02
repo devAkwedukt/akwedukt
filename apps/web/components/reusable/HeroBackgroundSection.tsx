@@ -1,57 +1,57 @@
 "use client";
 
 import { Button } from "@/components/ui/Button";
-import { SliderArrows } from "@/components/ui/SliderArrows";
-import { SliderDots } from "@/components/ui/SliderDots";
-import { useSlider } from "@/hooks/useSlider";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import type { HeroBackgroundSection } from "@/sanity/typegen";
 
 export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSection }) {
-  const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
-
   if (item.enabled === false || !item?.slides?.length) return null;
 
   return (
-    <header className="relative w-full min-h-140 overflow-hidden">
-      {/* SLIDER VIEWPORT */}
-      <div ref={emblaRef} className="w-full h-full">
-        {/* SLIDER TRACK */}
-        <div className="flex h-full">
-          {item.slides.map((slide, index) => (
-            <div key={index} className="flex-[0_0_100%] relative">
-              {/* BACKGROUND IMAGE */}
-              {slide.backgroundImage && (
-                <div className="absolute z-0 hidden md:block">
-                  <SanityImage
-                    image={slide.backgroundImage}
-                    className="object-cover w-full h-full"
-                    alt={slide.title || "Hero background image"}
-                  />
-                  {/* Optional overlay for better text readability */}
-                  <div className="absolute inset-0" />
-                </div>
-              )}
-              {slide.backgroundImageMob && (
-                <div className="absolute z-0 md:hidden">
-                  <SanityImage
-                    image={slide.backgroundImageMob}
-                    className="object-cover w-full h-full"
-                    alt={slide.title || "Hero background image"}
-                  />
-                  {/* Optional overlay for better text readability */}
-                  <div className="absolute inset-0" />
-                </div>
+    <header className="w-full overflow-hidden bg-gray-50">
+      <div className="flex">
+        {item.slides.map((slide) => {
+          const desktopImage = slide.backgroundImage ?? slide.backgroundImageMob;
+          const mobileImage = slide.backgroundImageMob ?? slide.backgroundImage;
+
+          return (
+            <div
+              key={slide._key}
+              className="relative isolate grid flex-[0_0_100%] overflow-hidden bg-gray-50"
+            >
+              {desktopImage && (
+                <SanityImage
+                  image={desktopImage}
+                  alt=""
+                  aria-hidden="true"
+                  sizes="100vw"
+                  className="pointer-events-none col-start-1 row-start-1 hidden h-auto w-full self-stretch object-cover md:block"
+                />
               )}
 
-              {/* CONTENT */}
-              <div className="relative z-10 flex items-center justify-center mt-14 h-full">
-                <div className="max-w-4xl mx-auto flex flex-col justify-center items-center gap-8 text-center">
-                  {slide.title && <h1 className="heading-1">{slide.title}</h1>}
+              {mobileImage && (
+                <SanityImage
+                  image={mobileImage}
+                  alt=""
+                  aria-hidden="true"
+                  sizes="100vw"
+                  className="pointer-events-none col-start-1 row-start-1 block h-auto w-full self-stretch object-cover md:hidden"
+                />
+              )}
 
-                  {slide.description && (
-                    <p className="body-lg-bold max-w-2xl">{slide.description}</p>
-                  )}
+              <div className="relative z-10 col-start-1 row-start-1 flex w-full flex-col justify-center">
+                <div className="mx-auto flex w-full max-w-480 flex-col items-start gap-8 md:items-center md:gap-18">
+                  <div className="mt-6 flex w-full max-w-200 flex-col gap-4 text-left md:items-center md:gap-8 md:text-center">
+                    {slide.title && (
+                      <h1 className="heading-1 text-balance md:text-wrap">{slide.title}</h1>
+                    )}
+
+                    {slide.description && (
+                      <p className="text-lg 3xl:text-xl font-bold text-balance rotate-0.85">
+                        {slide.description}
+                      </p>
+                    )}
+                  </div>
 
                   {slide.button?.label && slide.button?.url && (
                     <Button
@@ -59,7 +59,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
                       href={slide.button.url}
                       variant="primary"
                       size="large"
-                      className="mt-4 min-h-16 py-5"
+                      className="min-h-16 py-5"
                     >
                       {slide.button.label}
                     </Button>
@@ -67,22 +67,9 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-
-      {/* NAVIGATION */}
-      {item.slides.length > 1 && (
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-4 z-20">
-          <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
-          <SliderDots
-            count={scrollSnaps.length}
-            selectedIndex={selectedIndex}
-            onSelect={scrollTo}
-          />
-          <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="right" />
-        </div>
-      )}
     </header>
   );
 }

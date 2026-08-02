@@ -9,7 +9,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="relative w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
+    <section className="relative w-full py-12 xl:py-16 2xl:py-24 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Header */}
       <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
         <article className="text-left flex flex-col max-w-165 md:max-w-250">
@@ -68,6 +68,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
                     </ul>
                   )}
                 </div>
+
                 {item.decorImageBottom && (
                   <SanityImage
                     image={item.decorImageBottom}

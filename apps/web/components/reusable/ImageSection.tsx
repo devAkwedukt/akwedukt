@@ -27,21 +27,21 @@ export default function ImageSection({ item }: { item: ImageSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="relative w-full py-12 xl:py-16 2xl:py-26 px-6 md:px-20 bg-gray-50 mx-auto">
+    <section className="relative w-full py-10 xl:py-12 2xl:py-16 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <main className="max-w-480 mx-auto w-full py-8 md:py-14 flex flex-col items-center gap-6">
+        <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-4 3xl:gap-6">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">
               {item.slider.map((slide, index) => (
                 <div
                   key={index}
-                  className={`${slideWidthClass} aspect-16/9 overflow-hidden max-h-[70vh] active:cursor-grabbing`}
+                  className={`${slideWidthClass} aspect-16/9 overflow-hidden max-h-[80vh] active:cursor-grabbing`}
                 >
                   <SanityImage
                     image={slide.image}
-                    className="object-cover w-full h-full object-top"
+                    className="object-cover w-full h-full object-center"
                     alt={slide.image?.alt || `Zdjęcie ${index + 1}`}
                   />
                 </div>

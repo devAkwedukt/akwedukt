@@ -28,7 +28,7 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
               alt={item.image.alt || item.title || "Zdjęcie sekcji Nasza historia"}
             />
           )}
-        </main>{" "}
+        </main>
       </section>
 
       {item.bottomImage && (

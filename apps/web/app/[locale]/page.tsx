@@ -46,17 +46,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
   return (
     <>
-      {/* <main className="flex min-h-screen w-full flex-col items-center justify-between sm:items-start"> */}
-      <HeaderTest
-        headerText="Jesteśmy nurtem, który niesie zmianę"
-        subHeading="Pokonujemy bariery, dajemy energię i łączymy ze światem."
-      />
       <SanitySections value={h?.sections} />
       <ContactForm
         headingText="Napisz do nas"
         subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
       />
-      {/* </main>*/}
     </>
   );
 }
