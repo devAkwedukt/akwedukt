@@ -15,21 +15,22 @@ export default function PolicySection({ item }: { item: PolicySection }) {
   };
   if (item.enabled === false) return null;
   return (
-    <div
-      className={`container relative py-14 flex justify-start items-start gap-10 ${getBackgroundClass()}`}
+    <section
+      className={`relative mx-auto w-full py-14 md:py-20 px-6 md:px-20 flex justify-start items-start gap-10 ${getBackgroundClass()}`}
     >
-      <div className="flex flex-col gap-6">
+      <main className="flex flex-col w-full gap-6 max-w-480 mx-auto">
         <h3 className="heading-3">{item.title}</h3>
-        <div className="body-lg">
+        <div className="body-lg max-w-200 text-balance">
           <SanityRichText value={item.description} />
         </div>
-      </div>
+      </main>
+
       <SanityImage
         image={item.decor}
         className="absolute -top-2.5 right-10 hidden md:block"
         width={60}
         height={60}
       />
-    </div>
+    </section>
   );
 }

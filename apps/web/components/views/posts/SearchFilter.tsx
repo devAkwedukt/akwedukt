@@ -28,7 +28,7 @@ export function SearchFilter({ serverTags }: SearchFilterProps) {
   return (
     <div className="max-w-480 mx-auto mb-8 space-y-6">
       {/* Search Input */}
-      <div className="relative w-100 mx-auto">
+      <div className="relative w-auto md:w-100 mx-auto">
         <svg
           className="absolute left-3 top-1/2 transform -translate-y-1/2  w-5 h-5"
           fill="none"
@@ -73,7 +73,7 @@ export function SearchFilter({ serverTags }: SearchFilterProps) {
         {tags.length === 0 ? (
           <h4 className="heading-4 font-semibold mt-4">No tags found</h4>
         ) : (
-          <div className="flex flex-wrap justify-center items-center gap-12 mt-5">
+          <div className="flex flex-wrap justify-between md:justify-center items-center gap-4 md:gap-12 mt-5">
             {tags.map((tag) => {
               const isSelected = selectedTags.includes(tag._id);
               const bgColor = getCategoryColor(tag.name);

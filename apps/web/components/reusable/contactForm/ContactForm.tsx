@@ -198,7 +198,7 @@ function ContactForm({
       id="contact"
       className="max-w-480 py-8 md:py-16 2xl:py-24 px-6 md:px-20 flex flex-col-reverse md:flex-row items-center justify-end gap-0 md:gap-20 2xl:gap-[10%] mx-auto overflow-x-hidden"
     >
-      <aside className="flex items-center h-90 md:h-auto ">
+      <aside className="flex items-center h-90 md:h-auto w-auto">
         <Image src="/contactFormDoodle.svg" width={550} height={550} alt="doodle" />
       </aside>
 
