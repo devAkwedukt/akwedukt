@@ -19,7 +19,6 @@ type SanityImageProps = {
  */
 export function SanityImage({ image, preview, ...props }: SanityImageProps) {
   if (!image?.asset) {
-    console.warn("Missing Sanity image object in SanityImage component");
     return null;
   }
   const id = image.asset?._ref ?? image.asset?._id;

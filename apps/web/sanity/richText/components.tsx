@@ -43,13 +43,10 @@ export const components: PortableTextComponents = {
   },
   types: {
     image: ({ value }) => {
-      // Portable Text images have asset as a reference object with _ref
-      if (!value) {
-        return null;
-      }
       if (value?.asset?._ref || value?.asset?._id) {
         return <SanityImage image={value} alt={value.alt || ""} className="my-4 rounded-lg" />;
       }
+      return null;
     },
     externalImage: ({ value }) => {
       return <img src={value.url} alt={value.alt || ""} className="my-4 rounded-lg" />;
