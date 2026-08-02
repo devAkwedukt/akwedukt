@@ -831,6 +831,7 @@ export type ProjectTitleSection = {
   _type: "projectTitleSection";
   enabled?: boolean;
   title?: string;
+  subTitle?: string;
   description?: RichText;
   image?: {
     asset?: SanityImageAssetReference;
