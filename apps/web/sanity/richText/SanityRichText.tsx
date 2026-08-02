@@ -40,7 +40,7 @@ export function SanityRichText({
         components={components}
         onMissingComponent={(message, _options) => console.warn(message)}
       />
-      {images.length > 0 && <ImageSlider images={images} />}
+      {images.length > 0 && <ImageSlider images={images} sliderType="mini" />}
     </>
   );
 }

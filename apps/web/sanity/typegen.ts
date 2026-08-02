@@ -269,6 +269,7 @@ export type InfoSection = {
 export type ImageSection = {
   _type: "imageSection";
   enabled?: boolean;
+  sliderType?: "normal" | "mini";
   slider?: Array<{
     image?: ObjectImage;
     _key: string;
@@ -734,6 +735,8 @@ export type ProjectSignupSection = {
 export type ProjectFaqSection = {
   _type: "projectFaqSection";
   enabled?: boolean;
+  title?: string;
+  subtitle?: string;
   items?: Array<{
     question?: string;
     answer?: RichText;

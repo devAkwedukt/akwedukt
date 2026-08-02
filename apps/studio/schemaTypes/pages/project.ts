@@ -125,6 +125,10 @@ export default defineType({
           name: "infoSection",
           type: "infoSection",
         }),
+        defineArrayMember({
+          name: "projectsGallerySection",
+          type: "projectsGallerySection",
+        }),
       ],
     }),
   ],

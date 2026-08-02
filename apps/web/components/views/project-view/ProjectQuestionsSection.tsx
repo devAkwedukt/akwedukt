@@ -20,7 +20,7 @@ export default function ProjectQuestionsSection({ item }: ProjectQuestionsSectio
   };
   return (
     <section className={`w-full py-8 md:py-14 2xl:py-20 px-6 md:px-20 ${getBackgroundClass()}`}>
-      <header className="mb-8 text-center max-w-480 mx-auto">
+      <header className="mb-8 max-w-480 mx-auto">
         {item.title && <h2 className="heading-2 text-4xl mb-4">{item.title}</h2>}
         {item.subtitle && <p className="text-xl font-normal">{item.subtitle}</p>}
       </header>

@@ -6,7 +6,24 @@ import { useSlider } from "@/hooks/useSlider";
 import type { ImageSection } from "@/sanity/typegen";
 
 export default function ImageSection({ item }: { item: ImageSection }) {
-  const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
+  const slidesPerView = item.sliderType === "mini" ? { sm: 1, md: 2, lg: 3 } : undefined;
+
+  const slideWidthClass =
+    item.sliderType === "mini"
+      ? "flex-[0_0_calc(100%-1.5rem)] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc(33.333%-0.5rem)]"
+      : "flex-[0_0_100%]";
+
+  const {
+    emblaRef,
+    selectedIndex,
+    scrollSnaps,
+    canScrollPrev,
+    canScrollNext,
+    scrollTo,
+    scrollPrev,
+    scrollNext,
+  } = useSlider({ slidesPerView });
+
   if (item.enabled === false) return null;
 
   return (
@@ -20,7 +37,7 @@ export default function ImageSection({ item }: { item: ImageSection }) {
               {item.slider.map((slide, index) => (
                 <div
                   key={index}
-                  className="flex-[0_0_100%] aspect-16/9 overflow-hidden max-h-[70vh] active:cursor-grabbing"
+                  className={`${slideWidthClass} aspect-16/9 overflow-hidden max-h-[70vh] active:cursor-grabbing`}
                 >
                   <SanityImage
                     image={slide.image}
@@ -33,7 +50,7 @@ export default function ImageSection({ item }: { item: ImageSection }) {
           </div>
 
           {/* Slider Controls */}
-          {item.slider.length > 1 && (
+          {item.slider.length > 1 && (canScrollPrev || canScrollNext) && (
             <div className="w-full flex justify-between items-center">
               <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
               <SliderDots

@@ -12,6 +12,18 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: "sliderType",
+      title: "Typ slajdera",
+      type: "string",
+      options: {
+        list: [
+          { title: "Normalny", value: "normal" },
+          { title: "Mini", value: "mini" },
+        ],
+      },
+      initialValue: "normal",
+    }),
+    defineField({
       name: "slider",
       title: "Slider zdjęć",
       type: "array",

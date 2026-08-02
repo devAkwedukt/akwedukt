@@ -63,7 +63,6 @@ export default defineType({
           ],
         },
       ],
-      validation: (Rule) => Rule.required().length(3),
     }),
   ],
   preview: {

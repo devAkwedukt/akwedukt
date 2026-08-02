@@ -14,6 +14,18 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: "title",
+      title: "Tytuł",
+      type: "string",
+      group: "content",
+    }),
+    defineField({
+      name: "subtitle",
+      title: "Podtytuł",
+      type: "string",
+      group: "content",
+    }),
+    defineField({
       name: "items",
       title: "Pytania i odpowiedzi",
       type: "array",

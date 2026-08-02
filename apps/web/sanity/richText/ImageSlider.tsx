@@ -12,8 +12,31 @@ type ImageSlide = {
   alt?: string;
 };
 
-export function ImageSlider({ images }: { images: ImageSlide[] }) {
-  const { emblaRef, selectedIndex, scrollSnaps, scrollTo, scrollPrev, scrollNext } = useSlider();
+type SliderType = "normal" | "mini";
+
+interface ImageSliderProps {
+  images: ImageSlide[];
+  sliderType?: SliderType;
+}
+
+export function ImageSlider({ images, sliderType = "normal" }: ImageSliderProps) {
+  const slidesPerView = sliderType === "mini" ? { sm: 1, md: 2, lg: 3 } : undefined;
+
+  const slideWidthClass =
+    sliderType === "mini"
+      ? "flex-[0_0_calc(100%-1.5rem)] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc(33.333%-0.5rem)]"
+      : "flex-[0_0_100%]";
+
+  const {
+    emblaRef,
+    selectedIndex,
+    scrollSnaps,
+    canScrollPrev,
+    canScrollNext,
+    scrollTo,
+    scrollPrev,
+    scrollNext,
+  } = useSlider({ slidesPerView });
 
   if (!images?.length) return null;
 
@@ -24,7 +47,7 @@ export function ImageSlider({ images }: { images: ImageSlide[] }) {
           {images.map((image, index) => (
             <div
               key={index}
-              className="flex-[0_0_100%] aspect-video overflow-hidden max-h-200 active:cursor-grabbing"
+              className={`${slideWidthClass} aspect-video overflow-hidden max-h-200 active:cursor-grabbing`}
             >
               {image._type === "image" ? (
                 <SanityImage className="object-cover w-full h-full object-center" image={image} />
@@ -40,7 +63,7 @@ export function ImageSlider({ images }: { images: ImageSlide[] }) {
         </div>
       </div>
 
-      {images.length > 1 && (
+      {images.length > 1 && (canScrollPrev || canScrollNext) && (
         <div className="flex items-center justify-between mt-4">
           <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
           <SliderDots

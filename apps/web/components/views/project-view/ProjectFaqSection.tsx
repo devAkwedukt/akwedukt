@@ -12,6 +12,10 @@ export default function ProjectFaqSection({ item }: ProjectFaqSectionProps) {
 
   return (
     <section className="max-w-480 mx-auto py-8 md:py-14 2xl:py-20 px-6 md:px-20 3xl:px-0">
+      <header className="mb-8 max-w-480 mx-auto">
+        {item.title && <h2 className="heading-2 text-4xl mb-4">{item.title}</h2>}
+        {item.subtitle && <p className="text-xl font-normal">{item.subtitle}</p>}
+      </header>
       {item.items.map((faqItem, index) => (
         <div key={index}>
           {index % 2 === 0 && index >= 0 && <hr className="border-deep-navy-blue-200 " />}

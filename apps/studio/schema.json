@@ -1432,6 +1432,23 @@
           },
           "optional": true
         },
+        "sliderType": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "normal"
+              },
+              {
+                "type": "string",
+                "value": "mini"
+              }
+            ]
+          },
+          "optional": true
+        },
         "slider": {
           "type": "objectAttribute",
           "value": {
@@ -4593,6 +4610,20 @@
           "type": "objectAttribute",
           "value": {
             "type": "boolean"
+          },
+          "optional": true
+        },
+        "title": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
+          },
+          "optional": true
+        },
+        "subtitle": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "string"
           },
           "optional": true
         },
