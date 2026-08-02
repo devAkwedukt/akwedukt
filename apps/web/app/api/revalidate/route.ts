@@ -10,10 +10,10 @@ type WebhookPayload = {
 function getTags({ _type, slug }: WebhookPayload): string[] {
   switch (_type) {
     case "post":
-      return slug ? ["posts", `post:${slug}`] : ["posts"];
+      return slug ? [`post:${slug}`] : ["posts"];
 
     case "project":
-      return slug ? ["projects", `project:${slug}`] : ["projects"];
+      return slug ? [`project:${slug}`] : ["projects"];
 
     default:
       return [`page:${_type}`];
