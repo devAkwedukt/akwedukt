@@ -38,7 +38,7 @@ export default async function CoNowego({ params }: { params: Promise<{ locale: s
   const { data } = await sanityFetchProduction({
     query: coNowego.query,
     params: { locale },
-    cache: [{ type: "page", name: "coNowego" }, "projects", "posts"],
+    cache: [{ type: "page", name: "coNowego" }],
   });
   if (!data) notFound();
   const page = coNowego.parse(data);

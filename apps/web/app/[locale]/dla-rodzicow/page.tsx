@@ -39,7 +39,7 @@ export default async function DlaRodzicow({ params }: { params: Promise<{ locale
   const { data } = await sanityFetchProduction({
     query: dlaRodzicow.query,
     params: { locale },
-    cache: [{ type: "page", name: "dlaRodzicow" }, "projects"],
+    cache: [{ type: "page", name: "dlaRodzicow" }],
   });
   if (!data) notFound();
   const page = dlaRodzicow.parse(data);

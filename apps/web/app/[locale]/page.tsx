@@ -39,7 +39,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { data } = await sanityFetchProduction({
     query: home.query,
     params: { locale },
-    cache: [{ type: "page", name: "home" }, "projects"],
+    cache: [{ type: "page", name: "home" }],
   });
   if (!data) notFound();
   const h = home.parse(data);

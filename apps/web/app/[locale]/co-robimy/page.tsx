@@ -39,7 +39,7 @@ export default async function CoRobimy({ params }: { params: Promise<{ locale: s
   const { data } = await sanityFetchProduction({
     query: coRobimy.query,
     params: { locale },
-    cache: [{ type: "page", name: "coRobimy" }, "projects"],
+    cache: [{ type: "page", name: "coRobimy" }],
   });
   if (!data) notFound();
   const page = coRobimy.parse(data);
