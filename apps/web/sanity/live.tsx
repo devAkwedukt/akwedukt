@@ -43,12 +43,10 @@ function resolveTags(cache?: CacheTag | CacheTag[]) {
         break;
 
       case "post":
-        tags.add("posts");
         tags.add(`post:${item.slug}`);
         break;
 
       case "project":
-        tags.add("projects");
         tags.add(`project:${item.slug}`);
         break;
     }

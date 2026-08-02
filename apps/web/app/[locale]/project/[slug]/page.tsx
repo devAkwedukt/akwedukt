@@ -27,7 +27,6 @@ export async function generateStaticParams() {
     query: projectSlugs.query,
     perspective: "published",
     stega: false,
-    cache: ["projects"],
   });
   return projectSlugs.parse(data); // [{ slug: example-slug }, ...]
 }

@@ -25,7 +25,6 @@ const post = q
 export async function generateStaticParams() {
   const { data } = await sanityFetchProduction({
     query: postSlugs.query,
-    cache: ["posts"],
   });
   return postSlugs.parse(data); // [{ slug: example-slug }, ...]
 }
