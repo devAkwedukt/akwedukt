@@ -8,7 +8,7 @@ export default function ProjectTitleSection({ item }: { item: ProjectTitleSectio
   return (
     <section className="max-w-480 mx-auto relative px-6 md:px-20 py-8 md:py-16 2xl:py-20 flex justify-center items-center gap-10 3xl:px-0">
       <aside className="flex flex-col gap-6">
-        <h2 className="heading-2">{item.title}</h2>
+        <h1 className="heading-1">{item.title}</h1>
         {!!item.subTitle && <h2 className="heading-2 italic">{item.subTitle}</h2>}
         <div className="body-lg">
           <SanityRichText value={item.description} />

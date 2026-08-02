@@ -70,6 +70,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
             )}
 
             <h2 className="heading-2">{item.title}</h2>
+            {!!item.subTitle && <h2 className="heading-2 italic">{item.subTitle}</h2>}
 
             {/* Rich text description */}
             <div className="text-base md:body-lg text-balance">

@@ -89,6 +89,29 @@ export const klaroConfig: KlaroConfig = {
         },
       },
     },
+    {
+      name: "sanity",
+      default: true,
+      purposes: ["functional"],
+      cookies: [[/^sanitySession/, "/", ".sanity.io"]],
+      translations: {
+        zz: {
+          title: "Sanity CMS",
+          description:
+            "Sanity CMS is required for content management and image delivery on our website.",
+        },
+        pl: {
+          title: "Sanity CMS",
+          description:
+            "Sanity CMS jest wymagany do zarządzania treścią i dostarczania obrazów na naszej stronie.",
+        },
+        en: {
+          title: "Sanity CMS",
+          description:
+            "Sanity CMS is required for content management and image delivery on our website.",
+        },
+      },
+    },
   ],
 
   translations: {
@@ -110,6 +133,7 @@ export const klaroConfig: KlaroConfig = {
       purposes: {
         analytics: "Analytics",
         marketing: "Marketing",
+        functional: "Functional",
       },
     },
     pl: {
@@ -132,6 +156,7 @@ export const klaroConfig: KlaroConfig = {
       purposes: {
         analytics: "Analityka",
         marketing: "Marketing",
+        functional: "Funkcjonalne",
       },
     },
     en: {
@@ -152,6 +177,7 @@ export const klaroConfig: KlaroConfig = {
       purposes: {
         analytics: "Analytics",
         marketing: "Marketing",
+        functional: "Functional",
       },
     },
   },

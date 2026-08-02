@@ -123,7 +123,7 @@ async function Footer() {
           <Link
             prefetch={false}
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
-            href="/documents"
+            href="/dokumenty"
           >
             Regulaminy i dokumenty
           </Link>
@@ -131,7 +131,7 @@ async function Footer() {
           <Link
             prefetch={false}
             className="text-deep-navy-blue-200 font-semibold py-2 md:p-2 cursor-pointer duration-150 ease-in-out hover:text-deep-navy-blue-50"
-            href="/privacy-policy"
+            href="/polityka-prywatnosci"
           >
             Polityka prywatności
           </Link>

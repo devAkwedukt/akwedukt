@@ -639,6 +639,7 @@ export type PhotoInfoSection = {
   _type: "photoInfoSection";
   enabled?: boolean;
   title?: string;
+  subTitle?: string;
   photo?: {
     asset?: SanityImageAssetReference;
     media?: unknown;

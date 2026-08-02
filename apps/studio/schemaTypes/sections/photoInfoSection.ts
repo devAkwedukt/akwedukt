@@ -20,6 +20,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: "subTitle",
+      title: "Podtytuł",
+      type: "string",
+      group: "content",
+    }),
+    defineField({
       name: "photo",
       title: "Zdjęcie",
       type: "image",

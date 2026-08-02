@@ -1,15 +1,34 @@
+import type { Metadata } from "next";
 import { q } from "@/sanity/groqd";
 import { sanityFetchProduction } from "@/sanity/live";
 import { SanitySections } from "@/sanity/sections/SanitySections";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import ContactForm from "@/components/reusable/contactForm/ContactForm";
-import { Metadata } from "next";
 import { Breadcrumbs } from "@/components/ui";
+import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 
-export const metadata: Metadata = {
-  title: "Polityka prywatności | Stowarzyszenie Akwedukt",
-};
+const privacyPolicy = q
+  .parameters<{ locale: string }>()
+  .star.filterByType("privacyPolicy")
+  .filterBy("locale == $locale")
+  .slice(0);
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { data } = await sanityFetchProduction({
+    query: privacyPolicy.query,
+    params: { locale },
+    perspective: "published",
+    stega: false,
+    cache: "settings",
+  });
+  return mapMetadata(privacyPolicy.parse(data));
+}
 
 export const revalidate = 21600;
 
@@ -17,18 +36,13 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ loca
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const privacyPolicy = q
-    .parameters<{ locale: string }>()
-    .star.filterByType("privacyPolicy")
-    .filterBy("locale == $locale");
-
   const { data } = await sanityFetchProduction({
     query: privacyPolicy.query,
     params: { locale },
     cache: [{ type: "page", name: "privacyPolicy" }],
   });
   if (!data) notFound();
-  const page = privacyPolicy.parse(data)[0];
+  const page = privacyPolicy.parse(data);
 
   return (
     <>

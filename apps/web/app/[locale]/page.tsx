@@ -6,10 +6,29 @@ import { SanitySections } from "@/sanity/sections/SanitySections";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { mapMetadata } from "@/sanity/metadata/mapMetadata";
 
-export const metadata: Metadata = {
-  title: "Stowarzyszenie Akwedukt",
-};
+const home = q
+  .parameters<{ locale: string }>()
+  .star.filterByType("home")
+  .filterBy("locale == $locale")
+  .slice(0);
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const { data } = await sanityFetchProduction({
+    query: home.query,
+    params: { locale },
+    perspective: "published",
+    stega: false,
+    cache: "settings",
+  });
+  return mapMetadata(home.parse(data));
+}
 
 export const revalidate = 21600;
 
@@ -17,18 +36,13 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const home = q
-    .parameters<{ locale: string }>()
-    .star.filterByType("home")
-    .filterBy("locale == $locale");
-
   const { data } = await sanityFetchProduction({
     query: home.query,
     params: { locale },
     cache: [{ type: "page", name: "home" }, "projects"],
   });
   if (!data) notFound();
-  const h = home.parse(data)[0];
+  const h = home.parse(data);
 
   return (
     <>
