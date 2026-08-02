@@ -10,10 +10,22 @@ type WebhookPayload = {
 function getTags({ _type, slug }: WebhookPayload): string[] {
   switch (_type) {
     case "post":
-      return slug ? [`post:${slug}`] : ["posts"];
+      const postTags = slug ? [`post:${slug}`] : [];
+      postTags.push("page:coNowego");
+      return postTags;
 
     case "project":
-      return slug ? [`project:${slug}`] : ["projects"];
+      const tags = slug ? [`project:${slug}`] : [];
+      // Also revalidate pages that contain project sections
+      tags.push(
+        "page:coRobimy",
+        "page:coNowego",
+        "page:dlaRodzicow",
+        "page:home",
+        "page:volunteerWithUs",
+        "page:wspolpraca"
+      );
+      return tags;
 
     default:
       return [`page:${_type}`];
@@ -41,8 +53,6 @@ export async function POST(req: NextRequest) {
     const tags = getTags(body);
 
     for (const tag of tags) {
-      console.log("webhook-body", body);
-      console.log("webhook-tags", tags);
       revalidateTag(tag, "max");
     }
 
