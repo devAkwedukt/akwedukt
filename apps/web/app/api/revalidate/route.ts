@@ -18,6 +18,7 @@ function getTags({ _type, slug }: WebhookPayload): string[] {
       const tags = slug ? [`project:${slug}`] : [];
       // Also revalidate pages that contain project sections
       tags.push(
+        "projects",
         "page:coRobimy",
         "page:coNowego",
         "page:dlaRodzicow",

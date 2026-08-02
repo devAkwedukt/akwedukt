@@ -17,6 +17,7 @@ export const getProjectById = cache(async (projectId: string) => {
   const { data } = await sanityFetchProduction({
     query: PROJECT_BY_ID_QUERY,
     params: { projectId },
+    cache: "projects",
   });
   return data;
 });
@@ -56,7 +57,7 @@ export const getProjects = cache(
     const { data } = await sanityFetchProduction({
       query: queryProjects,
       params,
-      cache: [{ type: "page", name: "projects" }],
+      cache: "projects",
     });
     return (data as any[]) || [];
   }
@@ -86,7 +87,7 @@ export const getTotalProjectsCount = cache(
     const { data } = await sanityFetchProduction({
       query: queryTotalProjectsCount,
       params,
-      cache: [{ type: "page", name: "projects" }],
+      cache: "projects",
     });
     return (data as number) || 0;
   }
