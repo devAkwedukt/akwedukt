@@ -44,6 +44,7 @@ export const getPostById = cache(async (postId: string) => {
   const { data } = await sanityFetchProduction({
     query: POST_BY_ID_QUERY,
     params: { postId },
+    cache: ["posts"],
   });
   return data;
 });
@@ -111,7 +112,7 @@ export const getPosts = cache(
     const { data } = await sanityFetchProduction({
       query: queryPostById,
       params,
-      cache: [{ type: "page", name: "posts" }],
+      cache: ["posts"],
     });
     return (data as PostWithExpandedCategories[]) || [];
   }
@@ -166,7 +167,7 @@ export const getTotalPostsCount = cache(
     const { data } = await sanityFetchProduction({
       query: queryTotalPostsCount,
       params,
-      cache: [{ type: "page", name: "posts" }],
+      cache: ["posts"],
     });
     return (data as number) || 0;
   }
@@ -180,7 +181,7 @@ export const getAllTags = cache(async () => {
     }`);
   const { data } = await sanityFetchProduction({
     query: queryAllTags,
-    cache: [{ type: "page", name: "posts" }],
+    cache: ["posts"],
   });
   return data || [];
 });

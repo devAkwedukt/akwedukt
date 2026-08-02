@@ -10,23 +10,10 @@ type WebhookPayload = {
 function getTags({ _type, slug }: WebhookPayload): string[] {
   switch (_type) {
     case "post":
-      const postTags = slug ? [`post:${slug}`] : [];
-      postTags.push("page:coNowego");
-      return postTags;
+      return slug ? [`post:${slug}`, "posts"] : ["posts"];
 
     case "project":
-      const tags = slug ? [`project:${slug}`] : [];
-      // Also revalidate pages that contain project sections
-      tags.push(
-        "projects",
-        "page:coRobimy",
-        "page:coNowego",
-        "page:dlaRodzicow",
-        "page:home",
-        "page:volunteerWithUs",
-        "page:wspolpraca"
-      );
-      return tags;
+      return slug ? [`project:${slug}`, "projects"] : ["projects"];
 
     default:
       return [`page:${_type}`];
