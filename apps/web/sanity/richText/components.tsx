@@ -1,5 +1,6 @@
 import { PortableTextComponents } from "next-sanity";
 import { Link } from "@/i18n/navigation";
+import { SanityImage } from "../image/SanityImage";
 
 /**
  * Configures components rendered from Portable Text blocks in Sanity
@@ -39,5 +40,19 @@ export const components: PortableTextComponents = {
   },
   listItem: {
     bullet: ({ children }) => <li className="mb-1">{children}</li>,
+  },
+  types: {
+    image: ({ value }) => {
+      // Portable Text images have asset as a reference object with _ref
+      if (!value) {
+        return null;
+      }
+      if (value?.asset?._ref || value?.asset?._id) {
+        return <SanityImage image={value} alt={value.alt || ""} className="my-4 rounded-lg" />;
+      }
+    },
+    externalImage: ({ value }) => {
+      return <img src={value.url} alt={value.alt || ""} className="my-4 rounded-lg" />;
+    },
   },
 };
