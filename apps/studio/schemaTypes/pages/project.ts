@@ -132,16 +132,33 @@ export default defineType({
       ],
     }),
   ],
-
   preview: {
     select: {
       title: "title",
       media: "mainImage",
+      projectStatus: "projectStatus",
+      projectType: "projectTypes",
     },
-    prepare(selection) {
+    prepare({ title, media, projectStatus, projectType }) {
+      const statusLabels: Record<string, string> = {
+        pending: "Oczekiwany",
+        active: "Aktywny",
+        completed: "Zakończony",
+      };
+
+      const typeLabels: Record<string, string> = {
+        polish: "Polski",
+        international: "Międzynarodowy",
+        international_en: "Międzynarodowy (EN)",
+      };
+
+      const status = statusLabels[projectStatus] || "Brak statusu";
+      const type = typeLabels[projectType] || "Brak typu";
+
       return {
-        ...selection,
-        subtitle: "Projekt",
+        title,
+        media,
+        subtitle: `${status} · ${type}`,
       };
     },
   },

@@ -20,7 +20,7 @@ const topBorderColors = [
 export default function FaqAccordionSection({ item }: FaqAccordionSectionProps) {
   const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
 
-  if (!item.title || !item.questions || item.questions.length === 0 || item.enabled === false) {
+  if (!item.questions || item.questions.length === 0 || item.enabled === false) {
     return null;
   }
 

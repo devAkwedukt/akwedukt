@@ -31,6 +31,14 @@ export type Video = {
   title?: string;
 };
 
+export type DecorationImages = {
+  whatWeDoInternational?: WhatWeDoInternational;
+  whatWeDoPolish?: WhatWeDoPolish;
+  cooperationInternationalEn?: CooperationInternationalEn;
+  parentsCurrent?: ParentsCurrent;
+  whatNewCurrent?: WhatNewCurrent;
+};
+
 export type HeroSlideButton = {
   label?: string;
   url?: string;
@@ -41,17 +49,11 @@ export type HeroBackgroundSlideButton = {
   url?: string;
 };
 
-export type DecorationImages = {
-  whatWeDoInternational?: WhatWeDoInternational;
-  whatWeDoPolish?: WhatWeDoPolish;
-  cooperationInternationalEn?: CooperationInternationalEn;
-  parentsCurrent?: ParentsCurrent;
-  whatNewCurrent?: WhatNewCurrent;
-};
-
-export type AboutSectionButton = {
-  label?: string;
-  url?: string;
+export type WhatWeDoInternational = {
+  desktop?: Desktop;
+  desktop2?: Desktop2;
+  mobile?: Mobile;
+  mobile2?: Mobile2;
 };
 
 export type SanityImageAssetReference = {
@@ -61,38 +63,9 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
-export type ObjectImage = {
-  asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "image.media" in schema
-  hotspot?: SanityImageHotspot;
-  crop?: SanityImageCrop;
-  alt?: string;
-  _type: "image";
-};
-
-export type SanityFileAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-};
-
-export type ObjectFile = {
-  asset?: SanityFileAssetReference;
-  media?: unknown; // Unable to locate the referenced type "file.media" in schema
-  _type: "file";
-};
-
-export type WhatWeDoInternational = {
-  desktop?: Desktop;
-  desktop2?: Desktop2;
-  mobile?: Mobile;
-  mobile2?: Mobile2;
-};
-
 export type Desktop = {
   asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "desktop.media" in schema
+  media?: unknown; // Unable to locate the referenced type "media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   _type: "image";
@@ -129,7 +102,7 @@ export type WhatWeDoPolish = {
 
 export type WhatWeDoPolishDesktop = {
   asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "whatWeDoPolish.desktop.media" in schema
+  media?: unknown; // Unable to locate the referenced type "desktop.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   _type: "image";
@@ -158,7 +131,7 @@ export type CooperationInternationalEnDesktop = {
 
 export type BackgroundImage = {
   asset?: SanityImageAssetReference;
-  media?: unknown; // Unable to locate the referenced type "cooperationInternationalEn.backgroundImage.media" in schema
+  media?: unknown; // Unable to locate the referenced type "backgroundImage.media" in schema
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   _type: "image";
@@ -195,6 +168,33 @@ export type WhatNewCurrentMobile = {
   hotspot?: SanityImageHotspot;
   crop?: SanityImageCrop;
   _type: "image";
+};
+
+export type AboutSectionButton = {
+  label?: string;
+  url?: string;
+};
+
+export type ObjectImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  _type: "image";
+};
+
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
+export type ObjectFile = {
+  asset?: SanityFileAssetReference;
+  media?: unknown; // Unable to locate the referenced type "file.media" in schema
+  _type: "file";
 };
 
 export type DonationCard = {
@@ -705,7 +705,7 @@ export type ProjectQuestionsSection = {
   backgroundColor?: "white" | "neutral-50" | "deep-navy-blue-50";
   questions?: Array<{
     question?: string;
-    answer?: string;
+    answer?: RichText;
     _key: string;
   }>;
 };
@@ -1392,6 +1392,9 @@ export type Project = {
     | ({
         _key: string;
       } & InfoSection)
+    | ({
+        _key: string;
+      } & ProjectsGallerySection)
   >;
 };
 
@@ -1929,15 +1932,11 @@ export type AllSanitySchemaTypes =
   | Robots
   | Button
   | Video
+  | DecorationImages
   | HeroSlideButton
   | HeroBackgroundSlideButton
-  | DecorationImages
-  | AboutSectionButton
-  | SanityImageAssetReference
-  | ObjectImage
-  | SanityFileAssetReference
-  | ObjectFile
   | WhatWeDoInternational
+  | SanityImageAssetReference
   | Desktop
   | Desktop2
   | Mobile
@@ -1953,6 +1952,10 @@ export type AllSanitySchemaTypes =
   | WhatNewCurrent
   | WhatNewCurrentDesktop
   | WhatNewCurrentMobile
+  | AboutSectionButton
+  | ObjectImage
+  | SanityFileAssetReference
+  | ObjectFile
   | DonationCard
   | FundraisingCard
   | VolunteerCard
@@ -2572,6 +2575,9 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & ProjectQuestionsSection)
+        | ({
+            _key: string;
+          } & ProjectsGallerySection)
         | ({
             _key: string;
           } & ProjectSignupSection)

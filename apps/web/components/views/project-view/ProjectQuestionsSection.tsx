@@ -1,4 +1,5 @@
 import type { ProjectQuestionsSection } from "@/sanity/typegen";
+import { SanityRichText } from "@/sanity/richText/SanityRichText";
 
 interface ProjectQuestionsSectionProps {
   item: ProjectQuestionsSection;
@@ -33,7 +34,7 @@ export default function ProjectQuestionsSection({ item }: ProjectQuestionsSectio
           >
             <h3 className="heading-3 text-2xl">{questionItem.question}</h3>
             <div className="text-base md:text-lg font-normal leading-relaxed text-balance">
-              {questionItem.answer}
+              <SanityRichText value={questionItem.answer} />
             </div>
           </div>
         ))}

@@ -3,7 +3,7 @@ import type { ProjectQuestionsSection } from "../../../web/sanity/typegen";
 
 export default defineType({
   name: "projectQuestionsSection",
-  title: "Sekcja pytań o projekt (Dla kogo?, Dlaczego?, Kto to robi?)",
+  title: "Sekcja informacji o projekt (3)",
   type: "object",
   groups: [{ name: "content", title: "Treść" }],
   fields: [
@@ -56,8 +56,7 @@ export default defineType({
             defineField({
               name: "answer",
               title: "Odpowiedź",
-              type: "text",
-              rows: 3,
+              type: "richText",
               validation: (Rule) => Rule.required(),
             }),
           ],
