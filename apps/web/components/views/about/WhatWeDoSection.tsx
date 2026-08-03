@@ -9,17 +9,17 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="relative w-full py-12 xl:py-16 2xl:py-24 px-6 md:px-20 bg-gray-50 mx-auto">
+    <section className="relative w-full py-8 xl:py-16 2xl:py-24 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Header */}
       <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
         <article className="text-left flex flex-col max-w-165 md:max-w-250">
           <p className="text-base md:body-lg font-bold leading-relaxed">Co robimy</p>
           {item.title && <h2 className="heading-2 mt-4 mb-6 text-balance">{item.title}</h2>}
           {item.subtitle && <p className="text-base md:body-lg text-balance">{item.subtitle}</p>}
-          {item.subsubtitle && <p className="body-lg">{item.subsubtitle}</p>}
+          {item.subsubtitle && <p className="text-base body-lg">{item.subsubtitle}</p>}
         </article>
 
-        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-1/24 md:right-1/5 top-1/8 md:top-1/30 z-0">
+        <aside className="absolute scale-50 md:scale-100 translate-x-1/2 right-1/6 md:right-1/5 top-1/7 md:top-1/30 z-0">
           {item.decorImageTop && (
             <SanityImage image={item.decorImageTop} className="w-110.5 h-69.75 hidden md:block" />
           )}
@@ -78,7 +78,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
                 {item.decorImageBottomMob && (
                   <SanityImage
                     image={item.decorImageBottomMob}
-                    className="absolute right-1/24 bottom-1/12 w-91.25 h-51.5 md:hidden"
+                    className="absolute right-1/8 bottom-0 translate-x-1/2 translate-y-1/2 w-91.25 h-51.5 md:hidden"
                   />
                 )}
               </Fragment>

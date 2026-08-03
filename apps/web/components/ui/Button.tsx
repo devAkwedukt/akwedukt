@@ -46,7 +46,7 @@ const sizeStyles: Record<ButtonSize, string> = {
   xs: "p-xs text-sm gap-xxs rounded-sm sm:text-base",
   small: "py-3 px-4 text-sm gap-2 rounded-lg",
   medium: "py-4 px-6 text-base gap-3 rounded-xl",
-  large: "py-4 px-6 text-lg gap-4 rounded-xl",
+  large: "py-4 px-6 text-base md:text-lg gap-4 rounded-xl",
 };
 
 const variantStyles: Record<ButtonVariant, string> = {

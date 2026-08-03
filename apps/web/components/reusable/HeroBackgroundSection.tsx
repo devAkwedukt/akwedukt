@@ -40,7 +40,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
               )}
 
               <div className="relative z-10 col-start-1 row-start-1 flex w-full flex-col justify-center">
-                <div className="mx-auto flex w-full max-w-480 flex-col items-start gap-8 md:items-center md:gap-18">
+                <div className="mx-auto flex w-full max-w-480 flex-col items-start gap-8 md:items-center md:gap-18 px-6">
                   <div className="mt-6 flex w-full max-w-200 flex-col gap-4 text-left md:items-center md:gap-8 md:text-center">
                     {slide.title && (
                       <h1 className="heading-1 text-balance md:text-wrap">{slide.title}</h1>
@@ -59,7 +59,7 @@ export default function HeroBackgroundSection({ item }: { item: HeroBackgroundSe
                       href={slide.button.url}
                       variant="primary"
                       size="large"
-                      className="min-h-16 py-5"
+                      className="min-h-auto md:min-h-16 py-5"
                     >
                       {slide.button.label}
                     </Button>

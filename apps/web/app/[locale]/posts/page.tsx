@@ -68,7 +68,15 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
           alt="doodle"
           height="200"
           width="300"
-          className="hidden md:flex absolute left-0 top-1/8"
+          className="hidden md:flex absolute 2xl:left-1/10 3xl:left-1/8 top-1/8 "
+        />
+
+        <Image
+          src="/postsMobileDoodle.svg"
+          alt="doodle"
+          height="200"
+          width="300"
+          className="flex md:hidden absolute right-1/7 translate-x-1/2 -translate-y-1/2 top-1/7 scale-40"
         />
       </header>
 

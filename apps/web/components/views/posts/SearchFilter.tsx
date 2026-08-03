@@ -73,7 +73,7 @@ export function SearchFilter({ serverTags }: SearchFilterProps) {
         {tags.length === 0 ? (
           <h4 className="heading-4 font-semibold mt-4">No tags found</h4>
         ) : (
-          <div className="flex flex-wrap justify-between md:justify-center items-center gap-4 md:gap-12 mt-5">
+          <div className="flex flex-wrap justify-evenly md:justify-center items-center gap-4 md:gap-12 mt-5">
             {tags.map((tag) => {
               const isSelected = selectedTags.includes(tag._id);
               const bgColor = getCategoryColor(tag.name);

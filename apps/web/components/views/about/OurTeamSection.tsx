@@ -48,24 +48,25 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
   };
 
   return (
-    <section className="w-full px-6 md:px-20 py-12 md:py-16 2xl:py-24 bg-blue-50">
+    <section className="relative w-full px-6 md:px-20 py-12 md:py-16 2xl:py-24 bg-blue-50">
       {/* Header */}
-      <header className="text-left md:text-center mb-16 2xl:mb-20 flex flex-col gap-4">
+      <header className="text-left md:text-center mb-8 md:mb-16 2xl:mb-20 flex flex-col gap-4">
         <p className="body-lg font-bold leading-relaxed">Nasz zespół</p>
         {item.title && <h2 className="heading-2 mb-2">{item.title}</h2>}
         {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}
       </header>
 
+      {item.decorImageMob && (
+        <SanityImage
+          image={item.decorImageMob}
+          className="absolute z-20 -bottom-1/20 right-0 w-21.25 h-32 block md:hidden"
+        />
+      )}
+
       {/* MOBILE Grid */}
       {employees.length > 0 && (
         <div className="max-w-480 mx-auto">
-          <main className="block md:hidden relative w-full overflow-x-hidden">
-            {item.decorImageMob && (
-              <SanityImage
-                image={item.decorImageMob}
-                className="absolute z-20 bottom-0 right-0 w-21.25 h-32 md:hidden"
-              />
-            )}
+          <main className="block md:hidden w-full overflow-x-hidden">
             <div
               className="relative overflow-hidden"
               onTouchStart={handleTouchStart}
@@ -73,7 +74,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
               onTouchEnd={handleTouchEnd}
             >
               <div
-                className="flex gap-6 ease transition-transform duration-300"
+                className="flex items-stretch gap-6 ease transition-transform duration-300"
                 style={{
                   transform: `translateX(calc(-${currentIndex * 100}% - ${currentIndex * slideGapPx}px))`,
                 }}
@@ -81,10 +82,10 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                 {employees.map((employee, index) => (
                   <div
                     key={index}
-                    className="flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-4 md:pb-10 w-full min-w-full"
+                    className="flex w-full shrink-0 flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-4 md:pb-10"
                   >
                     {employee.photo && (
-                      <div className="aspect-square w-fit h-fit mx-auto overflow-hidden">
+                      <div className="aspect-square w-full overflow-hidden">
                         <SanityImage
                           image={employee.photo}
                           className="object-cover w-full h-full"
@@ -94,10 +95,10 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                     )}
 
                     <div className="text-left">
-                      <p className="body-lg font-bold text-balance">{employee.name}</p>
-                      <p className="body-lg font-normal text-balance">{employee.position}</p>
+                      <p className="text-lg font-bold text-balance">{employee.name}</p>
+                      <p className="text-lg font-normal text-balance">{employee.position}</p>
                       {employee.bio && (
-                        <p className="mt-4 body-base leading-normal text-balance">{employee.bio}</p>
+                        <p className="mt-4 text-base leading-normal text-balance">{employee.bio}</p>
                       )}
                     </div>
                   </div>

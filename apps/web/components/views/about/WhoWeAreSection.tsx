@@ -8,8 +8,8 @@ export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="w-full py-12 md:py-16 2xl:py-20 px-6 md:px-20 mx-auto bg-gray-50">
-      <main className="max-w-480 mx-auto flex flex-col-reverse md:flex-row justify-start items-center gap-16 2xl:gap-20">
+    <section className="w-full py-8 md:py-16 2xl:py-20 px-6 md:px-20 mx-auto bg-gray-50">
+      <main className="max-w-480 mx-auto flex flex-col-reverse md:flex-row justify-start items-center gap-12 md:gap-16 2xl:gap-20">
         {/* Image */}
         {item.image && (
           <aside className="relative w-full aspect-square md:h-150 md:w-150 overflow-hidden">
@@ -26,7 +26,7 @@ export default function WhoWeAreSection({ item }: { item: WhoWeAreSection }) {
           <p className="body-lg font-bold leading-relaxed">Kim jesteśmy</p>
           {item.title && <h2 className="heading-2">{item.title}</h2>}
           {item.description && (
-            <p className="body-lg leading-normal text-balance">{item.description}</p>
+            <p className="text-base md:text-lg leading-normal text-balance">{item.description}</p>
           )}
         </article>
       </main>

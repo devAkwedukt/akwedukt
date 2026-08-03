@@ -23,7 +23,7 @@ export default function AboutSection({ item }: { item: AboutSection }) {
 
       {/* Text Content */}
       <article className="flex flex-col items-start justify-start gap-6 2xl:gap-7 max-w-170 relative">
-        {item.title && <h2 className="heading-2">{item.title}</h2>}
+        {item.title && <h2 className="heading-2 max-w-75 md:max-w-auto">{item.title}</h2>}
         {item.subtitle && (
           <p className="text-base md:body-lg leading-normal text-balance">{item.subtitle}</p>
         )}
