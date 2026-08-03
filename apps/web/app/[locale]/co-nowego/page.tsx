@@ -47,6 +47,7 @@ export default async function CoNowego({ params }: { params: Promise<{ locale: s
     <>
       <Breadcrumbs
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Co nowego" }]}
+        className="bg-gray-50 w-full"
       />
       <SanitySections value={page?.sections} />
     </>

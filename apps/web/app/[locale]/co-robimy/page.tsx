@@ -48,6 +48,7 @@ export default async function CoRobimy({ params }: { params: Promise<{ locale: s
     <>
       <Breadcrumbs
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Co robimy" }]}
+        className="bg-gray-50 w-full"
       />
       <SanitySections value={page?.sections} />
       <ContactForm

@@ -25,10 +25,12 @@ export default function ValuesSection({ item }: { item: ValuesSection }) {
             >
               {value.title && <h3 className="heading-3 mb-4 tracking-tight">{value.title}</h3>}
               {value.subtitle && (
-                <p className="body-medium font-bold leading-relaxed">{value.subtitle}</p>
+                <p className="text-base md:text-lg font-bold leading-relaxed">{value.subtitle}</p>
               )}
               {value.description && (
-                <p className="body-small leading-relaxed text-balance">{value.description}</p>
+                <p className="text-base md:text-lg leading-relaxed text-balance">
+                  {value.description}
+                </p>
               )}
             </div>
           ))}

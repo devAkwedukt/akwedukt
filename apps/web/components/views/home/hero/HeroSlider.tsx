@@ -33,7 +33,7 @@ export default function HeroSlider({ slides, enabled }: { slides: Slide[]; enabl
                 <div className="w-full flex flex-col md:items-center gap-8 md:gap-12 lg:gap-18">
                   <div className="w-full flex flex-col md:items-center gap-4 md:gap-6 lg:gap-8">
                     {slide.title && (
-                      <h1 className="heading-1 max-w-[810px] text-center">{slide.title}</h1>
+                      <h1 className="heading-1 max-w-200 text-center">{slide.title}</h1>
                     )}
 
                     {slide.description && (

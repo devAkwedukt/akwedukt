@@ -86,7 +86,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
         {item.bottomImage && (
           <SanityImage
             image={item.bottomImage}
-            className="absolute bottom-10 right-10"
+            className="absolute bottom-10 -right-4 md:right-10 scale-70 md:scale-100"
             width={129}
             height={95}
           />

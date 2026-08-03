@@ -9,7 +9,7 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
 
   return (
     <>
-      <section className="w-full py-12 md:py-16 2xl:py-24 px-6 md:px-20 mx-auto bg-gray-50">
+      <section className="w-full py-8 md:py-16 2xl:py-24 px-6 md:px-20 mx-auto bg-gray-50">
         <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start gap-12 md:gap-16 2xl:gap-20 items-center">
           {/* Text Content */}
           <article className="flex flex-col items-start gap-6 max-w-150">

@@ -30,7 +30,7 @@ export default function ImageSection({ item }: { item: ImageSection }) {
     <section className="relative w-full py-10 xl:py-12 2xl:py-16 px-6 md:px-20 bg-gray-50 mx-auto">
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-4 3xl:gap-6">
+        <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-2 md:gap-4 3xl:gap-6">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">

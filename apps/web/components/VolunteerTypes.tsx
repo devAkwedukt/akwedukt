@@ -64,7 +64,10 @@ export default function VolunteerTypes({ item }: { item: VolunteerTypes }) {
         </div>
       </main>
       {item.decorImage && (
-        <SanityImage image={item.decorImage} className=" absolute bottom-0 right-0 w-110 h-70" />
+        <SanityImage
+          image={item.decorImage}
+          className="hidden md:flex absolute bottom-0 right-0 w-110 h-70"
+        />
       )}
     </section>
   );
