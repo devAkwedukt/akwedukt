@@ -16,6 +16,7 @@ const colorClasses = {
 
 export default function SupportImpactSection({ item }: SupportImpactSectionProps) {
   if (item.enabled === false) return null;
+
   return (
     <section className="relative px-6 md:px-20 py-8 md:py-16 2xl:py-20">
       <main className="mx-auto max-w-480 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
@@ -35,7 +36,7 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
         <article className="flex flex-col gap-8 md:gap-12 max-w-200">
           <div className="flex flex-col gap-8">
             <h2 className="heading-2">{item?.title}</h2>
-            <p className="text-base md:text-lg leading-6 text-balance">{item?.description}</p>
+            <p className="text-base md:text-lg text-balance">{item?.description}</p>
           </div>
 
           {/* Cards grid */}
@@ -43,13 +44,13 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
             {item?.cards?.map((card, index) => (
               <div key={index} className="flex flex-col gap-2">
                 <h2
-                  className={`heading-2 leading-10 ${
+                  className={`heading-2 ${
                     colorClasses[card?.color as keyof typeof colorClasses] || "text-blue-600"
                   }`}
                 >
                   {card?.amount}
                 </h2>
-                <p className="text-base leading-6 text-balance">{card?.description}</p>
+                <p className="text-base leading-normal text-balance">{card?.description}</p>
               </div>
             ))}
           </div>

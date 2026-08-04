@@ -53,7 +53,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
       <header className="text-left md:text-center mb-8 md:mb-16 2xl:mb-20 flex flex-col gap-4">
         <p className="body-lg font-bold leading-relaxed">Nasz zespół</p>
         {item.title && <h2 className="heading-2 mb-2">{item.title}</h2>}
-        {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}
+        {item.subtitle && <p className="text-base md:text-lg">{item.subtitle}</p>}
       </header>
 
       {item.decorImageMob && (
@@ -127,7 +127,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
             {employees.map((employee, index) => (
               <div
                 key={index}
-                className="self-stretch flex flex-col  gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-full md:w-[calc((100%-4rem)/3)]"
+                className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-full md:w-[calc((100%-4rem)/3)]"
               >
                 {/* Employee Photo */}
                 {employee.photo && (
@@ -148,7 +148,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                   </div>
 
                   {employee.bio && (
-                    <p className="mt-4 body-base 2xl:body-lg leading-relaxed text-balance">
+                    <p className="mt-4 text-base 2xl:text-lg leading-relaxed text-balance">
                       {employee.bio}
                     </p>
                   )}

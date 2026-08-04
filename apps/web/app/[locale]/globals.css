@@ -17,6 +17,19 @@
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
   --font-weight-black: 900;
+
+  /* Font sizes share one runtime scale controlled on the html element. */
+  --text-xs: calc(0.75rem * var(--text-scale));
+  --text-sm: calc(0.875rem * var(--text-scale));
+  --text-base: calc(1rem * var(--text-scale));
+  --text-lg: calc(1.125rem * var(--text-scale));
+  --text-xl: calc(1.25rem * var(--text-scale));
+  --text-2xl: calc(1.5rem * var(--text-scale));
+  --text-3xl: calc(1.875rem * var(--text-scale));
+  --text-4xl: calc(2.25rem * var(--text-scale));
+  --text-5xl: calc(3rem * var(--text-scale));
+  --text-6xl: calc(3.75rem * var(--text-scale));
+
   --color-deep-navy-blue-50: #f0f5fc;
   --color-deep-navy-blue-100: #e1ebf9;
   --color-deep-navy-blue-200: #c8daf3;
@@ -146,6 +159,18 @@
   --breakpoint-3xl: 125rem;
 }
 
+:root {
+  --text-scale: 1;
+}
+
+html[data-text-size="large"] {
+  --text-scale: 1.125;
+}
+
+html[data-text-size="extra-large"] {
+  --text-scale: 1.25;
+}
+
 html {
   /* block overflow of X axis for proper work of mobile sliders */
   overflow-x: hidden;
@@ -169,6 +194,8 @@ button {
 @layer base {
   body {
     @apply bg-background text-foreground font-sans overflow-x-hidden;
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
   }
   h1,
   h2 {
@@ -184,92 +211,108 @@ button {
   /* Typography from design system */
   .heading-1 {
     @apply font-bold leading-[1.05] md:leading-none tracking-tighter md:tracking-[-0.075em];
-    font-size: 3.375rem;
+    font-size: calc(3.375rem * var(--text-scale));
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-1 {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-size: clamp(
+        calc(2.5rem * var(--text-scale)),
+        calc(8vw * var(--text-scale)),
+        calc(4.5rem * var(--text-scale))
+      );
     }
   }
 
   .heading-2 {
     @apply font-bold leading-[1.1] md:leading-[1.125];
-    font-size: 2.5rem;
+    font-size: calc(2.5rem * var(--text-scale));
     letter-spacing: -0.025em;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-2 {
-      font-size: clamp(2.25rem, 6vw, 3.5rem);
+      font-size: clamp(
+        calc(2.25rem * var(--text-scale)),
+        calc(6vw * var(--text-scale)),
+        calc(3.5rem * var(--text-scale))
+      );
     }
   }
 
   .heading-3 {
     @apply font-bold leading-normal md:leading-relaxed;
-    font-size: 1.25rem;
+    font-size: calc(1.25rem * var(--text-scale));
     letter-spacing: -0.01em;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-3 {
-      font-size: clamp(1.25rem, 4vw, 1.5rem);
+      font-size: clamp(
+        calc(1.25rem * var(--text-scale)),
+        calc(4vw * var(--text-scale)),
+        calc(1.5rem * var(--text-scale))
+      );
     }
   }
 
   .heading-4 {
     @apply font-medium leading-tight;
-    font-size: 1rem; /* mobile fallback */
+    font-size: calc(1rem * var(--text-scale)); /* mobile fallback */
     letter-spacing: normal;
   }
 
   @supports (font-size: clamp(1rem, 1vw, 2rem)) {
     .heading-4 {
-      font-size: clamp(1rem, 3vw, 1.25rem); /* mobile 16px, desktop 20px */
+      font-size: clamp(
+        calc(1rem * var(--text-scale)),
+        calc(3vw * var(--text-scale)),
+        calc(1.25rem * var(--text-scale))
+      );
     }
   }
 
   /* Body text with design system values */
   .body-base {
     @apply leading-relaxed;
-    font-size: 1rem;
+    font-size: var(--text-base);
     letter-spacing: normal;
   }
 
   .body-lg {
     @apply leading-relaxed;
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     letter-spacing: normal;
   }
 
   .body-sm {
     @apply leading-relaxed;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     letter-spacing: normal;
   }
 
   .body-base-bold {
     @apply font-bold leading-relaxed;
-    font-size: 1rem;
+    font-size: var(--text-base);
     letter-spacing: normal;
   }
 
   .body-lg-bold {
     @apply font-bold leading-relaxed;
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     letter-spacing: normal;
   }
 
   .body-sm-bold {
     @apply font-bold leading-relaxed;
-    font-size: 0.875rem;
+    font-size: var(--text-sm);
     letter-spacing: normal;
   }
 
   /* Other components */
   .lead {
     @apply leading-relaxed;
-    font-size: 1.125rem;
+    font-size: var(--text-lg);
     letter-spacing: normal;
     color: var(--color-deep-navy-blue-100);
   }
@@ -285,7 +328,7 @@ button {
 
   .caption {
     @apply leading-snug;
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     letter-spacing: normal;
     color: var(--color-gray-600);
   }

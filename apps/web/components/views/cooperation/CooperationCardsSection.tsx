@@ -8,7 +8,9 @@ export default function CooperationCardsSection({ item }: { item: CooperationCar
     <section className="w-full p-6 md:px-20 py-12 md:py-16 2xl:py-18 bg-gray-50 flex flex-col items-center gap-14 overflow-hidden">
       <header className="flex flex-col justify-center items-center gap-6">
         {item.title && <h2 className="heading-2">{item.title}</h2>}
-        {item.subtitle && <p className="body-base md:body-lg">{item.subtitle}</p>}
+        {item.subtitle && (
+          <p className="body-base md:text-lg md:leading-relaxed">{item.subtitle}</p>
+        )}
       </header>
 
       <main className="max-w-480 mx-auto flex flex-col md:flex-row justify-start items-stretch gap-6 md:gap-8 2xl:gap-14 flex-wrap">

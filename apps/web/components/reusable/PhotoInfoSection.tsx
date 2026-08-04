@@ -73,7 +73,7 @@ export default function PhotoInfoSection({ item }: PhotoInfoSectionProps) {
             {!!item.subTitle && <h2 className="heading-2 italic">{item.subTitle}</h2>}
 
             {/* Rich text description */}
-            <div className="text-base md:body-lg text-balance">
+            <div className="text-base md:text-lg md:leading-relaxed text-balance">
               <SanityRichText value={item.description} />
             </div>
 

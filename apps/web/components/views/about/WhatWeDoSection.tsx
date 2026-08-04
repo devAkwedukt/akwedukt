@@ -13,9 +13,9 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
       {/* Header */}
       <header className="max-w-480 mx-auto flex flex-row justify-between items-start mb-14">
         <article className="text-left flex flex-col max-w-165 md:max-w-250">
-          <p className="text-base md:body-lg font-bold leading-relaxed">Co robimy</p>
+          <p className="text-base md:text-lg font-bold leading-relaxed">Co robimy</p>
           {item.title && <h2 className="heading-2 mt-4 mb-6 text-balance">{item.title}</h2>}
-          {item.subtitle && <p className="text-base md:body-lg text-balance">{item.subtitle}</p>}
+          {item.subtitle && <p className="text-base md:text-lg text-balance">{item.subtitle}</p>}
           {item.subsubtitle && <p className="text-base body-lg">{item.subsubtitle}</p>}
         </article>
 
@@ -45,7 +45,7 @@ export default function WhatWeDoSection({ item }: { item: WhatWeDoSection }) {
             return (
               <Fragment key={index}>
                 <div className="w-full md:w-[calc((100%-6rem)/3)] flex flex-col gap-0 md:gap-4">
-                  <div className="h-auto md:h-35 flex flex-col gap-4">
+                  <div className="h-auto md:min-h-35 flex flex-col gap-4">
                     <span
                       className={`self-start text-4xl md:text-6xl font-bold font-serif ${numberColorClass}`}
                     >

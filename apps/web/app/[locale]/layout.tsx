@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { sanityFetchProduction } from "@/sanity/live";
 import { Toaster } from "sonner";
@@ -14,6 +15,7 @@ import Navbar from "@/components/reusable/navbar/Navbar";
 import Footer from "@/components/reusable/footer/Footer";
 import LenisScrollProvider from "@/components/UtilitiesComponents/LenisScrollProvider";
 import KlaroConsent from "@/components/KlaroConsent";
+import { DEFAULT_TEXT_SIZE, TEXT_SIZE_STAGES, TEXT_SIZE_STORAGE_KEY } from "@/lib/text-size";
 
 /** This is the base metadata for the entire project, it will cascade down to subpages
  * @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function */
@@ -56,6 +58,20 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
 });
 
+const persistedTextSizes = TEXT_SIZE_STAGES.filter((size) => size !== DEFAULT_TEXT_SIZE);
+
+const textSizeInitScript = `
+  (() => {
+    try {
+      const savedTextSize = window.localStorage.getItem(${JSON.stringify(TEXT_SIZE_STORAGE_KEY)});
+
+      if (${JSON.stringify(persistedTextSizes)}.includes(savedTextSize)) {
+        document.documentElement.dataset.textSize = savedTextSize;
+      }
+    } catch {}
+  })();
+`;
+
 export default async function RootLayout({
   children,
   params,
@@ -71,7 +87,14 @@ export default async function RootLayout({
   setRequestLocale(locale); // Enables static rendering, this should be done in every page/layout
 
   return (
-    <html lang="pl">
+    <html lang="pl" suppressHydrationWarning>
+      <head>
+        <Script
+          id="text-size-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: textSizeInitScript }}
+        />
+      </head>
       <body className={`${fraunces.variable} ${jakarta.variable} antialiased`}>
         <NextIntlClientProvider>
           <Navbar />

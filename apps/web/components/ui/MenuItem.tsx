@@ -50,7 +50,7 @@ export function MenuItem(props: MenuItemProps) {
     "MenuItem flex justify-start items-center gap-2.5 transition-colors duration-200 p-2";
   const stateStyles = getStateStyles(selected);
   const sizeClasses =
-    "text-sm font-semibold leading-[14px] tracking-tight no-underline sm:text-base sm:leading-4 sm:no-underline";
+    "text-sm font-semibold leading-none tracking-tight no-underline sm:text-base sm:no-underline";
 
   const classes = clsx(
     baseClasses,
