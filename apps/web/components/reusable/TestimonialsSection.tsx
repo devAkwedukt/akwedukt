@@ -78,11 +78,11 @@ export default function TestimonialsSection({ item }: { item: TestimonialsSectio
   return (
     <>
       <section className="overflow-x-hidden bg-blue-50 w-full px-6 md:px-20 py-10 md:py-16 pb-10 md:pb-30 2xl:py-22 2xl:pb-32 relative">
-        <div className="flex flex-col md:flex-row items-start justify-start gap-14 max-w-480 mx-auto">
+        <div className="flex flex-col md:flex-row items-start justify-start gap-18 max-w-480 mx-auto">
           {/* Section Title and Subtitle */}
           <aside className="flex min-w-85 flex-col gap-6 md:gap-8">
-            {item.title && <h2 className="heading-2 text-nowrap">{item.title}</h2>}
-            {item.subtitle && <p className="text-lg">{item.subtitle}</p>}
+            {item.title && <h2 className="heading-2 text-balance">{item.title}</h2>}
+            {item.subtitle && <p className="text-base md:text-lg text-balance">{item.subtitle}</p>}
             {item.bottomImage && (
               <SanityImage
                 image={item.bottomDoodle}

@@ -94,11 +94,13 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                       </div>
                     )}
 
-                    <div className="text-left">
-                      <p className="text-lg font-bold text-balance">{employee.name}</p>
-                      <p className="text-lg font-normal text-balance">{employee.position}</p>
+                    <div className="text-left flex flex-col gap-4">
+                      <div>
+                        <p className="text-lg font-bold text-balance">{employee.name}</p>
+                        <p className="text-lg font-normal text-balance">{employee.position}</p>
+                      </div>
                       {employee.bio && (
-                        <p className="mt-4 text-base leading-normal text-balance">{employee.bio}</p>
+                        <p className="text-base leading-normal text-balance">{employee.bio}</p>
                       )}
                     </div>
                   </div>
@@ -141,14 +143,14 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                 )}
 
                 {/* Employee Info */}
-                <div className="text-left flex flex-col grow self-stretch items-stretch">
+                <div className="text-left flex flex-col gap-4 grow self-stretch items-stretch">
                   <div>
                     <p className="body-lg font-bold text-xl">{employee.name}</p>
                     <p className="body-lg font-normal text-xl text-balance">{employee.position}</p>
                   </div>
 
                   {employee.bio && (
-                    <p className="mt-4 text-base 2xl:text-lg leading-relaxed text-balance">
+                    <p className="mt-auto text-base 2xl:text-lg leading-relaxed text-balance">
                       {employee.bio}
                     </p>
                   )}

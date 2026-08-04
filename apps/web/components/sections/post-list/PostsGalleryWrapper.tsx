@@ -58,7 +58,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
             height={85}
           />
         )}
-        <header className="max-w-250 mx-auto">
+        <header className="max-w-275 mx-auto">
           {item.title && (
             <h2 className="font-bold heading-2 text-left md:text-center mb-4">{item.title}</h2>
           )}

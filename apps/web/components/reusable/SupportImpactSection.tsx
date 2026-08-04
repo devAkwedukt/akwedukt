@@ -18,10 +18,10 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
   if (item.enabled === false) return null;
 
   return (
-    <section className="relative px-6 md:px-20 py-8 md:py-16 2xl:py-20">
+    <section className="relative px-6 md:px-20 py-10 md:py-16 2xl:py-20">
       <main className="mx-auto max-w-480 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
         {/* Image - left on desktop, last on mobile */}
-        <aside className="size-80 md:size-150">
+        <aside className="size-82.5 md:size-150">
           {item?.image && (
             <SanityImage
               image={item.image}
@@ -57,7 +57,10 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
         </article>
       </main>
       {item.decorImage && (
-        <SanityImage image={item.decorImage} className=" absolute top-0 right-0 w-50 h-40" />
+        <SanityImage
+          image={item.decorImage}
+          className="absolute -top-1/15 md:top-0 -right-1/8 md:right-0 scale-55 md:scale-100"
+        />
       )}
     </section>
   );
