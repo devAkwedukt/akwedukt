@@ -51,11 +51,11 @@ function TextSizeToggle({ textSize, nextTextSize, onToggle }: TextSizeToggleProp
       type="button"
       onClick={onToggle}
       aria-label={`Rozmiar tekstu: ${textSizeLabels[textSize]}. Zmień na ${textSizeLabels[nextTextSize]}`}
-      className={`inline-flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-sm text-deep-navy-blue-900 transition-colors delay-25 duration-175 ease-in-out hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 active:scale-95 active:bg-blue-200 active:duration-25 ${
+      className={`inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-sm text-deep-navy-blue-900 transition-colors delay-25 duration-175 ease-in-out hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 active:scale-95 active:bg-blue-200 active:duration-25 ${
         textSize !== DEFAULT_TEXT_SIZE ? "bg-blue-200 text-blue-800" : ""
       }`}
     >
-      <RenderIcon icon="text-size" size={32} aria-hidden="true" focusable="false" />
+      <RenderIcon icon="text-size" size={24} aria-hidden="true" focusable="false" />
     </button>
   );
 }
