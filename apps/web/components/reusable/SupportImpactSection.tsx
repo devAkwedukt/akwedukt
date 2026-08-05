@@ -16,11 +16,12 @@ const colorClasses = {
 
 export default function SupportImpactSection({ item }: SupportImpactSectionProps) {
   if (item.enabled === false) return null;
+
   return (
-    <section className="relative px-6 md:px-20 py-8 md:py-16 2xl:py-20">
+    <section className="relative px-6 md:px-20 py-10 md:py-16 2xl:py-20">
       <main className="mx-auto max-w-480 flex flex-col-reverse md:flex-row items-center gap-8 md:gap-12">
         {/* Image - left on desktop, last on mobile */}
-        <aside className="size-80 md:size-150">
+        <aside className="size-82.5 md:size-150">
           {item?.image && (
             <SanityImage
               image={item.image}
@@ -35,7 +36,7 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
         <article className="flex flex-col gap-8 md:gap-12 max-w-200">
           <div className="flex flex-col gap-8">
             <h2 className="heading-2">{item?.title}</h2>
-            <p className="text-base md:text-lg leading-6 text-balance">{item?.description}</p>
+            <p className="text-base md:text-lg text-balance">{item?.description}</p>
           </div>
 
           {/* Cards grid */}
@@ -43,20 +44,23 @@ export default function SupportImpactSection({ item }: SupportImpactSectionProps
             {item?.cards?.map((card, index) => (
               <div key={index} className="flex flex-col gap-2">
                 <h2
-                  className={`heading-2 leading-10 ${
+                  className={`heading-2 ${
                     colorClasses[card?.color as keyof typeof colorClasses] || "text-blue-600"
                   }`}
                 >
                   {card?.amount}
                 </h2>
-                <p className="text-base leading-6 text-balance">{card?.description}</p>
+                <p className="text-base leading-normal text-balance">{card?.description}</p>
               </div>
             ))}
           </div>
         </article>
       </main>
       {item.decorImage && (
-        <SanityImage image={item.decorImage} className=" absolute top-0 right-0 w-50 h-40" />
+        <SanityImage
+          image={item.decorImage}
+          className="absolute -top-1/15 md:top-0 -right-1/8 md:right-0 scale-55 md:scale-100"
+        />
       )}
     </section>
   );

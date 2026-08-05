@@ -16,7 +16,7 @@ export default function OurHistorySection({ item }: { item: OurHistorySection })
             <p className="body-lg font-bold leading-relaxed">Nasza historia</p>
             {item.title && <h2 className="heading-2">{item.title}</h2>}
             {item.description && (
-              <p className="body-base md:body-lg leading-normal text-balance">{item.description}</p>
+              <p className="text-base md:text-lg leading-normal text-balance">{item.description}</p>
             )}
           </article>
 

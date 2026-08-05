@@ -3,7 +3,14 @@
 import { RenderIcon } from "@/components/ui";
 import { Link, usePathname } from "@/i18n/navigation";
 import { locales } from "@/i18n/locales";
-import React, { useEffect, useRef, useState } from "react";
+import {
+  DEFAULT_TEXT_SIZE,
+  getNextTextSize,
+  isTextSize,
+  TEXT_SIZE_STORAGE_KEY,
+  type TextSize,
+} from "@/lib/text-size";
+import { useEffect, useRef, useState } from "react";
 
 const endpoints = [
   { link: "/o-nas", label: "O nas" },
@@ -26,9 +33,37 @@ const stripLocalePrefix = (path: string) => {
   return path;
 };
 
+interface TextSizeToggleProps {
+  textSize: TextSize;
+  nextTextSize: TextSize;
+  onToggle: () => void;
+}
+
+const textSizeLabels: Record<TextSize, string> = {
+  default: "standardowy",
+  large: "większy",
+  "extra-large": "największy",
+};
+
+function TextSizeToggle({ textSize, nextTextSize, onToggle }: TextSizeToggleProps) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-label={`Rozmiar tekstu: ${textSizeLabels[textSize]}. Zmień na ${textSizeLabels[nextTextSize]}`}
+      className={`inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-sm text-deep-navy-blue-900 transition-colors delay-25 duration-175 ease-in-out hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-500 active:scale-95 active:bg-blue-200 active:duration-25 ${
+        textSize !== DEFAULT_TEXT_SIZE ? "bg-blue-200 text-blue-800" : ""
+      }`}
+    >
+      <RenderIcon icon="text-size" size={24} aria-hidden="true" focusable="false" />
+    </button>
+  );
+}
+
 function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [textSize, setTextSize] = useState<TextSize>(DEFAULT_TEXT_SIZE);
   const lastScrollY = useRef(0);
   const pathname = usePathname();
   const normalizedPathname = normalizePath(stripLocalePrefix(pathname));
@@ -54,6 +89,57 @@ function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+
+    const initialTextSize = isTextSize(root.dataset.textSize)
+      ? root.dataset.textSize
+      : DEFAULT_TEXT_SIZE;
+
+    setTextSize(initialTextSize);
+
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== TEXT_SIZE_STORAGE_KEY && event.key !== null) return;
+
+      const nextTextSize = isTextSize(event.newValue) ? event.newValue : DEFAULT_TEXT_SIZE;
+
+      if (nextTextSize === DEFAULT_TEXT_SIZE) {
+        delete root.dataset.textSize;
+      } else {
+        root.dataset.textSize = nextTextSize;
+      }
+
+      setTextSize(nextTextSize);
+    };
+
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
+
+  const toggleTextSize = () => {
+    const root = document.documentElement;
+    const currentTextSize = isTextSize(root.dataset.textSize)
+      ? root.dataset.textSize
+      : DEFAULT_TEXT_SIZE;
+    const nextTextSize = getNextTextSize(currentTextSize);
+
+    if (nextTextSize === DEFAULT_TEXT_SIZE) {
+      delete root.dataset.textSize;
+    } else {
+      root.dataset.textSize = nextTextSize;
+    }
+
+    setTextSize(nextTextSize);
+
+    try {
+      window.localStorage.setItem(TEXT_SIZE_STORAGE_KEY, nextTextSize);
+    } catch {
+      // The switch still works when browser storage is unavailable.
+    }
+  };
+
+  const nextTextSize = getNextTextSize(textSize);
 
   return (
     <nav
@@ -86,7 +172,7 @@ function Navbar() {
         </Link>
 
         {/* Links */}
-        <ul className="hidden md:flex flex-row gap-6 items-center ">
+        <ul className="hidden xl:flex flex-row gap-6 items-center">
           {endpoints.map(({ link, label }) => {
             const normalizedLink = normalizePath(link);
             const isActive =
@@ -94,33 +180,36 @@ function Navbar() {
               normalizedPathname.startsWith(`${normalizedLink}/`);
 
             return (
-              <Link
-                prefetch={false}
-                key={link}
-                href={link}
-                className={`relative font-semibold font-jakarta delay-25 after:delay-25 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
-                  isActive
-                    ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
-                    : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
-                }`}
-              >
-                {label}
-              </Link>
+              <li key={link}>
+                <Link
+                  prefetch={false}
+                  href={link}
+                  className={`relative font-semibold font-jakarta delay-25 after:delay-25 text-base items-center duration-175 ease-in-out p-1 px-0 pb-0 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
+                    isActive
+                      ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
+                      : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
+                  }`}
+                >
+                  {label}
+                </Link>
+              </li>
             );
           })}
 
           {/* Text size switcher */}
-          <RenderIcon
-            icon="text-size"
-            className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-25 duration-175 ease-in-out active:bg-blue-200 active:scale-95 active:duration-25"
-            size={40}
-          />
+          <li className="flex">
+            <TextSizeToggle
+              textSize={textSize}
+              nextTextSize={nextTextSize}
+              onToggle={toggleTextSize}
+            />
+          </li>
         </ul>
 
         <RenderIcon
           icon="menu"
           size={42}
-          className={`block md:hidden ${isSidebarOpen ? "opacity-0" : "opacity-100"}`}
+          className={`block xl:hidden ${isSidebarOpen ? "opacity-0" : "opacity-100"}`}
           onClick={() => {
             setIsSidebarOpen(true);
           }}
@@ -128,7 +217,7 @@ function Navbar() {
         <RenderIcon
           icon="close"
           size={42}
-          className={`block md:hidden ${isSidebarOpen ? "opacity-100" : "hidden! opacity-0"}`}
+          className={`block xl:hidden ${isSidebarOpen ? "opacity-100" : "hidden! opacity-0"}`}
           onClick={() => {
             setIsSidebarOpen(false);
           }}
@@ -136,7 +225,7 @@ function Navbar() {
 
         {/* MOBILE MENU - SIDEBAR */}
         <div
-          className={`absolute duration-200 ease-in-out origin-right transition right-0 p-6 top-full bg-gray-50 w-7/10 h-auto block md:hidden ${isSidebarOpen ? "translate-x-0 duration-225" : "translate-x-full"}`}
+          className={`absolute duration-200 ease-in-out origin-right transition right-0 p-6 top-full bg-gray-50 w-7/10 h-auto block xl:hidden ${isSidebarOpen ? "translate-x-0 duration-225" : "translate-x-full"}`}
         >
           <ul className="flex flex-col gap-6 items-start">
             {endpoints.map(({ link, label }) => {
@@ -146,30 +235,33 @@ function Navbar() {
                 normalizedPathname.startsWith(`${normalizedLink}/`);
 
               return (
-                <Link
-                  prefetch={false}
-                  key={link}
-                  href={link}
-                  onClick={() => {
-                    setIsSidebarOpen(false);
-                  }}
-                  className={`relative font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out pt-1.5 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
-                    isActive
-                      ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
-                      : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
-                  }`}
-                >
-                  {label}
-                </Link>
+                <li key={link}>
+                  <Link
+                    prefetch={false}
+                    href={link}
+                    onClick={() => {
+                      setIsSidebarOpen(false);
+                    }}
+                    className={`relative font-semibold font-jakarta delay-20 text-base items-center duration-175 ease-in-out pt-1.5 leading-tight active:text-blue-700 focus-visible:duration-0 focus-visible:outline-2 focus-visible:outline-pink-500 focus-visible:rounded-sm after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:origin-right after:scale-x-0 after:content-[''] after:transition-transform after:duration-300 after:ease-in-out motion-reduce:after:transition-none ${
+                      isActive
+                        ? "text-blue-800 after:origin-left! after:scale-x-100 after:bg-blue-800"
+                        : "text-deep-navy-blue-900 after:bg-deep-navy-blue-900 hover:after:origin-left hover:after:scale-x-100"
+                    }`}
+                  >
+                    {label}
+                  </Link>
+                </li>
               );
             })}
 
             {/* Text size switcher */}
-            <RenderIcon
-              icon="text-size"
-              className="cursor-pointer p-2 rounded-sm hover:bg-blue-100 delay-20 duration-175 ease-in-out active:bg-blue-200"
-              size={40}
-            />
+            <li className="flex">
+              <TextSizeToggle
+                textSize={textSize}
+                nextTextSize={nextTextSize}
+                onToggle={toggleTextSize}
+              />
+            </li>
           </ul>
         </div>
       </div>

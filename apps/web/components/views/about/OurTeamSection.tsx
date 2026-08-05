@@ -53,7 +53,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
       <header className="text-left md:text-center mb-8 md:mb-16 2xl:mb-20 flex flex-col gap-4">
         <p className="body-lg font-bold leading-relaxed">Nasz zespół</p>
         {item.title && <h2 className="heading-2 mb-2">{item.title}</h2>}
-        {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}
+        {item.subtitle && <p className="text-base md:text-lg">{item.subtitle}</p>}
       </header>
 
       {item.decorImageMob && (
@@ -94,11 +94,13 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                       </div>
                     )}
 
-                    <div className="text-left">
-                      <p className="text-lg font-bold text-balance">{employee.name}</p>
-                      <p className="text-lg font-normal text-balance">{employee.position}</p>
+                    <div className="text-left flex flex-col gap-4">
+                      <div>
+                        <p className="text-lg font-bold text-balance">{employee.name}</p>
+                        <p className="text-lg font-normal text-balance">{employee.position}</p>
+                      </div>
                       {employee.bio && (
-                        <p className="mt-4 text-base leading-normal text-balance">{employee.bio}</p>
+                        <p className="text-base leading-normal text-balance">{employee.bio}</p>
                       )}
                     </div>
                   </div>
@@ -127,7 +129,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
             {employees.map((employee, index) => (
               <div
                 key={index}
-                className="self-stretch flex flex-col  gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-full md:w-[calc((100%-4rem)/3)]"
+                className="self-stretch flex flex-col gap-4 justify-start items-start bg-gray-50 p-4 pb-10 w-full md:w-[calc((100%-4rem)/3)]"
               >
                 {/* Employee Photo */}
                 {employee.photo && (
@@ -141,14 +143,14 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                 )}
 
                 {/* Employee Info */}
-                <div className="text-left flex flex-col grow self-stretch items-stretch">
+                <div className="text-left flex flex-col gap-4 grow self-stretch items-stretch">
                   <div>
                     <p className="body-lg font-bold text-xl">{employee.name}</p>
                     <p className="body-lg font-normal text-xl text-balance">{employee.position}</p>
                   </div>
 
                   {employee.bio && (
-                    <p className="mt-4 body-base 2xl:body-lg leading-relaxed text-balance">
+                    <p className="mt-auto text-base 2xl:text-lg leading-relaxed text-balance">
                       {employee.bio}
                     </p>
                   )}

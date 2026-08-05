@@ -4,7 +4,7 @@ export const klaroConfig: KlaroConfig = {
   storageMethod: "cookie",
   storageName: "klaro",
   cookieExpiresAfterDays: 365,
-  privacyPolicy: "/privacy",
+  privacyPolicy: "/polityka-prywatnosci",
   mustConsent: false,
   acceptAll: true,
 

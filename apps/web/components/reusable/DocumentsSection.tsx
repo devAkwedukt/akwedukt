@@ -29,7 +29,7 @@ export default function DocumentsSection({ item }: { item: DocumentsSection }) {
       )}
       <div className="text-left- md:text-center mb-12">
         {item.title && <h2 className="heading-2 mb-6">{item.title}</h2>}
-        {item.subtitle && <p className="text-base md:body-lg">{item.subtitle}</p>}
+        {item.subtitle && <p className="text-base md:text-lg">{item.subtitle}</p>}
       </div>
 
       {/* Documents Grid */}

@@ -9,8 +9,8 @@ export default function AboutSection({ item }: { item: AboutSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="max-w-480 px-6 md:px-20 3xl:px-20 py-8 md:py-16 2xl:py-24 flex flex-col-reverse md:flex-row justify-start items-center gap-10 md:gap-16 2xl:gap-18 border-y border-deep-navy-blue-100 mx-auto">
-      <aside className="flex w-full h-auto md:w-150 md:h-150 relative ">
+    <section className="max-w-480 px-6 md:px-20 3xl:px-20 py-8 md:py-16 2xl:py-24 flex flex-col-reverse md:flex-row justify-start items-center gap-10 md:gap-16 2xl:gap-18 mx-auto">
+      <aside className="flex w-full h-auto md:w-150 md:h-150 relative">
         {/* Image */}
         {item.image && (
           <SanityImage
@@ -25,7 +25,9 @@ export default function AboutSection({ item }: { item: AboutSection }) {
       <article className="flex flex-col items-start justify-start gap-6 2xl:gap-7 max-w-170 relative">
         {item.title && <h2 className="heading-2 max-w-75 md:max-w-auto">{item.title}</h2>}
         {item.subtitle && (
-          <p className="text-base md:body-lg leading-normal text-balance">{item.subtitle}</p>
+          <p className="text-base md:text-lg md:leading-relaxed leading-normal text-balance">
+            {item.subtitle}
+          </p>
         )}
         {item.button && item.button.url && (
           <Button

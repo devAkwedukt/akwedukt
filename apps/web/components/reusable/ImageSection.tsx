@@ -27,17 +27,17 @@ export default function ImageSection({ item }: { item: ImageSection }) {
   if (item.enabled === false) return null;
 
   return (
-    <section className="relative w-full py-10 xl:py-12 2xl:py-16 px-6 md:px-20 bg-gray-50 mx-auto">
+    <section className="relative w-full py-10 xl:py-12 2xl:py-16 px-0 md:px-6 2xl:px-20 bg-gray-50 mx-auto">
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-2 md:gap-4 3xl:gap-6">
+        <main className="max-w-480 mx-auto w-full flex flex-col items-center gap-3 2xl:gap-4 3xl:gap-6">
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">
               {item.slider.map((slide, index) => (
                 <div
                   key={index}
-                  className={`${slideWidthClass} aspect-16/9 overflow-hidden max-h-[80vh] active:cursor-grabbing`}
+                  className={`${slideWidthClass} aspect-16/9 overflow-hidden min-h-60 3xl:min-h-200 max-h-[80vh] active:cursor-grabbing`}
                 >
                   <SanityImage
                     image={slide.image}
@@ -51,21 +51,31 @@ export default function ImageSection({ item }: { item: ImageSection }) {
 
           {/* Slider Controls */}
           {item.slider.length > 1 && (canScrollPrev || canScrollNext) && (
-            <div className="w-full flex justify-between items-center">
-              <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
+            <div className="w-full flex justify-between items-center px-2 md:px-0">
+              <SliderArrows
+                onPrev={scrollPrev}
+                onNext={scrollNext}
+                position="left"
+                className="hidden! md:flex!"
+              />
               <SliderDots
                 count={scrollSnaps.length}
                 selectedIndex={selectedIndex}
                 onSelect={scrollTo}
               />
-              <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="right" />
+              <SliderArrows
+                onPrev={scrollPrev}
+                onNext={scrollNext}
+                position="right"
+                className="hidden! md:flex!"
+              />
             </div>
           )}
 
           {/* Caption */}
           {item.slider[selectedIndex]?.image?.alt && (
-            <div className="w-full max-w-full md:max-w-250 md:px-20 text-center">
-              <p className="body-base md:text-lg text-balance">
+            <div className="w-full max-w-full md:max-w-250 px-1 md:px-16 text-center">
+              <p className="text-sm md:text-base 2xl:text-lg text-balance">
                 {item.slider[selectedIndex].image.alt}
               </p>
             </div>

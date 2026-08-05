@@ -24,7 +24,7 @@ export default function CoalitionSection({ item }: { item: any }) {
                   className="w-full md:max-w-85 p-0 md:p-6 bg-background md:bg-gray-50 flex flex-col gap-2 md:gap-4"
                 >
                   {card.title && (
-                    <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
+                    <p className="text-xl font-bold leading-tight text-balance">{card.title}</p>
                   )}
                   {card.description && <p className="text-base text-balance">{card.description}</p>}
                 </div>
@@ -38,7 +38,7 @@ export default function CoalitionSection({ item }: { item: any }) {
                   className="w-full md:max-w-85 p-0 md:p-6 bg-background md:bg-gray-50 flex flex-col gap-2 md:gap-4"
                 >
                   {card.title && (
-                    <p className="text-xl font-bold leading-6 text-balance">{card.title}</p>
+                    <p className="text-xl font-bold leading-tight text-balance">{card.title}</p>
                   )}
                   {card.description && <p className="text-base text-balance">{card.description}</p>}
                 </div>

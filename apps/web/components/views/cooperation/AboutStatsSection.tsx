@@ -21,7 +21,7 @@ export default function AboutStatsSection({ item }: { item: AboutStatsSection })
           <div className="flex flex-col gap-6">
             {item.title && <h2 className="heading-2">{item.title}</h2>}
             {item.description && (
-              <div className="body-base md:body-lg text-balance">
+              <div className="text-base md:text-lg md:leading-relaxed text-balance">
                 <SanityRichText value={item.description} />
               </div>
             )}

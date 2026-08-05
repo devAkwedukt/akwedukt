@@ -62,7 +62,7 @@ export function Pagination({
             prefetch={false}
             key={pageNum}
             href={buildUrl(pageNum)}
-            className={`text-lg leading-[25.60px] transition text-center px-1 rounded-sm focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-pink-500 ${
+            className={`text-lg leading-[1.425] transition text-center px-1 rounded-sm focus-visible:outline-1 focus-visible:-outline-offset-1 focus-visible:outline-pink-500 ${
               currentPage === pageNum
                 ? "font-bold text-blue-700"
                 : "hover:text-blue-700 hover:underline"
