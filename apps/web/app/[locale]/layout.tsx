@@ -50,12 +50,14 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-jakarta",
+  fallback: ["system-ui", "sans-serif"], //Fallback if CDN fails
 });
 
 const fraunces = Fraunces({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   variable: "--font-fraunces",
+  fallback: ["system-ui", "serif"], //Fallback if CDN fails
 });
 
 const persistedTextSizes = TEXT_SIZE_STAGES.filter((size) => size !== DEFAULT_TEXT_SIZE);

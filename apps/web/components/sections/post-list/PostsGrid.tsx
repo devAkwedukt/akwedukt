@@ -79,13 +79,15 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF POST */}
             {!!post.featuredMedia ? (
-              <div className="overflow-hidden">
-                <SanityImage
-                  image={post.featuredMedia}
-                  className="w-full h-70 md:h-75 object-cover 2xl:h-90 group-hover:scale-104 transition-transform ease duration-400 delay-20 will-change-transform"
-                  alt={post.title || ""}
-                />
-              </div>
+              <Link prefetch={false} href={`/post/${post.slug?.current}`}>
+                <div className="overflow-hidden">
+                  <SanityImage
+                    image={post.featuredMedia}
+                    className="w-full h-70 md:h-75 object-cover 2xl:h-90 group-hover:scale-104 transition-transform ease duration-400 delay-20 will-change-transform"
+                    alt={post.title || ""}
+                  />
+                </div>
+              </Link>
             ) : (
               <Image
                 src="/Picture_placeholder.png"

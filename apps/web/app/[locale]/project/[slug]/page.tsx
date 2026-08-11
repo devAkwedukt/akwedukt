@@ -76,19 +76,20 @@ export default async function ProjectPage({
   if (!p) notFound();
 
   return (
-    <main className="w-full">
+    <>
       <Breadcrumbs
         items={[
           { label: "Strona główna", href: `/${locale}` },
           { label: "Co robimy", href: `/${locale}/co-robimy` },
           { label: p.title || "Projekt" },
         ]}
+        className="w-full"
       />
       <SanitySections value={p.sections} />
       <ContactForm
         headingText="Napisz do nas"
         subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
       />
-    </main>
+    </>
   );
 }

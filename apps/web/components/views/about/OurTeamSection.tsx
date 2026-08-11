@@ -59,7 +59,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
       {item.decorImageMob && (
         <SanityImage
           image={item.decorImageMob}
-          className="absolute z-20 -bottom-1/20 right-0 w-21.25 h-32 block md:hidden"
+          className="absolute z-20 -bottom-1/20 right-0  block md:hidden"
         />
       )}
 
@@ -108,12 +108,12 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
               </div>
             </div>
 
-            <div className="mt-8 flex items-center justify-center gap-3.25">
+            <div className="mt-8 flex items-center justify-center z-50 gap-3.25">
               {employees.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`h-3 rounded-full p-1 transition-all duration-300 ease ${
+                  className={`h-3 rounded-full p-1 z-50 transition-all duration-300 ease ${
                     index === currentIndex
                       ? "bg-deep-navy-blue-900 w-9"
                       : "bg-deep-navy-blue-100 w-3"
@@ -157,6 +157,7 @@ export default function OurTeamSection({ item }: { item: OurTeamSection }) {
                 </div>
               </div>
             ))}
+
             {item.decorImageAside && (
               <SanityImage
                 image={item.decorImageAside}

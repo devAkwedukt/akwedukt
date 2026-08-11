@@ -20,19 +20,26 @@ export default function DocumentsTabSection({ section }: Props) {
     <section className="w-full py-8 md:py-16 2xl:py-24 px-6 md:px-20">
       <main className="max-w-480 mx-auto flex flex-col gap-12">
         {/* Header */}
-        <header className="text-center flex flex-col gap-8">
+        <header className="text-left md:text-center flex flex-col gap-8">
           <h2 className="heading-2">{section.title}</h2>
           {section.description && <p className="text-base md:text-lg">{section.description}</p>}
         </header>
 
         {/* Tabs */}
-        <div className="mt-14 flex flex-wrap justify-center">
+        <div
+          role="tablist"
+          aria-label={section.title ?? "Kategorie dokumentów"}
+          className="mt-14 -mx-6 flex flex-nowrap justify-start overflow-x-auto px-6 scroll-smooth scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:flex-wrap md:justify-center md:overflow-visible md:px-0"
+        >
           {tabs.map((tab, index) => (
             <button
               key={tab._key}
+              type="button"
+              role="tab"
+              aria-selected={activeTab === index}
               onClick={() => setActiveTab(index)}
               className={[
-                "px-4 py-2 border border-transparent text-base md:text-lg transition",
+                "shrink-0 whitespace-nowrap px-4 py-2 border border-transparent text-base transition md:shrink md:whitespace-normal md:text-lg",
                 activeTab === index
                   ? "border-deep-navy-blue-900!"
                   : "hover:border-deep-navy-blue-700/80 cursor-pointer",
