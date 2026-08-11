@@ -10,7 +10,7 @@ export default function ProjectTitleSection({ item }: { item: ProjectTitleSectio
       <aside className="flex flex-col gap-6">
         <h1 className="heading-1">{item.title}</h1>
         {!!item.subTitle && <h2 className="heading-2 italic">{item.subTitle}</h2>}
-        <div className="body-lg">
+        <div className="text-lg text-balance">
           <SanityRichText value={item.description} />
         </div>
       </aside>

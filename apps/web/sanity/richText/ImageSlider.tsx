@@ -41,16 +41,19 @@ export function ImageSlider({ images, sliderType = "normal" }: ImageSliderProps)
   if (!images?.length) return null;
 
   return (
-    <div className="max-w-480 mx-auto w-full py-8 md:py-14 flex flex-col items-center gap-6">
+    <div className="max-w-480 mx-auto w-full py-8 md:py-12 flex flex-col items-center gap-4">
       <div ref={emblaRef} className="w-full overflow-hidden">
         <div className="flex gap-6">
           {images.map((image, index) => (
             <div
               key={index}
-              className={`${slideWidthClass} aspect-video overflow-hidden max-h-200 active:cursor-grabbing`}
+              className={`${slideWidthClass} aspect-video overflow-hidden w-auto min-w-80 min-h-60 max-h-200 active:cursor-grabbing`}
             >
               {image._type === "image" ? (
-                <SanityImage className="object-cover w-full h-full object-center" image={image} />
+                <SanityImage
+                  image={image}
+                  className="object-cover min-h-60 w-full h-full object-center"
+                />
               ) : (
                 <img
                   src={image.url}
@@ -64,7 +67,7 @@ export function ImageSlider({ images, sliderType = "normal" }: ImageSliderProps)
       </div>
 
       {images.length > 1 && (canScrollPrev || canScrollNext) && (
-        <div className="flex items-center justify-between mt-4">
+        <div className="w-full flex items-center justify-between">
           <SliderArrows onPrev={scrollPrev} onNext={scrollNext} position="left" />
           <SliderDots
             count={scrollSnaps.length}

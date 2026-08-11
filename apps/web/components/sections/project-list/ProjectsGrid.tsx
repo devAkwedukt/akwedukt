@@ -21,13 +21,15 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF PROJECT */}
             {!!project.mainImage ? (
-              <div className="overflow-hidden">
-                <SanityImage
-                  image={project.mainImage}
-                  className="w-full h-75 object-cover 2xl:h-90 group-hover:scale-104 transition-transform ease duration-400 delay-20 will-change-transform"
-                  alt={project.title || ""}
-                />
-              </div>
+              <Link prefetch={false} href={`/project/${project.slug?.current}`}>
+                <div className="overflow-hidden">
+                  <SanityImage
+                    image={project.mainImage}
+                    className="w-full h-75 object-cover 2xl:h-90 group-hover:scale-104 transition-transform ease duration-400 delay-20 will-change-transform"
+                    alt={project.title || ""}
+                  />
+                </div>
+              </Link>
             ) : (
               <Image
                 src="/Picture_placeholder.png"

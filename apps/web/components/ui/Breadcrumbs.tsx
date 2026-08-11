@@ -17,17 +17,21 @@ export default function Breadcrumbs({ items, className }: BreadcrumbsProps) {
       <div className="max-w-480 mx-auto flex items-center flex-wrap justify-start">
         {items.map((item, index) => (
           <div key={index} className="flex items-center">
-            {index > 0 && <span className="px-0.5 md:px-1 text-sm font-bold text-gray-950">/</span>}
+            {index > 0 && (
+              <span className="px-0.5 md:px-1 pr-1 md:pr-2.5 text-sm font-bold text-gray-950">
+                /
+              </span>
+            )}
             {item.href ? (
               <Link
                 prefetch={false}
                 href={item.href}
-                className="break-words px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors"
+                className="wrap-break-word px-1 md:px-2 text-base font-bold text-gray-950 hover:text-ocean-green-700 transition-colors first-of-type:pl-0"
               >
                 {item.label}
               </Link>
             ) : (
-              <span className="break-words px-2 text-base font-bold text-ocean-green-700">
+              <span className="wrap-break-word pl-0 px-2 text-base font-bold text-ocean-green-700">
                 {item.label}
               </span>
             )}

@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/ui";
 import ImageSection from "@/components/reusable/ImageSection";
+import ContactForm from "@/components/reusable/contactForm/ContactForm";
 
 // QROQD Query builders
 const postSlugs = q.star
@@ -68,40 +69,50 @@ export default async function PostPage({
   const p = post.parse(data)!;
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <main className="flex min-h-screen w-full flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <div className="w-full">
-          <Breadcrumbs
-            items={[
-              { label: "Strona główna", href: `/${locale}` },
-              { label: "Kronika wydarzeń", href: `/${locale}/posts` },
-              { label: p.title || "Post" },
-            ]}
-          />
-          <div className="flow-root">
+    <>
+      <Breadcrumbs
+        items={[
+          { label: "Strona główna", href: `/${locale}` },
+          { label: "Kronika wydarzeń", href: `/${locale}/posts` },
+          { label: p.title || "Post" },
+        ]}
+        className="w-full bg-gray-50"
+      />
+
+      <div className="bg-gray-50 w-full px-6 md:px-20 py-8 md:py-12 2xl:py-16">
+        <main className="max-w-480 mx-auto flex flex-col md:flex-row gap-10 md:gap-16 2xl:gap-20 justify-start items-start ">
+          <aside className="w-auto">
             <SanityImage
-              className="mb-4 w-full md:float-left md:mr-6 md:mb-4 md:w-80 h-auto rounded-lg"
+              className="w-full md:w-150 h-auto aspect-square object-cover"
               image={p.featuredMedia}
-              mode="cover"
               width={600}
               height={300}
             />
-            <div>
-              {p.date && (
-                <div>
-                  {new Date(p.date).toLocaleDateString("pl-PL", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </div>
-              )}
+          </aside>
+
+          <article className="w-full md:w-1/2 flex flex-col pt-12 relative">
+            {p.date && (
+              <p className="text-sm md:text-base absolute top-0 right-0">
+                {new Date(p.date).toLocaleDateString("pl-PL", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </p>
+            )}
+            <h2 className="heading-2 text-balance mb-8">{p.title}</h2>
+            <div className="text-balance text-base md:text-lg">
               <SanityRichText value={p.content} withImageSlider={true} />
             </div>
-          </div>
-          <ImageSection item={{ _type: "imageSection", slider: p.slider, enabled: true }} />
-        </div>
-      </main>
-    </div>
+          </article>
+        </main>
+      </div>
+      <ImageSection item={{ _type: "imageSection", slider: p.slider, enabled: true }} />
+
+      <ContactForm
+        headingText="Napisz do nas"
+        subHeadingText="Masz pytanie, problem lub propozycję? Wyślij wiadomość, skontaktujemy się z Tobą najszybciej jak to możliwe."
+      />
+    </>
   );
 }
