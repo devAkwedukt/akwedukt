@@ -25,6 +25,12 @@ export function Pagination({
     maxVisiblePages,
   });
 
+  const skipPages = 10;
+  const skipBackPage = Math.max(1, currentPage - skipPages);
+  const skipForwardPage = Math.min(totalPages, currentPage + skipPages);
+  const hasSkipBack = currentPage > skipPages + 1;
+  const hasSkipForward = currentPage + skipPages < totalPages;
+
   const buildUrl = (page: number) => {
     const params = new URLSearchParams();
     params.set("page", page.toString());
@@ -44,6 +50,17 @@ export function Pagination({
 
   return (
     <div className="mt-14 mx-auto flex justify-center items-center gap-4">
+      {/* Skip back button */}
+      <IconButton
+        as="link"
+        href={buildUrl(skipBackPage)}
+        icon="arrow-back-ios"
+        size="medium"
+        shape="circle"
+        disabled={!hasSkipBack}
+        aria-label="5 stron w tył"
+      />
+
       {/* Previous button */}
       <IconButton
         as="link"
@@ -82,6 +99,17 @@ export function Pagination({
         shape="circle"
         disabled={!hasNextPage}
         aria-label="Następna strona"
+      />
+
+      {/* Skip forward button */}
+      <IconButton
+        as="link"
+        href={buildUrl(skipForwardPage)}
+        icon="arrow-forward-ios"
+        size="medium"
+        shape="circle"
+        disabled={!hasSkipForward}
+        aria-label="5 stron w przód"
       />
     </div>
   );

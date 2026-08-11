@@ -3,6 +3,7 @@ import { SanityImage } from "@/sanity/image/SanityImage";
 import type { Post } from "@/sanity/typegen";
 import { getCategoryColor } from "@/constants/categories";
 import Link from "next/link";
+import Image from "next/image";
 
 // Type for post with expanded categories and tags (using typegen structure)
 type PostWithExpandedCategories = Omit<Exclude<Post, null>, "categories" | "tags"> & {
@@ -77,7 +78,7 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
         <div key={post._id} className="group max-w-125 w-full flex">
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF POST */}
-            {post.featuredMedia && (
+            {!!post.featuredMedia ? (
               <div className="overflow-hidden">
                 <SanityImage
                   image={post.featuredMedia}
@@ -85,6 +86,13 @@ export function PostsGrid({ posts, ctaText = "Czytaj dalej" }: PostsGridProps) {
                   alt={post.title || ""}
                 />
               </div>
+            ) : (
+              <Image
+                src="/Picture_placeholder.png"
+                width={800}
+                height={600}
+                alt="Picture placeholder"
+              />
             )}
 
             {/* TEXT CONTENT OF POST */}
