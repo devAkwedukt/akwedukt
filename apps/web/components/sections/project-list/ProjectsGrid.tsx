@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/Button";
 import { SanityImage } from "@/sanity/image/SanityImage";
 import type { Project } from "@/sanity/typegen";
 import Link from "next/link";
+import Image from "next/image";
 
 interface ProjectsGridProps {
   projects: Project[];
@@ -19,7 +20,7 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
         <div key={project._id} className="group max-w-125 w-full flex">
           <div className="flex flex-col h-full w-full">
             {/* IMAGE OF PROJECT */}
-            {project.mainImage && (
+            {!!project.mainImage ? (
               <div className="overflow-hidden">
                 <SanityImage
                   image={project.mainImage}
@@ -27,6 +28,13 @@ export function ProjectsGrid({ projects, ctaText = "Dowiedz się więcej" }: Pro
                   alt={project.title || ""}
                 />
               </div>
+            ) : (
+              <Image
+                src="/Picture_placeholder.png"
+                width={800}
+                height={600}
+                alt="Picture placeholder"
+              />
             )}
 
             {/* TEXT CONTENT OF PROJECT */}

@@ -95,7 +95,7 @@ export default async function PostsPage({ params, searchParams }: PostsPageProps
 
           {/* Results count */}
           <p className="text-lg text-center py-8 pb-18">
-            Pokazano {filteredPosts.length} z {totalCount} postów
+            Pokazano {offset + 1} - {offset + filteredPosts.length} z {totalCount} postów
           </p>
         </>
       ) : (
