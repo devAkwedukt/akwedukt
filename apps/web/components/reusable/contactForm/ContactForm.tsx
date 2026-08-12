@@ -1,28 +1,41 @@
 ﻿"use client";
 import Image from "next/image";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { z } from "zod";
 
-const subjectOptions = [
-  "Chcę wyjechać na wolontariat/wymianę",
-  "Chcę zorganizować wspólne działanie/warsztaty",
-  "Jestem ze szkoły/instytucji i szukam współpracy",
-  "Mam inne, szalone pytanie",
-] as const;
+import {
+  contactFormFieldsSchema,
+  type ContactFormLanguage,
+  type ContactSubjectId,
+} from "@/lib/contact-form";
 
-const subjectOptionsEn = [
-  "I want to become a volunteer!",
-  "Let's organize a workshop/event together!",
-  "I'm from a school/institution and looking for a partnership",
-  "I have a completely different, crazy question!",
-] as const;
-
-type ContactFormLanguage = "pl" | "en";
+const subjectOptions: Record<
+  ContactFormLanguage,
+  readonly { label: string; value: ContactSubjectId }[]
+> = {
+  pl: [
+    { label: "Chcę wyjechać na wolontariat/wymianę", value: "volunteering" },
+    { label: "Chcę zorganizować wspólne działanie/warsztaty", value: "event" },
+    {
+      label: "Jestem ze szkoły/instytucji i szukam współpracy",
+      value: "partnership",
+    },
+    { label: "Mam inne, szalone pytanie", value: "other" },
+  ],
+  en: [
+    { label: "I want to become a volunteer!", value: "volunteering" },
+    { label: "Let's organize a workshop/event together!", value: "event" },
+    {
+      label: "I'm from a school/institution and looking for a partnership",
+      value: "partnership",
+    },
+    { label: "I have a completely different, crazy question!", value: "other" },
+  ],
+};
 
 type ContactFormValues = {
   name: string;
   email: string;
-  subject: string;
+  subject: ContactSubjectId | "";
   message: string;
   acceptedTerms: boolean;
 };
@@ -46,7 +59,11 @@ const contactFormTranslations = {
       message: "Wpisz wiadomość",
       terms: "Akceptuję regulamin",
       submit: "Wyślij",
-      success: "Dziękujemy, wiadomość została wysłana.",
+      submitting: "Wysyłanie…",
+      success: "Dziękujemy! Wiadomość została wysłana. Odpowiemy na podany adres e-mail.",
+      sendError: "Nie udało się wysłać wiadomości. Spróbuj ponownie za chwilę.",
+      rateLimited: "Wysłano zbyt wiele wiadomości. Spróbuj ponownie za kilka minut.",
+      unavailable: "Formularz jest chwilowo niedostępny. Spróbuj ponownie później.",
     },
     errors: {
       name: "Wpisz imię i nazwisko.",
@@ -65,7 +82,11 @@ const contactFormTranslations = {
       message: "Your message",
       terms: "I accept the terms and conditions",
       submit: "Send",
-      success: "Thank you, your message has been sent.",
+      submitting: "Sending…",
+      success: "Thank you! Your message has been sent. We will reply to the email provided.",
+      sendError: "We couldn't send your message. Please try again shortly.",
+      rateLimited: "Too many messages have been sent. Please try again in a few minutes.",
+      unavailable: "The form is temporarily unavailable. Please try again later.",
     },
     errors: {
       name: "Enter your full name.",
@@ -78,24 +99,13 @@ const contactFormTranslations = {
   },
 } as const;
 
-const getContactFormSchema = (language: ContactFormLanguage) => {
-  const messages = contactFormTranslations[language].errors;
-  const validSubjectOptions = (
-    language === "en" ? subjectOptionsEn : subjectOptions
-  ) as readonly string[];
-
-  return z.object({
-    name: z.string().trim().min(1, messages.name),
-    email: z.string().trim().min(1, messages.email).email(messages.emailFormat),
-    subject: z.string().refine((value) => validSubjectOptions.includes(value as string), {
-      message: messages.subject,
-    }),
-    message: z.string().trim().min(1, messages.message),
-    acceptedTerms: z.boolean().refine((value) => value, {
-      message: messages.acceptedTerms,
-    }),
-  });
-};
+type SubmissionStatus =
+  | "idle"
+  | "submitting"
+  | "success"
+  | "error"
+  | "rate-limited"
+  | "unavailable";
 
 function inputClassName(hasError: boolean) {
   return `w-full rounded-md border bg-transparent px-4 py-3 text-base text-deep-navy-blue-900 placeholder:text-deep-navy-blue-900/90 focus:outline-none focus:ring-2 ${
@@ -118,22 +128,40 @@ function ContactForm({
 }: ContactFormProps) {
   const [values, setValues] = useState<ContactFormValues>(initialValues);
   const [errors, setErrors] = useState<ContactFormErrors>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [website, setWebsite] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>("idle");
   const translation = contactFormTranslations[language];
-  const currentSubjectOptions = language === "en" ? subjectOptionsEn : subjectOptions;
-  const contactFormSchema = getContactFormSchema(language);
+  const currentSubjectOptions = subjectOptions[language];
+  const isSubmitting = submissionStatus === "submitting";
+  const isSubmissionError = ["error", "rate-limited", "unavailable"].includes(submissionStatus);
+  const statusMessage =
+    submissionStatus === "success"
+      ? translation.labels.success
+      : submissionStatus === "rate-limited"
+        ? translation.labels.rateLimited
+        : submissionStatus === "unavailable"
+          ? translation.labels.unavailable
+          : submissionStatus === "error"
+            ? translation.labels.sendError
+            : "";
 
   useEffect(() => {
-    if (!isSubmitted) return;
+    if (submissionStatus !== "success") return;
 
     const timeoutId = window.setTimeout(() => {
-      setIsSubmitted(false);
+      setSubmissionStatus("idle");
     }, 5000);
 
     return () => {
       window.clearTimeout(timeoutId);
     };
-  }, [isSubmitted]);
+  }, [submissionStatus]);
+
+  const clearSubmissionStatus = () => {
+    if (submissionStatus !== "idle" && submissionStatus !== "submitting") {
+      setSubmissionStatus("idle");
+    }
+  };
 
   const clearFieldError = (field: keyof ContactFormValues) => {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
@@ -145,13 +173,20 @@ function ContactForm({
     const field = e.currentTarget.name as Exclude<keyof ContactFormValues, "acceptedTerms">;
     const fieldValue = e.currentTarget.value;
 
-    setValues((prev) => ({
-      ...prev,
-      [field]: fieldValue,
-    }));
+    if (field === "subject") {
+      setValues((prev) => ({
+        ...prev,
+        subject: fieldValue as ContactSubjectId | "",
+      }));
+    } else {
+      setValues((prev) => ({
+        ...prev,
+        [field]: fieldValue,
+      }));
+    }
 
     clearFieldError(field);
-    if (isSubmitted) setIsSubmitted(false);
+    clearSubmissionStatus();
   };
 
   const handleTermsChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -163,13 +198,13 @@ function ContactForm({
     }));
 
     clearFieldError("acceptedTerms");
-    if (isSubmitted) setIsSubmitted(false);
+    clearSubmissionStatus();
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const parsedForm = contactFormSchema.safeParse(values);
+    const parsedForm = contactFormFieldsSchema.safeParse(values);
 
     if (!parsedForm.success) {
       const nextErrors: ContactFormErrors = {};
@@ -179,18 +214,50 @@ function ContactForm({
 
         if (typeof field === "string" && field in initialValues) {
           const typedField = field as keyof ContactFormValues;
-          nextErrors[typedField] ??= issue.message;
+          nextErrors[typedField] ??=
+            typedField === "email" && values.email.trim()
+              ? translation.errors.emailFormat
+              : translation.errors[typedField];
         }
       }
 
       setErrors(nextErrors);
-      setIsSubmitted(false);
+      setSubmissionStatus("idle");
       return;
     }
 
     setErrors({});
-    setValues(initialValues);
-    setIsSubmitted(true);
+    setSubmissionStatus("submitting");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...parsedForm.data,
+          language,
+          sourcePath: window.location.pathname || "/",
+          website,
+        }),
+      });
+
+      if (!response.ok) {
+        setSubmissionStatus(
+          response.status === 429
+            ? "rate-limited"
+            : response.status === 503
+              ? "unavailable"
+              : "error"
+        );
+        return;
+      }
+
+      setValues(initialValues);
+      setWebsite("");
+      setSubmissionStatus("success");
+    } catch {
+      setSubmissionStatus("error");
+    }
   };
 
   return (
@@ -199,7 +266,7 @@ function ContactForm({
       className="max-w-480 py-8 md:py-16 2xl:py-24 px-6 md:px-20 flex flex-col-reverse md:flex-row items-center justify-end gap-0 md:gap-20 2xl:gap-[10%] mx-auto overflow-x-hidden"
     >
       <aside className="flex items-center h-90 md:h-auto w-auto">
-        <Image src="/contactFormDoodle.svg" width={550} height={550} alt="doodle" />
+        <Image src="/contactFormDoodle.svg" width={550} height={550} alt="" />
       </aside>
 
       <aside className="flex max-w-162.5 md:max-w-180 flex-col gap-10 2xl:gap-12">
@@ -208,7 +275,25 @@ function ContactForm({
           <p className="text-base md:text-xl text-balance">{subHeadingText}</p>
         </div>
 
-        <form className="mx-auto flex w-full flex-col gap-6" noValidate onSubmit={handleSubmit}>
+        <form
+          aria-busy={isSubmitting}
+          className="mx-auto flex w-full flex-col gap-6"
+          noValidate
+          onSubmit={handleSubmit}
+        >
+          <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              autoComplete="off"
+              id="contact-website"
+              maxLength={200}
+              name="website"
+              onChange={(event) => setWebsite(event.currentTarget.value)}
+              tabIndex={-1}
+              type="text"
+              value={website}
+            />
+          </div>
           <div>
             <label
               className="cursor-pointer w-fit mb-1 block text-base md:text-xl font-semibold text-deep-navy-blue-900"
@@ -217,15 +302,24 @@ function ContactForm({
               {translation.labels.name}
             </label>
             <input
+              aria-describedby={errors.name ? "name-error" : undefined}
+              aria-invalid={Boolean(errors.name)}
               autoComplete="name"
               className={inputClassName(Boolean(errors.name))}
+              disabled={isSubmitting}
               id="name"
+              maxLength={100}
               name="name"
               onChange={handleFieldChange}
+              required
               type="text"
               value={values.name}
             />
-            {errors.name ? <p className="mt-1 text-sm text-red-600">{errors.name}</p> : null}
+            {errors.name ? (
+              <p className="mt-1 text-sm text-red-600" id="name-error">
+                {errors.name}
+              </p>
+            ) : null}
           </div>
 
           <div>
@@ -233,18 +327,27 @@ function ContactForm({
               className="cursor-pointer w-fit mb-1 block text-base md:text-xl font-semibold text-deep-navy-blue-900"
               htmlFor="email"
             >
-              Email
+              {translation.labels.email}
             </label>
             <input
+              aria-describedby={errors.email ? "email-error" : undefined}
+              aria-invalid={Boolean(errors.email)}
               autoComplete="email"
               className={inputClassName(Boolean(errors.email))}
+              disabled={isSubmitting}
               id="email"
+              maxLength={254}
               name="email"
               onChange={handleFieldChange}
+              required
               type="email"
               value={values.email}
             />
-            {errors.email ? <p className="mt-1 text-sm text-red-600">{errors.email}</p> : null}
+            {errors.email ? (
+              <p className="mt-1 text-sm text-red-600" id="email-error">
+                {errors.email}
+              </p>
+            ) : null}
           </div>
 
           <div>
@@ -256,16 +359,20 @@ function ContactForm({
             </label>
             <div className="relative">
               <select
+                aria-describedby={errors.subject ? "subject-error" : undefined}
+                aria-invalid={Boolean(errors.subject)}
                 className={`${inputClassName(Boolean(errors.subject))} appearance-none pr-12`}
+                disabled={isSubmitting}
                 id="subject"
                 name="subject"
                 onChange={handleFieldChange}
+                required
                 value={values.subject}
               >
-                <option value=""></option>
+                <option disabled value=""></option>
                 {currentSubjectOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option}
+                  <option key={option.value} value={option.value}>
+                    {option.label}
                   </option>
                 ))}
               </select>
@@ -282,7 +389,11 @@ function ContactForm({
                 </svg>
               </span>
             </div>
-            {errors.subject ? <p className="mt-1 text-sm text-red-600">{errors.subject}</p> : null}
+            {errors.subject ? (
+              <p className="mt-1 text-sm text-red-600" id="subject-error">
+                {errors.subject}
+              </p>
+            ) : null}
           </div>
 
           <div>
@@ -293,29 +404,43 @@ function ContactForm({
               {translation.labels.message}
             </label>
             <textarea
+              aria-describedby={errors.message ? "message-error" : undefined}
+              aria-invalid={Boolean(errors.message)}
               className={`${inputClassName(Boolean(errors.message))} min-h-30 resize-y`}
+              disabled={isSubmitting}
               id="message"
+              maxLength={5000}
               name="message"
               onChange={handleFieldChange}
+              required
               rows={4}
               value={values.message}
             />
-            {errors.message ? <p className="mt-1 text-sm text-red-600">{errors.message}</p> : null}
+            {errors.message ? (
+              <p className="mt-1 text-sm text-red-600" id="message-error">
+                {errors.message}
+              </p>
+            ) : null}
           </div>
 
           <div>
             <label className="flex items-center cursor-pointer gap-2 md:gap-3 w-fit">
               <div className="relative flex items-center justify-center">
                 <input
-                  type="checkbox"
-                  name="acceptedTerms"
+                  aria-describedby={errors.acceptedTerms ? "acceptedTerms-error" : undefined}
+                  aria-invalid={Boolean(errors.acceptedTerms)}
                   checked={values.acceptedTerms}
-                  onChange={handleTermsChange}
                   className="peer absolute h-0 w-0 opacity-0"
+                  disabled={isSubmitting}
+                  id="acceptedTerms"
+                  name="acceptedTerms"
+                  onChange={handleTermsChange}
+                  required
+                  type="checkbox"
                 />
 
                 {/* Custom checkbox */}
-                <div className="flex h-5 w-5 md:h-6 md:w-6 items-center justify-center rounded-md border border-deep-navy-blue-900 bg-transparent transition-colors peer-checked:bg-blue-200 peer-checked:[&>svg]:flex peer-checked:border-2">
+                <div className="flex h-5 w-5 md:h-6 md:w-6 items-center justify-center rounded-md border border-deep-navy-blue-900 bg-transparent transition-colors peer-checked:bg-blue-200 peer-checked:[&>svg]:flex peer-checked:border-2 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-pink-400">
                   <svg
                     className="hidden h-5 w-5 text-deep-navy-blue-900"
                     fill="none"
@@ -334,26 +459,31 @@ function ContactForm({
             </label>
 
             {errors.acceptedTerms ? (
-              <p className="mt-1 text-sm text-red-600">{errors.acceptedTerms}</p>
+              <p className="mt-1 text-sm text-red-600" id="acceptedTerms-error">
+                {errors.acceptedTerms}
+              </p>
             ) : null}
           </div>
 
           <button
-            className="mt-3 rounded-xl cursor-pointer w-full border bg-ocean-green-700 border-ocean-green-700 px-4 py-4 text-background transition-colors tracking-wider hover:bg-ocean-green-900 hover:border-ocean-green-800 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400"
+            className="mt-3 rounded-xl cursor-pointer w-full border bg-ocean-green-700 border-ocean-green-700 px-4 py-4 text-background transition-colors tracking-wider hover:bg-ocean-green-900 hover:border-ocean-green-800 font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-400 disabled:cursor-not-allowed disabled:opacity-65"
+            disabled={isSubmitting}
             type="submit"
           >
-            {translation.labels.submit}
+            {isSubmitting ? translation.labels.submitting : translation.labels.submit}
           </button>
 
-          <div className="min-h-[1.5rem]">
-            <p
-              aria-live="polite"
-              className={`text-lg font-semibold -tracking-[0.02em] transition-opacity duration-250 ease-in-out ${
-                isSubmitted ? "opacity-100 text-deep-navy-blue-900" : "opacity-0"
-              }`}
-            >
-              {translation.labels.success}
-            </p>
+          <div aria-live="polite" className="min-h-[3rem]">
+            {statusMessage ? (
+              <p
+                className={`text-lg font-semibold -tracking-[0.02em] ${
+                  isSubmissionError ? "text-red-700" : "text-deep-navy-blue-900"
+                }`}
+                role={isSubmissionError ? "alert" : "status"}
+              >
+                {statusMessage}
+              </p>
+            ) : null}
           </div>
         </form>
       </aside>

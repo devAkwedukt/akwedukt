@@ -1,4 +1,4 @@
-"server-only";
+import "server-only";
 
 import { z } from "zod";
 
@@ -38,6 +38,9 @@ export const envSchema = z.object({
   CI: z.enum(["true", "false"]).optional(),
   NEXT_PUBLIC_SANITY_STUDIO_URL: z.url().optional(),
   NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY: z.string().optional(),
+  RESEND_API_KEY: z.string().startsWith("re_").optional(),
+  RESEND_FROM_EMAIL: z.string().min(1).optional(),
+  CONTACT_FORM_TO_EMAIL: z.string().email().optional(),
 });
 
 declare global {
