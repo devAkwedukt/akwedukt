@@ -25,11 +25,9 @@ export function Pagination({
     maxVisiblePages,
   });
 
-  const skipPages = 10;
+  const skipPages = 15;
   const skipBackPage = Math.max(1, currentPage - skipPages);
   const skipForwardPage = Math.min(totalPages, currentPage + skipPages);
-  const hasSkipBack = currentPage > skipPages + 1;
-  const hasSkipForward = currentPage + skipPages < totalPages;
 
   const buildUrl = (page: number) => {
     const params = new URLSearchParams();
@@ -54,20 +52,20 @@ export function Pagination({
       <IconButton
         as="link"
         href={buildUrl(skipBackPage)}
-        icon="arrow-back-ios"
-        size="medium"
-        shape="circle"
-        disabled={!hasSkipBack}
-        aria-label="5 stron w tył"
+        icon="arrow-left-bar"
+        size="large"
+        shape="square"
+        disabled={!hasPreviousPage}
+        aria-label="15 stron w tył"
       />
 
       {/* Previous button */}
       <IconButton
         as="link"
         href={buildUrl(previousPage)}
-        icon="arrow-left-alt"
+        icon="arrow-back-ios"
         size="medium"
-        shape="circle"
+        shape="square"
         disabled={!hasPreviousPage}
         aria-label="Poprzednia strona"
       />
@@ -94,9 +92,9 @@ export function Pagination({
       <IconButton
         as="link"
         href={buildUrl(nextPage)}
-        icon="arrow-right-alt"
+        icon="arrow-forward-ios"
         size="medium"
-        shape="circle"
+        shape="square"
         disabled={!hasNextPage}
         aria-label="Następna strona"
       />
@@ -105,11 +103,11 @@ export function Pagination({
       <IconButton
         as="link"
         href={buildUrl(skipForwardPage)}
-        icon="arrow-forward-ios"
-        size="medium"
-        shape="circle"
-        disabled={!hasSkipForward}
-        aria-label="5 stron w przód"
+        icon="arrow-right-bar"
+        size="large"
+        shape="square"
+        disabled={!hasNextPage}
+        aria-label="15 stron w przód"
       />
     </div>
   );

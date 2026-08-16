@@ -188,4 +188,24 @@
   <symbol id="check" viewBox="0 0 16 16" fill="none">
     <path d="M6.36641 12.0001L2.56641 8.20007L3.51641 7.25007L6.36641 10.1001L12.4831 3.9834L13.4331 4.9334L6.36641 12.0001Z" fill="currentColor"/>
   </symbol>
+
+  <!-- Arrow Right Bar -->
+  <symbol id="arrow-right-bar" viewBox="0 0 16 16" fill="none">
+    <mask id="arrow-right-bar-mask" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+      <rect width="16" height="16" fill="#D9D9D9"/>
+    </mask>
+    <g mask="url(#arrow-right-bar-mask)">
+      <path d="M13.3335 12V4H14.6668V12H13.3335ZM8.00015 12L7.05015 11.0667L9.45015 8.66667H1.3335V7.33333H9.45015L7.06682 4.93333L8.00015 4L12.0002 8L8.00015 12Z" fill="currentColor"/>
+    </g>
+  </symbol>
+
+  <!-- Arrow Left Bar -->
+  <symbol id="arrow-left-bar" viewBox="0 0 16 16" fill="none">
+    <mask id="arrow-left-bar-mask" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="16">
+      <rect width="16" height="16" fill="#D9D9D9"/>
+    </mask>
+    <g mask="url(#arrow-left-bar-mask)">
+      <path d="M2.66683 12H1.3335V4H2.66683V12ZM8.00015 12L4.00015 8L8.00015 4L8.9335 4.93333L6.55015 7.33333H14.6668V8.66667H6.55015L8.95015 11.0667L8.00015 12Z" fill="currentColor"/>
+    </g>
+  </symbol>
 </svg>
