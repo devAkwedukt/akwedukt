@@ -4,10 +4,11 @@ interface RenderIconProps extends React.SVGAttributes<SVGSVGElement> {
   icon?: string;
   size?: number | string;
   className?: string;
+  disabled?: boolean;
 }
 
 export const RenderIcon = forwardRef<SVGSVGElement, RenderIconProps>(
-  ({ icon, size = 24, className = "", ...props }, ref) => {
+  ({ icon, size = 24, className = "", disabled = false, ...props }, ref) => {
     if (!icon) return null;
 
     // Check if icon needs 24x24 viewBox
@@ -20,7 +21,7 @@ export const RenderIcon = forwardRef<SVGSVGElement, RenderIconProps>(
         width={size}
         height={size}
         viewBox={viewBox}
-        className={`inline-block ${className}`}
+        className={`inline-block ${className} ${disabled ? "text-gray-600 cursor-not-allowed" : ""}`}
         {...props}
       >
         <use href={`/icons/sprite.svg#${icon}`} />

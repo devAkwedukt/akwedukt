@@ -56,9 +56,15 @@ const squareSizeStyles: Record<IconButtonSize, string> = {
 
 const shapeStyles: Record<IconButtonShape, string> = {
   circle:
-    "bg-transparent text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-2 hover:outline-offset-[-1px] hover:outline-blue-700 hover:cursor-pointer active:bg-blue-700 active:text-neutral-50 active:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-[#c20a9a] disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed rounded-full",
+    "bg-transparent text-deep-navy-blue-900 outline outline-2 outline-offset-[-1px] outline-deep-navy-blue-900 active:bg-blue-700 active:text-neutral-50 active:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-1px] focus-visible:outline-[#c20a9a] disabled:bg-gray-200 disabled:text-gray-700 disabled:outline-none disabled:cursor-not-allowed rounded-full",
   square:
-    "bg-transparent text-[#103770] hover:bg-blue-200 hover:text-[#103770] hover:cursor-pointer active:bg-blue-700 active:text-[#FAFAFA] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:bg-gray-200 disabled:text-gray-700 disabled:cursor-not-allowed",
+    "bg-transparent text-[#103770] active:bg-blue-700 active:text-[#FAFAFA] focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-[-2px] focus-visible:outline-pink-400 disabled:text-gray-600 disabled:cursor-not-allowed",
+};
+
+const hoverStyles: Record<IconButtonShape, string> = {
+  circle:
+    "hover:bg-blue-200 hover:text-blue-700 hover:outline hover:outline-2 hover:outline-offset-[-1px] hover:outline-blue-700 hover:cursor-pointer",
+  square: "hover:bg-blue-200 hover:text-[#103770] hover:cursor-pointer",
 };
 
 export function IconButton({
@@ -82,6 +88,7 @@ export function IconButton({
       "inline-flex items-center justify-center font-semibold transition",
       shape === "square" ? squareSizeStyles[size] : sizeStyles[size],
       shapeStyles[shape],
+      !isDisabled && hoverStyles[shape],
       loading && "cursor-wait opacity-75",
       className
     ),
@@ -139,6 +146,7 @@ export function IconButton({
         <span className="flex">
           <RenderIcon
             icon={icon}
+            disabled={isDisabled}
             size={
               shape === "square"
                 ? size === "small"
