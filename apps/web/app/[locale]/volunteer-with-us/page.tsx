@@ -48,6 +48,7 @@ export default async function VolunteerWithUs({ params }: { params: Promise<{ lo
     <>
       <Breadcrumbs
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Volunteer With Us" }]}
+        className="bg-gray-50"
       />
       <SanitySections value={page?.sections} />
       <ContactForm

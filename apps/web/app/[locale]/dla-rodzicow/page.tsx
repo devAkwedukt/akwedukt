@@ -48,6 +48,7 @@ export default async function DlaRodzicow({ params }: { params: Promise<{ locale
     <>
       <Breadcrumbs
         items={[{ label: "Strona główna", href: `/${locale}` }, { label: "Dla rodziców" }]}
+        className="bg-gray-50"
       />
       <SanitySections value={page?.sections} />
       <ContactForm
