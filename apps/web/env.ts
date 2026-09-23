@@ -40,7 +40,6 @@ export const envSchema = z.object({
   NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY: z.string().optional(),
   RESEND_API_KEY: z.string().startsWith("re_").optional(),
   RESEND_FROM_EMAIL: z.string().min(1).optional(),
-  CONTACT_FORM_TO_EMAIL: z.string().email().optional(),
 });
 
 declare global {
