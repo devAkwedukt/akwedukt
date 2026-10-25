@@ -27,7 +27,7 @@ export const envSchema = z.object({
     .optional()
     .refine(
       (val) => {
-        if (val === undefined) return true; // optional
+        if (val === undefined) return true;
         const num = Number(val);
         return !isNaN(num) && num >= 1 && num <= 100;
       },
@@ -40,6 +40,14 @@ export const envSchema = z.object({
   NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY: z.string().optional(),
   RESEND_API_KEY: z.string().startsWith("re_").optional(),
   RESEND_FROM_EMAIL: z.string().min(1).optional(),
+  FACEBOOK_IMPORT_ENABLED: z.enum(["true", "false"]).optional(),
+  FACEBOOK_IMPORT_START_AT: z.string().min(1).optional(),
+  FACEBOOK_IMPORT_SANITY_DATASET: z.enum(["development", "production"]).optional(),
+  FACEBOOK_PAGE_ID: z.string().min(1).optional(),
+  FACEBOOK_PAGE_ACCESS_TOKEN: z.string().min(1).optional(),
+  FACEBOOK_APP_SECRET: z.string().min(1).optional(),
+  FACEBOOK_WEBHOOK_VERIFY_TOKEN: z.string().min(1).optional(),
+  SANITY_FACEBOOK_IMPORT_TOKEN: z.string().min(1).optional(),
 });
 
 declare global {
