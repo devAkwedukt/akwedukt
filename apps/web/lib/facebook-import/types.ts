@@ -35,6 +35,15 @@ export type FacebookSourcePost = {
   createdTime: string;
 };
 
+export type SanityImageReference = {
+  _type: "image";
+  asset: {
+    _type: "reference";
+    _ref: string;
+  };
+  alt?: string;
+};
+
 export type FacebookDraftDocument = {
   _id: `drafts.facebook-${string}`;
   _type: "post";
@@ -50,4 +59,12 @@ export type FacebookDraftDocument = {
   excerpt: PortableTextItem[];
   categories: [];
   tags: [];
+};
+
+export type FacebookDraftDocumentWithMedia = FacebookDraftDocument & {
+  featuredMedia?: SanityImageReference;
+  slider?: Array<{
+    _key: string;
+    image: SanityImageReference;
+  }>;
 };

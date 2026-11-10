@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFacebookImportConfig } from "@/lib/facebook-import/config";
+import { readFacebookImportConfig, type FacebookImportConfig } from "@/lib/facebook-import/config";
+import { processFacebookWebhook } from "@/lib/facebook-import/processor";
 import { secureTextEquals, verifyFacebookSignature } from "@/lib/facebook-import/signature";
 
 export const runtime = "nodejs";
@@ -85,25 +86,10 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  let config: FacebookImportConfig;
+
   try {
-    const config = readFacebookImportConfig(process.env);
-
-    if (!config.enabled) {
-      return NextResponse.json({
-        received: true,
-        imported: false,
-        reason: "import-disabled",
-      });
-    }
-
-    return NextResponse.json(
-      {
-        received: true,
-        imported: false,
-        reason: "processor-not-installed",
-      },
-      { status: 503 }
-    );
+    config = readFacebookImportConfig(process.env);
   } catch (error) {
     console.error(
       "Facebook import configuration error:",
@@ -111,5 +97,32 @@ export async function POST(request: NextRequest) {
     );
 
     return response("Facebook import configuration is invalid", 503);
+  }
+
+  if (!config.enabled) {
+    return NextResponse.json({
+      received: true,
+      imported: false,
+      reason: "import-disabled",
+    });
+  }
+
+  try {
+    const summary = await processFacebookWebhook(payload, config);
+
+    return NextResponse.json({
+      received: true,
+      imported: summary.createdDrafts > 0,
+      reason: summary.matchedEvents > 0 ? "processed" : "no-supported-post-event",
+      summary,
+    });
+  } catch (error) {
+    console.error(
+      "Facebook import processing error:",
+      error instanceof Error ? error.message : "Unknown processing error"
+    );
+
+    // A non-2xx response asks Meta to retry transient Graph, image or Sanity failures.
+    return response("Facebook import processing failed", 503);
   }
 }
