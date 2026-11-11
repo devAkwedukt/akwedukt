@@ -763,6 +763,7 @@ export type PostsGallerySection = {
   >;
   variant?: "latest" | "next";
   limit?: number;
+  layout?: "grid" | "masonry";
   ctaText?: string;
   seeAllPostsText?: string;
   seeAllPostsUrl?: string;

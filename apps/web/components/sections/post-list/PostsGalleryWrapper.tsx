@@ -36,12 +36,14 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
   }
 
   const filteredPosts = posts.filter(Boolean) as PostWithExpandedCategories[];
+  const sectionSpacing =
+    item.layout === "masonry" ? "pt-8 pb-8 md:pt-14 lg:pb-10 2xl:pt-20" : "py-8 md:py-14 2xl:py-20";
 
   if (item.enabled === false) return null;
 
   return (
     <>
-      <section className="py-8 md:py-14 2xl:py-20 px-6 md:px-20 bg-gray-50 mx-auto relative">
+      <section className={`${sectionSpacing} px-6 md:px-20 bg-gray-50 mx-auto relative`}>
         {item.topImage && (
           <SanityImage
             image={item.topImage}
@@ -69,7 +71,7 @@ export default async function PostsGalleryWrapper({ item }: PostsGalleryWrapperP
           )}
         </header>
 
-        <PostsGrid posts={filteredPosts} ctaText={item.ctaText} />
+        <PostsGrid posts={filteredPosts} ctaText={item.ctaText} layout={item.layout} />
 
         {item.seeAllPostsText && item.seeAllPostsUrl && (
           <div className="mt-14 flex justify-start md:justify-center">

@@ -67,6 +67,24 @@ export default defineType({
       initialValue: 3,
     }),
     defineField({
+      name: "layout",
+      title: "Układ postów",
+      type: "string",
+      group: "settings",
+      description: "Wybierz sposób ułożenia kart i wyświetlania obrazów",
+      options: {
+        list: [
+          { title: "Standardowa siatka", value: "grid" },
+          {
+            title: "Kolumny o naturalnej wysokości (bez przycinania obrazów)",
+            value: "masonry",
+          },
+        ],
+        layout: "radio",
+      },
+      initialValue: "grid",
+    }),
+    defineField({
       name: "ctaText",
       title: "Tekst przycisku CTA",
       type: "string",

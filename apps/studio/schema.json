@@ -4779,6 +4779,23 @@
           },
           "optional": true
         },
+        "layout": {
+          "type": "objectAttribute",
+          "value": {
+            "type": "union",
+            "of": [
+              {
+                "type": "string",
+                "value": "grid"
+              },
+              {
+                "type": "string",
+                "value": "masonry"
+              }
+            ]
+          },
+          "optional": true
+        },
         "ctaText": {
           "type": "objectAttribute",
           "value": {
