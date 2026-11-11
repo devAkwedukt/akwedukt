@@ -40,3 +40,5 @@ yarn-error.log*
 *.pem
 
 .idea
+.env*
+!.env.example
