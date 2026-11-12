@@ -10723,6 +10723,21 @@
                 },
                 "rest": {
                   "type": "inline",
+                  "name": "postsGallerySection"
+                }
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_key": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "rest": {
+                  "type": "inline",
                   "name": "aboutSection"
                 }
               },
