@@ -1,4 +1,20 @@
-import { defineArrayMember, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
+
+function isFacebookVideoUrl(value: unknown) {
+  if (typeof value !== "string") return false;
+
+  try {
+    const url = new URL(value);
+    const hostname = url.hostname.toLowerCase();
+
+    return (
+      url.protocol === "https:" &&
+      (hostname === "facebook.com" || hostname.endsWith(".facebook.com") || hostname === "fb.watch")
+    );
+  } catch {
+    return false;
+  }
+}
 
 export default defineType({
   name: "richText",
@@ -158,6 +174,43 @@ export default defineType({
     // External image
     defineArrayMember({
       type: "externalImage",
+    }),
+
+    // Facebook video / Reel
+    defineArrayMember({
+      name: "facebookVideo",
+      title: "Wideo z Facebooka",
+      type: "object",
+      fields: [
+        defineField({
+          name: "url",
+          title: "Link do filmu lub Reel na Facebooku",
+          type: "url",
+          validation: (Rule) =>
+            Rule.required()
+              .uri({ scheme: ["https"] })
+              .custom((value) =>
+                isFacebookVideoUrl(value) ? true : "Wklej link z domeny facebook.com lub fb.watch."
+              ),
+        }),
+        defineField({
+          name: "caption",
+          title: "Podpis (opcjonalnie)",
+          type: "string",
+        }),
+      ],
+      preview: {
+        select: {
+          title: "caption",
+          subtitle: "url",
+        },
+        prepare({ title, subtitle }) {
+          return {
+            title: title || "Wideo z Facebooka",
+            subtitle,
+          };
+        },
+      },
     }),
 
     // Empty line / spacer

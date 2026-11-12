@@ -2,6 +2,25 @@ import { PortableTextComponents } from "next-sanity";
 import { Link } from "@/i18n/navigation";
 import { SanityImage } from "../image/SanityImage";
 
+function getFacebookVideoEmbedUrl(url: unknown) {
+  if (typeof url !== "string" || !url) return null;
+
+  try {
+    const parsedUrl = new URL(url);
+    const hostname = parsedUrl.hostname.toLowerCase();
+    const isFacebookUrl =
+      hostname === "facebook.com" || hostname.endsWith(".facebook.com") || hostname === "fb.watch";
+
+    if (parsedUrl.protocol !== "https:" || !isFacebookUrl) return null;
+
+    return `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+      parsedUrl.toString()
+    )}&show_text=0&width=267`;
+  } catch {
+    return null;
+  }
+}
+
 export const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className="mb-4">{children}</p>,
@@ -111,6 +130,36 @@ export const components: PortableTextComponents = {
 
           {value.caption && (
             <figcaption className="mt-2 text-sm text-gray-500">{value.caption}</figcaption>
+          )}
+        </figure>
+      );
+    },
+
+    facebookVideo: ({ value }) => {
+      const embedUrl = getFacebookVideoEmbedUrl(value?.url);
+      if (!embedUrl) return null;
+
+      return (
+        <figure className="my-8">
+          <div className="relative mx-auto aspect-[267/476] w-full max-w-[267px] overflow-hidden rounded-lg bg-black">
+            <iframe
+              src={embedUrl}
+              title={value?.caption || "Wideo z Facebooka"}
+              className="absolute inset-0 h-full w-full border-0"
+              width="267"
+              height="476"
+              scrolling="no"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+
+          {value?.caption && (
+            <figcaption className="mt-2 text-center text-sm text-gray-500">
+              {value.caption}
+            </figcaption>
           )}
         </figure>
       );
