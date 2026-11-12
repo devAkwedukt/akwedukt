@@ -1810,6 +1810,9 @@ export type Home = {
       } & ProjectsGallerySection)
     | ({
         _key: string;
+      } & PostsGallerySection)
+    | ({
+        _key: string;
       } & AboutSection)
     | ({
         _key: string;
@@ -2258,6 +2261,9 @@ export type PROJECT_BY_ID_QUERY_RESULT =
         | ({
             _key: string;
           } & PartnersSection)
+        | ({
+            _key: string;
+          } & PostsGallerySection)
         | ({
             _key: string;
           } & ProjectsGallerySection)
