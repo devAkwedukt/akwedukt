@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readFacebookImportConfig, type FacebookImportConfig } from "@/lib/facebook-import/config";
 import { processFacebookWebhook } from "@/lib/facebook-import/processor";
 import { secureTextEquals, verifyFacebookSignature } from "@/lib/facebook-import/signature";
+import { summarizeFacebookWebhookPayload } from "@/lib/facebook-import/webhook";
 
 export const runtime = "nodejs";
 
@@ -73,12 +74,20 @@ export async function POST(request: NextRequest) {
     return response("Invalid JSON payload", 400);
   }
 
+  const webhookDiagnostics = summarizeFacebookWebhookPayload(payload);
+  console.info("Facebook webhook received:", webhookDiagnostics);
+
   if (
     !payload ||
     typeof payload !== "object" ||
     !("object" in payload) ||
     payload.object !== "page"
   ) {
+    console.info("Facebook webhook ignored:", {
+      reason: "unsupported-object",
+      payloadKind: webhookDiagnostics.payloadKind,
+    });
+
     return NextResponse.json({
       received: true,
       imported: false,
@@ -100,6 +109,11 @@ export async function POST(request: NextRequest) {
   }
 
   if (!config.enabled) {
+    console.info("Facebook webhook ignored:", {
+      reason: "import-disabled",
+      payloadKind: webhookDiagnostics.payloadKind,
+    });
+
     return NextResponse.json({
       received: true,
       imported: false,
@@ -109,11 +123,17 @@ export async function POST(request: NextRequest) {
 
   try {
     const summary = await processFacebookWebhook(payload, config);
+    const reason = summary.matchedEvents > 0 ? "processed" : "no-supported-post-event";
+
+    console.info("Facebook import completed:", {
+      reason,
+      ...summary,
+    });
 
     return NextResponse.json({
       received: true,
       imported: summary.createdDrafts > 0,
-      reason: summary.matchedEvents > 0 ? "processed" : "no-supported-post-event",
+      reason,
       summary,
     });
   } catch (error) {
