@@ -5,13 +5,29 @@ import { SliderArrows } from "@/components/ui/SliderArrows";
 import { useSlider } from "@/hooks/useSlider";
 import type { ImageSection } from "@/sanity/typegen";
 
-export default function ImageSection({ item }: { item: ImageSection }) {
+type ImageSectionProps = {
+  item: ImageSection;
+  preserveImageAspectRatio?: boolean;
+};
+
+export default function ImageSection({
+  item,
+  preserveImageAspectRatio = false,
+}: ImageSectionProps) {
   const slidesPerView = item.sliderType === "mini" ? { sm: 1, md: 2, lg: 3 } : undefined;
 
   const slideWidthClass =
     item.sliderType === "mini"
       ? "flex-[0_0_calc(100%-1.5rem)] md:flex-[0_0_calc(50%-0.75rem)] lg:flex-[0_0_calc(33.333%-0.5rem)]"
       : "flex-[0_0_100%]";
+
+  const slideClass = preserveImageAspectRatio
+    ? `${slideWidthClass} flex min-w-0 items-start justify-center overflow-hidden active:cursor-grabbing`
+    : `${slideWidthClass} aspect-16/9 min-h-60 max-h-[80vh] overflow-hidden active:cursor-grabbing 3xl:min-h-200`;
+
+  const imageClass = preserveImageAspectRatio
+    ? "block h-auto max-h-[70vh] w-auto max-w-full object-contain object-top md:max-h-[420px]"
+    : "h-full w-full object-cover object-center";
 
   const {
     emblaRef,
@@ -30,18 +46,17 @@ export default function ImageSection({ item }: { item: ImageSection }) {
     <section className="relative w-full py-10 xl:py-12 2xl:py-16 px-0 md:px-6 2xl:px-20 bg-gray-50 mx-auto">
       {/* Image Slider */}
       {item.slider && item.slider.length > 0 && (
-        <main className="max-w-480 mx-auto w-full flex flex-row md:flex-col items-center gap-3 2xl:gap-4 3xl:gap-6">
+        <main
+          className={`${preserveImageAspectRatio ? "max-w-[1200px]" : "max-w-480"} mx-auto w-full flex flex-row md:flex-col items-center gap-3 2xl:gap-4 3xl:gap-6`}
+        >
           {/* Photo slider */}
           <div ref={emblaRef} className="w-full overflow-hidden">
             <div className="flex gap-6">
               {item.slider.map((slide, index) => (
-                <div
-                  key={index}
-                  className={`${slideWidthClass} aspect-16/9 overflow-hidden min-h-60 3xl:min-h-200 max-h-[80vh] active:cursor-grabbing`}
-                >
+                <div key={index} className={slideClass}>
                   <SanityImage
                     image={slide.image}
-                    className="object-cover w-full h-full object-center"
+                    className={imageClass}
                     alt={slide.image?.alt || `Zdjęcie ${index + 1}`}
                   />
                 </div>

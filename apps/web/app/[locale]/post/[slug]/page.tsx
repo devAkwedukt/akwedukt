@@ -107,7 +107,10 @@ export default async function PostPage({
           </article>
         </main>
       </div>
-      <ImageSection item={{ _type: "imageSection", slider: p.slider, enabled: true }} />
+      <ImageSection
+        item={{ _type: "imageSection", slider: p.slider, enabled: true }}
+        preserveImageAspectRatio
+      />
 
       <ContactForm
         headingText="Napisz do nas"
