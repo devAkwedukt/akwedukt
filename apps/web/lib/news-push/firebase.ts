@@ -105,14 +105,14 @@ export async function sendFirebaseNewsPush({
       body: JSON.stringify({
         message: {
           token,
-          notification: {
+          data: {
+            postId,
             title: "Akwedukt",
             body: Array.from(title.trim()).slice(0, 200).join("") || "Nowy artykuł",
           },
-          data: { postId },
           android: {
             restricted_package_name: "pl.org.akwedukt",
-            notification: { channel_id: "akwedukt_news", tag: postId },
+            priority: "high",
           },
         },
       }),
