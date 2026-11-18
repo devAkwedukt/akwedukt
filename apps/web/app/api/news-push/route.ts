@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody, type ParsedBody } from "next-sanity/webhook";
-import { sendFirebaseNewsPush } from "@/lib/news-push/firebase";
+import { type FirebaseNewsTarget, sendFirebaseNewsPush } from "@/lib/news-push/firebase";
 
 export const runtime = "nodejs";
 
@@ -14,12 +14,22 @@ type PublicationEvent = {
 
 const postIdPattern = /^[a-zA-Z0-9_-][a-zA-Z0-9_.-]{0,127}$/;
 
+function readPushTarget(): FirebaseNewsTarget | null {
+  if (process.env.VERCEL_ENV === "production") {
+    const topic = process.env.FCM_NEWS_PUSH_TOPIC?.trim();
+    return topic === "akwedukt_news" ? { topic } : null;
+  }
+
+  const token = process.env.FCM_NEWS_PUSH_TEST_TOKEN?.trim();
+  return token ? { token } : null;
+}
+
 export async function POST(request: NextRequest) {
   const secret = process.env.SANITY_NEWS_PUSH_SECRET?.trim();
-  const token = process.env.FCM_NEWS_PUSH_TEST_TOKEN?.trim();
+  const target = readPushTarget();
   const serviceAccountJson = process.env.FCM_SERVICE_ACCOUNT_JSON?.trim();
 
-  if (!secret || !token || !serviceAccountJson) {
+  if (!secret || !target || !serviceAccountJson) {
     return NextResponse.json({ message: "News push is not configured" }, { status: 503 });
   }
 
@@ -54,7 +64,7 @@ export async function POST(request: NextRequest) {
   try {
     const messageId = await sendFirebaseNewsPush({
       serviceAccountJson,
-      token,
+      target,
       postId: post._id,
       title: typeof post.title === "string" ? post.title : "",
     });

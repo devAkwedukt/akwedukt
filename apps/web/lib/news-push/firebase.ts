@@ -5,6 +5,10 @@ const googleTokenUrl = "https://oauth2.googleapis.com/token";
 const messagingScope = "https://www.googleapis.com/auth/firebase.messaging";
 const requestTimeoutMs = 8_000;
 
+export type FirebaseNewsTarget =
+  | { token: string; topic?: never }
+  | { topic: string; token?: never };
+
 type ServiceAccount = {
   type: "service_account";
   project_id: string;
@@ -83,12 +87,12 @@ async function getAccessToken(account: ServiceAccount): Promise<string> {
 
 export async function sendFirebaseNewsPush({
   serviceAccountJson,
-  token,
+  target,
   postId,
   title,
 }: {
   serviceAccountJson: string;
-  token: string;
+  target: FirebaseNewsTarget;
   postId: string;
   title: string;
 }): Promise<string> {
@@ -104,7 +108,7 @@ export async function sendFirebaseNewsPush({
       },
       body: JSON.stringify({
         message: {
-          token,
+          ...target,
           data: {
             postId,
             title: "Akwedukt",

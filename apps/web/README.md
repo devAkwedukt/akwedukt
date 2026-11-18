@@ -35,22 +35,24 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Android news push preview
+## Android news push
 
-`POST /api/news-push` receives signed Sanity publication events and sends a push to one
-Android installation. Set these server-side variables on the Vercel preview branch.
+`POST /api/news-push` receives signed Sanity publication events. Vercel Preview sends to
+one test Android installation. Vercel Production sends to the news topic used by the
+release app. Set the variables for the desired Vercel environment.
 
-| Variable | Value |
-| --- | --- |
-| `SANITY_NEWS_PUSH_SECRET` | A random signing secret shared with this Sanity webhook |
-| `FCM_NEWS_PUSH_TEST_TOKEN` | The registration token of the test phone |
-| `FCM_SERVICE_ACCOUNT_JSON` | The JSON key for an Akwedukt service account with the Firebase Cloud Messaging API Admin role |
+| Variable | Environment | Value |
+| --- | --- | --- |
+| `SANITY_NEWS_PUSH_SECRET` | Preview, Production | The signing secret shared with the webhook for that environment |
+| `FCM_NEWS_PUSH_TEST_TOKEN` | Preview | The registration token of the test phone |
+| `FCM_NEWS_PUSH_TOPIC` | Production | `akwedukt_news` |
+| `FCM_SERVICE_ACCOUNT_JSON` | Preview, Production | The JSON key for an Akwedukt service account with the Firebase Cloud Messaging API Admin role |
 
-In the Sanity project, configure a dedicated POST webhook targeting the preview URL at
-`/api/news-push`. Select the dataset being tested, enable **Create** and **Update**, keep
-draft and version events disabled, and enter the matching signing secret. If Vercel protects
-the preview, set the automation bypass value in the webhook's `x-vercel-protection-bypass`
-header.
+Configure the Sanity POST webhook with the matching signing secret. Set the production URL
+to `https://akwedukt.org.pl/api/news-push` and select the `production` dataset. For
+the single-device test, use `/api/news-push` on the Vercel Preview URL and, if it is
+protected, set its `x-vercel-protection-bypass` header. Enable **Create** and **Update**
+and keep draft and version events disabled.
 
 Use this GROQ filter.
 

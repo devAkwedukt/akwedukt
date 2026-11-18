@@ -50,6 +50,7 @@ export const envSchema = z.object({
   SANITY_FACEBOOK_IMPORT_TOKEN: z.string().min(1).optional(),
   SANITY_NEWS_PUSH_SECRET: z.string().min(1).optional(),
   FCM_NEWS_PUSH_TEST_TOKEN: z.string().min(1).optional(),
+  FCM_NEWS_PUSH_TOPIC: z.string().min(1).optional(),
   FCM_SERVICE_ACCOUNT_JSON: z.string().min(1).optional(),
 });
 
