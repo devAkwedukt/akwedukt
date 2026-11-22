@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { RenderIcon } from "../../ui";
 import { getFooterData } from "@/sanity/queries/groq.example";
@@ -144,6 +145,9 @@ async function Footer() {
           {/*</Link>*/}
         </div>
       </div>
+      <Link href="/pl/survival-guide" className="mx-auto block w-full max-w-sm">
+        <Image src="/survival-guide/dark.webp" width={688} height={400} alt="Kwidzyn Survival Guide" className="w-full h-auto" />
+      </Link>
     </footer>
   );
 }

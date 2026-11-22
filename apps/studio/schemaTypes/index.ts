@@ -1,3 +1,4 @@
+import survivalGuideEntry from "./survivalGuideEntry";
 import project from "./pages/project";
 
 import home from "./pages/home";
@@ -64,6 +65,7 @@ import imageSection from "./sections/imageSection";
 import infoSection from "./sections/infoSection";
 
 export const schemaTypes = [
+  survivalGuideEntry,
   project,
   settings,
   home,

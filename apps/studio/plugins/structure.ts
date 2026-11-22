@@ -45,6 +45,7 @@ export const structure: StructureToolOptions = {
         Singleton(S, { type: "documents", title: "Dokumenty", icon: DocumentsIcon }),
         Singleton(S, { type: "privacyPolicy", title: "Polityka Prywatności ", icon: DocumentIcon }),
         Singleton(S, { type: "footer", title: "Stopka", icon: InfoOutlineIcon }),
+        S.documentTypeListItem("survivalGuideEntry").title("Survival Guide").icon(BookIcon),
         S.divider().title("Kolekcje"),
         Collection(S, { type: "project", title: "Projekty", icon: EarthGlobeIcon }),
         // NOWE KOLEKCJE (Z importów WP): - POSTY, AUTHOR, TAGS, CATEGORIES

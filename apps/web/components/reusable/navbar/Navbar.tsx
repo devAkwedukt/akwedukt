@@ -19,6 +19,7 @@ const endpoints = [
   { link: "/dla-rodzicow", label: "Dla rodziców" },
   { link: "/volunteer-with-us", label: "Volunteer with us" },
   { link: "/wspolpraca", label: "Współpraca" },
+  { link: "/survival-guide", label: "Survival Guide" },
   { link: "/wesprzyj", label: "Wesprzyj nas" },
 ];
 
