@@ -41,11 +41,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 one test Android installation. Vercel Production sends to the news topic used by the
 release app. Set the variables for the desired Vercel environment.
 
-| Variable | Environment | Value |
-| --- | --- | --- |
-| `SANITY_NEWS_PUSH_SECRET` | Preview, Production | The signing secret shared with the webhook for that environment |
-| `FCM_NEWS_PUSH_TEST_TOKEN` | Preview | The registration token of the test phone |
-| `FCM_NEWS_PUSH_TOPIC` | Production | `akwedukt_news` |
+| Variable                   | Environment         | Value                                                                                         |
+| -------------------------- | ------------------- | --------------------------------------------------------------------------------------------- |
+| `SANITY_NEWS_PUSH_SECRET`  | Preview, Production | The signing secret shared with the webhook for that environment                               |
+| `FCM_NEWS_PUSH_TEST_TOKEN` | Preview             | The registration token of the test phone                                                      |
+| `FCM_NEWS_PUSH_TOPIC`      | Production          | `akwedukt_news`                                                                               |
 | `FCM_SERVICE_ACCOUNT_JSON` | Preview, Production | The JSON key for an Akwedukt service account with the Firebase Cloud Messaging API Admin role |
 
 Configure the Sanity POST webhook with the matching signing secret. Set the production URL

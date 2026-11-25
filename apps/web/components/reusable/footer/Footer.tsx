@@ -146,7 +146,13 @@ async function Footer() {
         </div>
       </div>
       <Link href="/pl/survival-guide" className="mx-auto block w-full max-w-sm">
-        <Image src="/survival-guide/dark.webp" width={688} height={400} alt="Kwidzyn Survival Guide" className="w-full h-auto" />
+        <Image
+          src="/survival-guide/dark.webp"
+          width={688}
+          height={400}
+          alt="Kwidzyn Survival Guide"
+          className="w-full h-auto"
+        />
       </Link>
     </footer>
   );
