@@ -24,7 +24,7 @@ async function Footer() {
 
   return (
     <footer className="bg-foreground text-gray-50 flex gap-8 md:gap-16 flex-col justify-between py-8 md:py-20 px-6 md:px-20 selection:text-deep-navy-blue-900! selection:bg-background!">
-      <div className="max-w-480 w-full mx-auto flex flex-col md:flex-row justify-between">
+      <div className="max-w-480 w-full mx-auto grid gap-8 md:grid-cols-2 2xl:grid-cols-[minmax(150px,0.7fr)_minmax(220px,1fr)_minmax(0,2.3fr)]">
         <aside className="flex gap-20 md:gap-0 flex-col justify-between mb-4 md:mb-0">
           {/* Logo */}
           <Link prefetch={false} href="/" className="w-fit">
@@ -56,7 +56,20 @@ async function Footer() {
           </div>
         </aside>
 
-        <div className="flex flex-col md:flex-row gap-8 md:gap-14">
+        <Link
+          href="/pl/survival-guide"
+          className="mx-auto block w-full max-w-sm self-center rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4"
+        >
+          <Image
+            src="/survival-guide/dark.webp"
+            width={688}
+            height={400}
+            alt="Kwidzyn Survival Guide"
+            className="w-full h-auto"
+          />
+        </Link>
+
+        <div className="flex flex-col gap-8 md:col-span-2 md:flex-row md:justify-between 2xl:col-span-1">
           <div className="flex flex-col gap-2 md:gap-6">
             <div className="flex flex-col gap-1 md:gap-2">
               <p className="mb-2 font-bold">{companyInfo?.name}</p>
@@ -145,15 +158,6 @@ async function Footer() {
           {/*</Link>*/}
         </div>
       </div>
-      <Link href="/pl/survival-guide" className="mx-auto block w-full max-w-sm">
-        <Image
-          src="/survival-guide/dark.webp"
-          width={688}
-          height={400}
-          alt="Kwidzyn Survival Guide"
-          className="w-full h-auto"
-        />
-      </Link>
     </footer>
   );
 }
