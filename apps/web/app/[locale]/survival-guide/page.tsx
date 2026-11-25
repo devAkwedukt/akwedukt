@@ -21,7 +21,7 @@ export default async function GuidePage() {
           className="mx-auto h-auto w-full max-w-sm md:max-w-md"
         />
       </h1>
-      <div className="rounded-2xl bg-gray-50/95 p-5 md:p-8">
+      <div className="rounded-2xl bg-gray-50/90 shadow-[0_0_40px_24px_#fafafa] p-5 md:p-8">
         <GuideList items={items} />
       </div>
     </main>
